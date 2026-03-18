@@ -25,6 +25,7 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
+        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A1A1A'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='22' fill='%23F5A623'>S</text></svg>" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
