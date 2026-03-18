@@ -47,9 +47,6 @@ export default function HowItWorks() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-6 relative">
-          {/* Clean connecting line (desktop) */}
-          <div className="hidden md:block absolute top-[52px] left-[calc(16.667%+40px)] right-[calc(16.667%+40px)] h-px bg-gradient-to-r from-amber-brand/20 via-amber-brand/40 to-amber-brand/20" />
-
           {steps.map((step, i) => (
             <div key={i} className="reveal relative group">
               {/* Card */}
