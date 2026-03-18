@@ -112,15 +112,29 @@ export default function AdsPricing() {
         </p>
 
         {/* Pricing grid */}
-        <div className="ads-pricing-grid" style={{ marginBottom: 32 }}>
+        <div
+          style={{
+            display: "grid",
+            gridTemplateColumns: "repeat(3, 1fr)",
+            gap: "1.5rem",
+            alignItems: "start",
+            marginBottom: 32,
+          }}
+          className="ads-pricing-grid"
+        >
           {packages.map((pkg) => (
             <div
               key={pkg.name}
-              className={pkg.featured ? "ads-card-featured" : "ads-card"}
               style={{
                 padding: 32,
+                display: "flex",
                 flexDirection: "column",
                 position: "relative",
+                background: pkg.featured ? "#111111" : "#161616",
+                border: pkg.featured
+                  ? "1px solid #c8ff00"
+                  : "1px solid rgba(255,255,255,0.08)",
+                borderRadius: 8,
               }}
             >
               {pkg.banner && (
@@ -258,25 +272,22 @@ export default function AdsPricing() {
                 href={`https://wa.me/27621779799?text=${encodeURIComponent(pkg.whatsappMsg)}`}
                 target="_blank"
                 rel="noopener noreferrer"
-                className={pkg.featured ? "ads-btn-filled" : "ads-btn-ghost"}
                 style={{
                   fontFamily: "'Space Mono', monospace",
                   fontSize: 12,
                   fontWeight: 700,
                   letterSpacing: "0.05em",
-                  textTransform: "uppercase",
-                  textAlign: "center",
+                  textTransform: "uppercase" as const,
+                  textAlign: "center" as const,
                   padding: "14px 24px",
                   borderRadius: 6,
                   textDecoration: "none",
                   display: "block",
-                  ...(pkg.featured
-                    ? { background: "#c8ff00", color: "#0a0a0a" }
-                    : {
-                        background: "transparent",
-                        color: "#f5f5f0",
-                        border: "2px solid rgba(255,255,255,0.15)",
-                      }),
+                  background: pkg.featured ? "#c8ff00" : "transparent",
+                  color: pkg.featured ? "#0a0a0a" : "#f5f5f0",
+                  border: pkg.featured
+                    ? "2px solid #c8ff00"
+                    : "2px solid rgba(255,255,255,0.15)",
                 }}
               >
                 {pkg.ctaText}
