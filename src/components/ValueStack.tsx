@@ -62,8 +62,8 @@ const inclusions = [
         <path strokeLinecap="round" strokeLinejoin="round" d="M19.5 10.5c0 7.142-7.5 11.25-7.5 11.25S4.5 17.642 4.5 10.5a7.5 7.5 0 1115 0z" />
       </svg>
     ),
-    title: "Pretoria SEO Built In",
-    desc: "Get found on Google locally",
+    title: "SEO Strategy Built In",
+    desc: "Get found on Google nationwide",
   },
   {
     icon: (
