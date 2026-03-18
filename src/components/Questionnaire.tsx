@@ -3,6 +3,7 @@
 import { useState, useEffect, useCallback, useRef } from "react";
 
 const STORAGE_KEY = "stacked_marketing_form";
+const WEBHOOK_URL = "https://hook.eu2.make.com/u9zvt7i22tl7bmh04hudka6a1622hoox";
 const WHATSAPP_LINK = "https://wa.me/27621779799?text=Hi%20Stacked%20Marketing%2C%20I%20just%20submitted%20the%20website%20form!";
 
 const INDUSTRIES = [
@@ -210,8 +211,20 @@ export default function Questionnaire() {
     if (!validateStep(5)) return;
     setSubmitting(true);
 
-    // Simulate submission
-    await new Promise((r) => setTimeout(r, 1500));
+    // Send to webhook
+    try {
+      await fetch(WEBHOOK_URL, {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          ...formData,
+          submittedAt: new Date().toISOString(),
+          industry: formData.industry === "Other" ? formData.industryOther : formData.industry,
+        }),
+      });
+    } catch {
+      // Continue to success even if webhook fails — lead is saved in localStorage
+    }
 
     // Fire confetti
     try {

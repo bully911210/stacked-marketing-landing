@@ -6,7 +6,6 @@ import FAQ from "@/components/FAQ";
 import Questionnaire from "@/components/Questionnaire";
 import Footer from "@/components/Footer";
 import WhatsAppButton from "@/components/WhatsAppButton";
-import ExitIntent from "@/components/ExitIntent";
 import ScrollReveal from "@/components/ScrollReveal";
 
 export default function Home() {
@@ -21,7 +20,6 @@ export default function Home() {
       <Questionnaire />
       <Footer />
       <WhatsAppButton />
-      <ExitIntent />
     </main>
   );
 }
