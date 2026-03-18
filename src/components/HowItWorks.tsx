@@ -35,11 +35,14 @@ const steps = [
 
 export default function HowItWorks() {
   return (
-    <section className="py-20 sm:py-28 bg-dark relative">
-      <div className="max-w-5xl mx-auto px-4 sm:px-6">
+    <section className="py-20 sm:py-28 bg-dark relative overflow-hidden">
+      {/* Ambient background glow */}
+      <div className="absolute top-0 left-1/2 -translate-x-1/2 w-[800px] h-[400px] bg-amber-brand/3 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-5xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-black mb-4">
-            How It Works — <span className="text-amber-brand">3 Simple Steps</span>
+            How It Works — <span className="gradient-text-animate">3 Simple Steps</span>
           </h2>
           <p className="text-gray-400 text-lg">
             From form to live website. No complicated process.
@@ -47,19 +50,27 @@ export default function HowItWorks() {
         </div>
 
         <div className="grid grid-cols-1 md:grid-cols-3 gap-8 relative">
-          {/* Connecting line (desktop) */}
-          <div className="hidden md:block absolute top-16 left-1/6 right-1/6 h-0.5 bg-gradient-to-r from-amber-brand/20 via-amber-brand to-amber-brand/20" />
+          {/* Animated connecting line (desktop) */}
+          <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-0.5 animated-line rounded-full">
+            {/* Floating dots on the line */}
+            <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-amber-brand/80 shadow-lg shadow-amber-brand/50" style={{ left: '25%', animation: 'dot-float-1 4s ease-in-out infinite' }} />
+            <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-amber-brand/50" style={{ left: '60%', animation: 'dot-float-2 5s ease-in-out infinite 1s' }} />
+          </div>
 
           {steps.map((step, i) => (
             <div key={i} className="reveal relative text-center">
-              {/* Step circle */}
+              {/* Step circle with premium gradient border */}
               <div className="relative inline-flex items-center justify-center w-32 h-32 mb-6">
-                <div className="absolute inset-0 bg-amber-brand/10 rounded-full" />
-                <div className="absolute inset-3 bg-dark-card border-2 border-amber-brand/30 rounded-full flex items-center justify-center">
-                  <div className="text-amber-brand">{step.icon}</div>
+                {/* Outer glow ring */}
+                <div className="absolute inset-0 rounded-full bg-gradient-to-br from-amber-brand/20 to-amber-brand/5" />
+                {/* Premium border circle */}
+                <div className="absolute inset-2 rounded-full bg-gradient-to-br from-amber-brand/30 via-transparent to-amber-brand/10 p-[2px]">
+                  <div className="w-full h-full bg-dark-card rounded-full flex items-center justify-center">
+                    <div className="text-amber-brand icon-glow">{step.icon}</div>
+                  </div>
                 </div>
-                {/* Step number badge */}
-                <div className="absolute -top-2 -right-2 w-10 h-10 bg-amber-brand rounded-full flex items-center justify-center">
+                {/* Step number badge with pulse */}
+                <div className="step-badge absolute -top-2 -right-2 w-10 h-10 bg-gradient-to-br from-amber-brand to-amber-brand-dark rounded-full flex items-center justify-center shadow-lg shadow-amber-brand/30">
                   <span className="text-dark font-black text-sm">{step.num}</span>
                 </div>
               </div>

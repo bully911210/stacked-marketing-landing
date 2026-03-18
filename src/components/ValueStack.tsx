@@ -96,26 +96,31 @@ const inclusions = [
 
 export default function ValueStack() {
   return (
-    <section className="py-20 sm:py-28 bg-dark-lighter relative">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
+    <section className="py-20 sm:py-28 bg-dark-lighter relative overflow-hidden grid-pattern">
+      {/* Ambient glow */}
+      <div className="absolute top-1/2 left-1/2 -translate-x-1/2 -translate-y-1/2 w-[600px] h-[600px] bg-amber-brand/5 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
         <div className="text-center mb-16">
           <h2 className="text-3xl sm:text-4xl font-black mb-4">
             Everything You Get for{" "}
-            <span className="text-amber-brand">R1999</span>
+            <span className="gradient-text-animate">R1999</span>
           </h2>
           <p className="text-gray-400 text-lg max-w-2xl mx-auto">
             No hidden costs. No upsells. This is the full package.
           </p>
         </div>
 
-        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4">
+        <div className="grid grid-cols-1 sm:grid-cols-2 lg:grid-cols-5 gap-4 reveal-stagger reveal">
           {inclusions.map((item, i) => (
             <div
               key={i}
-              className="reveal group bg-dark-card border border-white/5 rounded-xl p-6 hover:border-amber-brand/30 transition-all duration-300 hover:-translate-y-1"
+              className="premium-card group glass-card rounded-xl p-6 transition-all duration-400"
             >
-              <div className="text-amber-brand mb-4 group-hover:scale-110 transition-transform duration-300">
-                {item.icon}
+              <div className="text-amber-brand mb-4 icon-glow transition-all duration-300">
+                <div className="inline-flex items-center justify-center w-12 h-12 rounded-xl bg-amber-brand/10 icon-ring">
+                  {item.icon}
+                </div>
               </div>
               <h3 className="font-bold text-white mb-1 text-sm">{item.title}</h3>
               <p className="text-gray-500 text-xs">{item.desc}</p>

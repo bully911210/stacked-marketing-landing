@@ -61,11 +61,15 @@ export default function SocialProof() {
 
   return (
     <section className="py-20 sm:py-28 bg-dark-lighter relative overflow-hidden">
-      <div className="max-w-6xl mx-auto px-4 sm:px-6">
-        {/* Counter */}
+      {/* Ambient glow */}
+      <div className="absolute top-0 right-0 w-[500px] h-[500px] bg-amber-brand/5 rounded-full blur-3xl pointer-events-none" />
+      <div className="absolute bottom-0 left-0 w-[400px] h-[400px] bg-amber-brand/3 rounded-full blur-3xl pointer-events-none" />
+
+      <div className="max-w-6xl mx-auto px-4 sm:px-6 relative z-10">
+        {/* Counter with animated gradient background */}
         <div className="text-center mb-16 reveal" ref={counter.ref}>
-          <div className="inline-flex items-center gap-3 bg-amber-brand/10 border border-amber-brand/20 rounded-2xl px-8 py-4">
-            <span className="text-5xl sm:text-6xl font-black text-amber-brand">
+          <div className="inline-flex items-center gap-4 glass-card-strong counter-glow rounded-2xl px-10 py-6 border border-amber-brand/20">
+            <span className="text-5xl sm:text-6xl font-black gradient-text-animate">
               {counter.count}+
             </span>
             <span className="text-left text-gray-300 text-lg font-medium leading-tight">
@@ -80,21 +84,21 @@ export default function SocialProof() {
           What Our Clients Say
         </h2>
 
-        <div className="grid grid-cols-1 md:grid-cols-3 gap-6">
+        <div className="grid grid-cols-1 md:grid-cols-3 gap-6 reveal-stagger reveal">
           {testimonials.map((t, i) => (
             <div
               key={i}
-              className="reveal bg-dark-card border border-white/5 rounded-2xl p-8 relative hover:border-amber-brand/20 transition-colors"
+              className="glass-card rounded-2xl p-8 relative hover:border-amber-brand/20 transition-all duration-300 hover:-translate-y-1 group"
             >
-              {/* Quote mark */}
-              <div className="absolute top-4 right-6 text-amber-brand/20 text-6xl font-serif leading-none">
+              {/* Gradient quote mark */}
+              <div className="absolute top-4 right-6 text-6xl font-serif leading-none quote-gradient select-none">
                 &ldquo;
               </div>
 
-              {/* Stars */}
+              {/* Stars with shimmer */}
               <div className="flex gap-1 mb-4">
                 {Array.from({ length: t.stars }).map((_, s) => (
-                  <svg key={s} className="w-5 h-5 text-amber-brand" fill="currentColor" viewBox="0 0 20 20">
+                  <svg key={s} className="w-5 h-5 text-amber-brand star-shimmer" fill="currentColor" viewBox="0 0 20 20">
                     <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                   </svg>
                 ))}
@@ -112,18 +116,18 @@ export default function SocialProof() {
           ))}
         </div>
 
-        {/* Google rating badge */}
+        {/* Google rating badge - premium */}
         <div className="mt-12 text-center reveal">
-          <div className="inline-flex items-center gap-2 text-gray-400">
+          <div className="inline-flex items-center gap-3 glass-card rounded-full px-6 py-3">
             <div className="flex gap-0.5">
               {[1, 2, 3, 4, 5].map((s) => (
-                <svg key={s} className="w-5 h-5 text-amber-brand" fill="currentColor" viewBox="0 0 20 20">
+                <svg key={s} className="w-5 h-5 text-amber-brand star-shimmer" fill="currentColor" viewBox="0 0 20 20">
                   <path d="M9.049 2.927c.3-.921 1.603-.921 1.902 0l1.07 3.292a1 1 0 00.95.69h3.462c.969 0 1.371 1.24.588 1.81l-2.8 2.034a1 1 0 00-.364 1.118l1.07 3.292c.3.921-.755 1.688-1.54 1.118l-2.8-2.034a1 1 0 00-1.175 0l-2.8 2.034c-.784.57-1.838-.197-1.539-1.118l1.07-3.292a1 1 0 00-.364-1.118L2.98 8.72c-.783-.57-.38-1.81.588-1.81h3.461a1 1 0 00.951-.69l1.07-3.292z" />
                 </svg>
               ))}
             </div>
             <span className="font-semibold text-white">5.0</span>
-            <span>on Google Reviews</span>
+            <span className="text-gray-400">on Google Reviews</span>
           </div>
         </div>
       </div>

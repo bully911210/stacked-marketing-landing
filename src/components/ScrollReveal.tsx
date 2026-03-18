@@ -15,7 +15,10 @@ export default function ScrollReveal() {
       { threshold: 0.1, rootMargin: "0px 0px -50px 0px" }
     );
 
-    document.querySelectorAll(".reveal").forEach((el) => observer.observe(el));
+    // Observe all reveal types
+    document.querySelectorAll(".reveal, .reveal-left, .reveal-right, .reveal-stagger").forEach((el) =>
+      observer.observe(el)
+    );
 
     return () => observer.disconnect();
   }, []);
