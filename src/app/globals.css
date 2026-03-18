@@ -161,8 +161,8 @@ body {
   z-index: -1;
 }
 
-/* Exit intent overlay */
-.exit-overlay {
-  backdrop-filter: blur(8px);
-  background: rgba(0, 0, 0, 0.7);
+/* Select dropdown dark mode styling */
+select option {
+  background-color: #1A1A1A;
+  color: #ffffff;
 }

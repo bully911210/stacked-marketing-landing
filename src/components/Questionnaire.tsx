@@ -1,10 +1,9 @@
 "use client";
 
 import { useState, useEffect, useCallback, useRef } from "react";
+import { WHATSAPP_POST_SUBMIT_LINK, WEBHOOK_URL } from "@/lib/constants";
 
 const STORAGE_KEY = "stacked_marketing_form";
-const WEBHOOK_URL = "https://hook.eu2.make.com/u9zvt7i22tl7bmh04hudka6a1622hoox";
-const WHATSAPP_LINK = "https://wa.me/27621779799?text=Hi%20Stacked%20Marketing%2C%20I%20just%20submitted%20the%20website%20form!";
 
 const INDUSTRIES = [
   "Restaurant / Food",
@@ -199,7 +198,7 @@ export default function Questionnaire() {
   const nextStep = () => {
     if (!validateStep(step)) return;
     setDirection("left");
-    setStep((s) => Math.min(s + 1, 6));
+    setStep((s) => Math.min(s + 1, 5));
   };
 
   const prevStep = () => {
@@ -211,6 +210,22 @@ export default function Questionnaire() {
     if (!validateStep(5)) return;
     setSubmitting(true);
 
+    // Encode logo file to base64 if present
+    let logoBase64 = "";
+    let logoFileName = "";
+    if (logoFile) {
+      logoFileName = logoFile.name;
+      try {
+        const buffer = await logoFile.arrayBuffer();
+        const bytes = new Uint8Array(buffer);
+        let binary = "";
+        bytes.forEach((b) => (binary += String.fromCharCode(b)));
+        logoBase64 = btoa(binary);
+      } catch {
+        // logo encoding failed, continue without it
+      }
+    }
+
     // Send to webhook
     try {
       await fetch(WEBHOOK_URL, {
@@ -220,6 +235,8 @@ export default function Questionnaire() {
           ...formData,
           submittedAt: new Date().toISOString(),
           industry: formData.industry === "Other" ? formData.industryOther : formData.industry,
+          logoFileName,
+          logoBase64,
         }),
       });
     } catch {
@@ -280,7 +297,7 @@ export default function Questionnaire() {
           </p>
 
           <a
-            href={WHATSAPP_LINK}
+            href={WHATSAPP_POST_SUBMIT_LINK}
             target="_blank"
             rel="noopener noreferrer"
             className="btn-primary inline-flex items-center gap-3 bg-whatsapp hover:bg-whatsapp-dark text-white font-bold text-lg px-8 py-4 rounded-xl"
@@ -296,7 +313,7 @@ export default function Questionnaire() {
   }
 
   const totalSteps = 5;
-  const progress = ((step - 1) / (totalSteps - 1)) * 100;
+  const progress = (step / totalSteps) * 100;
 
   const inputClass = (field: string) =>
     `w-full bg-dark border ${

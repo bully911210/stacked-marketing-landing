@@ -1,7 +1,6 @@
 "use client";
 
-const WHATSAPP_LINK =
-  "https://wa.me/27621779799?text=Hi%20Stacked%20Marketing%2C%20I%27m%20interested%20in%20the%20R1999%20website%20offer";
+import { WHATSAPP_LINK } from "@/lib/constants";
 
 export default function Footer() {
   return (
