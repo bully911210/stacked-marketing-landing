@@ -67,6 +67,7 @@ export default function AdsNumbers() {
               className="ads-card"
               style={{
                 padding: "24px 28px",
+                flexDirection: "row",
                 justifyContent: "space-between",
                 alignItems: "center",
                 gap: 16,

@@ -48,6 +48,15 @@ const comparisons = [
   },
 ];
 
+const cellLabel: React.CSSProperties = {
+  fontFamily: "'Space Mono', monospace",
+  fontSize: 9,
+  letterSpacing: "0.1em",
+  textTransform: "uppercase",
+  marginBottom: 4,
+  display: "none",
+};
+
 export default function AdsComparison() {
   return (
     <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
@@ -82,8 +91,8 @@ export default function AdsComparison() {
           We Are Not an Agency. We Are Your Ads Team.
         </h2>
 
-        {/* Table header */}
-        <div className="ads-comparison-row">
+        {/* Table header: hidden on mobile via CSS */}
+        <div className="ads-comparison-row ads-comparison-header">
           <div
             style={{
               padding: "16px 20px",
@@ -128,7 +137,8 @@ export default function AdsComparison() {
 
         {/* Rows */}
         {comparisons.map((row) => (
-          <div key={row.label} className="ads-comparison-row">
+          <div key={row.label} className="ads-comparison-row" style={{ marginBottom: 2 }}>
+            {/* Label column */}
             <div
               style={{
                 padding: "16px 20px",
@@ -144,6 +154,7 @@ export default function AdsComparison() {
             >
               {row.label}
             </div>
+            {/* Big Agency */}
             <div
               style={{
                 padding: "16px 20px",
@@ -151,13 +162,17 @@ export default function AdsComparison() {
                 fontSize: 14,
                 color: "#888888",
                 display: "flex",
-                alignItems: "center",
+                flexDirection: "column",
+                justifyContent: "center",
                 background: "rgba(255,255,255,0.02)",
                 border: "1px solid rgba(255,255,255,0.04)",
+                borderRadius: 4,
               }}
             >
+              <div className="ads-cell-label" style={{ ...cellLabel, color: "#666666" }}>Big Agency</div>
               {row.them}
             </div>
+            {/* Stacked */}
             <div
               style={{
                 padding: "16px 20px",
@@ -165,13 +180,15 @@ export default function AdsComparison() {
                 fontSize: 14,
                 color: "#f5f5f0",
                 fontWeight: 500,
+                display: "flex",
+                flexDirection: "column",
+                justifyContent: "center",
                 background: "rgba(200,255,0,0.04)",
                 borderLeft: "2px solid #c8ff00",
-                border: "1px solid rgba(200,255,0,0.08)",
-                display: "flex",
-                alignItems: "center",
+                borderRadius: 4,
               }}
             >
+              <div className="ads-cell-label" style={{ ...cellLabel, color: "#c8ff00" }}>Stacked Marketing</div>
               {row.us}
             </div>
           </div>

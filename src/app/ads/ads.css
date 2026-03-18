@@ -123,6 +123,7 @@
   border-radius: 8px;
   transition: border-color 0.3s ease, transform 0.2s ease;
   display: flex;
+  flex-direction: column;
   position: relative;
   visibility: visible !important;
   opacity: 1 !important;
@@ -139,6 +140,7 @@
   border: 1px solid var(--lime) !important;
   border-radius: 8px;
   display: flex;
+  flex-direction: column;
   position: relative;
   visibility: visible !important;
   opacity: 1 !important;
@@ -350,8 +352,20 @@ select.ads-input {
     grid-template-columns: 1fr;
   }
   .ads-comparison-row {
-    grid-template-columns: 1fr;
-    gap: 0;
+    grid-template-columns: 1fr 1fr;
+    gap: 2px;
+  }
+  .ads-comparison-row > *:first-child {
+    grid-column: 1 / -1;
+    border-bottom: 1px solid var(--border);
+    padding-bottom: 8px !important;
+    margin-bottom: 4px;
+  }
+  .ads-comparison-header {
+    display: none;
+  }
+  .ads-cell-label {
+    display: block !important;
   }
   .ads-stats-row {
     grid-template-columns: 1fr;
