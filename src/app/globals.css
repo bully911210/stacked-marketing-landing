@@ -1,0 +1,168 @@
+@import "tailwindcss";
+
+@theme {
+  --color-amber-brand: #F5A623;
+  --color-amber-brand-dark: #D4900E;
+  --color-dark: #1A1A1A;
+  --color-dark-lighter: #2A2A2A;
+  --color-dark-card: #222222;
+  --color-whatsapp: #25D366;
+  --color-whatsapp-dark: #1DA851;
+
+  --font-heading: "Montserrat", system-ui, sans-serif;
+  --font-body: "Montserrat", system-ui, sans-serif;
+}
+
+html {
+  scroll-behavior: smooth;
+}
+
+body {
+  font-family: var(--font-body);
+  background-color: var(--color-dark);
+  color: #ffffff;
+}
+
+/* Scrollbar styling */
+::-webkit-scrollbar {
+  width: 8px;
+}
+::-webkit-scrollbar-track {
+  background: var(--color-dark);
+}
+::-webkit-scrollbar-thumb {
+  background: var(--color-amber-brand);
+  border-radius: 4px;
+}
+
+/* Fade in animation */
+@keyframes fadeInUp {
+  from {
+    opacity: 0;
+    transform: translateY(30px);
+  }
+  to {
+    opacity: 1;
+    transform: translateY(0);
+  }
+}
+
+.animate-fade-in-up {
+  animation: fadeInUp 0.6s ease-out forwards;
+}
+
+/* Slide transitions for questionnaire */
+@keyframes slideLeft {
+  from { opacity: 0; transform: translateX(60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+@keyframes slideRight {
+  from { opacity: 0; transform: translateX(-60px); }
+  to { opacity: 1; transform: translateX(0); }
+}
+
+.slide-left {
+  animation: slideLeft 0.4s ease-out forwards;
+}
+.slide-right {
+  animation: slideRight 0.4s ease-out forwards;
+}
+
+/* Progress bar */
+.progress-bar {
+  transition: width 0.5s cubic-bezier(0.4, 0, 0.2, 1);
+}
+
+/* Hero mesh gradient */
+.hero-mesh {
+  background: radial-gradient(ellipse at 20% 50%, rgba(245, 166, 35, 0.15) 0%, transparent 50%),
+              radial-gradient(ellipse at 80% 20%, rgba(245, 166, 35, 0.1) 0%, transparent 50%),
+              radial-gradient(ellipse at 50% 80%, rgba(245, 166, 35, 0.08) 0%, transparent 50%),
+              var(--color-dark);
+}
+
+/* Confetti canvas */
+.confetti-canvas {
+  position: fixed;
+  top: 0;
+  left: 0;
+  width: 100%;
+  height: 100%;
+  pointer-events: none;
+  z-index: 9999;
+}
+
+/* Custom checkbox/radio styling */
+.form-checkbox:checked,
+.form-radio:checked {
+  background-color: var(--color-amber-brand);
+  border-color: var(--color-amber-brand);
+}
+
+/* Vibe card selection */
+.vibe-card {
+  transition: all 0.3s ease;
+  cursor: pointer;
+}
+.vibe-card:hover {
+  transform: translateY(-4px);
+  box-shadow: 0 8px 30px rgba(245, 166, 35, 0.2);
+}
+.vibe-card.selected {
+  border-color: var(--color-amber-brand);
+  box-shadow: 0 0 0 3px rgba(245, 166, 35, 0.3);
+}
+
+/* Button hover micro-interaction */
+.btn-primary {
+  transition: all 0.2s ease;
+}
+.btn-primary:hover {
+  transform: scale(1.03);
+  box-shadow: 0 8px 25px rgba(245, 166, 35, 0.4);
+}
+.btn-primary:active {
+  transform: scale(0.98);
+}
+
+/* FAQ accordion */
+.faq-content {
+  max-height: 0;
+  overflow: hidden;
+  transition: max-height 0.3s ease-out, padding 0.3s ease-out;
+}
+.faq-content.open {
+  max-height: 500px;
+}
+
+/* Intersection observer reveal */
+.reveal {
+  opacity: 0;
+  transform: translateY(30px);
+  transition: all 0.6s ease-out;
+}
+.reveal.visible {
+  opacity: 1;
+  transform: translateY(0);
+}
+
+/* Floating WhatsApp pulse */
+@keyframes pulse-ring {
+  0% { transform: scale(1); opacity: 1; }
+  80%, 100% { transform: scale(1.4); opacity: 0; }
+}
+.whatsapp-pulse::before {
+  content: '';
+  position: absolute;
+  inset: -4px;
+  border-radius: 50%;
+  background: var(--color-whatsapp);
+  animation: pulse-ring 2s cubic-bezier(0.4, 0, 0.6, 1) infinite;
+  z-index: -1;
+}
+
+/* Exit intent overlay */
+.exit-overlay {
+  backdrop-filter: blur(8px);
+  background: rgba(0, 0, 0, 0.7);
+}
