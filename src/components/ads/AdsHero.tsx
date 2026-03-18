@@ -14,7 +14,8 @@ export default function AdsHero() {
         display: "flex",
         flexDirection: "column",
         justifyContent: "center",
-        padding: "120px 24px 80px",
+        paddingTop: 80,
+        paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)",
       }}
     >
       <div style={{ maxWidth: 1200, margin: "0 auto", width: "100%" }}>
@@ -27,7 +28,7 @@ export default function AdsHero() {
             letterSpacing: "0.1em",
             color: "#c8ff00",
             textTransform: "uppercase",
-            marginBottom: 32,
+            marginBottom: 40,
           }}
         >
           META ADS MANAGEMENT // PRETORIA
@@ -42,7 +43,7 @@ export default function AdsHero() {
             lineHeight: 0.95,
             letterSpacing: "-0.03em",
             color: "#f5f5f0",
-            marginBottom: 32,
+            marginBottom: 40,
             maxWidth: 900,
           }}
         >
@@ -61,7 +62,7 @@ export default function AdsHero() {
             lineHeight: 1.6,
             color: "#d0d0c8",
             maxWidth: 560,
-            marginBottom: 48,
+            marginBottom: 56,
           }}
         >
           Five businesses. Four industries. All built from scratch on Meta ads.
@@ -69,7 +70,7 @@ export default function AdsHero() {
         </p>
 
         {/* CTAs */}
-        <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 64 }}>
+        <div style={{ display: "flex", gap: 16, flexWrap: "wrap", marginBottom: 72 }}>
           <a
             href="#pricing"
             className="ads-btn-filled"
@@ -82,6 +83,7 @@ export default function AdsHero() {
               background: "#c8ff00",
               color: "#0a0a0a",
               padding: "14px 32px",
+              borderRadius: 6,
               textDecoration: "none",
               display: "inline-block",
             }}
@@ -102,9 +104,10 @@ export default function AdsHero() {
               background: "transparent",
               color: "#f5f5f0",
               padding: "14px 32px",
+              borderRadius: 6,
               textDecoration: "none",
               display: "inline-block",
-              border: "1px solid #5a5a52",
+              border: "2px solid rgba(255,255,255,0.15)",
             }}
           >
             WHATSAPP US
@@ -112,21 +115,13 @@ export default function AdsHero() {
         </div>
 
         {/* Trust Stats */}
-        <div
-          style={{
-            borderTop: "1px solid rgba(245,245,240,0.08)",
-            paddingTop: 32,
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(180px, 1fr))",
-            gap: 32,
-          }}
-        >
+        <div className="ads-stats-row">
           {stats.map((stat) => (
             <div key={stat.label}>
               <div
                 style={{
                   fontFamily: "'Outfit', sans-serif",
-                  fontSize: "clamp(2rem, 4vw, 3rem)",
+                  fontSize: "clamp(2.4rem, 5vw, 3.8rem)",
                   fontWeight: 800,
                   color: "#c8ff00",
                   letterSpacing: "-0.02em",
@@ -142,7 +137,7 @@ export default function AdsHero() {
                   fontSize: 11,
                   letterSpacing: "0.05em",
                   textTransform: "uppercase",
-                  color: "#8a8a80",
+                  color: "#a0a0a0",
                 }}
               >
                 {stat.label}

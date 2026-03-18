@@ -41,7 +41,7 @@ export default function AdsFAQ() {
   const [openIndex, setOpenIndex] = useState<number | null>(null);
 
   return (
-    <section style={{ padding: "120px 24px 80px" }}>
+    <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 800, margin: "0 auto" }}>
         <h2
           style={{
@@ -72,7 +72,7 @@ export default function AdsFAQ() {
                   justifyContent: "space-between",
                   alignItems: "center",
                   gap: 16,
-                  padding: "20px 24px",
+                  padding: "22px 24px",
                   background: "none",
                   border: "none",
                   cursor: "pointer",
@@ -82,7 +82,7 @@ export default function AdsFAQ() {
                 <span
                   style={{
                     fontFamily: "'Outfit', sans-serif",
-                    fontSize: 16,
+                    fontSize: 17,
                     fontWeight: 600,
                     color: "#f5f5f0",
                     lineHeight: 1.4,
@@ -94,11 +94,12 @@ export default function AdsFAQ() {
                   className={`ads-faq-chevron${openIndex === i ? " open" : ""}`}
                   style={{
                     color: "#c8ff00",
-                    fontSize: 18,
+                    fontSize: 20,
                     flexShrink: 0,
+                    fontWeight: 300,
                   }}
                 >
-                  &#9662;
+                  +
                 </span>
               </button>
               <div
@@ -106,10 +107,10 @@ export default function AdsFAQ() {
               >
                 <div
                   style={{
-                    padding: "0 24px 20px",
+                    padding: "0 24px 22px",
                     fontFamily: "'Outfit', sans-serif",
                     fontSize: 14,
-                    color: "#8a8a80",
+                    color: "#a0a0a0",
                     lineHeight: 1.7,
                   }}
                 >

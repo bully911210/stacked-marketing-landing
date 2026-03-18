@@ -12,18 +12,18 @@ export default function AdsNav() {
         background: "rgba(10,10,10,0.85)",
         backdropFilter: "blur(20px)",
         WebkitBackdropFilter: "blur(20px)",
-        borderBottom: "1px solid rgba(245,245,240,0.06)",
+        borderBottom: "1px solid rgba(255,255,255,0.08)",
       }}
     >
       <div
         style={{
           maxWidth: 1200,
           margin: "0 auto",
-          padding: "0 24px",
+          padding: "0 clamp(1.25rem, 1rem + 1.25vw, 2.5rem)",
           display: "flex",
           alignItems: "center",
           justifyContent: "space-between",
-          height: 64,
+          height: 72,
         }}
       >
         <span
@@ -51,6 +51,7 @@ export default function AdsNav() {
             background: "#c8ff00",
             color: "#0a0a0a",
             padding: "10px 24px",
+            borderRadius: 6,
             textDecoration: "none",
             display: "inline-block",
           }}

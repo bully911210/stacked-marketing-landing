@@ -10,7 +10,7 @@ const painPoints = [
 
 export default function AdsProblem() {
   return (
-    <section style={{ padding: "120px 24px 80px" }}>
+    <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         <div
           style={{
@@ -33,26 +33,27 @@ export default function AdsProblem() {
               }}
             >
               Spending Money on Ads and Getting{" "}
-              <span style={{ color: "#ff3b30" }}>Nothing</span> Back?
+              <span style={{ color: "#ff4444" }}>Nothing</span> Back?
             </h2>
           </div>
 
           {/* Right column */}
-          <div style={{ display: "flex", flexDirection: "column", gap: 24 }}>
+          <div style={{ display: "flex", flexDirection: "column", gap: 0 }}>
             {painPoints.map((point, i) => (
               <div
                 key={i}
                 style={{
                   display: "flex",
-                  gap: 16,
+                  gap: "0.75rem",
                   alignItems: "flex-start",
+                  padding: "0.75rem 0",
                 }}
               >
                 <span
                   style={{
                     fontFamily: "'Space Mono', monospace",
                     fontSize: 16,
-                    color: "#ff3b30",
+                    color: "#ff4444",
                     fontWeight: 700,
                     flexShrink: 0,
                     marginTop: 2,

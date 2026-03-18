@@ -25,7 +25,7 @@ const steps = [
 
 export default function AdsProcess() {
   return (
-    <section style={{ padding: "120px 24px 80px" }}>
+    <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Tag */}
         <div
@@ -98,7 +98,7 @@ export default function AdsProcess() {
                   style={{
                     fontFamily: "'Outfit', sans-serif",
                     fontSize: 14,
-                    color: "#8a8a80",
+                    color: "#a0a0a0",
                     lineHeight: 1.6,
                   }}
                 >

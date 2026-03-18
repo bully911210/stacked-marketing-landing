@@ -40,7 +40,7 @@ const proofCards = [
 
 export default function AdsProof() {
   return (
-    <section style={{ padding: "120px 24px 80px" }}>
+    <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Tag */}
         <div
@@ -76,7 +76,7 @@ export default function AdsProof() {
           style={{
             fontFamily: "'Outfit', sans-serif",
             fontSize: 16,
-            color: "#8a8a80",
+            color: "#a0a0a0",
             marginBottom: 48,
             maxWidth: 600,
             lineHeight: 1.6,
@@ -104,7 +104,7 @@ export default function AdsProof() {
                   fontSize: 10,
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
-                  color: "#8a8a80",
+                  color: "#a0a0a0",
                 }}
               >
                 {card.vertical}
@@ -135,7 +135,7 @@ export default function AdsProof() {
                 style={{
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: 13,
-                  color: "#8a8a80",
+                  color: "#a0a0a0",
                   lineHeight: 1.5,
                 }}
               >

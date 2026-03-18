@@ -4,8 +4,7 @@ export default function AdsFooter() {
   return (
     <footer
       style={{
-        borderTop: "1px solid rgba(245,245,240,0.06)",
-        padding: "48px 24px",
+        padding: "48px clamp(1.25rem, 1rem + 1.25vw, 2.5rem)",
       }}
     >
       <div
@@ -37,7 +36,7 @@ export default function AdsFooter() {
             style={{
               fontFamily: "'Outfit', sans-serif",
               fontSize: 13,
-              color: "#5a5a52",
+              color: "#666666",
               lineHeight: 1.6,
             }}
           >
@@ -71,7 +70,7 @@ export default function AdsFooter() {
             style={{
               fontFamily: "'Space Mono', monospace",
               fontSize: 11,
-              color: "#5a5a52",
+              color: "#666666",
               letterSpacing: "0.03em",
             }}
           >
@@ -81,7 +80,7 @@ export default function AdsFooter() {
             style={{
               fontFamily: "'Space Mono', monospace",
               fontSize: 11,
-              color: "#2a2a24",
+              color: "#333333",
               letterSpacing: "0.03em",
             }}
           >

@@ -26,21 +26,13 @@ const initialForm: FormData = {
 
 const STORAGE_KEY = "stacked-ads-form";
 
-const inputStyle: React.CSSProperties = {
-  width: "100%",
-  padding: "14px 16px",
-  fontFamily: "'Outfit', sans-serif",
-  fontSize: 14,
-  borderRadius: 0,
-};
-
 const labelStyle: React.CSSProperties = {
   fontFamily: "'Space Mono', monospace",
   fontSize: 11,
-  letterSpacing: "0.05em",
+  letterSpacing: "0.08em",
   textTransform: "uppercase" as const,
-  color: "#8a8a80",
-  marginBottom: 6,
+  color: "#a0a0a0",
+  marginBottom: 8,
   display: "block",
 };
 
@@ -117,7 +109,7 @@ export default function AdsForm() {
 
   if (submitted) {
     return (
-      <section id="form" style={{ padding: "120px 24px 80px" }}>
+      <section id="form" style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
         <div
           style={{
             maxWidth: 600,
@@ -163,6 +155,7 @@ export default function AdsForm() {
               background: "#c8ff00",
               color: "#0a0a0a",
               padding: "16px 40px",
+              borderRadius: 8,
               textDecoration: "none",
               display: "inline-block",
             }}
@@ -175,7 +168,7 @@ export default function AdsForm() {
   }
 
   return (
-    <section id="form" style={{ padding: "120px 24px 80px" }}>
+    <section id="form" style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 600, margin: "0 auto" }}>
         <h2
           style={{
@@ -195,7 +188,7 @@ export default function AdsForm() {
           style={{
             fontFamily: "'Outfit', sans-serif",
             fontSize: 15,
-            color: "#8a8a80",
+            color: "#a0a0a0",
             marginBottom: 40,
             lineHeight: 1.6,
           }}
@@ -204,7 +197,15 @@ export default function AdsForm() {
           a game plan.
         </p>
 
-        <form onSubmit={handleSubmit}>
+        <form
+          onSubmit={handleSubmit}
+          style={{
+            background: "#161616",
+            border: "1px solid rgba(255,255,255,0.08)",
+            borderRadius: 12,
+            padding: "clamp(1.5rem, 2vw, 2.5rem)",
+          }}
+        >
           <div
             style={{
               display: "grid",
@@ -216,7 +217,7 @@ export default function AdsForm() {
             {/* Full Name */}
             <div>
               <label style={labelStyle}>
-                Full Name <span style={{ color: "#ff3b30" }}>*</span>
+                Full Name <span style={{ color: "#ff4444" }}>*</span>
               </label>
               <input
                 type="text"
@@ -225,7 +226,6 @@ export default function AdsForm() {
                 onChange={handleChange}
                 required
                 className="ads-input"
-                style={inputStyle}
                 placeholder="John Smith"
               />
             </div>
@@ -233,7 +233,7 @@ export default function AdsForm() {
             {/* WhatsApp */}
             <div>
               <label style={labelStyle}>
-                WhatsApp Number <span style={{ color: "#ff3b30" }}>*</span>
+                WhatsApp Number <span style={{ color: "#ff4444" }}>*</span>
               </label>
               <input
                 type="tel"
@@ -242,7 +242,6 @@ export default function AdsForm() {
                 onChange={handleChange}
                 required
                 className="ads-input"
-                style={inputStyle}
                 placeholder="062 177 9799"
               />
             </div>
@@ -250,7 +249,7 @@ export default function AdsForm() {
             {/* Email */}
             <div>
               <label style={labelStyle}>
-                Email <span style={{ color: "#ff3b30" }}>*</span>
+                Email <span style={{ color: "#ff4444" }}>*</span>
               </label>
               <input
                 type="email"
@@ -259,7 +258,6 @@ export default function AdsForm() {
                 onChange={handleChange}
                 required
                 className="ads-input"
-                style={inputStyle}
                 placeholder="john@company.co.za"
               />
             </div>
@@ -267,7 +265,7 @@ export default function AdsForm() {
             {/* Business Name */}
             <div>
               <label style={labelStyle}>
-                Business Name <span style={{ color: "#ff3b30" }}>*</span>
+                Business Name <span style={{ color: "#ff4444" }}>*</span>
               </label>
               <input
                 type="text"
@@ -276,7 +274,6 @@ export default function AdsForm() {
                 onChange={handleChange}
                 required
                 className="ads-input"
-                style={inputStyle}
                 placeholder="Acme Pty Ltd"
               />
             </div>
@@ -289,7 +286,6 @@ export default function AdsForm() {
                 value={form.hasWebsite}
                 onChange={handleChange}
                 className="ads-input"
-                style={{ ...inputStyle, appearance: "auto" as const }}
               >
                 <option value="">Select</option>
                 <option value="Yes">Yes</option>
@@ -306,7 +302,6 @@ export default function AdsForm() {
                 value={form.budget}
                 onChange={handleChange}
                 className="ads-input"
-                style={{ ...inputStyle, appearance: "auto" as const }}
               >
                 <option value="">Select</option>
                 <option value="R3,000 - R5,000">R3,000 - R5,000</option>
@@ -325,7 +320,6 @@ export default function AdsForm() {
                 value={form.package}
                 onChange={handleChange}
                 className="ads-input"
-                style={{ ...inputStyle, appearance: "auto" as const }}
               >
                 <option value="">Select a package</option>
                 <option value="Launch (R4,999/mo)">Launch (R4,999/mo)</option>
@@ -345,7 +339,6 @@ export default function AdsForm() {
                 value={form.heardFrom}
                 onChange={handleChange}
                 className="ads-input"
-                style={{ ...inputStyle, appearance: "auto" as const }}
               >
                 <option value="">Select</option>
                 <option value="Google">Google</option>
@@ -362,7 +355,7 @@ export default function AdsForm() {
               style={{
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: 14,
-                color: "#ff3b30",
+                color: "#ff4444",
                 marginBottom: 16,
               }}
             >
@@ -377,14 +370,15 @@ export default function AdsForm() {
             style={{
               width: "100%",
               fontFamily: "'Space Mono', monospace",
-              fontSize: 14,
+              fontSize: 16,
               fontWeight: 700,
               letterSpacing: "0.05em",
               textTransform: "uppercase",
               background: "#c8ff00",
               color: "#0a0a0a",
-              padding: "18px 32px",
-              border: "none",
+              padding: "1.125rem 2rem",
+              borderRadius: 8,
+              border: "2px solid #c8ff00",
               cursor: submitting ? "wait" : "pointer",
               opacity: submitting ? 0.7 : 1,
             }}
@@ -397,7 +391,7 @@ export default function AdsForm() {
           style={{
             fontFamily: "'Space Mono', monospace",
             fontSize: 11,
-            color: "#5a5a52",
+            color: "#666666",
             textAlign: "center",
             marginTop: 24,
             letterSpacing: "0.02em",

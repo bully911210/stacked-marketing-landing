@@ -50,7 +50,7 @@ const comparisons = [
 
 export default function AdsComparison() {
   return (
-    <section style={{ padding: "120px 24px 80px" }}>
+    <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Tag */}
         <div
@@ -88,21 +88,23 @@ export default function AdsComparison() {
             style={{
               padding: "16px 20px",
               fontFamily: "'Space Mono', monospace",
-              fontSize: 11,
+              fontSize: 12,
+              fontWeight: 700,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#5a5a52",
+              color: "#666666",
             }}
           />
           <div
             style={{
               padding: "16px 20px",
               fontFamily: "'Space Mono', monospace",
-              fontSize: 11,
+              fontSize: 12,
+              fontWeight: 700,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
-              color: "#5a5a52",
-              background: "rgba(245,245,240,0.02)",
+              color: "#888888",
+              background: "rgba(255,255,255,0.02)",
             }}
           >
             BIG AGENCY
@@ -111,11 +113,13 @@ export default function AdsComparison() {
             style={{
               padding: "16px 20px",
               fontFamily: "'Space Mono', monospace",
-              fontSize: 11,
+              fontSize: 12,
+              fontWeight: 700,
               letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "#c8ff00",
-              background: "rgba(200,255,0,0.03)",
+              background: "rgba(200,255,0,0.04)",
+              borderLeft: "2px solid #c8ff00",
             }}
           >
             STACKED MARKETING
@@ -130,9 +134,10 @@ export default function AdsComparison() {
                 padding: "16px 20px",
                 fontFamily: "'Space Mono', monospace",
                 fontSize: 11,
+                fontWeight: 600,
                 letterSpacing: "0.05em",
                 textTransform: "uppercase",
-                color: "#8a8a80",
+                color: "#f5f5f0",
                 display: "flex",
                 alignItems: "center",
               }}
@@ -144,11 +149,11 @@ export default function AdsComparison() {
                 padding: "16px 20px",
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: 14,
-                color: "#8a8a80",
+                color: "#888888",
                 display: "flex",
                 alignItems: "center",
-                background: "rgba(245,245,240,0.02)",
-                border: "1px solid rgba(245,245,240,0.04)",
+                background: "rgba(255,255,255,0.02)",
+                border: "1px solid rgba(255,255,255,0.04)",
               }}
             >
               {row.them}
@@ -160,8 +165,9 @@ export default function AdsComparison() {
                 fontSize: 14,
                 color: "#f5f5f0",
                 fontWeight: 500,
-                background: "rgba(200,255,0,0.03)",
-                border: "1px solid rgba(200,255,0,0.06)",
+                background: "rgba(200,255,0,0.04)",
+                borderLeft: "2px solid #c8ff00",
+                border: "1px solid rgba(200,255,0,0.08)",
                 display: "flex",
                 alignItems: "center",
               }}

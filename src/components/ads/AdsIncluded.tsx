@@ -45,7 +45,7 @@ const items = [
 
 export default function AdsIncluded() {
   return (
-    <section style={{ padding: "120px 24px 80px" }}>
+    <section style={{ paddingInline: "clamp(1.25rem, 1rem + 1.25vw, 2.5rem)" }}>
       <div style={{ maxWidth: 1200, margin: "0 auto" }}>
         {/* Tag */}
         <div
@@ -87,10 +87,11 @@ export default function AdsIncluded() {
               <div
                 style={{
                   fontFamily: "'Space Mono', monospace",
-                  fontSize: 12,
+                  fontSize: 14,
                   color: "#c8ff00",
                   marginBottom: 12,
                   letterSpacing: "0.05em",
+                  fontWeight: 700,
                 }}
               >
                 {item.num}
@@ -111,7 +112,7 @@ export default function AdsIncluded() {
                 style={{
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: 14,
-                  color: "#8a8a80",
+                  color: "#a0a0a0",
                   lineHeight: 1.5,
                 }}
               >
