@@ -228,12 +228,13 @@ body {
   content: '';
   position: absolute;
   inset: 0;
-  opacity: 0.03;
-  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noiseFilter'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.9' numOctaves='4' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noiseFilter)'/%3E%3C/svg%3E");
+  opacity: 0.015;
+  background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 512 512' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='n'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23n)'/%3E%3C/svg%3E");
   background-repeat: repeat;
-  background-size: 256px 256px;
+  background-size: 512px 512px;
   pointer-events: none;
   z-index: 1;
+  mix-blend-mode: overlay;
 }
 
 /* ═══════════════════════════════════════════
@@ -595,8 +596,8 @@ body {
    GOLD SHIMMER FOR STARS
    ═══════════════════════════════════════════ */
 @keyframes gold-shimmer {
-  0%, 100% { filter: brightness(1); }
-  50% { filter: brightness(1.4) drop-shadow(0 0 4px rgba(245, 166, 35, 0.5)); }
+  0%, 100% { filter: brightness(1) drop-shadow(0 0 0 transparent); }
+  50% { filter: brightness(1.15) drop-shadow(0 0 3px rgba(245, 166, 35, 0.3)); }
 }
 
 .star-shimmer {
@@ -633,17 +634,17 @@ body {
    FLOATING DOTS ON CONNECTING LINE
    ═══════════════════════════════════════════ */
 @keyframes dot-float-1 {
-  0%, 100% { left: 15%; opacity: 0; }
+  0% { left: 10%; opacity: 0; }
   10% { opacity: 1; }
   90% { opacity: 1; }
-  100% { left: 85%; opacity: 0; }
+  100% { left: 90%; opacity: 0; }
 }
 
 @keyframes dot-float-2 {
-  0%, 100% { left: 20%; opacity: 0; }
-  10% { opacity: 0.7; }
-  90% { opacity: 0.7; }
-  100% { left: 80%; opacity: 0; }
+  0% { left: 15%; opacity: 0; }
+  15% { opacity: 0.8; }
+  85% { opacity: 0.8; }
+  100% { left: 85%; opacity: 0; }
 }
 
 /* ═══════════════════════════════════════════
@@ -748,10 +749,7 @@ select option {
    PREMIUM QUOTE MARKS
    ═══════════════════════════════════════════ */
 .quote-gradient {
-  background: linear-gradient(135deg, rgba(245, 166, 35, 0.3), rgba(255, 215, 0, 0.1));
-  -webkit-background-clip: text;
-  background-clip: text;
-  -webkit-text-fill-color: transparent;
+  color: rgba(245, 166, 35, 0.15);
 }
 
 /* ═══════════════════════════════════════════

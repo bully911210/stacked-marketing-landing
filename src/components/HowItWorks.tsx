@@ -53,8 +53,8 @@ export default function HowItWorks() {
           {/* Animated connecting line (desktop) */}
           <div className="hidden md:block absolute top-16 left-[16%] right-[16%] h-0.5 animated-line rounded-full">
             {/* Floating dots on the line */}
-            <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-amber-brand/80 shadow-lg shadow-amber-brand/50" style={{ left: '25%', animation: 'dot-float-1 4s ease-in-out infinite' }} />
-            <div className="absolute top-1/2 -translate-y-1/2 w-1.5 h-1.5 rounded-full bg-amber-brand/50" style={{ left: '60%', animation: 'dot-float-2 5s ease-in-out infinite 1s' }} />
+            <div className="absolute top-1/2 -translate-y-1/2 w-2.5 h-2.5 rounded-full bg-amber-brand shadow-lg shadow-amber-brand/60" style={{ left: '25%', animation: 'dot-float-1 5s ease-in-out infinite' }} />
+            <div className="absolute top-1/2 -translate-y-1/2 w-2 h-2 rounded-full bg-amber-brand/80 shadow-md shadow-amber-brand/40" style={{ left: '60%', animation: 'dot-float-2 6s ease-in-out infinite 1.5s' }} />
           </div>
 
           {steps.map((step, i) => (
