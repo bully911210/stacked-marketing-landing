@@ -4,12 +4,12 @@ const dataRows = [
   { label: "TOTAL AD SPEND", value: "R205,000+" },
   { label: "CUSTOMERS ACQUIRED", value: "3,000+" },
   { label: "COST PER ACQUISITION", value: "R68" },
-  { label: "CPM (COST PER 1K IMPRESSIONS)", value: "R23.67" },
+  { label: "BLENDED CPM", value: "R23.67" },
   { label: "BLENDED CTR", value: "4.31%" },
   { label: "COST PER CLICK", value: "R1.81" },
-  { label: "TOTAL REACH", value: "8.6M+" },
-  { label: "VERTICALS TESTED", value: "4" },
-  { label: "PAYBACK PERIOD", value: "< 30 days" },
+  { label: "UNIQUE REACH", value: "1.4M" },
+  { label: "VERTICAL", value: "Restricted (Insurance)" },
+  { label: "PAYBACK", value: "Month One" },
 ];
 
 export default function AdsNumbers() {
@@ -38,29 +38,35 @@ export default function AdsNumbers() {
             fontWeight: 800,
             letterSpacing: "-0.02em",
             color: "#f5f5f0",
-            marginBottom: 48,
+            marginBottom: 16,
             lineHeight: 1.05,
           }}
         >
           We Spend Our Own Money Before We Spend Yours.
         </h2>
 
-        {/* Data grid */}
-        <div
+        <p
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(300px, 1fr))",
-            gap: 2,
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 16,
+            color: "#8a8a80",
             marginBottom: 48,
+            maxWidth: 700,
+            lineHeight: 1.6,
           }}
         >
+          These are not client dashboards we are showing off. This is our money.
+          From one ad account. In a category Meta actively restricts.
+        </p>
+
+        {/* Data grid */}
+        <div className="ads-numbers-grid" style={{ marginBottom: 48 }}>
           {dataRows.map((row) => (
             <div
               key={row.label}
               className="ads-card"
               style={{
                 padding: "24px 28px",
-                display: "flex",
                 justifyContent: "space-between",
                 alignItems: "center",
                 gap: 16,

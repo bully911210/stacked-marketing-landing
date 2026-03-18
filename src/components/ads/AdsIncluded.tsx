@@ -3,43 +3,43 @@
 const items = [
   {
     num: "01",
-    title: "Meta Business Suite Setup",
-    desc: "Full configuration of your ad accounts, pages, and permissions.",
+    title: "Real Reporting",
+    desc: "No vanity metrics. Cost per lead, cost per click, and what actually converted.",
   },
   {
     num: "02",
-    title: "Pixel and Tracking",
-    desc: "Server-side and browser pixel installation with event verification.",
+    title: "Meta Pixel + CAPI",
+    desc: "Server-side tracking so your data survives iOS privacy changes.",
   },
   {
     num: "03",
-    title: "Creative Production",
-    desc: "Static and video ad creatives designed to convert, not just look pretty.",
+    title: "WhatsApp Support",
+    desc: "Message us any time. Real person. Pretoria. No chatbots.",
   },
   {
     num: "04",
-    title: "Audience Research",
-    desc: "Custom audiences, lookalikes, and interest stacking based on real data.",
+    title: "Full Account Access",
+    desc: "Your ad account, your data, your assets. We never hold anything hostage.",
   },
   {
     num: "05",
-    title: "Campaign Architecture",
-    desc: "Structured campaigns with proper naming, budgets, and objectives.",
+    title: "Mobile-First Creatives",
+    desc: "Every ad designed for how people actually scroll: on their phones.",
   },
   {
     num: "06",
-    title: "Performance Reporting",
-    desc: "Clear dashboards with the metrics that actually matter to your business.",
+    title: "Local Market Knowledge",
+    desc: "We know Pretoria. We know SA. We do not run your ads from overseas.",
   },
   {
     num: "07",
-    title: "Ongoing Optimisation",
-    desc: "Continuous testing, scaling winners, and cutting what does not work.",
+    title: "Fast Onboarding",
+    desc: "Fill in the form, hop on a 15-min call, ads live within 5 business days.",
   },
   {
     num: "08",
-    title: "Full Ownership",
-    desc: "Every asset, every audience, every creative belongs to you. Always.",
+    title: "No Contracts Ever",
+    desc: "Month to month. If we are not delivering, you leave. Simple.",
   },
 ];
 
@@ -62,18 +62,27 @@ export default function AdsIncluded() {
           INCLUDED IN EVERY PLAN
         </div>
 
-        <div
+        {/* Heading */}
+        <h2
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fill, minmax(260px, 1fr))",
-            gap: 2,
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontWeight: 800,
+            letterSpacing: "-0.02em",
+            color: "#f5f5f0",
+            marginBottom: 48,
+            lineHeight: 1.05,
           }}
         >
+          No Hidden Costs. No Surprises.
+        </h2>
+
+        <div className="ads-included-grid">
           {items.map((item) => (
             <div
               key={item.num}
               className="ads-card"
-              style={{ padding: 28 }}
+              style={{ padding: 28, flexDirection: "column" }}
             >
               <div
                 style={{

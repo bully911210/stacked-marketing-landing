@@ -35,9 +35,7 @@ export default function AdsNav() {
             textTransform: "uppercase",
             color: "#f5f5f0",
           }}
-        >
-          <span style={{ color: "#c8ff00" }}>S</span>TACKED MARKETING
-        </span>
+        ><span style={{ color: "#c8ff00" }}>S</span>TACKED MARKETING</span>
 
         <a
           href="https://wa.me/27621779799"

@@ -7,15 +7,16 @@ const packages = [
     period: "/month",
     featured: false,
     banner: null,
+    tagline: "Get leads flowing.",
     intro: null,
     features: [
-      "1 campaign, up to 3 ad sets",
+      "3 ad campaigns (active management)",
       "Audience research and targeting",
-      "Ad creative (static visuals)",
-      "Pixel and conversion tracking setup",
+      "Ad creative (copy + basic graphics)",
       "Monthly performance report",
-      "WhatsApp support (business hours)",
-      "Landing page audit with recommendations",
+      "WhatsApp support",
+      "Meta Pixel installation",
+      "Campaign budget recommendations",
     ],
     ctaText: "START WITH LAUNCH",
     whatsappMsg: "Hi, I am interested in the Launch package at R4,999/month.",
@@ -26,17 +27,18 @@ const packages = [
     period: "/month",
     featured: true,
     banner: "MOST POPULAR",
+    tagline: "Turn clicks into customers.",
     intro: "Everything in Launch, plus:",
     features: [
-      "Up to 3 campaigns, 9 ad sets",
-      "A/B split testing (creative + audiences)",
-      "Retargeting and lookalike audiences",
-      "Video ad creation (short-form)",
-      "Fortnightly strategy calls",
-      "Lead form or landing page build",
-      "CRM integration (basic)",
+      "Conversion API (server-side tracking)",
+      "Custom landing page design",
+      "A/B testing on ad creatives",
+      "Lead form optimisation",
+      "Retargeting campaigns",
+      "Bi-weekly performance calls",
+      "Google Analytics setup",
     ],
-    ctaText: "GO WITH CONVERT",
+    ctaText: "START WITH CONVERT",
     whatsappMsg: "Hi, I am interested in the Convert package at R7,999/month.",
   },
   {
@@ -45,18 +47,20 @@ const packages = [
     period: "/month",
     featured: false,
     banner: null,
+    tagline: "Full stack. Full send.",
     intro: "Everything in Convert, plus:",
     features: [
-      "Unlimited campaigns and ad sets",
-      "Full-funnel strategy (TOFU, MOFU, BOFU)",
-      "Advanced attribution and tracking",
-      "Dedicated account manager",
-      "Weekly optimisation and reporting",
-      "Custom landing pages (up to 3)",
-      "Priority WhatsApp support (24h response)",
+      "Full website management",
+      "Ongoing landing page updates",
+      "Full-funnel strategy (awareness to conversion)",
+      "Lookalike audience building",
+      "Creative refresh every 2 weeks",
+      "Priority WhatsApp support (same-day response)",
+      "Monthly strategy session (45 min)",
     ],
-    ctaText: "LET US DOMINATE",
-    whatsappMsg: "Hi, I am interested in the Dominate package at R12,999/month.",
+    ctaText: "START WITH DOMINATE",
+    whatsappMsg:
+      "Hi, I am interested in the Dominate package at R12,999/month.",
   },
 ];
 
@@ -86,29 +90,35 @@ export default function AdsPricing() {
             fontWeight: 800,
             letterSpacing: "-0.02em",
             color: "#f5f5f0",
-            marginBottom: 48,
+            marginBottom: 16,
             lineHeight: 1.05,
           }}
         >
           Pick Your Lane.
         </h2>
 
-        {/* Pricing grid */}
-        <div
+        <p
           style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(280px, 1fr))",
-            gap: 2,
-            marginBottom: 32,
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: 16,
+            color: "#8a8a80",
+            marginBottom: 48,
+            maxWidth: 700,
+            lineHeight: 1.6,
           }}
         >
+          No contracts. No lock-in. Cancel any time. Every plan includes a real
+          human in Pretoria who answers your WhatsApp.
+        </p>
+
+        {/* Pricing grid */}
+        <div className="ads-pricing-grid" style={{ marginBottom: 32 }}>
           {packages.map((pkg) => (
             <div
               key={pkg.name}
               className={pkg.featured ? "ads-card-featured" : "ads-card"}
               style={{
                 padding: 32,
-                display: "flex",
                 flexDirection: "column",
                 position: "relative",
               }}
@@ -141,11 +151,25 @@ export default function AdsPricing() {
                   letterSpacing: "0.1em",
                   textTransform: "uppercase",
                   color: "#8a8a80",
-                  marginBottom: 16,
+                  marginBottom: 8,
                   marginTop: pkg.banner ? 24 : 0,
                 }}
               >
                 {pkg.name}
+              </div>
+
+              {/* Tagline */}
+              <div
+                style={{
+                  fontFamily: "'Outfit', sans-serif",
+                  fontSize: 14,
+                  color: "#c8ff00",
+                  marginBottom: 16,
+                  fontWeight: 500,
+                  fontStyle: "italic",
+                }}
+              >
+                {pkg.tagline}
               </div>
 
               {/* Price */}
@@ -213,7 +237,13 @@ export default function AdsPricing() {
                       lineHeight: 1.4,
                     }}
                   >
-                    <span style={{ color: "#c8ff00", flexShrink: 0, fontSize: 14 }}>
+                    <span
+                      style={{
+                        color: "#c8ff00",
+                        flexShrink: 0,
+                        fontSize: 14,
+                      }}
+                    >
                       +
                     </span>
                     {feature}
@@ -262,8 +292,8 @@ export default function AdsPricing() {
             lineHeight: 1.6,
           }}
         >
-          All prices exclude ad spend. Minimum recommended ad budget is R3,000/month.
-          No contracts. Cancel anytime.
+          All prices exclude ad spend. Minimum recommended ad budget is
+          R3,000/month. No contracts. Cancel anytime.
         </p>
       </div>
     </section>

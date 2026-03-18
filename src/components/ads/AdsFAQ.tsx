@@ -4,36 +4,36 @@ import { useState } from "react";
 
 const faqs = [
   {
-    q: "Do I need a massive budget to get started?",
-    a: "No. We recommend a minimum ad spend of R3,000/month on top of the management fee. Many of our best results have come from modest budgets with sharp targeting. We scale what works, not what is expensive.",
+    q: "What is the minimum ad spend I need?",
+    a: "We recommend a minimum of R3,000 per month in ad spend on top of the management fee. Many of our best results came from modest budgets with sharp targeting. We scale what works, not what is expensive.",
+  },
+  {
+    q: "Do I need a website first?",
+    a: "Not necessarily. Our Convert and Dominate packages include landing page design. If you already have a site, we will audit it and optimise it for conversions. If you do not, we build one as part of the package.",
+  },
+  {
+    q: "Have you worked in my industry?",
+    a: "We have hands-on experience across insurance, financial services, non-profit advocacy, agriculture, and recruitment. But the system works across most industries. If you sell something people want, we can get it in front of them.",
+  },
+  {
+    q: "What if I already have someone running my ads?",
+    a: "We audit your existing setup, fix tracking issues, restructure campaigns, and build on what is already there. No need to start from scratch. Your ad account stays yours throughout.",
   },
   {
     q: "How quickly will I see results?",
-    a: "Most campaigns go live within 5 business days. Initial data starts coming in within the first 48-72 hours of spend. Meaningful optimisation happens in weeks 2-4 as we gather enough data to scale winners.",
+    a: "Most campaigns go live within 5 business days. Initial data starts coming in within the first 48 to 72 hours of spend. Meaningful optimisation happens in weeks 2 to 4 as we gather enough data to scale winners.",
   },
   {
-    q: "Do I own the ad account and all the assets?",
-    a: "Yes. 100%. Your ad account, your audiences, your pixel data, your creatives. Everything belongs to you. If you leave, you take it all with you.",
+    q: "Can I change my package later?",
+    a: "Yes. You can upgrade or downgrade at any time. There are no penalties and no lock-in. We want you on the plan that makes sense for where your business is right now.",
   },
   {
-    q: "What if I already have a Meta ad account?",
-    a: "Perfect. We audit your existing setup, fix tracking issues, restructure campaigns, and build on what is already there. No need to start from scratch.",
+    q: "What happens if ads are not working?",
+    a: "We diagnose fast. If a campaign is underperforming, we adjust targeting, swap creatives, test new angles, or reallocate budget. You get honest reporting and clear next steps, not excuses.",
   },
   {
-    q: "Is there a contract or lock-in period?",
-    a: "No contracts. No lock-in. You stay because the results make it obvious. If we are not delivering, you can cancel at any time with 30 days notice.",
-  },
-  {
-    q: "What makes you different from other agencies?",
-    a: "We have built 5 businesses across 4 verticals using our own money. R205K+ in personal ad spend before we ever touched a client account. We are not theorists. We are operators who bet on ourselves first.",
-  },
-  {
-    q: "Do you work with businesses outside Pretoria?",
-    a: "Yes. While we are based in Pretoria, Meta ads are digital. We work with businesses anywhere in South Africa and beyond. Communication happens via WhatsApp and video calls.",
-  },
-  {
-    q: "What industries do you work with?",
-    a: "We have hands-on experience in insurance, financial services, non-profit advocacy, agriculture, and recruitment (BPO). But the system works across most industries. If you sell something people want, we can get it in front of them.",
+    q: "Do you run Google Ads too?",
+    a: "Right now we specialise in Meta ads (Facebook and Instagram). It is where we have the deepest expertise and the strongest track record. Google Ads may be added in future, but we would rather be excellent at one thing than average at two.",
   },
 ];
 
@@ -62,7 +62,7 @@ export default function AdsFAQ() {
             <div
               key={i}
               className="ads-card"
-              style={{ overflow: "hidden" }}
+              style={{ overflow: "hidden", flexDirection: "column" }}
             >
               <button
                 onClick={() => setOpenIndex(openIndex === i ? null : i)}
@@ -98,7 +98,7 @@ export default function AdsFAQ() {
                     flexShrink: 0,
                   }}
                 >
-                  ▾
+                  &#9662;
                 </span>
               </button>
               <div

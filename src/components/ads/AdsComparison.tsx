@@ -1,16 +1,51 @@
 "use client";
 
 const comparisons = [
-  { label: "Monthly Cost", them: "R15,000 - R50,000+", us: "R4,999 - R12,999" },
-  { label: "Verticals Tested", them: "Theory from case studies", us: "5 real businesses, 4 verticals" },
-  { label: "Best CPA Achieved", them: "They will not tell you", us: "R68 (restricted category)" },
-  { label: "Blended CTR", them: "Industry average 1-2%", us: "4.31% across 8.6M impressions" },
-  { label: "Contracts", them: "6-12 month lock-in", us: "Month-to-month. Cancel anytime." },
-  { label: "Asset Ownership", them: "They own your audiences", us: "You own everything. Always." },
-  { label: "Communication", them: "Email chains, weekly at best", us: "WhatsApp. Direct. Fast." },
-  { label: "Reporting", them: "Dashboards you never read", us: "Clear metrics that matter" },
-  { label: "Onboarding Time", them: "2-4 weeks", us: "5 days to live ads" },
-  { label: "Skin in the Game", them: "Your money, their experiments", us: "We spent R205K+ of our own first" },
+  {
+    label: "Monthly Cost",
+    them: "R15,000 to R30,000+",
+    us: "R4,999 to R12,999",
+  },
+  {
+    label: "Proven Verticals",
+    them: "We specialise in everything",
+    us: "5 businesses. 4 industries. Built from scratch",
+  },
+  {
+    label: "CPA Track Record",
+    them: "We will optimise over time",
+    us: "R68. Month one. Our money",
+  },
+  {
+    label: "CTR",
+    them: "Industry average is 1 to 2%",
+    us: "4.31% across 8.6M impressions",
+  },
+  {
+    label: "Contracts",
+    them: "6 to 12 months locked in",
+    us: "Month to month. Leave any time",
+  },
+  {
+    label: "Account Ownership",
+    them: "They own your ad account",
+    us: "You own everything",
+  },
+  {
+    label: "Communication",
+    them: "Email a strategist and wait 3 days",
+    us: "WhatsApp us. Same day",
+  },
+  {
+    label: "Reporting",
+    them: "Pretty dashboards, no context",
+    us: "Plain English: what worked, what did not, what is next",
+  },
+  {
+    label: "Onboarding",
+    them: "2 to 4 weeks",
+    us: "5 business days",
+  },
 ];
 
 export default function AdsComparison() {
@@ -32,15 +67,23 @@ export default function AdsComparison() {
           WHY STACKED
         </div>
 
-        {/* Table header */}
-        <div
+        {/* Heading */}
+        <h2
           style={{
-            display: "grid",
-            gridTemplateColumns: "1fr 1fr 1fr",
-            gap: 2,
-            marginBottom: 2,
+            fontFamily: "'Outfit', sans-serif",
+            fontSize: "clamp(2rem, 5vw, 3.5rem)",
+            fontWeight: 800,
+            letterSpacing: "-0.02em",
+            color: "#f5f5f0",
+            marginBottom: 48,
+            lineHeight: 1.05,
           }}
         >
+          We Are Not an Agency. We Are Your Ads Team.
+        </h2>
+
+        {/* Table header */}
+        <div className="ads-comparison-row">
           <div
             style={{
               padding: "16px 20px",
@@ -81,15 +124,7 @@ export default function AdsComparison() {
 
         {/* Rows */}
         {comparisons.map((row) => (
-          <div
-            key={row.label}
-            style={{
-              display: "grid",
-              gridTemplateColumns: "1fr 1fr 1fr",
-              gap: 2,
-              marginBottom: 2,
-            }}
-          >
+          <div key={row.label} className="ads-comparison-row">
             <div
               style={{
                 padding: "16px 20px",
@@ -105,14 +140,15 @@ export default function AdsComparison() {
               {row.label}
             </div>
             <div
-              className="ads-card"
               style={{
                 padding: "16px 20px",
                 fontFamily: "'Outfit', sans-serif",
                 fontSize: 14,
-                color: "#5a5a52",
+                color: "#8a8a80",
                 display: "flex",
                 alignItems: "center",
+                background: "rgba(245,245,240,0.02)",
+                border: "1px solid rgba(245,245,240,0.04)",
               }}
             >
               {row.them}

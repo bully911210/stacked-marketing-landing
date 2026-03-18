@@ -56,13 +56,7 @@ export default function AdsProcess() {
           Live Ads in 5 Days. Not 5 Weeks.
         </h2>
 
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(240px, 1fr))",
-            gap: 2,
-          }}
-        >
+        <div className="ads-process-grid">
           {steps.map((step) => (
             <div
               key={step.num}

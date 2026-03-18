@@ -31,7 +31,7 @@ export default function AdsFooter() {
               marginBottom: 8,
             }}
           >
-            <span style={{ color: "#c8ff00" }}>S</span>TACKED MARKETING
+<span style={{ color: "#c8ff00" }}>S</span>TACKED MARKETING
           </div>
           <div
             style={{

@@ -5,31 +5,36 @@ const proofCards = [
     vertical: "INSURANCE",
     metric: "3,000+",
     context: "Customers acquired",
-    details: "R205K spend, R68 CPA, R23.67 CPM, R1.81 CPC",
+    details:
+      "R205K total ad spend. R68 cost per customer. R23.67 CPM. R1.81 per click. In a category Meta actively throttles. Recurring revenue product with month-one payback on total ad spend.",
   },
   {
     vertical: "NON-PROFIT (ADVOCACY)",
-    metric: "Tens of Thousands",
+    metric: "Database from Zero",
     context: "Supporters mobilised",
-    details: "Awareness and advocacy campaigns at national scale",
+    details:
+      "Built the database from zero. Petition funnels, donor acquisition, and advocacy campaigns. All Meta.",
   },
   {
     vertical: "NON-PROFIT (AGRICULTURE)",
-    metric: "At Scale",
+    metric: "Niche Audience",
     context: "Member acquisition",
-    details: "Sustainable growth across rural and urban audiences",
+    details:
+      "Niche agricultural audience in South Africa. Found them, converted them, grew the base. Meta only.",
   },
   {
-    vertical: "FINANCIAL SERVICES",
-    metric: "Regulated",
-    context: "Lead generation",
-    details: "Compliant campaigns in a heavily restricted category",
+    vertical: "FINANCIAL SERVICES (BROKERAGE)",
+    metric: "Compliance-Heavy",
+    context: "Qualified lead generation",
+    details:
+      "Compliance-heavy vertical. Every ad approved. Every lead qualified. Meta as the sole acquisition channel.",
   },
   {
     vertical: "RECRUITMENT (BPO)",
-    metric: "50+",
-    context: "Seats filled",
-    details: "High-volume hiring funnels for business process outsourcing",
+    metric: "At Volume",
+    context: "Full recruitment pipeline",
+    details:
+      "Full recruitment pipeline for a large call centre operation. Meta to application to floor. Ongoing acquisition at volume.",
   },
 ];
 
@@ -77,26 +82,18 @@ export default function AdsProof() {
             lineHeight: 1.6,
           }}
         >
-          Every one of these was built with our own money, our own risk, and our
-          own system. We are not theorists. We are operators.
+          We did not learn this from a course. We built it with our own money, in
+          our own businesses, across completely different industries. All on Meta.
         </p>
 
-        {/* Cards grid with 2px gap */}
-        <div
-          style={{
-            display: "grid",
-            gridTemplateColumns: "repeat(auto-fit, minmax(200px, 1fr))",
-            gap: 2,
-            marginBottom: 48,
-          }}
-        >
+        {/* Cards grid */}
+        <div className="ads-proof-grid" style={{ marginBottom: 48 }}>
           {proofCards.map((card) => (
             <div
               key={card.vertical}
               className="ads-card"
               style={{
                 padding: 28,
-                display: "flex",
                 flexDirection: "column",
                 gap: 16,
               }}
@@ -138,7 +135,7 @@ export default function AdsProof() {
                 style={{
                   fontFamily: "'Outfit', sans-serif",
                   fontSize: 13,
-                  color: "#5a5a52",
+                  color: "#8a8a80",
                   lineHeight: 1.5,
                 }}
               >
