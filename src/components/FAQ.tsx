@@ -45,11 +45,11 @@ export default function FAQ() {
           We&apos;ve got answers. No BS.
         </p>
 
-        <div className="space-y-3">
+        <div className="space-y-3 reveal">
           {faqs.map((faq, i) => (
             <div
               key={i}
-              className={`reveal glass-card rounded-xl overflow-hidden transition-all duration-300 faq-active-bar ${
+              className={`glass-card rounded-xl overflow-hidden transition-all duration-300 faq-active-bar ${
                 open === i ? "faq-open border-amber-brand/30 shadow-lg shadow-amber-brand/5" : "hover:border-amber-brand/10"
               }`}
             >
