@@ -1,0 +1,279 @@
+"use client";
+
+import { useScrollReveal } from "@/hooks/useScrollReveal";
+
+interface OfferCard {
+  tier: string;
+  price: string;
+  qualifier: string;
+  features: string[];
+  cta: string;
+  interest: string;
+  featured?: boolean;
+  badge?: string;
+  includesLine?: string;
+}
+
+const offers: OfferCard[] = [
+  {
+    tier: "WEBSITE",
+    price: "R1,999",
+    qualifier: "once-off",
+    features: [
+      "Custom-designed website tailored to your business",
+      "Full ownership of all code and content",
+      "WhatsApp button integration",
+      "2 lead capture forms",
+      "Google Analytics connected",
+      "SEO strategy built in",
+      "30 days priority support",
+      "Domain included if required",
+    ],
+    cta: "Get Started",
+    interest: "website",
+  },
+  {
+    tier: "META ADS",
+    price: "From R4,999",
+    qualifier: "/month",
+    features: [
+      "3 ad campaigns, active daily management",
+      "Audience research and targeting",
+      "Ad creative (copy + visuals)",
+      "Meta Pixel and conversion tracking",
+      "Monthly performance report",
+      "WhatsApp support",
+      "Campaign budget recommendations",
+      "No contracts, cancel any time",
+    ],
+    cta: "Get Started",
+    interest: "ads",
+    featured: true,
+    badge: "MOST POPULAR",
+  },
+  {
+    tier: "FULL STACK",
+    price: "R11,999",
+    qualifier: "/month",
+    includesLine: "Website + Ads + Email Automation",
+    features: [
+      "Everything in Website and Ads, plus:",
+      "Custom landing pages (up to 3)",
+      "Email automation sequences",
+      "Full-funnel strategy (awareness to conversion)",
+      "Lookalike audience building",
+      "Bi-weekly strategy calls",
+      "Priority WhatsApp support (same-day response)",
+      "Monthly strategy session (45 min)",
+    ],
+    cta: "Get Started",
+    interest: "fullstack",
+  },
+];
+
+export default function Offers() {
+  const { ref, isVisible } = useScrollReveal(0.2);
+
+  return (
+    <section className="section-spacing">
+      <div className="container-main">
+        <div
+          ref={ref}
+          className={`fade-up ${isVisible ? "visible" : ""}`}
+        >
+          <h2
+            className="text-h2"
+            style={{ textAlign: "center", marginBottom: 48 }}
+          >
+            Three Ways to Work With Us
+          </h2>
+        </div>
+
+        <div className="offers-grid">
+          {offers.map((offer) => (
+            <OfferCardComponent key={offer.tier} offer={offer} />
+          ))}
+        </div>
+      </div>
+
+      <style>{`
+        .offers-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 24px;
+          align-items: start;
+        }
+        @media (max-width: 767px) {
+          .offers-grid {
+            grid-template-columns: 1fr;
+          }
+        }
+        @media (min-width: 768px) and (max-width: 1023px) {
+          .offers-grid {
+            grid-template-columns: 1fr;
+            max-width: 480px;
+            margin-inline: auto;
+          }
+        }
+      `}</style>
+    </section>
+  );
+}
+
+function OfferCardComponent({ offer }: { offer: OfferCard }) {
+  const { ref, isVisible } = useScrollReveal(0.2);
+
+  return (
+    <div
+      ref={ref}
+      className={`card fade-up ${isVisible ? "visible" : ""}`}
+      style={{
+        padding: "40px 32px",
+        position: "relative",
+        display: "flex",
+        flexDirection: "column",
+      }}
+    >
+      {/* Top accent line */}
+      <div
+        style={{
+          position: "absolute",
+          top: 0,
+          left: 0,
+          right: 0,
+          height: offer.featured ? 3 : 0,
+          backgroundColor: offer.featured ? "var(--lime)" : "transparent",
+          borderRadius: "8px 8px 0 0",
+        }}
+      />
+
+      {/* Badge */}
+      {offer.badge && (
+        <span
+          style={{
+            position: "absolute",
+            top: 16,
+            right: 16,
+            backgroundColor: "var(--lime)",
+            color: "var(--text-primary)",
+            fontFamily: "var(--font-body)",
+            fontWeight: 600,
+            fontSize: "0.7rem",
+            textTransform: "uppercase",
+            padding: "4px 10px",
+            borderRadius: 100,
+          }}
+        >
+          {offer.badge}
+        </span>
+      )}
+
+      {/* Tier */}
+      <p
+        style={{
+          color: "var(--text-muted)",
+          fontFamily: "var(--font-body)",
+          fontWeight: 500,
+          fontSize: "0.75rem",
+          textTransform: "uppercase",
+          letterSpacing: "0.1em",
+          marginBottom: 12,
+        }}
+      >
+        {offer.tier}
+      </p>
+
+      {/* Price */}
+      <p
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontWeight: 500,
+          fontSize: "2rem",
+          color: offer.featured ? "var(--lime-on-light)" : "var(--text-primary)",
+          lineHeight: 1.2,
+        }}
+      >
+        {offer.price}
+      </p>
+
+      <p
+        style={{
+          color: "var(--text-muted)",
+          fontSize: "0.875rem",
+          fontFamily: "var(--font-body)",
+          marginBottom: offer.includesLine ? 8 : 24,
+        }}
+      >
+        {offer.qualifier}
+      </p>
+
+      {/* Includes line */}
+      {offer.includesLine && (
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            fontFamily: "var(--font-body)",
+            fontWeight: 400,
+            fontSize: "0.875rem",
+            marginBottom: 24,
+          }}
+        >
+          {offer.includesLine}
+        </p>
+      )}
+
+      {/* Features */}
+      <ul
+        style={{
+          listStyle: "none",
+          padding: 0,
+          margin: 0,
+          display: "flex",
+          flexDirection: "column",
+          gap: 12,
+          flex: 1,
+          marginBottom: 32,
+        }}
+      >
+        {offer.features.map((feature) => (
+          <li
+            key={feature}
+            style={{
+              color: "var(--text-secondary)",
+              fontSize: "0.875rem",
+              fontFamily: "var(--font-body)",
+              paddingLeft: 16,
+              position: "relative",
+            }}
+          >
+            <span
+              style={{
+                position: "absolute",
+                left: 0,
+                top: 8,
+                width: 6,
+                height: 6,
+                borderRadius: "50%",
+                backgroundColor: "var(--lime-on-light)",
+                display: "inline-block",
+              }}
+            />
+            {feature}
+          </li>
+        ))}
+      </ul>
+
+      {/* CTA */}
+      <a
+        href={`/#contact?interest=${offer.interest}`}
+        className={offer.featured ? "btn-accent" : "btn-ghost"}
+        style={{
+          width: "100%",
+          textAlign: "center",
+        }}
+      >
+        {offer.cta}
+      </a>
+    </div>
+  );
+}

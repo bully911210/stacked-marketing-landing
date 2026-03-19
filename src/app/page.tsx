@@ -1,25 +1,32 @@
-import Hero from "@/components/Hero";
-import ValueStack from "@/components/ValueStack";
-import HowItWorks from "@/components/HowItWorks";
-import SocialProof from "@/components/SocialProof";
-import FAQ from "@/components/FAQ";
-import Questionnaire from "@/components/Questionnaire";
-import Footer from "@/components/Footer";
-import WhatsAppButton from "@/components/WhatsAppButton";
-import ScrollReveal from "@/components/ScrollReveal";
+import { Suspense } from "react";
+import Nav from "@/components/main/Nav";
+import Hero from "@/components/main/Hero";
+import TrustBar from "@/components/main/TrustBar";
+import Proof from "@/components/main/Proof";
+import Testimonials from "@/components/main/Testimonials";
+import Offers from "@/components/main/Offers";
+import Process from "@/components/main/Process";
+import Comparison from "@/components/main/Comparison";
+import LeadForm from "@/components/main/LeadForm";
+import Footer from "@/components/main/Footer";
+import WhatsApp from "@/components/main/WhatsApp";
 
 export default function Home() {
   return (
     <main>
-      <ScrollReveal />
+      <Nav />
       <Hero />
-      <ValueStack />
-      <HowItWorks />
-      <SocialProof />
-      <FAQ />
-      <Questionnaire />
+      <TrustBar />
+      <Proof />
+      <Testimonials />
+      <Offers />
+      <Process />
+      <Comparison />
+      <Suspense>
+        <LeadForm />
+      </Suspense>
       <Footer />
-      <WhatsAppButton />
+      <WhatsApp />
     </main>
   );
 }

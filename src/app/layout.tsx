@@ -3,17 +3,28 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
-  title: "Custom Website for R1999 | Stacked Marketing Pretoria",
+  title: "Stacked Marketing. Website. Ads. Email. One Team.",
   description:
-    "Get a professional custom website for R1999 once-off. No contracts, no monthly fees. Built by Pretoria's own team. You own everything.",
+    "Full-stack marketing for growing businesses in Pretoria. Custom websites from R1,999. Meta Ads management. Email automation. No contracts. You own everything.",
   keywords:
-    "website design Pretoria, cheap website South Africa, R1999 website, custom website, web design Pretoria, Stacked Marketing",
+    "marketing Pretoria, website design Pretoria, Meta ads management, email automation, full-stack marketing, Stacked Marketing",
   openGraph: {
-    title: "Custom Website for R1999 | Stacked Marketing",
+    title: "Stacked Marketing. Website. Ads. Email. One Team.",
     description:
-      "Professional custom website. Once-off R1999. No contracts. No monthly fees. You own everything.",
+      "Full-stack marketing for growing businesses. Website. Ads. Email. One team. One invoice. Pretoria.",
     type: "website",
     locale: "en_ZA",
+    siteName: "Stacked Marketing",
+  },
+  twitter: {
+    card: "summary_large_image",
+    title: "Stacked Marketing. Website. Ads. Email. One Team.",
+    description:
+      "Full-stack marketing for growing businesses. One team. One invoice. Pretoria.",
+  },
+  robots: {
+    index: true,
+    follow: true,
   },
 };
 
@@ -25,7 +36,6 @@ export default function RootLayout({
   return (
     <html lang="en">
       <head>
-        <link rel="icon" href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A1A1A'/><text x='50%25' y='54%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='900' font-size='22' fill='%23F5A623'>S</text></svg>" type="image/svg+xml" />
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
           rel="preconnect"
@@ -33,9 +43,16 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=Montserrat:wght@400;500;600;700;800;900&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap"
           rel="stylesheet"
         />
+        <link
+          rel="icon"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A1A1A'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='20' fill='%23C8FF00'>S</text></svg>"
+        />
+      </head>
+      <body className="antialiased">
+        {children}
 
         {/* Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
@@ -53,21 +70,20 @@ export default function RootLayout({
           `}
         </Script>
 
-        {/* Google Analytics GA4 */}
+        {/* GA4 */}
         <Script
-          src="https://www.googletagmanager.com/gtag/js?id=G-XXXXXXXXXX"
+          src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"
           strategy="afterInteractive"
         />
-        <Script id="google-analytics" strategy="afterInteractive">
+        <Script id="ga4" strategy="afterInteractive">
           {`
             window.dataLayer = window.dataLayer || [];
             function gtag(){dataLayer.push(arguments);}
             gtag('js', new Date());
-            gtag('config', 'G-XXXXXXXXXX');
+            gtag('config', 'YOUR_GA4_ID');
           `}
         </Script>
-      </head>
-      <body className="antialiased">{children}</body>
+      </body>
     </html>
   );
 }
