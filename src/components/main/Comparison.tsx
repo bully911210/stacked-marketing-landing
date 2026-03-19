@@ -4,7 +4,6 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 interface ComparisonRow {
   feature: string;
-  diy: string;
   agency: string;
   stacked: string;
 }
@@ -12,37 +11,31 @@ interface ComparisonRow {
 const rows: ComparisonRow[] = [
   {
     feature: "We Manage and Scale Your Ads Daily",
-    diy: "dash",
     agency: "R15K+/mo",
     stacked: "From R4,999/mo",
   },
   {
     feature: "Ads + Website + Automation Done For You",
-    diy: "dash",
     agency: "dash",
     stacked: "R11,999/mo",
   },
   {
     feature: "You Keep All Assets (No Lock-in)",
-    diy: "dash",
     agency: "dash",
     stacked: "check",
   },
   {
     feature: "No Contracts. Cancel Anytime.",
-    diy: "check",
     agency: "dash",
     stacked: "check",
   },
   {
     feature: "Direct WhatsApp Support",
-    diy: "dash",
     agency: "dash",
     stacked: "check",
   },
   {
     feature: "Live Ad Spend Transparency",
-    diy: "dash",
     agency: "dash",
     stacked: "check",
   },
@@ -119,7 +112,6 @@ export default function Comparison() {
             <thead>
               <tr>
                 <th className="ct-feature-header">Feature</th>
-                <th className="ct-header">DIY</th>
                 <th className="ct-header">Typical Agency</th>
                 <th className="ct-stacked-header">
                   <span className="ct-badge">Best Value</span>
@@ -132,9 +124,6 @@ export default function Comparison() {
                 <tr key={row.feature} className={`ct-row ${i % 2 === 0 ? "ct-row-alt" : ""}`}>
                   <td className="ct-feature">{row.feature}</td>
                   <td className="ct-cell">
-                    <CellValue value={row.diy} isStacked={false} />
-                  </td>
-                  <td className="ct-cell">
                     <CellValue value={row.agency} isStacked={false} />
                   </td>
                   <td className="ct-cell ct-stacked-cell">
@@ -145,7 +134,7 @@ export default function Comparison() {
             </tbody>
             <tfoot>
               <tr>
-                <td colSpan={3} />
+                <td colSpan={2} />
                 <td className="ct-cta-cell">
                   <a href="#contact" className="ct-cta-btn">
                     Get Started
@@ -169,15 +158,6 @@ export default function Comparison() {
               </div>
             ))}
             <a href="#contact" className="ct-cta-btn" style={{ marginTop: 16 }}>Get Started</a>
-          </div>
-          <div className="ct-mobile-card">
-            <h3 className="ct-mobile-title">DIY</h3>
-            {rows.map((row) => (
-              <div key={row.feature} className="ct-mobile-row">
-                <span className="ct-mobile-label">{row.feature}</span>
-                <CellValue value={row.diy} isStacked={false} />
-              </div>
-            ))}
           </div>
           <div className="ct-mobile-card">
             <h3 className="ct-mobile-title">Typical Agency</h3>
