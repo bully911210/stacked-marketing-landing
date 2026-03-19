@@ -17,7 +17,7 @@ const rows: ComparisonRow[] = [
     stacked: "from R4,999/mo",
   },
   {
-    feature: "Full Stack (Ads + Web + Email)",
+    feature: "Full Stack (Ads + Web + Automation)",
     diy: "x",
     agency: "x",
     stacked: "R11,999/mo",
