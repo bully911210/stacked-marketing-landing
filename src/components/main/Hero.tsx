@@ -1,11 +1,5 @@
 "use client";
 
-const services = [
-  { label: "Website", descriptor: "Built to convert" },
-  { label: "Ads", descriptor: "Targeted to your buyer" },
-  { label: "Automations", descriptor: "Routed instantly" },
-];
-
 export default function Hero() {
   return (
     <section
@@ -21,76 +15,79 @@ export default function Hero() {
       }}
     >
       <div
-        className="container-main hero-layout"
+        className="container-main hero-content"
         style={{ paddingTop: "clamp(32px, 4vw, 48px)" }}
       >
-        {/* Left column: headline, subheadline, CTAs */}
-        <div className="hero-left">
-          <h1
-            className="text-display hero-fade"
-            style={{ maxWidth: 800 }}
-          >
-            Stop Paying Three Companies to Do One Job.
-          </h1>
+        {/* Eyebrow */}
+        <p
+          className="hero-fade"
+          style={{
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.75rem",
+            fontWeight: 500,
+            letterSpacing: "0.15em",
+            textTransform: "uppercase",
+            color: "var(--lime-on-light)",
+            marginBottom: 24,
+          }}
+        >
+          WEBSITE + ADS + AUTOMATIONS
+        </p>
 
-          <p
-            className="hero-fade hero-fade-delay-1"
+        <h1
+          className="text-display hero-fade hero-fade-delay-1"
+          style={{ maxWidth: 800 }}
+        >
+          Your Marketing Isn&apos;t Broken. It&apos;s{" "}
+          <span style={{ color: "var(--lime-on-light)" }}>Disconnected</span>.
+        </h1>
+
+        <p
+          className="hero-fade hero-fade-delay-1"
+          style={{
+            fontFamily: "var(--font-body)",
+            fontWeight: 400,
+            fontSize: "1.25rem",
+            color: "var(--text-secondary)",
+            maxWidth: 560,
+            marginTop: 24,
+            marginBottom: 40,
+          }}
+        >
+          Website. Ads. Automations. Three parts of one system.
+        </p>
+
+        <div
+          className="hero-fade hero-fade-delay-2"
+          style={{
+            display: "flex",
+            gap: 16,
+            flexWrap: "wrap",
+          }}
+        >
+          <a
+            href="#contact"
+            className="btn-primary"
             style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 400,
-              fontSize: "1.25rem",
-              color: "var(--text-secondary)",
-              maxWidth: 560,
-              marginTop: 24,
-              marginBottom: 32,
+              padding: "18px 40px",
+              fontSize: "15px",
+              fontWeight: 600,
             }}
           >
-            Website. Ads. Email. One team. One invoice. Pretoria.
-          </p>
-
-          <div
-            className="hero-fade hero-fade-delay-2"
+            See How It Stacks
+          </a>
+          <a
+            href="#proof"
+            className="btn-ghost"
             style={{
-              display: "flex",
-              gap: 16,
-              marginTop: 8,
-              flexWrap: "wrap",
+              display: "inline-flex",
+              alignItems: "center",
+              gap: 6,
             }}
           >
-            <a
-              href="#contact"
-              className="btn-primary"
-              style={{
-                padding: "18px 40px",
-                fontSize: "15px",
-                fontWeight: 600,
-              }}
-            >
-              Get Your Game Plan
-            </a>
-            <a href="#proof" className="btn-ghost">
-              See What We&apos;ve Done
-            </a>
-          </div>
-        </div>
-
-        {/* Right column: services block */}
-        <div className="hero-right hero-fade hero-fade-delay-2">
-          <div className="hero-services-block">
-            {services.map((svc, i) => (
-              <div
-                key={svc.label}
-                className="hero-service-row"
-                style={{
-                  borderTop: i === 0 ? "1px solid #222222" : "none",
-                  borderBottom: "1px solid #222222",
-                }}
-              >
-                <span className="hero-service-label">{svc.label}</span>
-                <span className="hero-service-desc">{svc.descriptor}</span>
-              </div>
-            ))}
-          </div>
+            View Case Studies
+            <span aria-hidden="true" style={{ fontSize: "1.1em" }}>&rarr;</span>
+          </a>
         </div>
       </div>
 
@@ -109,85 +106,15 @@ export default function Hero() {
       />
 
       <style>{`
-        /* Desktop: two-column layout */
-        @media (min-width: 768px) {
-          .hero-layout {
-            display: grid;
-            grid-template-columns: 1fr 35%;
-            gap: 48px;
-            align-items: center;
-            text-align: left;
-          }
-          .hero-right {
-            align-self: center;
-          }
+        .hero-content {
+          text-align: left;
         }
-
-        /* Mobile: single column */
         @media (max-width: 767px) {
-          .hero-layout {
+          .hero-content {
+            text-align: center;
             display: flex;
             flex-direction: column;
             align-items: center;
-            text-align: center;
-          }
-          .hero-right {
-            width: 100%;
-            margin-top: 48px;
-          }
-        }
-
-        /* Services block */
-        .hero-services-block {
-          display: flex;
-          flex-direction: column;
-          gap: 0;
-          width: 100%;
-          border-left: 2px solid #C8FF00;
-          padding-left: 20px;
-        }
-
-        /* Service row: desktop */
-        .hero-service-row {
-          display: flex;
-          flex-direction: row;
-          justify-content: space-between;
-          align-items: center;
-          padding: 20px 0;
-        }
-
-        .hero-service-label {
-          color: var(--text-primary);
-          font-weight: 700;
-          font-size: 1.125rem;
-          flex-shrink: 0;
-          white-space: nowrap;
-          font-family: var(--font-body);
-        }
-
-        .hero-service-desc {
-          color: #666666;
-          font-size: 0.875rem;
-          font-weight: 400;
-          text-align: right;
-          white-space: nowrap;
-          flex-shrink: 0;
-          font-family: var(--font-body);
-        }
-
-        /* Service row: mobile */
-        @media (max-width: 767px) {
-          .hero-service-row {
-            flex-direction: column;
-            align-items: flex-start;
-            padding: 16px 0;
-            gap: 4px;
-          }
-          .hero-service-desc {
-            text-align: left;
-          }
-          .hero-services-block {
-            padding-left: 16px;
           }
         }
       `}</style>
