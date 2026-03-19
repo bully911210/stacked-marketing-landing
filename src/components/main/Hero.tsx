@@ -20,7 +20,6 @@ export default function Hero() {
       >
         {/* Eyebrow */}
         <p
-          className="hero-fade"
           style={{
             fontFamily: "var(--font-mono)",
             fontSize: "0.75rem",
@@ -35,15 +34,14 @@ export default function Hero() {
         </p>
 
         <h1
-          className="text-display hero-fade hero-fade-delay-1"
+          className="text-display"
           style={{ maxWidth: 800 }}
         >
-          Your Marketing Isn&apos;t Broken. It&apos;s{" "}
-          <span style={{ color: "var(--lime-on-light)" }}>Disconnected</span>.
+          Your Marketing Isn&apos;t Broken.
+          It&apos;s Disconnected.
         </h1>
 
         <p
-          className="hero-fade hero-fade-delay-1"
           style={{
             fontFamily: "var(--font-body)",
             fontWeight: 400,
@@ -58,7 +56,6 @@ export default function Hero() {
         </p>
 
         <div
-          className="hero-fade hero-fade-delay-2"
           style={{
             display: "flex",
             gap: 16,
