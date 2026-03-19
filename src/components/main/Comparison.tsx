@@ -201,6 +201,7 @@ export default function Comparison() {
         .comparison-wrap {
           max-width: 900px;
           margin: 0 auto;
+          padding-top: 16px;
         }
 
         .comparison-table {
@@ -208,9 +209,9 @@ export default function Comparison() {
           border-collapse: separate;
           border-spacing: 0;
           background: #FFFFFF;
-          border-radius: 16px;
-          overflow: hidden;
-          box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 32px rgba(15, 23, 42, 0.06);
+          border-radius: 12px;
+          overflow: visible;
+          box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 4px 16px rgba(15, 23, 42, 0.05);
           border: 1px solid #E2E8F0;
         }
 
@@ -224,6 +225,7 @@ export default function Comparison() {
           letter-spacing: 0.08em;
           border-bottom: 1px solid #E2E8F0;
           background: #FFFFFF;
+          border-radius: 12px 0 0 0;
         }
 
         .ct-header {
@@ -240,15 +242,16 @@ export default function Comparison() {
 
         .ct-stacked-header {
           text-align: center;
-          padding: 18px 20px;
+          padding: 24px 20px 18px;
           color: #0F172A;
           font-weight: 700;
           font-size: 0.8125rem;
           text-transform: uppercase;
           letter-spacing: 0.06em;
           border-bottom: 1px solid #BBF7D0;
-          background: linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 100%);
+          background: #F0FDF4;
           position: relative;
+          border-radius: 0 12px 0 0;
         }
 
         .ct-badge {
@@ -311,6 +314,7 @@ export default function Comparison() {
           border-left: 1px solid #BBF7D0;
           padding: 20px;
           text-align: center;
+          border-radius: 0 0 12px 0;
         }
 
         .ct-cta-btn {
