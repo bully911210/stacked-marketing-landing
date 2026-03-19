@@ -46,12 +46,6 @@ const rows: ComparisonRow[] = [
     agency: "dash",
     stacked: "check",
   },
-  {
-    feature: "Local Pretoria-Based Team",
-    diy: "N/A",
-    agency: "Sometimes",
-    stacked: "check",
-  },
 ];
 
 function CellValue({ value, isStacked }: { value: string; isStacked: boolean }) {
