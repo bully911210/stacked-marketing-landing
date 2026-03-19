@@ -83,6 +83,7 @@ function CaseCard({
       >
         {/* Vertical label */}
         <span
+          className="proof-vertical-label"
           style={{
             position: "absolute",
             left: 16,
@@ -101,12 +102,27 @@ function CaseCard({
           {study.industry}
         </span>
 
-        <div style={{ marginLeft: 36 }}>
+        <div className="proof-card-content" style={{ marginLeft: 36 }}>
+          {/* Mobile-only industry label */}
+          <p
+            className="mobile-only"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontWeight: 600,
+              fontSize: "0.75rem",
+              textTransform: "uppercase",
+              letterSpacing: "0.1em",
+              color: "var(--lime-on-light)",
+              marginBottom: 8,
+            }}
+          >
+            {study.industry}
+          </p>
           <p
             style={{
               fontFamily: "var(--font-mono)",
               fontWeight: 600,
-              fontSize: "3rem",
+              fontSize: "clamp(2rem, 5vw, 3rem)",
               color: "var(--text-primary)",
               lineHeight: 1.1,
             }}
@@ -168,7 +184,7 @@ export default function Proof() {
           className={`fade-up ${headingVisible ? "visible" : ""}`}
         >
           <h2
-            className="text-h1"
+            className="text-h1 proof-heading"
             style={{ maxWidth: 700, marginBottom: 48 }}
           >
             R205K of our own ad spend before we touched a client campaign.
@@ -227,6 +243,19 @@ export default function Proof() {
           }
           .proof-grid > div {
             grid-column: 1 / -1 !important;
+          }
+          .proof-card .proof-vertical-label {
+            display: none;
+          }
+          .proof-card .proof-card-content {
+            margin-left: 0 !important;
+          }
+          .proof-card {
+            padding: 28px 20px !important;
+          }
+          .proof-heading {
+            text-align: center;
+            margin-inline: auto;
           }
         }
       `}</style>

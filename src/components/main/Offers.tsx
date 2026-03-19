@@ -91,6 +91,9 @@ export default function Offers() {
           .offers-grid {
             grid-template-columns: 1fr;
           }
+          .offers-grid .card {
+            transform: none !important;
+          }
         }
         @media (min-width: 768px) and (max-width: 1023px) {
           .offers-grid {

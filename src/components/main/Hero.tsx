@@ -56,6 +56,7 @@ export default function Hero() {
         </p>
 
         <div
+          className="hero-buttons"
           style={{
             display: "flex",
             gap: 16,
@@ -112,6 +113,10 @@ export default function Hero() {
             display: flex;
             flex-direction: column;
             align-items: center;
+          }
+          .hero-buttons {
+            flex-direction: column;
+            width: 100%;
           }
         }
       `}</style>

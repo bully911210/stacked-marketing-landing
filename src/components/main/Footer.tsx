@@ -169,6 +169,19 @@ export default function Footer() {
             grid-template-columns: 1fr 1fr 1fr !important;
           }
         }
+        @media (max-width: 767px) {
+          .footer-grid {
+            text-align: center;
+          }
+          .footer-grid > div {
+            display: flex;
+            flex-direction: column;
+            align-items: center;
+          }
+          .footer-grid p {
+            text-align: center;
+          }
+        }
         .footer-link {
           transition: color 0.2s ease !important;
         }

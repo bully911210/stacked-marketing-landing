@@ -416,6 +416,19 @@ a, button, input, select, textarea {
   .desktop-only {
     display: none !important;
   }
+
+  /* Global mobile centring for section headings and eyebrow text */
+  .section-spacing .container-main > .fade-up {
+    text-align: center;
+  }
+
+  /* Buttons full-width on mobile */
+  .btn-primary,
+  .btn-ghost,
+  .btn-accent {
+    width: 100%;
+    justify-content: center;
+  }
 }
 
 @media (min-width: 768px) {
