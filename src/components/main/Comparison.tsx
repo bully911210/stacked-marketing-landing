@@ -100,11 +100,23 @@ export default function Comparison() {
           className={`fade-up ${isVisible ? "visible" : ""}`}
         >
           <h2
-            className="text-h1"
-            style={{ textAlign: "center", marginBottom: 48 }}
+            className="text-h2"
+            style={{ textAlign: "center", marginBottom: 16 }}
           >
             Why Stacked?
           </h2>
+          <p
+            style={{
+              textAlign: "center",
+              color: "var(--text-secondary)",
+              fontSize: "1.05rem",
+              maxWidth: 500,
+              margin: "0 auto 48px",
+              lineHeight: 1.6,
+            }}
+          >
+            See how we compare to doing it yourself or hiring a typical agency.
+          </p>
         </div>
 
         {/* Desktop table */}
@@ -117,7 +129,8 @@ export default function Comparison() {
               backgroundColor: "var(--bg-card)",
               borderRadius: 8,
               overflow: "hidden",
-              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04)",
+              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06)",
+              border: "1px solid var(--border)",
             }}
           >
             <thead>

@@ -85,7 +85,7 @@ export default function Offers() {
           display: grid;
           grid-template-columns: repeat(2, 1fr);
           gap: 24px;
-          align-items: start;
+          align-items: stretch;
         }
         @media (max-width: 767px) {
           .offers-grid {
@@ -123,7 +123,6 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
           ? {
               boxShadow:
                 "0 8px 32px rgba(200, 255, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08)",
-              transform: "translateY(-8px) scale(1.02)",
               zIndex: 2,
             }
           : {}),
