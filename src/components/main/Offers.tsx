@@ -16,23 +16,6 @@ interface OfferCard {
 
 const offers: OfferCard[] = [
   {
-    tier: "WEBSITE",
-    price: "R1,999",
-    qualifier: "once-off",
-    features: [
-      "Custom-designed website tailored to your business",
-      "Full ownership of all code and content",
-      "WhatsApp button integration",
-      "2 lead capture forms",
-      "Google Analytics connected",
-      "SEO strategy built in",
-      "30 days priority support",
-      "Domain included if required",
-    ],
-    cta: "Get Started",
-    interest: "website",
-  },
-  {
     tier: "META ADS",
     price: "From R4,999",
     qualifier: "/month",
@@ -48,16 +31,17 @@ const offers: OfferCard[] = [
     ],
     cta: "Get Started",
     interest: "ads",
-    featured: true,
-    badge: "MOST POPULAR",
   },
   {
     tier: "FULL STACK",
     price: "R11,999",
     qualifier: "/month",
     includesLine: "Website + Ads + Email Automation",
+    featured: true,
+    badge: "RECOMMENDED",
     features: [
-      "Everything in Website and Ads, plus:",
+      "Everything in Meta Ads, plus:",
+      "Custom website (built and managed)",
       "Custom landing pages (up to 3)",
       "Email automation sequences",
       "Full-funnel strategy (awareness to conversion)",
@@ -85,7 +69,7 @@ export default function Offers() {
             className="text-h2"
             style={{ textAlign: "center", marginBottom: 48 }}
           >
-            Three Ways to Work With Us
+            Two Ways to Work With Us
           </h2>
         </div>
 
@@ -99,7 +83,7 @@ export default function Offers() {
       <style>{`
         .offers-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
           gap: 24px;
           align-items: start;
         }

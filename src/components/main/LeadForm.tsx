@@ -6,9 +6,8 @@ import { WEBHOOK_URL, WHATSAPP_LINK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const interestOptions = [
-  { value: "website", label: "Website R1,999" },
-  { value: "ads", label: "Ads from R4,999" },
-  { value: "fullstack", label: "Full Stack R11,999" },
+  { value: "ads", label: "Meta Ads from R4,999/mo" },
+  { value: "fullstack", label: "Full Stack R11,999/mo" },
   { value: "unsure", label: "Not sure yet" },
 ];
 

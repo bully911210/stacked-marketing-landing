@@ -14,41 +14,41 @@ const caseStudies: CaseStudy[] = [
   {
     industry: "INSURANCE",
     metric: "R68 CPA",
-    metricLabel: "across 5,000 policyholders",
+    metricLabel: "5,000 policyholders acquired",
     narrative:
-      "R205K of our own money spent in a restricted advertising category. We built the full funnel, optimised every audience segment, and achieved month-one payback on every campaign.",
+      "R205K own money. Restricted category. Month-one payback.",
     tag: "Lead Ads",
   },
   {
-    industry: "NON-PROFIT (ADVOCACY)",
-    metric: "Database built from zero",
-    metricLabel: "petition funnels and donor acquisition",
+    industry: "NON-PROFIT",
+    metric: "Database from zero",
+    metricLabel: "petition funnels, donor acquisition",
     narrative:
-      "Started with no existing list, no brand recognition, and a tight budget. Petition funnels drove sign-ups while donor acquisition campaigns funded the next round of growth.",
+      "No list, no brand recognition. Built the entire supporter base on Meta.",
     tag: "Awareness",
   },
   {
-    industry: "NON-PROFIT (AGRICULTURE)",
-    metric: "Niche audience, national reach",
-    metricLabel: "found them, converted them, grew the base",
+    industry: "AGRICULTURE",
+    metric: "National reach",
+    metricLabel: "niche audience, all nine provinces",
     narrative:
-      "An audience that barely existed online. We found them through layered targeting, converted them with tailored messaging, and grew the supporter base across all nine provinces.",
+      "Found an audience that barely existed online. Converted them at scale.",
     tag: "Lookalikes",
   },
   {
     industry: "FINANCIAL SERVICES",
-    metric: "Regulated lead generation",
-    metricLabel: "compliance-heavy, every lead qualified",
+    metric: "Regulated leads",
+    metricLabel: "compliance-approved, qualified pipeline",
     narrative:
-      "Every ad had to pass compliance review. Every lead had to meet qualification criteria. We built a pipeline that satisfied the regulators and delivered volume the sales team could handle.",
+      "Every ad approved. Every lead qualified. Volume the sales team could handle.",
     tag: "Retargeting",
   },
   {
-    industry: "RECRUITMENT (BPO)",
+    industry: "RECRUITMENT",
     metric: "50+ seats filled",
-    metricLabel: "full pipeline, Meta to application to floor",
+    metricLabel: "ad to application to floor",
     narrative:
-      "From ad click to completed application to seated agent. We built the entire pipeline on Meta, tracked every step, and filled over 50 seats in a single campaign cycle.",
+      "Full pipeline on Meta. Every step tracked. One campaign cycle.",
     tag: "Volume",
   },
 ];
@@ -171,7 +171,7 @@ export default function Proof() {
             className="text-h1"
             style={{ maxWidth: 700, marginBottom: 48 }}
           >
-            We Spent Our Own Money Before We Ever Touched a Client Campaign.
+            R205K of our own ad spend before we touched a client campaign.
           </h2>
         </div>
 

@@ -11,22 +11,16 @@ interface ComparisonRow {
 
 const rows: ComparisonRow[] = [
   {
-    feature: "Custom Website",
-    diy: "x",
-    agency: "R15K+",
-    stacked: "R1,999",
-  },
-  {
     feature: "Meta Ads Management",
     diy: "x",
     agency: "R15K+/mo",
     stacked: "from R4,999/mo",
   },
   {
-    feature: "Email Automation",
+    feature: "Full Stack (Ads + Web + Email)",
     diy: "x",
     agency: "x",
-    stacked: "check",
+    stacked: "R11,999/mo",
   },
   {
     feature: "You Own Everything",
