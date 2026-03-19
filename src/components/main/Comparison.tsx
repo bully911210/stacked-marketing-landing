@@ -11,76 +11,70 @@ interface ComparisonRow {
 
 const rows: ComparisonRow[] = [
   {
-    feature: "Meta Ads Management",
-    diy: "x",
+    feature: "We Manage and Scale Your Ads Daily",
+    diy: "dash",
     agency: "R15K+/mo",
-    stacked: "from R4,999/mo",
+    stacked: "From R4,999/mo",
   },
   {
-    feature: "Full Stack (Ads + Web + Automation)",
-    diy: "x",
-    agency: "x",
+    feature: "Ads + Website + Automation Done For You",
+    diy: "dash",
+    agency: "dash",
     stacked: "R11,999/mo",
   },
   {
-    feature: "You Own Everything",
-    diy: "x",
-    agency: "x",
+    feature: "You Keep All Assets (No Lock-in)",
+    diy: "dash",
+    agency: "dash",
     stacked: "check",
   },
   {
-    feature: "No Contracts",
+    feature: "No Contracts. Cancel Anytime.",
     diy: "check",
-    agency: "x",
+    agency: "dash",
     stacked: "check",
   },
   {
-    feature: "WhatsApp Support",
-    diy: "x",
-    agency: "x",
+    feature: "Direct WhatsApp Support",
+    diy: "dash",
+    agency: "dash",
     stacked: "check",
   },
   {
-    feature: "Real Ad Spend Proof",
-    diy: "x",
-    agency: "x",
+    feature: "Live Ad Spend Transparency",
+    diy: "dash",
+    agency: "dash",
     stacked: "check",
   },
   {
-    feature: "Pretoria Based",
+    feature: "Local Pretoria-Based Team",
     diy: "N/A",
     agency: "Sometimes",
     stacked: "check",
   },
 ];
 
-function CellValue({
-  value,
-  isStacked,
-}: {
-  value: string;
-  isStacked: boolean;
-}) {
+function CellValue({ value, isStacked }: { value: string; isStacked: boolean }) {
   if (value === "check") {
     return (
-      <span style={{ color: "#2D6A4F", fontSize: "1.25rem", fontWeight: 700 }}>
-        &#10003;
-      </span>
+      <svg width="22" height="22" viewBox="0 0 22 22" fill="none" style={{ display: "block", margin: "0 auto" }}>
+        <circle cx="11" cy="11" r="11" fill={isStacked ? "#DCFCE7" : "#F0FDF4"} />
+        <path d="M7 11.5L9.5 14L15 8.5" stroke="#22C55E" strokeWidth="2" strokeLinecap="round" strokeLinejoin="round" />
+      </svg>
     );
   }
-  if (value === "x") {
+  if (value === "dash") {
     return (
-      <span style={{ color: "#BFBFBF", fontSize: "1.25rem" }}>
-        &#10005;
+      <span style={{ color: "#CBD5E1", fontSize: "1.25rem", fontWeight: 300, display: "block", textAlign: "center" }}>
+        &mdash;
       </span>
     );
   }
   return (
     <span
       style={{
-        color: isStacked ? "var(--text-primary)" : "var(--text-secondary)",
+        color: isStacked ? "#0F172A" : "#64748B",
         fontSize: "0.875rem",
-        fontFamily: "var(--font-body)",
         fontWeight: isStacked ? 600 : 400,
       }}
     >
@@ -93,239 +87,316 @@ export default function Comparison() {
   const { ref, isVisible } = useScrollReveal(0.2);
 
   return (
-    <section id="comparison" className="section-spacing" style={{ backgroundColor: "var(--bg-primary)" }}>
+    <section
+      id="comparison"
+      className="section-spacing"
+      style={{ backgroundColor: "#F8FAFC" }}
+    >
       <div className="container-main">
-        <div
-          ref={ref}
-          className={`fade-up ${isVisible ? "visible" : ""}`}
-        >
+        <div ref={ref} className={`fade-up ${isVisible ? "visible" : ""}`}>
           <h2
             className="text-h2"
-            style={{ textAlign: "center", marginBottom: 16 }}
+            style={{
+              textAlign: "center",
+              marginBottom: 16,
+              color: "#0F172A",
+            }}
           >
             Why Stacked?
           </h2>
           <p
             style={{
               textAlign: "center",
-              color: "var(--text-secondary)",
+              color: "#64748B",
               fontSize: "1.05rem",
-              maxWidth: 500,
+              maxWidth: 600,
               margin: "0 auto 48px",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
             }}
           >
-            See how we compare to doing it yourself or hiring a typical agency.
+            Most agencies charge more, deliver less, and lock you in. Stacked
+            Marketing gives you full control, full transparency, and real results.
           </p>
         </div>
 
         {/* Desktop table */}
-        <div className="comparison-desktop desktop-only">
-          <table
-            style={{
-              width: "100%",
-              borderCollapse: "collapse",
-              fontFamily: "var(--font-body)",
-              backgroundColor: "var(--bg-card)",
-              borderRadius: 8,
-              overflow: "hidden",
-              boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.06)",
-              border: "1px solid var(--border)",
-            }}
-          >
+        <div className="comparison-wrap desktop-only">
+          <table className="comparison-table">
             <thead>
               <tr>
-                <th
-                  style={{
-                    textAlign: "left",
-                    padding: "20px 24px",
-                    color: "var(--text-muted)",
-                    fontWeight: 500,
-                    fontSize: "0.8125rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    borderBottom: "2px solid var(--border)",
-                  }}
-                >
-                  Feature
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    padding: "20px 24px",
-                    color: "var(--text-muted)",
-                    fontWeight: 500,
-                    fontSize: "0.8125rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    borderBottom: "2px solid var(--border)",
-                  }}
-                >
-                  DIY
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    padding: "20px 24px",
-                    color: "var(--text-muted)",
-                    fontWeight: 500,
-                    fontSize: "0.8125rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    borderBottom: "2px solid var(--border)",
-                  }}
-                >
-                  Typical Agency
-                </th>
-                <th
-                  style={{
-                    textAlign: "center",
-                    padding: "20px 24px",
-                    fontWeight: 700,
-                    fontSize: "0.8125rem",
-                    textTransform: "uppercase",
-                    letterSpacing: "0.1em",
-                    backgroundColor: "var(--lime)",
-                    color: "var(--text-primary)",
-                    borderBottom: "2px solid var(--border)",
-                  }}
-                >
+                <th className="ct-feature-header">Feature</th>
+                <th className="ct-header">DIY</th>
+                <th className="ct-header">Typical Agency</th>
+                <th className="ct-stacked-header">
+                  <span className="ct-badge">Best Value</span>
                   Stacked Marketing
                 </th>
               </tr>
             </thead>
             <tbody>
               {rows.map((row, i) => (
-                <tr
-                  key={row.feature}
-                  style={{
-                    backgroundColor: i % 2 === 1 ? "var(--bg-primary)" : "transparent",
-                    transition: "background-color 0.15s",
-                  }}
-                >
-                  <td
-                    style={{
-                      padding: "16px 24px",
-                      color: "var(--text-primary)",
-                      fontSize: "0.9375rem",
-                      fontWeight: 500,
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    {row.feature}
-                  </td>
-                  <td
-                    style={{
-                      padding: "16px 24px",
-                      textAlign: "center",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
+                <tr key={row.feature} className={`ct-row ${i % 2 === 0 ? "ct-row-alt" : ""}`}>
+                  <td className="ct-feature">{row.feature}</td>
+                  <td className="ct-cell">
                     <CellValue value={row.diy} isStacked={false} />
                   </td>
-                  <td
-                    style={{
-                      padding: "16px 24px",
-                      textAlign: "center",
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
+                  <td className="ct-cell">
                     <CellValue value={row.agency} isStacked={false} />
                   </td>
-                  <td
-                    style={{
-                      padding: "16px 24px",
-                      textAlign: "center",
-                      borderBottom: "1px solid var(--border)",
-                      backgroundColor: i % 2 === 1 ? "#F0FFD6" : "#F5FFD6",
-                    }}
-                  >
+                  <td className="ct-cell ct-stacked-cell">
                     <CellValue value={row.stacked} isStacked={true} />
                   </td>
                 </tr>
               ))}
             </tbody>
+            <tfoot>
+              <tr>
+                <td colSpan={3} />
+                <td className="ct-cta-cell">
+                  <a href="#contact" className="ct-cta-btn">
+                    Get Started
+                  </a>
+                </td>
+              </tr>
+            </tfoot>
           </table>
         </div>
 
         {/* Mobile cards */}
-        <div
-          className="mobile-only"
-          style={{
-            display: "flex",
-            flexDirection: "column",
-            gap: 24,
-          }}
-        >
-          {[
-            { title: "DIY", key: "diy" as const },
-            { title: "Typical Agency", key: "agency" as const },
-            { title: "Stacked Marketing", key: "stacked" as const },
-          ].map((col) => (
-            <div
-              key={col.title}
-              className="card"
-              style={{
-                padding: 24,
-                borderColor:
-                  col.key === "stacked"
-                    ? "var(--lime-on-light)"
-                    : "var(--border)",
-              }}
-            >
-              <h3
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: "1rem",
-                  color:
-                    col.key === "stacked"
-                      ? "var(--lime-on-light)"
-                      : "var(--text-primary)",
-                  marginBottom: 16,
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                {col.title}
-              </h3>
-              <div
-                style={{
-                  display: "flex",
-                  flexDirection: "column",
-                  gap: 12,
-                }}
-              >
-                {rows.map((row) => (
-                  <div
-                    key={row.feature}
-                    style={{
-                      display: "flex",
-                      justifyContent: "space-between",
-                      alignItems: "center",
-                      paddingBottom: 8,
-                      borderBottom: "1px solid var(--border)",
-                    }}
-                  >
-                    <span
-                      style={{
-                        color: "var(--text-secondary)",
-                        fontSize: "0.8125rem",
-                      }}
-                    >
-                      {row.feature}
-                    </span>
-                    <CellValue
-                      value={row[col.key]}
-                      isStacked={col.key === "stacked"}
-                    />
-                  </div>
-                ))}
+        <div className="mobile-only" style={{ display: "flex", flexDirection: "column", gap: 20 }}>
+          {/* Stacked card FIRST on mobile */}
+          <div className="ct-mobile-card ct-mobile-featured">
+            <div className="ct-mobile-badge">Best Value</div>
+            <h3 className="ct-mobile-title ct-mobile-title-featured">Stacked Marketing</h3>
+            {rows.map((row) => (
+              <div key={row.feature} className="ct-mobile-row">
+                <span className="ct-mobile-label">{row.feature}</span>
+                <CellValue value={row.stacked} isStacked={true} />
               </div>
-            </div>
-          ))}
+            ))}
+            <a href="#contact" className="ct-cta-btn" style={{ marginTop: 16 }}>Get Started</a>
+          </div>
+          <div className="ct-mobile-card">
+            <h3 className="ct-mobile-title">DIY</h3>
+            {rows.map((row) => (
+              <div key={row.feature} className="ct-mobile-row">
+                <span className="ct-mobile-label">{row.feature}</span>
+                <CellValue value={row.diy} isStacked={false} />
+              </div>
+            ))}
+          </div>
+          <div className="ct-mobile-card">
+            <h3 className="ct-mobile-title">Typical Agency</h3>
+            {rows.map((row) => (
+              <div key={row.feature} className="ct-mobile-row">
+                <span className="ct-mobile-label">{row.feature}</span>
+                <CellValue value={row.agency} isStacked={false} />
+              </div>
+            ))}
+          </div>
         </div>
       </div>
+
+      <style>{`
+        .comparison-wrap {
+          max-width: 900px;
+          margin: 0 auto;
+        }
+
+        .comparison-table {
+          width: 100%;
+          border-collapse: separate;
+          border-spacing: 0;
+          background: #FFFFFF;
+          border-radius: 16px;
+          overflow: hidden;
+          box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04), 0 8px 32px rgba(15, 23, 42, 0.06);
+          border: 1px solid #E2E8F0;
+        }
+
+        .ct-feature-header {
+          text-align: left;
+          padding: 18px 24px;
+          color: #64748B;
+          font-weight: 500;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          border-bottom: 1px solid #E2E8F0;
+          background: #FFFFFF;
+        }
+
+        .ct-header {
+          text-align: center;
+          padding: 18px 20px;
+          color: #64748B;
+          font-weight: 500;
+          font-size: 0.75rem;
+          text-transform: uppercase;
+          letter-spacing: 0.08em;
+          border-bottom: 1px solid #E2E8F0;
+          background: #FFFFFF;
+        }
+
+        .ct-stacked-header {
+          text-align: center;
+          padding: 18px 20px;
+          color: #0F172A;
+          font-weight: 700;
+          font-size: 0.8125rem;
+          text-transform: uppercase;
+          letter-spacing: 0.06em;
+          border-bottom: 1px solid #BBF7D0;
+          background: linear-gradient(180deg, #F0FDF4 0%, #DCFCE7 100%);
+          position: relative;
+        }
+
+        .ct-badge {
+          display: inline-block;
+          background: #22C55E;
+          color: #FFFFFF;
+          font-size: 0.625rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          padding: 3px 10px;
+          border-radius: 100px;
+          position: absolute;
+          top: -11px;
+          left: 50%;
+          transform: translateX(-50%);
+          white-space: nowrap;
+          box-shadow: 0 2px 6px rgba(34, 197, 94, 0.3);
+        }
+
+        .ct-row {
+          transition: background-color 0.15s ease;
+        }
+
+        .ct-row:hover {
+          background-color: #F8FAFC !important;
+        }
+
+        .ct-row-alt {
+          background-color: #FAFBFC;
+        }
+
+        .ct-feature {
+          padding: 14px 24px;
+          color: #0F172A;
+          font-size: 0.9rem;
+          font-weight: 500;
+          border-bottom: 1px solid #F1F5F9;
+          line-height: 1.4;
+        }
+
+        .ct-cell {
+          padding: 14px 20px;
+          text-align: center;
+          border-bottom: 1px solid #F1F5F9;
+          vertical-align: middle;
+        }
+
+        .ct-stacked-cell {
+          background: #F0FDF4;
+          border-left: 1px solid #BBF7D0;
+        }
+
+        .ct-row-alt .ct-stacked-cell {
+          background: #ECFDF5;
+        }
+
+        .ct-cta-cell {
+          background: #F0FDF4;
+          border-left: 1px solid #BBF7D0;
+          padding: 20px;
+          text-align: center;
+        }
+
+        .ct-cta-btn {
+          display: inline-block;
+          background: #22C55E;
+          color: #FFFFFF;
+          font-weight: 600;
+          font-size: 0.875rem;
+          padding: 12px 32px;
+          border-radius: 8px;
+          text-decoration: none;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+          box-shadow: 0 2px 8px rgba(34, 197, 94, 0.25);
+          transition: background 0.2s, transform 0.15s, box-shadow 0.2s;
+          width: 100%;
+          text-align: center;
+        }
+
+        .ct-cta-btn:hover {
+          background: #16A34A;
+          transform: translateY(-1px);
+          box-shadow: 0 4px 16px rgba(34, 197, 94, 0.3);
+        }
+
+        /* Mobile cards */
+        .ct-mobile-card {
+          background: #FFFFFF;
+          border: 1px solid #E2E8F0;
+          border-radius: 12px;
+          padding: 20px;
+          box-shadow: 0 1px 3px rgba(15, 23, 42, 0.04);
+        }
+
+        .ct-mobile-featured {
+          border-color: #BBF7D0;
+          background: linear-gradient(180deg, #F0FDF4 0%, #FFFFFF 40%);
+          box-shadow: 0 2px 12px rgba(34, 197, 94, 0.1), 0 1px 3px rgba(15, 23, 42, 0.04);
+          position: relative;
+        }
+
+        .ct-mobile-badge {
+          display: inline-block;
+          background: #22C55E;
+          color: #FFFFFF;
+          font-size: 0.625rem;
+          font-weight: 700;
+          text-transform: uppercase;
+          letter-spacing: 0.1em;
+          padding: 3px 10px;
+          border-radius: 100px;
+          margin-bottom: 12px;
+        }
+
+        .ct-mobile-title {
+          font-size: 1rem;
+          font-weight: 700;
+          color: #0F172A;
+          margin-bottom: 16px;
+          text-transform: uppercase;
+          letter-spacing: 0.04em;
+        }
+
+        .ct-mobile-title-featured {
+          color: #16A34A;
+        }
+
+        .ct-mobile-row {
+          display: flex;
+          justify-content: space-between;
+          align-items: center;
+          padding: 10px 0;
+          border-bottom: 1px solid #F1F5F9;
+        }
+
+        .ct-mobile-row:last-of-type {
+          border-bottom: none;
+        }
+
+        .ct-mobile-label {
+          color: #64748B;
+          font-size: 0.8125rem;
+          flex: 1;
+          padding-right: 12px;
+        }
+      `}</style>
     </section>
   );
 }
