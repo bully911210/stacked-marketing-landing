@@ -75,7 +75,7 @@ export default function Offers() {
   const { ref, isVisible } = useScrollReveal(0.2);
 
   return (
-    <section className="section-spacing">
+    <section id="offers" className="section-spacing" style={{ backgroundColor: "var(--bg-primary)" }}>
       <div className="container-main">
         <div
           ref={ref}
@@ -132,6 +132,14 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
         position: "relative",
         display: "flex",
         flexDirection: "column",
+        ...(offer.featured
+          ? {
+              boxShadow:
+                "0 8px 32px rgba(200, 255, 0, 0.12), 0 2px 8px rgba(0, 0, 0, 0.08)",
+              transform: "translateY(-8px) scale(1.02)",
+              zIndex: 2,
+            }
+          : {}),
       }}
     >
       {/* Top accent line */}
@@ -147,21 +155,23 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
         }}
       />
 
-      {/* Badge */}
+      {/* Badge - centred on top */}
       {offer.badge && (
         <span
           style={{
             position: "absolute",
-            top: 16,
-            right: 16,
+            top: -12,
+            left: "50%",
+            transform: "translateX(-50%)",
             backgroundColor: "var(--lime)",
             color: "var(--text-primary)",
             fontFamily: "var(--font-body)",
             fontWeight: 600,
             fontSize: "0.7rem",
             textTransform: "uppercase",
-            padding: "4px 10px",
+            padding: "4px 14px",
             borderRadius: 100,
+            whiteSpace: "nowrap",
           }}
         >
           {offer.badge}
@@ -178,6 +188,7 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
           textTransform: "uppercase",
           letterSpacing: "0.1em",
           marginBottom: 12,
+          marginTop: offer.badge ? 8 : 0,
         }}
       >
         {offer.tier}
@@ -187,8 +198,8 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
       <p
         style={{
           fontFamily: "var(--font-mono)",
-          fontWeight: 500,
-          fontSize: "2rem",
+          fontWeight: 600,
+          fontSize: "2.5rem",
           color: offer.featured ? "var(--lime-on-light)" : "var(--text-primary)",
           lineHeight: 1.2,
         }}
@@ -232,7 +243,7 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
           flexDirection: "column",
           gap: 12,
           flex: 1,
-          marginBottom: 32,
+          marginBottom: 24,
         }}
       >
         {offer.features.map((feature) => (
@@ -263,6 +274,15 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
         ))}
       </ul>
 
+      {/* Divider above CTA */}
+      <div
+        style={{
+          height: 1,
+          backgroundColor: "var(--border)",
+          marginBottom: 24,
+        }}
+      />
+
       {/* CTA */}
       <a
         href={`/#contact?interest=${offer.interest}`}
@@ -270,6 +290,7 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
         style={{
           width: "100%",
           textAlign: "center",
+          padding: "16px 32px",
         }}
       >
         {offer.cta}

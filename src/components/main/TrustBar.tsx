@@ -46,8 +46,8 @@ function StatItem({
       <span
         style={{
           fontFamily: "var(--font-mono)",
-          fontWeight: 500,
-          fontSize: "clamp(2rem, 3vw, 3rem)",
+          fontWeight: 700,
+          fontSize: "clamp(2.25rem, 3.5vw, 3.25rem)",
           color: "var(--lime)",
         }}
       >
@@ -76,6 +76,7 @@ export default function TrustBar() {
 
   return (
     <section
+      id="trust"
       ref={ref}
       style={{
         backgroundColor: "var(--bg-dark)",
@@ -89,7 +90,7 @@ export default function TrustBar() {
           justifyContent: "center",
           alignItems: "center",
           gap: 0,
-          paddingBlock: 40,
+          paddingBlock: "48px 56px",
         }}
       >
         {stats.map((stat, i) => (
@@ -117,7 +118,7 @@ export default function TrustBar() {
           scrollSnapType: "x mandatory",
           display: "flex",
           gap: 8,
-          paddingBlock: 32,
+          paddingBlock: "32px 40px",
           paddingInline: 16,
           WebkitOverflowScrolling: "touch",
           msOverflowStyle: "none",

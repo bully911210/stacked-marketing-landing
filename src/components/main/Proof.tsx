@@ -72,25 +72,27 @@ function CaseCard({
       }}
     >
       <div
-        className="card"
+        className="card proof-card"
         style={{
-          padding: 40,
+          padding: 48,
           position: "relative",
           overflow: "hidden",
+          borderLeft: "3px solid transparent",
+          boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04)",
         }}
       >
         {/* Vertical label */}
         <span
           style={{
             position: "absolute",
-            left: 12,
+            left: 16,
             top: "50%",
             transform: "rotate(-90deg) translateX(-50%)",
             transformOrigin: "left center",
             color: "var(--lime-on-light)",
             fontFamily: "var(--font-body)",
-            fontWeight: 500,
-            fontSize: "0.7rem",
+            fontWeight: 600,
+            fontSize: "0.75rem",
             textTransform: "uppercase",
             letterSpacing: "0.1em",
             whiteSpace: "nowrap",
@@ -99,12 +101,12 @@ function CaseCard({
           {study.industry}
         </span>
 
-        <div style={{ marginLeft: 32 }}>
+        <div style={{ marginLeft: 36 }}>
           <p
             style={{
               fontFamily: "var(--font-mono)",
-              fontWeight: 500,
-              fontSize: "2.5rem",
+              fontWeight: 600,
+              fontSize: "3rem",
               color: "var(--text-primary)",
               lineHeight: 1.1,
             }}
@@ -137,7 +139,7 @@ function CaseCard({
             style={{
               display: "inline-block",
               marginTop: 16,
-              padding: "6px 14px",
+              padding: "8px 16px",
               backgroundColor: "#F0FFB3",
               borderRadius: 100,
               color: "var(--lime-on-light)",
@@ -159,7 +161,7 @@ export default function Proof() {
   const { ref: closingRef, isVisible: closingVisible } = useScrollReveal(0.2);
 
   return (
-    <section id="proof" className="section-spacing">
+    <section id="proof" className="section-spacing" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-main">
         <div
           ref={headingRef}
@@ -185,7 +187,7 @@ export default function Proof() {
           className={`fade-up ${closingVisible ? "visible" : ""}`}
           style={{
             textAlign: "center",
-            marginTop: 64,
+            marginTop: 80,
           }}
         >
           <p
@@ -211,6 +213,13 @@ export default function Proof() {
           display: grid;
           grid-template-columns: repeat(12, 1fr);
           gap: 24px;
+        }
+        .proof-card {
+          transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        }
+        .proof-card:hover {
+          border-left-color: var(--lime) !important;
+          box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04) !important;
         }
         @media (max-width: 767px) {
           .proof-grid {

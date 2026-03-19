@@ -166,7 +166,7 @@ export default function LeadForm() {
     <section
       id="contact"
       className="section-spacing"
-      style={{ backgroundColor: "var(--bg-secondary)" }}
+      style={{ backgroundColor: "#F5F4F0" }}
     >
       <div className="container-main">
         <div
@@ -187,13 +187,13 @@ export default function LeadForm() {
         <form
           onSubmit={handleSubmit}
           style={{
-            maxWidth: 560,
+            maxWidth: 600,
             marginInline: "auto",
             background: "var(--bg-card)",
             border: "1px solid var(--border)",
             borderRadius: 8,
-            padding: "clamp(24px, 4vw, 48px)",
-            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06)",
+            padding: "clamp(28px, 5vw, 56px)",
+            boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04)",
           }}
         >
           {/* Row 1: Name + WhatsApp */}
@@ -279,11 +279,28 @@ export default function LeadForm() {
                   style={{
                     display: "flex",
                     alignItems: "center",
-                    gap: 10,
+                    gap: 12,
                     cursor: "pointer",
-                    color: "var(--text-secondary)",
-                    fontSize: "0.875rem",
+                    color:
+                      formData.interest === option.value
+                        ? "var(--text-primary)"
+                        : "var(--text-secondary)",
+                    fontSize: "0.9375rem",
                     fontFamily: "var(--font-body)",
+                    fontWeight:
+                      formData.interest === option.value ? 500 : 400,
+                    padding: "8px 12px",
+                    borderRadius: 8,
+                    border:
+                      formData.interest === option.value
+                        ? "1px solid var(--lime-on-light)"
+                        : "1px solid transparent",
+                    backgroundColor:
+                      formData.interest === option.value
+                        ? "#F5FFD6"
+                        : "transparent",
+                    transition:
+                      "background-color 0.2s ease, border-color 0.2s ease",
                   }}
                 >
                   <input
@@ -296,8 +313,8 @@ export default function LeadForm() {
                     }
                     style={{
                       accentColor: "var(--lime-on-light)",
-                      width: 16,
-                      height: 16,
+                      width: 18,
+                      height: 18,
                     }}
                   />
                   {option.label}
@@ -343,14 +360,31 @@ export default function LeadForm() {
             </p>
           )}
 
-          {/* Submit - the ONE lime button */}
+          {/* Trust line */}
+          <p
+            style={{
+              color: "var(--text-muted)",
+              fontSize: "0.8125rem",
+              fontFamily: "var(--font-body)",
+              textAlign: "center",
+              marginTop: 24,
+              marginBottom: 4,
+            }}
+          >
+            No spam. No hard sell. Just a straight answer.
+          </p>
+
+          {/* Submit */}
           <button
             type="submit"
             className="btn-accent"
             disabled={submitting}
             style={{
               width: "100%",
-              marginTop: 28,
+              marginTop: 12,
+              padding: "20px 32px",
+              fontSize: "16px",
+              letterSpacing: "0.08em",
               opacity: submitting ? 0.7 : 1,
             }}
           >
@@ -362,7 +396,7 @@ export default function LeadForm() {
           style={{
             textAlign: "center",
             marginTop: 24,
-            maxWidth: 560,
+            maxWidth: 600,
             marginInline: "auto",
           }}
         >

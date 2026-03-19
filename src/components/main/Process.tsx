@@ -27,7 +27,7 @@ export default function Process() {
   const { ref, isVisible } = useScrollReveal(0.2);
 
   return (
-    <section className="section-spacing">
+    <section id="process" className="section-spacing" style={{ backgroundColor: "#FFFFFF" }}>
       <div className="container-main">
         <div
           ref={ref}
@@ -69,6 +69,16 @@ export default function Process() {
           height: 1px;
           background: var(--border);
         }
+        .process-step {
+          text-align: center;
+          padding: 24px 16px;
+          border-radius: 12px;
+          transition: background-color 0.3s ease, box-shadow 0.3s ease;
+        }
+        .process-step:hover {
+          background-color: var(--bg-primary);
+          box-shadow: 0 2px 12px rgba(0, 0, 0, 0.04);
+        }
         @media (max-width: 767px) {
           .process-grid {
             grid-template-columns: 1fr;
@@ -95,18 +105,17 @@ function ProcessStep({
   return (
     <div
       ref={ref}
-      className={`fade-up ${isVisible ? "visible" : ""}`}
+      className={`fade-up process-step ${isVisible ? "visible" : ""}`}
       style={{
-        textAlign: "center",
         transitionDelay: `${index * 100}ms`,
       }}
     >
       <p
         style={{
           fontFamily: "var(--font-mono)",
-          fontWeight: 500,
+          fontWeight: 700,
           fontSize: "2rem",
-          color: "var(--text-muted)",
+          color: "var(--lime-on-light)",
           marginBottom: 16,
         }}
       >
@@ -115,8 +124,8 @@ function ProcessStep({
       <p
         style={{
           fontFamily: "var(--font-heading)",
-          fontWeight: 600,
-          fontSize: "0.875rem",
+          fontWeight: 700,
+          fontSize: "1.1rem",
           color: "var(--text-primary)",
           textTransform: "uppercase",
           letterSpacing: "0.05em",

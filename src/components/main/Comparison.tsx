@@ -69,14 +69,14 @@ function CellValue({
 }) {
   if (value === "check") {
     return (
-      <span style={{ color: "#2D6A4F", fontSize: "1.25rem" }}>
+      <span style={{ color: "#2D6A4F", fontSize: "1.25rem", fontWeight: 700 }}>
         &#10003;
       </span>
     );
   }
   if (value === "x") {
     return (
-      <span style={{ color: "var(--text-muted)", fontSize: "1.25rem" }}>
+      <span style={{ color: "#BFBFBF", fontSize: "1.25rem" }}>
         &#10005;
       </span>
     );
@@ -87,7 +87,7 @@ function CellValue({
         color: isStacked ? "var(--text-primary)" : "var(--text-secondary)",
         fontSize: "0.875rem",
         fontFamily: "var(--font-body)",
-        fontWeight: isStacked ? 500 : 400,
+        fontWeight: isStacked ? 600 : 400,
       }}
     >
       {value}
@@ -99,7 +99,7 @@ export default function Comparison() {
   const { ref, isVisible } = useScrollReveal(0.2);
 
   return (
-    <section className="section-spacing">
+    <section id="comparison" className="section-spacing" style={{ backgroundColor: "var(--bg-primary)" }}>
       <div className="container-main">
         <div
           ref={ref}
@@ -123,7 +123,7 @@ export default function Comparison() {
               backgroundColor: "var(--bg-card)",
               borderRadius: 8,
               overflow: "hidden",
-              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.08)",
+              boxShadow: "0 1px 3px rgba(0, 0, 0, 0.04), 0 4px 12px rgba(0, 0, 0, 0.04)",
             }}
           >
             <thead>
@@ -131,13 +131,13 @@ export default function Comparison() {
                 <th
                   style={{
                     textAlign: "left",
-                    padding: "16px 20px",
+                    padding: "20px 24px",
                     color: "var(--text-muted)",
                     fontWeight: 500,
-                    fontSize: "0.75rem",
+                    fontSize: "0.8125rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
-                    borderBottom: "1px solid var(--border)",
+                    borderBottom: "2px solid var(--border)",
                   }}
                 >
                   Feature
@@ -145,13 +145,13 @@ export default function Comparison() {
                 <th
                   style={{
                     textAlign: "center",
-                    padding: "16px 20px",
+                    padding: "20px 24px",
                     color: "var(--text-muted)",
                     fontWeight: 500,
-                    fontSize: "0.75rem",
+                    fontSize: "0.8125rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
-                    borderBottom: "1px solid var(--border)",
+                    borderBottom: "2px solid var(--border)",
                   }}
                 >
                   DIY
@@ -159,13 +159,13 @@ export default function Comparison() {
                 <th
                   style={{
                     textAlign: "center",
-                    padding: "16px 20px",
+                    padding: "20px 24px",
                     color: "var(--text-muted)",
                     fontWeight: 500,
-                    fontSize: "0.75rem",
+                    fontSize: "0.8125rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
-                    borderBottom: "1px solid var(--border)",
+                    borderBottom: "2px solid var(--border)",
                   }}
                 >
                   Typical Agency
@@ -173,14 +173,14 @@ export default function Comparison() {
                 <th
                   style={{
                     textAlign: "center",
-                    padding: "16px 20px",
+                    padding: "20px 24px",
                     fontWeight: 700,
-                    fontSize: "0.75rem",
+                    fontSize: "0.8125rem",
                     textTransform: "uppercase",
                     letterSpacing: "0.1em",
                     backgroundColor: "var(--lime)",
                     color: "var(--text-primary)",
-                    borderBottom: "1px solid var(--border)",
+                    borderBottom: "2px solid var(--border)",
                   }}
                 >
                   Stacked Marketing
@@ -188,25 +188,20 @@ export default function Comparison() {
               </tr>
             </thead>
             <tbody>
-              {rows.map((row) => (
+              {rows.map((row, i) => (
                 <tr
                   key={row.feature}
                   style={{
+                    backgroundColor: i % 2 === 1 ? "var(--bg-primary)" : "transparent",
                     transition: "background-color 0.15s",
                   }}
-                  onMouseEnter={(e) =>
-                    (e.currentTarget.style.backgroundColor =
-                      "var(--bg-secondary)")
-                  }
-                  onMouseLeave={(e) =>
-                    (e.currentTarget.style.backgroundColor = "transparent")
-                  }
                 >
                   <td
                     style={{
-                      padding: "16px 20px",
+                      padding: "16px 24px",
                       color: "var(--text-primary)",
-                      fontSize: "0.875rem",
+                      fontSize: "0.9375rem",
+                      fontWeight: 500,
                       borderBottom: "1px solid var(--border)",
                     }}
                   >
@@ -214,7 +209,7 @@ export default function Comparison() {
                   </td>
                   <td
                     style={{
-                      padding: "16px 20px",
+                      padding: "16px 24px",
                       textAlign: "center",
                       borderBottom: "1px solid var(--border)",
                     }}
@@ -223,7 +218,7 @@ export default function Comparison() {
                   </td>
                   <td
                     style={{
-                      padding: "16px 20px",
+                      padding: "16px 24px",
                       textAlign: "center",
                       borderBottom: "1px solid var(--border)",
                     }}
@@ -232,10 +227,10 @@ export default function Comparison() {
                   </td>
                   <td
                     style={{
-                      padding: "16px 20px",
+                      padding: "16px 24px",
                       textAlign: "center",
                       borderBottom: "1px solid var(--border)",
-                      backgroundColor: "#FAFFF0",
+                      backgroundColor: i % 2 === 1 ? "#F0FFD6" : "#F5FFD6",
                     }}
                   >
                     <CellValue value={row.stacked} isStacked={true} />

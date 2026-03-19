@@ -6,6 +6,7 @@ export default function Nav() {
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
   const [lastScrollY, setLastScrollY] = useState(0);
+  const [scrolled, setScrolled] = useState(false);
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY;
@@ -14,6 +15,7 @@ export default function Nav() {
     } else {
       setHidden(false);
     }
+    setScrolled(currentY > 10);
     setLastScrollY(currentY);
   }, [lastScrollY]);
 
@@ -46,10 +48,11 @@ export default function Nav() {
           right: 0,
           height: 64,
           zIndex: 1000,
-          backgroundColor: "rgba(250, 250, 248, 0.9)",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 1)" : "rgba(250, 250, 248, 0.9)",
           backdropFilter: "blur(12px)",
           WebkitBackdropFilter: "blur(12px)",
           borderBottom: "1px solid var(--border)",
+          boxShadow: scrolled ? "0 1px 8px rgba(0, 0, 0, 0.06)" : "none",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -75,7 +78,7 @@ export default function Nav() {
               letterSpacing: "-0.02em",
             }}
           >
-            STACKED
+            STACKED MARKETING
           </a>
 
           {/* Desktop links */}
