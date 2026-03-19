@@ -91,24 +91,6 @@ export default function Nav() {
             }}
           >
             <a
-              href="/about"
-              style={{
-                color: "var(--text-secondary)",
-                textDecoration: "none",
-                fontSize: "0.875rem",
-                fontFamily: "var(--font-body)",
-                transition: "color 0.2s",
-              }}
-              onMouseEnter={(e) =>
-                (e.currentTarget.style.color = "var(--text-primary)")
-              }
-              onMouseLeave={(e) =>
-                (e.currentTarget.style.color = "var(--text-secondary)")
-              }
-            >
-              About
-            </a>
-            <a
               href="/#contact"
               className="btn-primary"
               style={{
@@ -197,19 +179,6 @@ export default function Nav() {
             X
           </button>
 
-          <a
-            href="/about"
-            onClick={closeMobile}
-            style={{
-              color: "var(--text-primary)",
-              textDecoration: "none",
-              fontSize: "1.5rem",
-              fontFamily: "var(--font-heading)",
-              fontWeight: 700,
-            }}
-          >
-            About
-          </a>
           <a
             href="/#contact"
             onClick={closeMobile}
