@@ -19,7 +19,7 @@ export default function ThankYouPage() {
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
-          paddingTop: 64,
+          paddingTop: 77,
         }}
       >
         <div

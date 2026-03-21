@@ -60,15 +60,6 @@ export default function Process() {
           gap: 48px;
           position: relative;
         }
-        .process-grid::before {
-          content: "";
-          position: absolute;
-          top: 28px;
-          left: 20%;
-          right: 20%;
-          height: 1px;
-          background: var(--border);
-        }
         .process-step {
           text-align: center;
           padding: 24px 16px;
@@ -83,9 +74,6 @@ export default function Process() {
           .process-grid {
             grid-template-columns: 1fr;
             gap: 40px;
-          }
-          .process-grid::before {
-            display: none;
           }
         }
       `}</style>
