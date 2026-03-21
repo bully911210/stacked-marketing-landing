@@ -70,15 +70,20 @@ export default function Nav() {
           <a
             href="/"
             style={{
-              fontFamily: "var(--font-heading)",
-              fontWeight: 700,
-              fontSize: "1.125rem",
-              color: "var(--text-primary)",
+              display: "flex",
+              alignItems: "center",
               textDecoration: "none",
-              letterSpacing: "-0.02em",
             }}
           >
-            STACKED MARKETING
+            <img
+              src="https://i.ibb.co/jv57TQ9s/Generated-Image-March-21-2026-5-07-AM-removebg-preview.png"
+              alt="Stacked Marketing"
+              style={{
+                height: 40,
+                width: "auto",
+                objectFit: "contain",
+              }}
+            />
           </a>
 
           {/* Desktop links */}
