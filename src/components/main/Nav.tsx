@@ -10,7 +10,7 @@ export default function Nav() {
 
   const handleScroll = useCallback(() => {
     const currentY = window.scrollY;
-    if (currentY > lastScrollY && currentY > 64) {
+    if (currentY > lastScrollY && currentY > 77) {
       setHidden(true);
     } else {
       setHidden(false);
@@ -46,7 +46,7 @@ export default function Nav() {
           top: 0,
           left: 0,
           right: 0,
-          height: 64,
+          height: 77,
           zIndex: 1000,
           backgroundColor: scrolled ? "rgba(255, 255, 255, 1)" : "rgba(250, 250, 248, 0.9)",
           backdropFilter: "blur(12px)",
@@ -79,11 +79,22 @@ export default function Nav() {
               src="https://i.ibb.co/jv57TQ9s/Generated-Image-March-21-2026-5-07-AM-removebg-preview.png"
               alt="Stacked Marketing"
               style={{
-                height: 40,
+                height: 53,
                 width: "auto",
                 objectFit: "contain",
               }}
             />
+            <span
+              style={{
+                color: "#000000",
+                fontWeight: 700,
+                fontSize: "1.25rem",
+                letterSpacing: "0.05em",
+                marginLeft: 8,
+              }}
+            >
+              STACKED
+            </span>
           </a>
 
           {/* Desktop links */}

@@ -8,7 +8,7 @@ export default function Hero() {
         minHeight: "100vh",
         display: "flex",
         alignItems: "center",
-        paddingTop: 64,
+        paddingTop: 77,
         paddingBottom: 0,
         backgroundColor: "var(--bg-primary)",
         position: "relative",
