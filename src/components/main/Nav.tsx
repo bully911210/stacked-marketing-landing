@@ -107,7 +107,7 @@ export default function Nav() {
             }}
           >
             <a
-              href="/#contact"
+              href="#contact"
               className="btn-primary"
               style={{
                 padding: "10px 24px",
@@ -196,7 +196,7 @@ export default function Nav() {
           </button>
 
           <a
-            href="/#contact"
+            href="#contact"
             onClick={closeMobile}
             className="btn-primary"
             style={{ fontSize: "1rem" }}

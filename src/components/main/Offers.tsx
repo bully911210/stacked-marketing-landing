@@ -271,7 +271,13 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
 
       {/* CTA */}
       <a
-        href={`/#contact?interest=${offer.interest}`}
+        href="#contact"
+        onClick={() => {
+          const radio = document.querySelector<HTMLInputElement>(
+            `input[name="interest"][value="${offer.interest}"]`
+          );
+          if (radio) radio.click();
+        }}
         className={offer.featured ? "btn-accent" : "btn-ghost"}
         style={{
           width: "100%",
