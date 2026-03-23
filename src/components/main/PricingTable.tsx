@@ -9,6 +9,15 @@ const tiers = [
     priceNote: "once-off",
     featured: false,
     interest: "starter",
+    deliverables: [
+      "Beautiful 4-page fully custom website built on Framer",
+      "Home, About, Services/Products, Contact",
+      "Lightning-fast loading, mobile responsive, smooth animations",
+      "Working contact form + WhatsApp click-to-chat button",
+      "Basic on-page SEO + Google Analytics",
+      "Delivered and live in 5 business days",
+      "Full site transfer to your own Framer account – 100% ownership & exportable code",
+    ],
   },
   {
     name: "Meta Ads Accelerator",
@@ -16,6 +25,13 @@ const tiers = [
     priceNote: "/mo",
     featured: false,
     interest: "ads",
+    deliverables: [
+      "Daily optimisation of up to 5 campaigns",
+      "8 brand-new creatives tested every month",
+      "Weekly performance dashboard + 1× 30-min strategy call",
+      "Minimum recommended ad spend: R8,000–R12,000",
+      "Full Conversions API + tracking setup",
+    ],
   },
   {
     name: "Stacked Core",
@@ -23,6 +39,14 @@ const tiers = [
     priceNote: "/mo",
     featured: true,
     interest: "core",
+    intro: "Everything in Meta Ads Accelerator +",
+    deliverables: [
+      "Advanced 5–7 page custom website built on Framer (with CMS)",
+      "6 powerful automations in Make.com (instant WhatsApp replies, lead notification, CRM pipeline, nurture sequence, retargeting triggers)",
+      "Full lead forms + booking integration",
+      '"Live in 5 business days" guarantee',
+      "Full Framer site transfer – you own everything",
+    ],
   },
 ];
 
@@ -42,11 +66,7 @@ const features: FeatureRow[] = [
   },
   {
     label: "Meta Ads Management",
-    values: [
-      "–",
-      "Daily (up to 5 campaigns)",
-      "Daily",
-    ],
+    values: ["–", "Daily (up to 5 campaigns)", "Daily"],
   },
   {
     label: "Automations (Make.com)",
@@ -58,25 +78,27 @@ const features: FeatureRow[] = [
   },
   {
     label: "Reporting & Strategy Calls",
-    values: [
-      "–",
-      "Weekly dashboard + 1×30min",
-      "Bi-weekly + 2×30min",
-    ],
+    values: ["–", "Weekly dashboard + 1×30min", "Bi-weekly + 2×30min"],
+  },
+  {
+    label: "Direct WhatsApp Support",
+    values: ["check", "check", "check"],
+  },
+  {
+    label: "Live Ad Spend Transparency",
+    values: ["–", "check", "check"],
   },
   {
     label: "Delivery Time",
-    values: [
-      "Live in 5 days",
-      "Live in 3 days",
-      "Full system in 5 days",
-    ],
+    values: ["Live in 5 days", "Live in 3 days", "Full system in 5 days"],
   },
   {
     label: "You Own Everything",
     values: ["check", "check", "check"],
   },
 ];
+
+const tools = ["Framer", "Make.com", "Meta Conversions API", "Google Looker Studio"];
 
 function CellContent({ value }: { value: string }) {
   if (value === "check") {
@@ -86,6 +108,8 @@ function CellContent({ value }: { value: string }) {
         height="22"
         viewBox="0 0 22 22"
         fill="none"
+        role="img"
+        aria-label="Included"
         style={{ display: "inline-block" }}
       >
         <circle cx="11" cy="11" r="11" fill="#DCFCE7" />
@@ -102,11 +126,8 @@ function CellContent({ value }: { value: string }) {
   if (value === "–") {
     return (
       <span
-        style={{
-          color: "#64748B",
-          fontSize: "1.1rem",
-          fontWeight: 300,
-        }}
+        aria-label="Not included"
+        style={{ color: "#64748B", fontSize: "1.1rem", fontWeight: 300 }}
       >
         –
       </span>
@@ -131,7 +152,7 @@ export default function PricingTable() {
           ref={ref}
           className={`fade-up ${isVisible ? "visible" : ""}`}
         >
-          {/* Badges */}
+          {/* Trust Badges */}
           <div
             style={{
               display: "flex",
@@ -141,26 +162,29 @@ export default function PricingTable() {
               marginBottom: 24,
             }}
           >
-            {["No contracts", "You own everything", "Live in 5 days"].map(
-              (badge) => (
-                <span
-                  key={badge}
-                  style={{
-                    display: "inline-block",
-                    backgroundColor: "rgba(200, 255, 0, 0.15)",
-                    color: "var(--lime)",
-                    fontFamily: "var(--font-mono)",
-                    fontSize: "0.75rem",
-                    fontWeight: 500,
-                    letterSpacing: "0.05em",
-                    padding: "6px 16px",
-                    borderRadius: 100,
-                  }}
-                >
-                  {badge}
-                </span>
-              )
-            )}
+            {[
+              "No contracts",
+              "You own everything",
+              "Live in 5 days",
+              "Upgrade anytime with R2,000 credit",
+            ].map((badge) => (
+              <span
+                key={badge}
+                style={{
+                  display: "inline-block",
+                  backgroundColor: "rgba(200, 255, 0, 0.15)",
+                  color: "var(--lime)",
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
+                  letterSpacing: "0.05em",
+                  padding: "6px 16px",
+                  borderRadius: 100,
+                }}
+              >
+                {badge}
+              </span>
+            ))}
           </div>
 
           <h2
@@ -175,7 +199,7 @@ export default function PricingTable() {
           </h2>
         </div>
 
-        {/* Desktop Table */}
+        {/* ─── Desktop Table ─── */}
         <div className="pt-desktop">
           <table className="pt-table">
             <thead>
@@ -235,9 +259,8 @@ export default function PricingTable() {
           </table>
         </div>
 
-        {/* Mobile Cards */}
+        {/* ─── Mobile Cards ─── */}
         <div className="pt-mobile">
-          {/* Show featured first on mobile */}
           {[...tiers]
             .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
             .map((tier) => (
@@ -278,16 +301,102 @@ export default function PricingTable() {
             ))}
         </div>
 
-        {/* Stats mini-bar */}
+        {/* ─── Detailed Deliverables ─── */}
+        <div
+          style={{
+            marginTop: 56,
+            paddingTop: 48,
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          <h3
+            style={{
+              textAlign: "center",
+              fontFamily: "var(--font-heading)",
+              fontWeight: 700,
+              fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
+              color: "#FFFFFF",
+              marginBottom: 32,
+            }}
+          >
+            What&apos;s Included in Each Package
+          </h3>
+          <div className="pt-deliverables-grid">
+            {tiers.map((tier, i) => (
+              <DeliverableCard key={tier.name} tier={tier} index={i} />
+            ))}
+          </div>
+        </div>
+
+        {/* ─── Tools Trust Bar ─── */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            alignItems: "center",
+            flexWrap: "wrap",
+            gap: 8,
+            marginTop: 40,
+            paddingTop: 24,
+            borderTop: "1px solid rgba(255,255,255,0.08)",
+          }}
+        >
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.7rem",
+              fontWeight: 500,
+              color: "rgba(255,255,255,0.35)",
+              letterSpacing: "0.04em",
+              textTransform: "uppercase",
+              marginRight: 8,
+            }}
+          >
+            Tools we use:
+          </span>
+          {tools.map((tool, i) => (
+            <span
+              key={tool}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              <span
+                style={{
+                  fontFamily: "var(--font-mono)",
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
+                  color: "rgba(255,255,255,0.5)",
+                }}
+              >
+                {tool}
+              </span>
+              {i < tools.length - 1 && (
+                <span
+                  style={{
+                    color: "rgba(255,255,255,0.25)",
+                    fontSize: "0.4rem",
+                  }}
+                >
+                  ●
+                </span>
+              )}
+            </span>
+          ))}
+        </div>
+
+        {/* ─── Stats Mini-bar ─── */}
         <div
           style={{
             display: "flex",
             justifyContent: "center",
             gap: "clamp(16px, 3vw, 40px)",
             flexWrap: "wrap",
-            marginTop: 48,
-            paddingTop: 32,
-            borderTop: "1px solid rgba(255,255,255,0.1)",
+            marginTop: 32,
+            paddingTop: 24,
+            borderTop: "1px solid rgba(255,255,255,0.08)",
           }}
         >
           {[
@@ -325,7 +434,6 @@ export default function PricingTable() {
       </div>
 
       <style>{`
-        /* Desktop table */
         .pt-desktop {
           display: block;
           overflow-x: auto;
@@ -374,10 +482,6 @@ export default function PricingTable() {
           border-right: 1px solid rgba(200, 255, 0, 0.15);
         }
 
-        .pt-tier-featured:first-of-type {
-          border-radius: 0;
-        }
-
         .pt-badge {
           display: inline-block;
           background: var(--lime);
@@ -393,6 +497,7 @@ export default function PricingTable() {
           left: 50%;
           transform: translateX(-50%);
           white-space: nowrap;
+          z-index: 10;
         }
 
         .pt-tier-name {
@@ -428,17 +533,9 @@ export default function PricingTable() {
           letter-spacing: 0.06em;
         }
 
-        .pt-row {
-          transition: background-color 0.15s ease;
-        }
-
-        .pt-row:hover {
-          background-color: rgba(255,255,255,0.03);
-        }
-
-        .pt-row-alt {
-          background-color: rgba(255,255,255,0.02);
-        }
+        .pt-row { transition: background-color 0.15s ease; }
+        .pt-row:hover { background-color: rgba(255,255,255,0.03); }
+        .pt-row-alt { background-color: rgba(255,255,255,0.02); }
 
         .pt-feature-cell {
           padding: 14px 24px;
@@ -466,10 +563,7 @@ export default function PricingTable() {
           font-weight: 500;
         }
 
-        .pt-cta-cell {
-          padding: 20px 16px;
-          border-bottom: none;
-        }
+        .pt-cta-cell { padding: 20px 16px; border-bottom: none; }
 
         .pt-cta-btn {
           display: inline-block;
@@ -493,17 +587,13 @@ export default function PricingTable() {
         }
 
         /* Mobile cards */
-        .pt-mobile {
-          display: none;
-          flex-direction: column;
-          gap: 20px;
-        }
+        .pt-mobile { display: none; flex-direction: column; gap: 20px; }
 
         .pt-mobile-card {
           background: rgba(255,255,255,0.04);
           border: 1px solid rgba(255,255,255,0.08);
           border-radius: 16px;
-          padding: 28px 24px;
+          padding: clamp(20px, 4vw, 28px) clamp(16px, 3vw, 24px);
           position: relative;
         }
 
@@ -543,11 +633,7 @@ export default function PricingTable() {
           margin-bottom: 2px;
         }
 
-        .pt-mobile-note {
-          font-weight: 400;
-          font-size: 0.85rem;
-          color: rgba(255,255,255,0.5);
-        }
+        .pt-mobile-note { font-weight: 400; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
 
         .pt-mobile-vat {
           display: block;
@@ -571,9 +657,7 @@ export default function PricingTable() {
           border-bottom: 1px solid rgba(255,255,255,0.05);
         }
 
-        .pt-mobile-row:last-child {
-          border-bottom: none;
-        }
+        .pt-mobile-row:last-child { border-bottom: none; }
 
         .pt-mobile-label {
           color: rgba(255,255,255,0.5);
@@ -590,21 +674,154 @@ export default function PricingTable() {
           max-width: 50%;
         }
 
-        @media (max-width: 899px) {
-          .pt-desktop {
-            display: none;
-          }
-          .pt-mobile {
-            display: flex;
-          }
+        /* Deliverables grid */
+        .pt-deliverables-grid {
+          display: grid;
+          grid-template-columns: repeat(3, 1fr);
+          gap: 20px;
         }
 
-        @media (min-width: 900px) {
-          .pt-mobile {
-            display: none;
-          }
+        .pt-del-card {
+          background: rgba(255,255,255,0.04);
+          border: 1px solid rgba(255,255,255,0.08);
+          border-radius: 12px;
+          padding: clamp(20px, 3vw, 28px) clamp(16px, 2.5vw, 24px);
+          transition: border-color 0.2s ease;
+        }
+
+        .pt-del-card:hover {
+          border-color: rgba(255,255,255,0.15);
+        }
+
+        .pt-del-card-featured {
+          border-color: rgba(200, 255, 0, 0.2);
+          background: rgba(200, 255, 0, 0.04);
+        }
+
+        .pt-del-card-featured:hover {
+          border-color: rgba(200, 255, 0, 0.35);
+        }
+
+        @media (max-width: 767px) {
+          .pt-desktop { display: none; }
+          .pt-mobile { display: flex; }
+          .pt-deliverables-grid { grid-template-columns: 1fr; }
+        }
+
+        @media (min-width: 768px) {
+          .pt-mobile { display: none; }
         }
       `}</style>
     </section>
+  );
+}
+
+function DeliverableCard({
+  tier,
+  index,
+}: {
+  tier: (typeof tiers)[number];
+  index: number;
+}) {
+  const { ref, isVisible } = useScrollReveal(0.15);
+
+  return (
+    <div
+      ref={ref}
+      className={`fade-up pt-del-card ${tier.featured ? "pt-del-card-featured" : ""}`}
+      style={{ transitionDelay: `${index * 80}ms` }}
+    >
+      <h4
+        style={{
+          fontFamily: "var(--font-heading)",
+          fontWeight: 700,
+          fontSize: "0.85rem",
+          color: "#FFFFFF",
+          textTransform: "uppercase",
+          letterSpacing: "0.04em",
+          marginBottom: 4,
+        }}
+      >
+        {tier.name}
+      </h4>
+      <p
+        style={{
+          fontFamily: "var(--font-mono)",
+          fontWeight: 700,
+          fontSize: "1.1rem",
+          color: "var(--lime)",
+          marginBottom: 2,
+        }}
+      >
+        {tier.price}
+        <span
+          style={{
+            fontWeight: 400,
+            fontSize: "0.75rem",
+            color: "rgba(255,255,255,0.5)",
+          }}
+        >
+          {" "}
+          {tier.priceNote}
+        </span>
+      </p>
+      <span
+        style={{
+          display: "block",
+          fontSize: "0.6rem",
+          color: "rgba(255,255,255,0.3)",
+          textTransform: "uppercase",
+          letterSpacing: "0.06em",
+          marginBottom: 16,
+        }}
+      >
+        ex VAT
+      </span>
+
+      {"intro" in tier && tier.intro && (
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.8rem",
+            fontWeight: 600,
+            color: "var(--lime)",
+            marginBottom: 12,
+            fontStyle: "italic",
+          }}
+        >
+          {tier.intro}
+        </p>
+      )}
+
+      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
+        {tier.deliverables.map((item) => (
+          <li
+            key={item}
+            style={{
+              display: "flex",
+              alignItems: "flex-start",
+              gap: 8,
+              marginBottom: 8,
+              fontSize: "0.78rem",
+              color: "rgba(255,255,255,0.65)",
+              lineHeight: 1.5,
+            }}
+          >
+            <span
+              style={{
+                width: 5,
+                height: 5,
+                borderRadius: "50%",
+                backgroundColor: "var(--lime)",
+                marginTop: 6,
+                flexShrink: 0,
+                opacity: 0.7,
+              }}
+            />
+            {item}
+          </li>
+        ))}
+      </ul>
+    </div>
   );
 }
