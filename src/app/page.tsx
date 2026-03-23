@@ -1,12 +1,12 @@
 import { Suspense } from "react";
 import Nav from "@/components/main/Nav";
 import Hero from "@/components/main/Hero";
-import TrustBar from "@/components/main/TrustBar";
+import PricingTable from "@/components/main/PricingTable";
+import StackOptions from "@/components/main/StackOptions";
 import Proof from "@/components/main/Proof";
-import Testimonials from "@/components/main/Testimonials";
-import Offers from "@/components/main/Offers";
 import Process from "@/components/main/Process";
 import Comparison from "@/components/main/Comparison";
+import QuickStart from "@/components/main/QuickStart";
 import LeadForm from "@/components/main/LeadForm";
 import Footer from "@/components/main/Footer";
 import WhatsApp from "@/components/main/WhatsApp";
@@ -16,12 +16,12 @@ export default function Home() {
     <main>
       <Nav />
       <Hero />
-      <TrustBar />
+      <PricingTable />
+      <StackOptions />
       <Proof />
-      <Testimonials />
-      <Offers />
       <Process />
       <Comparison />
+      <QuickStart />
       <Suspense>
         <LeadForm />
       </Suspense>

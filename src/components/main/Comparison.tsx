@@ -39,6 +39,16 @@ const rows: ComparisonRow[] = [
     agency: "dash",
     stacked: "check",
   },
+  {
+    feature: "Start for just R2,499 with a premium Framer website",
+    agency: "dash",
+    stacked: "check",
+  },
+  {
+    feature: "Crystal-clear upgrade path – move up anytime with R2,000 credit",
+    agency: "dash",
+    stacked: "check",
+  },
 ];
 
 function CellValue({ value, isStacked }: { value: string; isStacked: boolean }) {
