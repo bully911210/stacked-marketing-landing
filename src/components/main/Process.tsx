@@ -103,7 +103,7 @@ function ProcessStep({
       <p
         style={{
           fontFamily: "var(--font-heading)",
-          fontWeight: 800,
+          fontWeight: 700,
           fontSize: "clamp(4rem, 8vw, 6rem)",
           color: "var(--color-accent-muted)",
           lineHeight: 1,

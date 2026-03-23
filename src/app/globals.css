@@ -1,8 +1,5 @@
 @import "tailwindcss";
 
-/* Font imports */
-@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
-
 @theme {
   --color-lime: #C8FF00;
   --color-lime-hover: #B0E600;
@@ -18,9 +15,9 @@
   --color-border-hover: #D0CFC9;
   --color-whatsapp: #25D366;
 
-  --font-heading: 'Syne', system-ui, sans-serif;
-  --font-body: 'Outfit', system-ui, sans-serif;
-  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
+  --font-heading: "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
+  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
 /* CSS Custom Properties */
@@ -98,11 +95,11 @@ body::before {
   z-index: 0;
 }
 
-/* Typography Scale - Syne for headings */
+/* Typography Scale */
 .text-display {
   font-family: var(--font-heading);
-  font-weight: 800;
-  font-size: clamp(3rem, 6vw, 5.5rem);
+  font-weight: 700;
+  font-size: clamp(3rem, 5vw, 5rem);
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--text-primary);
