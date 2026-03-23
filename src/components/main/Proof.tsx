@@ -60,113 +60,91 @@ function CaseCard({
   study: CaseStudy;
   index: number;
 }) {
-  const { ref, isVisible } = useScrollReveal(0.2);
+  const { ref, isVisible } = useScrollReveal(0.15);
 
   return (
     <div
       ref={ref}
       className={`fade-up ${isVisible ? "visible" : ""}`}
       style={{
-        transitionDelay: `${index * 80}ms`,
-        gridColumn: index % 2 === 0 ? "1 / 8" : "5 / 13",
+        transitionDelay: `${index * 100}ms`,
       }}
     >
       <div
         className="card proof-card"
         style={{
-          padding: 48,
+          padding: "clamp(28px, 4vw, 48px)",
           position: "relative",
           overflow: "hidden",
           borderLeft: "3px solid transparent",
           boxShadow: "0 2px 8px rgba(0, 0, 0, 0.06), 0 8px 24px rgba(0, 0, 0, 0.04)",
+          height: "100%",
         }}
       >
-        {/* Vertical label */}
-        <span
-          className="proof-vertical-label"
+        {/* Industry label */}
+        <p
           style={{
-            position: "absolute",
-            left: 16,
-            top: "50%",
-            transform: "rotate(-90deg) translateX(-50%)",
-            transformOrigin: "left center",
-            color: "var(--lime-on-light)",
-            fontFamily: "var(--font-body)",
-            fontWeight: 600,
+            fontFamily: "var(--font-mono)",
+            fontWeight: 500,
             fontSize: "0.75rem",
             textTransform: "uppercase",
-            letterSpacing: "0.1em",
-            whiteSpace: "nowrap",
+            letterSpacing: "0.12em",
+            color: "var(--lime-on-light)",
+            marginBottom: 12,
           }}
         >
           {study.industry}
+        </p>
+        <p
+          style={{
+            fontFamily: "var(--font-heading)",
+            fontWeight: 700,
+            fontSize: "clamp(1.75rem, 4vw, 2.5rem)",
+            color: "var(--text-primary)",
+            lineHeight: 1.1,
+          }}
+        >
+          {study.metric}
+        </p>
+        <p
+          style={{
+            color: "var(--text-muted)",
+            fontSize: "0.875rem",
+            fontFamily: "var(--font-body)",
+            marginTop: 4,
+          }}
+        >
+          {study.metricLabel}
+        </p>
+        <p
+          style={{
+            color: "var(--text-secondary)",
+            fontFamily: "var(--font-body)",
+            fontWeight: 400,
+            fontSize: "1rem",
+            marginTop: 16,
+            lineHeight: 1.6,
+          }}
+        >
+          {study.narrative}
+        </p>
+        <span
+          style={{
+            display: "inline-block",
+            marginTop: 16,
+            padding: "6px 14px",
+            backgroundColor: "var(--color-accent-muted)",
+            border: "1px solid var(--color-accent-border)",
+            borderRadius: "var(--radius-pill)",
+            color: "var(--lime-on-light)",
+            fontSize: "0.75rem",
+            fontFamily: "var(--font-mono)",
+            fontWeight: 500,
+            letterSpacing: "0.05em",
+          }}
+        >
+          {study.tag}
         </span>
-
-        <div className="proof-card-content" style={{ marginLeft: 36 }}>
-          {/* Mobile-only industry label */}
-          <p
-            className="mobile-only"
-            style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 600,
-              fontSize: "0.75rem",
-              textTransform: "uppercase",
-              letterSpacing: "0.1em",
-              color: "var(--lime-on-light)",
-              marginBottom: 8,
-            }}
-          >
-            {study.industry}
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontWeight: 600,
-              fontSize: "clamp(2rem, 5vw, 3rem)",
-              color: "var(--text-primary)",
-              lineHeight: 1.1,
-            }}
-          >
-            {study.metric}
-          </p>
-          <p
-            style={{
-              color: "var(--text-muted)",
-              fontSize: "0.875rem",
-              fontFamily: "var(--font-body)",
-              marginTop: 4,
-            }}
-          >
-            {study.metricLabel}
-          </p>
-          <p
-            style={{
-              color: "var(--text-secondary)",
-              fontFamily: "var(--font-body)",
-              fontWeight: 400,
-              fontSize: "1rem",
-              marginTop: 16,
-              lineHeight: 1.6,
-            }}
-          >
-            {study.narrative}
-          </p>
-          <span
-            style={{
-              display: "inline-block",
-              marginTop: 16,
-              padding: "8px 16px",
-              backgroundColor: "#F0FFB3",
-              borderRadius: 100,
-              color: "var(--lime-on-light)",
-              fontSize: "0.75rem",
-              fontFamily: "var(--font-body)",
-              fontWeight: 500,
-            }}
-          >
-            {study.tag}
-          </span>
-        </div>
       </div>
     </div>
   );
@@ -182,16 +160,17 @@ export default function Proof() {
         <div
           ref={headingRef}
           className={`fade-up ${headingVisible ? "visible" : ""}`}
+          style={{ textAlign: "center", marginBottom: 48 }}
         >
           <h2
-            className="text-h1 proof-heading"
-            style={{ maxWidth: 700, marginBottom: 48 }}
+            className="text-h1"
+            style={{ maxWidth: 800, marginInline: "auto" }}
           >
-            R205K of our own ad spend before we touched a client campaign.
+            R205K spent. R68 CPA. 5,000 customers. All our own money, in a restricted category.
           </h2>
         </div>
 
-        {/* Desktop staggered grid */}
+        {/* Consistent card grid */}
         <div className="proof-grid">
           {caseStudies.map((study, i) => (
             <CaseCard key={study.industry} study={study} index={i} />
@@ -203,19 +182,19 @@ export default function Proof() {
           className={`fade-up ${closingVisible ? "visible" : ""}`}
           style={{
             textAlign: "center",
-            marginTop: 80,
+            marginTop: 64,
           }}
         >
           <p
             style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 400,
-              fontSize: "1.125rem",
+              fontFamily: "var(--font-heading)",
+              fontWeight: 600,
+              fontSize: "clamp(1.1rem, 2vw, 1.5rem)",
               color: "var(--text-secondary)",
               fontStyle: "italic",
-              maxWidth: 600,
+              maxWidth: 650,
               marginInline: "auto",
-              lineHeight: 1.6,
+              lineHeight: 1.5,
             }}
           >
             These results come from restricted, hard-to-advertise verticals.
@@ -227,7 +206,7 @@ export default function Proof() {
       <style>{`
         .proof-grid {
           display: grid;
-          grid-template-columns: repeat(12, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 24px;
         }
         .proof-card {
@@ -236,26 +215,16 @@ export default function Proof() {
         .proof-card:hover {
           border-left-color: var(--lime) !important;
           box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04) !important;
+          transform: translateY(-4px);
+        }
+        @media (max-width: 1023px) {
+          .proof-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
         }
         @media (max-width: 767px) {
           .proof-grid {
             grid-template-columns: 1fr;
-          }
-          .proof-grid > div {
-            grid-column: 1 / -1 !important;
-          }
-          .proof-card .proof-vertical-label {
-            display: none;
-          }
-          .proof-card .proof-card-content {
-            margin-left: 0 !important;
-          }
-          .proof-card {
-            padding: 28px 20px !important;
-          }
-          .proof-heading {
-            text-align: center;
-            margin-inline: auto;
           }
         }
       `}</style>

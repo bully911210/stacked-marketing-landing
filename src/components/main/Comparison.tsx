@@ -45,7 +45,7 @@ const rows: ComparisonRow[] = [
     stacked: "check",
   },
   {
-    feature: "Crystal-clear upgrade path – move up anytime with R2,000 credit",
+    feature: "Crystal-clear upgrade path: move up anytime with R2,000 credit",
     agency: "dash",
     stacked: "check",
   },
@@ -63,7 +63,7 @@ function CellValue({ value, isStacked }: { value: string; isStacked: boolean }) 
   if (value === "dash") {
     return (
       <span style={{ color: "#CBD5E1", fontSize: "1.25rem", fontWeight: 300, display: "block", textAlign: "center" }}>
-        &mdash;
+        -
       </span>
     );
   }

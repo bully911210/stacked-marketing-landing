@@ -1,0 +1,107 @@
+"use client";
+
+import { useState, useEffect } from "react";
+
+const CONSENT_KEY = "stacked_cookie_consent";
+
+export default function CookieConsent() {
+  const [visible, setVisible] = useState(false);
+
+  useEffect(() => {
+    const consent = localStorage.getItem(CONSENT_KEY);
+    if (!consent) {
+      const timer = setTimeout(() => setVisible(true), 1500);
+      return () => clearTimeout(timer);
+    }
+  }, []);
+
+  const accept = () => {
+    localStorage.setItem(CONSENT_KEY, "accepted");
+    setVisible(false);
+  };
+
+  const decline = () => {
+    localStorage.setItem(CONSENT_KEY, "declined");
+    setVisible(false);
+  };
+
+  if (!visible) return null;
+
+  return (
+    <div
+      style={{
+        position: "fixed",
+        bottom: 0,
+        left: 0,
+        right: 0,
+        zIndex: 998,
+        backgroundColor: "#1A1A1A",
+        borderTop: "1px solid rgba(255,255,255,0.1)",
+        padding: "16px 24px",
+        display: "flex",
+        alignItems: "center",
+        justifyContent: "center",
+        gap: 16,
+        flexWrap: "wrap",
+        animation: "slideUpIn 0.4s ease-out",
+      }}
+    >
+      <p
+        style={{
+          color: "rgba(255,255,255,0.8)",
+          fontSize: "0.8125rem",
+          fontFamily: "var(--font-body)",
+          lineHeight: 1.5,
+          maxWidth: 600,
+        }}
+      >
+        We use cookies (Meta Pixel, Google Analytics) to improve your experience
+        and measure performance.{" "}
+        <a
+          href="/privacy"
+          style={{
+            color: "var(--lime)",
+            textDecoration: "underline",
+            textUnderlineOffset: 3,
+          }}
+        >
+          Privacy Policy
+        </a>
+      </p>
+      <div style={{ display: "flex", gap: 8 }}>
+        <button
+          onClick={accept}
+          style={{
+            background: "var(--lime)",
+            color: "#1A1A1A",
+            border: "none",
+            borderRadius: 6,
+            padding: "8px 20px",
+            fontSize: "0.8125rem",
+            fontWeight: 600,
+            cursor: "pointer",
+            fontFamily: "var(--font-body)",
+          }}
+        >
+          Accept
+        </button>
+        <button
+          onClick={decline}
+          style={{
+            background: "transparent",
+            color: "rgba(255,255,255,0.6)",
+            border: "1px solid rgba(255,255,255,0.2)",
+            borderRadius: 6,
+            padding: "8px 20px",
+            fontSize: "0.8125rem",
+            fontWeight: 500,
+            cursor: "pointer",
+            fontFamily: "var(--font-body)",
+          }}
+        >
+          Decline
+        </button>
+      </div>
+    </div>
+  );
+}

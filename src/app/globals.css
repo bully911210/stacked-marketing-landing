@@ -1,5 +1,8 @@
 @import "tailwindcss";
 
+/* Font imports */
+@import url('https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap');
+
 @theme {
   --color-lime: #C8FF00;
   --color-lime-hover: #B0E600;
@@ -15,9 +18,9 @@
   --color-border-hover: #D0CFC9;
   --color-whatsapp: #25D366;
 
-  --font-heading: "DM Sans", system-ui, sans-serif;
-  --font-body: "DM Sans", system-ui, sans-serif;
-  --font-mono: "IBM Plex Mono", ui-monospace, monospace;
+  --font-heading: 'Syne', system-ui, sans-serif;
+  --font-body: 'Outfit', system-ui, sans-serif;
+  --font-mono: 'IBM Plex Mono', ui-monospace, monospace;
 }
 
 /* CSS Custom Properties */
@@ -37,8 +40,23 @@
   --border: #E5E4E0;
   --border-hover: #D0CFC9;
 
+  /* Design system spacing */
   --section-spacing: clamp(4rem, 3rem + 5vw, 8rem);
   --container-padding: clamp(1rem, 2vw, 2rem);
+  --space-card-padding: 32px;
+  --space-card-gap: 24px;
+
+  /* Design system radii */
+  --radius-sm: 6px;
+  --radius-md: 12px;
+  --radius-lg: 16px;
+  --radius-pill: 999px;
+
+  /* Design system colors (extended) */
+  --color-accent-muted: rgba(200, 255, 0, 0.15);
+  --color-accent-border: rgba(200, 255, 0, 0.3);
+  --color-success: #22C55E;
+  --color-error: #EF4444;
 }
 
 /* Reset */
@@ -80,11 +98,11 @@ body::before {
   z-index: 0;
 }
 
-/* Typography Scale */
+/* Typography Scale - Syne for headings */
 .text-display {
   font-family: var(--font-heading);
-  font-weight: 700;
-  font-size: clamp(3rem, 5vw, 5rem);
+  font-weight: 800;
+  font-size: clamp(3rem, 6vw, 5.5rem);
   letter-spacing: -0.02em;
   line-height: 1.05;
   color: var(--text-primary);
@@ -168,15 +186,15 @@ body::before {
   box-shadow: 0 4px 16px rgba(0, 0, 0, 0.08), 0 1px 4px rgba(0, 0, 0, 0.04);
 }
 
-/* Button Styles */
+/* Button Styles - Syne for all buttons */
 .btn-primary {
   display: inline-flex;
   align-items: center;
   justify-content: center;
   background: var(--accent-dark);
   color: #FFFFFF;
-  font-family: var(--font-body);
-  font-weight: 500;
+  font-family: var(--font-heading);
+  font-weight: 600;
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
@@ -205,13 +223,13 @@ body::before {
   justify-content: center;
   background: transparent;
   color: var(--text-primary);
-  font-family: var(--font-body);
-  font-weight: 400;
+  font-family: var(--font-heading);
+  font-weight: 500;
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 16px 32px;
-  border: 1px solid var(--border);
+  border: 1.5px solid var(--border);
   border-radius: 8px;
   cursor: pointer;
   text-decoration: none;
@@ -236,23 +254,23 @@ body::before {
   justify-content: center;
   background: var(--lime);
   color: var(--text-primary);
-  font-family: var(--font-body);
-  font-weight: 600;
+  font-family: var(--font-heading);
+  font-weight: 700;
   font-size: 0.875rem;
   text-transform: uppercase;
   letter-spacing: 0.05em;
   padding: 16px 32px;
   border: none;
-  border-radius: 8px;
+  border-radius: var(--radius-pill);
   cursor: pointer;
   text-decoration: none;
-  transition: background-color 0.2s ease, transform 0.2s ease, box-shadow 0.2s ease;
+  transition: background-color 0.2s ease, transform 0.15s ease, box-shadow 0.2s ease;
 }
 
 .btn-accent:hover {
   background: var(--lime-hover);
   transform: translateY(-2px);
-  box-shadow: 0 4px 16px rgba(200, 255, 0, 0.25), 0 2px 6px rgba(0, 0, 0, 0.06);
+  box-shadow: 0 8px 24px rgba(200, 255, 0, 0.25);
 }
 
 .btn-accent:active {
@@ -264,12 +282,12 @@ body::before {
   width: 100%;
   background: #FFFFFF;
   border: 1px solid var(--border);
-  border-radius: 8px;
+  border-radius: var(--radius-md);
   color: var(--text-primary);
   font-family: var(--font-body);
   font-weight: 400;
   font-size: 16px;
-  padding: 16px 18px;
+  padding: 14px 16px;
   outline: none;
   transition: border-color 0.2s ease, box-shadow 0.2s ease;
 }
@@ -283,15 +301,27 @@ body::before {
   box-shadow: 0 0 0 3px rgba(200, 255, 0, 0.15), 0 1px 3px rgba(0, 0, 0, 0.06);
 }
 
+.form-input--error {
+  border-color: var(--color-error) !important;
+  box-shadow: 0 0 0 3px rgba(239, 68, 68, 0.15) !important;
+}
+
 .form-label {
   display: block;
   color: var(--text-muted);
-  font-family: var(--font-body);
+  font-family: var(--font-mono);
   font-weight: 500;
   font-size: 0.75rem;
   text-transform: uppercase;
   letter-spacing: 0.08em;
   margin-bottom: 8px;
+}
+
+.form-error {
+  color: var(--color-error);
+  font-size: 0.75rem;
+  font-family: var(--font-body);
+  margin-top: 4px;
 }
 
 /* Smooth transitions on all interactive elements */
@@ -338,6 +368,14 @@ a, button, input, select, textarea {
 
 .hero-fade-delay-2 {
   animation-delay: 0.4s;
+}
+
+.hero-fade-delay-3 {
+  animation-delay: 0.6s;
+}
+
+.hero-fade-delay-4 {
+  animation-delay: 0.8s;
 }
 
 /* Nav Hide/Show */
@@ -388,6 +426,25 @@ a, button, input, select, textarea {
   to {
     transform: translateY(0);
     opacity: 1;
+  }
+}
+
+/* Scroll indicator bounce */
+@keyframes scrollBounce {
+  0%, 100% {
+    transform: translateY(0);
+    opacity: 0.5;
+  }
+  50% {
+    transform: translateY(8px);
+    opacity: 1;
+  }
+}
+
+/* Checkmark draw animation */
+@keyframes checkDraw {
+  to {
+    stroke-dashoffset: 0;
   }
 }
 

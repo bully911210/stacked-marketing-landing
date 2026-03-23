@@ -15,7 +15,7 @@ const packages = [
       "Working contact form + WhatsApp click-to-chat button",
       "Basic on-page SEO + Google Analytics",
       "Delivered and live in 5 business days",
-      "Full site transfer to your own hosting – 100% ownership",
+      "Full site transfer to your own hosting. 100% ownership",
     ],
   },
   {
@@ -27,7 +27,7 @@ const packages = [
       "Daily optimisation of up to 5 campaigns",
       "8 brand-new creatives tested every month",
       "Weekly performance dashboard + 1× 30-min strategy call",
-      "Minimum recommended ad spend: R8,000–R12,000",
+      "Minimum recommended ad spend: R8,000 to R12,000",
       "Full Conversions API + tracking setup",
     ],
   },
@@ -37,11 +37,11 @@ const packages = [
     vat: "ex VAT",
     intro: "Everything in Meta Ads Accelerator +",
     items: [
-      "Advanced 5–7 page custom-built website (with CMS)",
+      "Advanced 5-7 page custom-built website (with CMS)",
       "6 powerful automations in Make.com (instant WhatsApp replies, lead notification, CRM pipeline, nurture sequence, retargeting triggers)",
       "Full lead forms + booking integration",
       '"Live in 5 business days" guarantee',
-      "Full site transfer – you own everything",
+      "Full site transfer. You own everything",
     ],
   },
 ];
