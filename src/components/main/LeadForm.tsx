@@ -179,7 +179,7 @@ export default function LeadForm() {
               marginBottom: 40,
             }}
           >
-            Let&apos;s Get You Growing – From R2,499 Framer Website or Full Stack
+            Let&apos;s Get You Growing.
           </h2>
         </div>
 

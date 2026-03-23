@@ -718,18 +718,13 @@ export default function PricingTable() {
 
 function DeliverableCard({
   tier,
-  index,
 }: {
   tier: (typeof tiers)[number];
   index: number;
 }) {
-  const { ref, isVisible } = useScrollReveal(0.15);
-
   return (
     <div
-      ref={ref}
-      className={`fade-up pt-del-card ${tier.featured ? "pt-del-card-featured" : ""}`}
-      style={{ transitionDelay: `${index * 80}ms` }}
+      className={`pt-del-card ${tier.featured ? "pt-del-card-featured" : ""}`}
     >
       <h4
         style={{
