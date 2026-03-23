@@ -24,13 +24,6 @@ const tiers = [
     featured: true,
     interest: "core",
   },
-  {
-    name: "Stacked Growth",
-    price: "R19,997",
-    priceNote: "/mo",
-    featured: false,
-    interest: "growth",
-  },
 ];
 
 interface FeatureRow {
@@ -45,7 +38,6 @@ const features: FeatureRow[] = [
       "4-page Premium (Framer)",
       "–",
       "5–7 page Advanced (Framer)",
-      "Advanced + funnels",
     ],
   },
   {
@@ -54,16 +46,15 @@ const features: FeatureRow[] = [
       "–",
       "Daily (up to 5 campaigns)",
       "Daily",
-      "Daily + Google Ads",
     ],
   },
   {
     label: "Automations (Make.com)",
-    values: ["–", "–", "6 core automations", "Advanced + CRM"],
+    values: ["–", "–", "6 core automations"],
   },
   {
     label: "New Ad Creatives per month",
-    values: ["–", "8", "8", "12 + professional video shoots"],
+    values: ["–", "8", "8"],
   },
   {
     label: "Reporting & Strategy Calls",
@@ -71,7 +62,6 @@ const features: FeatureRow[] = [
       "–",
       "Weekly dashboard + 1×30min",
       "Bi-weekly + 2×30min",
-      "Weekly + 1×60min quarterly audit",
     ],
   },
   {
@@ -80,12 +70,11 @@ const features: FeatureRow[] = [
       "Live in 5 days",
       "Live in 3 days",
       "Full system in 5 days",
-      "Full system in 5 days",
     ],
   },
   {
     label: "You Own Everything",
-    values: ["check", "check", "check", "check"],
+    values: ["check", "check", "check"],
   },
 ];
 
@@ -341,6 +330,7 @@ export default function PricingTable() {
           display: block;
           overflow-x: auto;
           -webkit-overflow-scrolling: touch;
+          padding-top: 16px;
         }
 
         .pt-table {
@@ -351,7 +341,7 @@ export default function PricingTable() {
           border-radius: 16px;
           overflow: visible;
           border: 1px solid rgba(255,255,255,0.08);
-          min-width: 800px;
+          min-width: 700px;
         }
 
         .pt-feature-header {

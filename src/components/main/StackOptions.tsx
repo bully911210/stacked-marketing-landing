@@ -44,18 +44,6 @@ const packages = [
       "Full Framer site transfer – you own everything",
     ],
   },
-  {
-    name: "Stacked Growth",
-    price: "R19,997 / month",
-    vat: "ex VAT",
-    intro: "Everything in Stacked Core +",
-    items: [
-      "Full Google Ads (Search + Performance Max)",
-      "Advanced funnels + quiz flows",
-      "12 new creatives per month + 2 professional video shoots per quarter",
-      "2 SEO blog posts per month + on-page optimisation",
-    ],
-  },
 ];
 
 const tools = [
@@ -147,7 +135,7 @@ export default function StackOptions() {
       <style>{`
         .so-grid {
           display: grid;
-          grid-template-columns: repeat(4, 1fr);
+          grid-template-columns: repeat(3, 1fr);
           gap: 20px;
         }
 
