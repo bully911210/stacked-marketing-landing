@@ -67,8 +67,8 @@ export default function Footer() {
               { label: "Home", href: "/" },
               { label: "Pricing", href: "/#pricing" },
               { label: "Contact", href: "/#contact" },
-              { label: "Privacy Policy", href: "/privacy" },
-              { label: "Terms of Service", href: "/terms" },
+              { label: "Privacy Policy", href: "https://www.stackedmarketing.co.za/privacy" },
+              { label: "Terms of Service", href: "https://www.stackedmarketing.co.za/terms" },
             ].map((link) => (
               <a
                 key={link.href}

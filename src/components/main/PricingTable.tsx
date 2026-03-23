@@ -673,13 +673,13 @@ export default function PricingTable() {
           border-color: rgba(200, 255, 0, 0.35);
         }
 
-        @media (max-width: 767px) {
+        @media (max-width: 1023px) {
           .pt-desktop { display: none; }
           .pt-mobile { display: block; }
           .pt-deliverables-grid { grid-template-columns: 1fr; }
         }
 
-        @media (min-width: 768px) {
+        @media (min-width: 1024px) {
           .pt-mobile { display: none; }
         }
       `}</style>
@@ -748,7 +748,7 @@ function DeliverableCard({
       <p
         style={{
           fontFamily: "var(--font-body)",
-          fontSize: "0.75rem",
+          fontSize: "0.8125rem",
           color: "rgba(255,255,255,0.45)",
           marginBottom: 16,
           fontStyle: "italic",
@@ -783,7 +783,7 @@ function DeliverableCard({
               gap: 8,
               marginBottom: 8,
               fontFamily: "var(--font-body)",
-              fontSize: "0.78rem",
+              fontSize: "0.875rem",
               color: "rgba(255,255,255,0.65)",
               lineHeight: 1.5,
             }}

@@ -1,4 +1,3 @@
-import { Suspense } from "react";
 import Nav from "@/components/main/Nav";
 import Hero from "@/components/main/Hero";
 import PricingTable from "@/components/main/PricingTable";
@@ -21,9 +20,7 @@ export default function Home() {
       <About />
       <Process />
       <FAQ />
-      <Suspense>
-        <LeadForm />
-      </Suspense>
+      <LeadForm />
       <Footer />
       <WhatsApp />
       <CookieConsent />

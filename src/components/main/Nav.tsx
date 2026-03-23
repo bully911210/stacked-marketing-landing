@@ -2,6 +2,14 @@
 
 import { useEffect, useState, useCallback } from "react";
 
+const navLinks = [
+  { label: "Pricing", href: "#pricing" },
+  { label: "Results", href: "#proof" },
+  { label: "About", href: "#about" },
+  { label: "FAQ", href: "#faq" },
+  { label: "Contact", href: "#contact" },
+];
+
 export default function Nav() {
   const [hidden, setHidden] = useState(false);
   const [mobileOpen, setMobileOpen] = useState(false);
@@ -76,8 +84,10 @@ export default function Nav() {
             }}
           >
             <img
-              src="https://i.ibb.co/jv57TQ9s/Generated-Image-March-21-2026-5-07-AM-removebg-preview.png"
+              src="/images/stacked-logo.png"
               alt="Stacked Marketing"
+              width={160}
+              height={53}
               style={{
                 height: 53,
                 width: "auto",
@@ -103,9 +113,28 @@ export default function Nav() {
             style={{
               display: "flex",
               alignItems: "center",
-              gap: "2rem",
+              gap: "1.5rem",
             }}
           >
+            {navLinks.map((link) => (
+              <a
+                key={link.href}
+                href={link.href}
+                style={{
+                  color: "var(--text-secondary)",
+                  textDecoration: "none",
+                  fontFamily: "var(--font-heading)",
+                  fontWeight: 500,
+                  fontSize: "0.875rem",
+                  letterSpacing: "0.02em",
+                  transition: "color 0.2s ease",
+                }}
+                onMouseOver={(e) => (e.currentTarget.style.color = "var(--text-primary)")}
+                onMouseOut={(e) => (e.currentTarget.style.color = "var(--text-secondary)")}
+              >
+                {link.label}
+              </a>
+            ))}
             <a
               href="#contact"
               className="btn-primary"
@@ -173,7 +202,7 @@ export default function Nav() {
             flexDirection: "column",
             alignItems: "center",
             justifyContent: "center",
-            gap: "2rem",
+            gap: "1.5rem",
           }}
         >
           <button
@@ -195,11 +224,29 @@ export default function Nav() {
             X
           </button>
 
+          {navLinks.map((link) => (
+            <a
+              key={link.href}
+              href={link.href}
+              onClick={closeMobile}
+              style={{
+                color: "var(--text-primary)",
+                textDecoration: "none",
+                fontFamily: "var(--font-heading)",
+                fontWeight: 600,
+                fontSize: "1.25rem",
+                letterSpacing: "0.02em",
+              }}
+            >
+              {link.label}
+            </a>
+          ))}
+
           <a
             href="#contact"
             onClick={closeMobile}
             className="btn-primary"
-            style={{ fontSize: "1rem" }}
+            style={{ fontSize: "1rem", marginTop: 8 }}
           >
             Get Started
           </a>

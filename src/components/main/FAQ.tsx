@@ -1,6 +1,5 @@
 "use client";
 
-import { useState } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const faqs = [
@@ -43,7 +42,6 @@ function FAQItem({
   faq: (typeof faqs)[number];
   index: number;
 }) {
-  const [open, setOpen] = useState(false);
   const { ref, isVisible } = useScrollReveal(0.15);
 
   return (
@@ -52,66 +50,57 @@ function FAQItem({
       className={`fade-up ${isVisible ? "visible" : ""}`}
       style={{ transitionDelay: `${index * 60}ms` }}
     >
-      <button
-        onClick={() => setOpen(!open)}
-        aria-expanded={open}
-        style={{
-          width: "100%",
-          display: "flex",
-          justifyContent: "space-between",
-          alignItems: "center",
-          gap: 16,
-          padding: "20px 0",
-          background: "none",
-          border: "none",
-          borderBottom: "1px solid var(--border)",
-          cursor: "pointer",
-          textAlign: "left",
-        }}
-      >
-        <span
+      <details className="faq-details">
+        <summary
           style={{
-            fontFamily: "var(--font-heading)",
-            fontWeight: 600,
-            fontSize: "1rem",
-            color: "var(--text-primary)",
-            lineHeight: 1.4,
+            width: "100%",
+            display: "flex",
+            justifyContent: "space-between",
+            alignItems: "center",
+            gap: 16,
+            padding: "20px 0",
+            borderBottom: "1px solid var(--border)",
+            cursor: "pointer",
+            listStyle: "none",
           }}
         >
-          {faq.question}
-        </span>
-        <span
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "1.25rem",
-            color: "var(--text-muted)",
-            flexShrink: 0,
-            transform: open ? "rotate(45deg)" : "rotate(0deg)",
-            transition: "transform 0.2s ease",
-          }}
-        >
-          +
-        </span>
-      </button>
-      <div
-        style={{
-          maxHeight: open ? 300 : 0,
-          overflow: "hidden",
-          transition: "max-height 0.3s ease",
-        }}
-      >
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.9375rem",
-            color: "var(--text-secondary)",
-            lineHeight: 1.7,
-            padding: "16px 0 8px",
-          }}
-        >
-          {faq.answer}
-        </p>
-      </div>
+          <span
+            style={{
+              fontFamily: "var(--font-heading)",
+              fontWeight: 600,
+              fontSize: "1rem",
+              color: "var(--text-primary)",
+              lineHeight: 1.4,
+            }}
+          >
+            {faq.question}
+          </span>
+          <span
+            className="faq-icon"
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "1.25rem",
+              color: "var(--text-muted)",
+              flexShrink: 0,
+              transition: "transform 0.2s ease",
+            }}
+          >
+            +
+          </span>
+        </summary>
+        <div style={{ padding: "16px 0 8px" }}>
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "0.9375rem",
+              color: "var(--text-secondary)",
+              lineHeight: 1.7,
+            }}
+          >
+            {faq.answer}
+          </p>
+        </div>
+      </details>
     </div>
   );
 }
@@ -147,6 +136,19 @@ export default function FAQ() {
           ))}
         </div>
       </div>
+
+      <style>{`
+        .faq-details summary::-webkit-details-marker {
+          display: none;
+        }
+        .faq-details summary::marker {
+          display: none;
+          content: "";
+        }
+        .faq-details[open] .faq-icon {
+          transform: rotate(45deg);
+        }
+      `}</style>
     </section>
   );
 }

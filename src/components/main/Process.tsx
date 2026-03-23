@@ -105,7 +105,7 @@ function ProcessStep({
           fontFamily: "var(--font-heading)",
           fontWeight: 700,
           fontSize: "clamp(4rem, 8vw, 6rem)",
-          color: "var(--color-accent-muted)",
+          color: "var(--color-accent-border)",
           lineHeight: 1,
           marginBottom: 8,
           userSelect: "none",

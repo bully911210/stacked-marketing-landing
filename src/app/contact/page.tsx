@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import { Suspense } from "react";
 import Nav from "@/components/main/Nav";
 import LeadForm from "@/components/main/LeadForm";
 import Footer from "@/components/main/Footer";
@@ -28,9 +27,7 @@ export default function ContactPage() {
           </h1>
         </div>
       </section>
-      <Suspense>
-        <LeadForm />
-      </Suspense>
+      <LeadForm />
       <Footer />
       <WhatsApp />
     </main>

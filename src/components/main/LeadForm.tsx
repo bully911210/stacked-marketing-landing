@@ -1,7 +1,6 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
-import { useSearchParams } from "next/navigation";
 import { WEBHOOK_URL, WHATSAPP_LINK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
@@ -70,7 +69,6 @@ function validateForm(data: FormData): FormErrors {
 }
 
 export default function LeadForm() {
-  const searchParams = useSearchParams();
   const { ref, isVisible } = useScrollReveal(0.2);
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
@@ -88,7 +86,7 @@ export default function LeadForm() {
     consent: false,
   });
 
-  // Load saved form data and pre-select interest from URL
+  // Load saved form data and pre-select interest from URL hash
   useEffect(() => {
     try {
       const saved = localStorage.getItem(STORAGE_KEY);
@@ -100,11 +98,13 @@ export default function LeadForm() {
       // Ignore parse errors
     }
 
-    const interestParam = searchParams.get("interest");
+    // Check URL params for interest pre-selection (without useSearchParams)
+    const params = new URLSearchParams(window.location.search);
+    const interestParam = params.get("interest");
     if (interestParam) {
       setFormData((prev) => ({ ...prev, interest: interestParam }));
     }
-  }, [searchParams]);
+  }, []);
 
   // Save to localStorage on change (exclude consent)
   useEffect(() => {

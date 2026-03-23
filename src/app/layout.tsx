@@ -3,6 +3,7 @@ import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
+  metadataBase: new URL("https://www.stackedmarketing.co.za"),
   title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
   description:
     "Premium custom websites from R2,499. Meta Ads management from R4,999/mo. Full-stack marketing (ads + website + automation) for R11,999/mo. No contracts. You own everything. Pretoria, South Africa.",
@@ -15,20 +16,29 @@ export const metadata: Metadata = {
     type: "website",
     locale: "en_ZA",
     siteName: "Stacked Marketing",
-    url: "https://stackedmarketing.co.za",
+    url: "https://www.stackedmarketing.co.za",
+    images: [
+      {
+        url: "https://www.stackedmarketing.co.za/opengraph-image",
+        width: 1200,
+        height: 630,
+        alt: "Stacked Marketing - Your Marketing Isn't Broken. It's Disconnected.",
+      },
+    ],
   },
   twitter: {
     card: "summary_large_image",
     title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
     description:
       "Custom websites from R2,499. Meta Ads from R4,999/mo. No contracts. You own everything. Pretoria.",
+    images: ["https://www.stackedmarketing.co.za/opengraph-image"],
   },
   robots: {
     index: true,
     follow: true,
   },
   alternates: {
-    canonical: "https://stackedmarketing.co.za",
+    canonical: "https://www.stackedmarketing.co.za",
   },
 };
 
@@ -37,9 +47,9 @@ const jsonLd = {
   "@graph": [
     {
       "@type": "Organization",
-      "@id": "https://stackedmarketing.co.za/#organization",
+      "@id": "https://www.stackedmarketing.co.za/#organization",
       name: "Stacked Marketing",
-      url: "https://stackedmarketing.co.za",
+      url: "https://www.stackedmarketing.co.za",
       description:
         "Meta Ads management and full-stack marketing for growing businesses in Pretoria, South Africa.",
       address: {
@@ -53,39 +63,39 @@ const jsonLd = {
         contactType: "sales",
         availableLanguage: ["English", "Afrikaans"],
       },
-      sameAs: [],
+      sameAs: ["https://www.linkedin.com/company/111745526"],
     },
     {
       "@type": "WebSite",
-      "@id": "https://stackedmarketing.co.za/#website",
-      url: "https://stackedmarketing.co.za",
+      "@id": "https://www.stackedmarketing.co.za/#website",
+      url: "https://www.stackedmarketing.co.za",
       name: "Stacked Marketing",
       publisher: {
-        "@id": "https://stackedmarketing.co.za/#organization",
+        "@id": "https://www.stackedmarketing.co.za/#organization",
       },
     },
     {
       "@type": "WebPage",
-      "@id": "https://stackedmarketing.co.za/#webpage",
-      url: "https://stackedmarketing.co.za",
+      "@id": "https://www.stackedmarketing.co.za/#webpage",
+      url: "https://www.stackedmarketing.co.za",
       name: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
       description:
         "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
       isPartOf: {
-        "@id": "https://stackedmarketing.co.za/#website",
+        "@id": "https://www.stackedmarketing.co.za/#website",
       },
       about: {
-        "@id": "https://stackedmarketing.co.za/#organization",
+        "@id": "https://www.stackedmarketing.co.za/#organization",
       },
     },
     {
       "@type": "Service",
-      "@id": "https://stackedmarketing.co.za/#starter-website",
+      "@id": "https://www.stackedmarketing.co.za/#starter-website",
       name: "Basic Starter Website",
       description:
         "Beautiful 4-page fully custom-built website. Mobile responsive, fast loading, with contact form and WhatsApp integration. Delivered in 5 business days.",
       provider: {
-        "@id": "https://stackedmarketing.co.za/#organization",
+        "@id": "https://www.stackedmarketing.co.za/#organization",
       },
       areaServed: {
         "@type": "Country",
@@ -99,12 +109,12 @@ const jsonLd = {
     },
     {
       "@type": "Service",
-      "@id": "https://stackedmarketing.co.za/#meta-ads",
+      "@id": "https://www.stackedmarketing.co.za/#meta-ads",
       name: "Meta Ads Management",
       description:
         "Daily managed Meta (Facebook and Instagram) advertising campaigns with audience research, creative production, and performance reporting.",
       provider: {
-        "@id": "https://stackedmarketing.co.za/#organization",
+        "@id": "https://www.stackedmarketing.co.za/#organization",
       },
       areaServed: {
         "@type": "Country",
@@ -124,12 +134,12 @@ const jsonLd = {
     },
     {
       "@type": "Service",
-      "@id": "https://stackedmarketing.co.za/#full-stack",
+      "@id": "https://www.stackedmarketing.co.za/#full-stack",
       name: "Full Stack Marketing",
       description:
         "Complete marketing system including Meta Ads management, custom website, landing pages, automation, and strategy calls.",
       provider: {
-        "@id": "https://stackedmarketing.co.za/#organization",
+        "@id": "https://www.stackedmarketing.co.za/#organization",
       },
       areaServed: {
         "@type": "Country",
@@ -149,7 +159,7 @@ const jsonLd = {
     },
     {
       "@type": "FAQPage",
-      "@id": "https://stackedmarketing.co.za/#faq",
+      "@id": "https://www.stackedmarketing.co.za/#faq",
       mainEntity: [
         {
           "@type": "Question",
@@ -175,13 +185,37 @@ const jsonLd = {
             text: "No. We operate month to month with no lock-in contracts. You stay because the results speak for themselves, not because you are locked in.",
           },
         },
+        {
+          "@type": "Question",
+          name: "Do I need to pay for ad spend separately?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. Our management fee covers strategy, optimisation, creative production, and reporting. Your ad spend goes directly to Meta. You control the budget and can see every rand spent in real time.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: "Can I cancel anytime?",
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Yes. No contracts, no lock-in. We keep you because results keep you, not paperwork.",
+          },
+        },
+        {
+          "@type": "Question",
+          name: 'What does "you own everything" actually mean?',
+          acceptedAnswer: {
+            "@type": "Answer",
+            text: "Your website code, your ad accounts, your automations, your data. All of it belongs to you. If you leave, you take everything with you. No hostage situations.",
+          },
+        },
       ],
     },
     {
       "@type": "LocalBusiness",
-      "@id": "https://stackedmarketing.co.za/#localbusiness",
+      "@id": "https://www.stackedmarketing.co.za/#localbusiness",
       name: "Stacked Marketing",
-      url: "https://stackedmarketing.co.za",
+      url: "https://www.stackedmarketing.co.za",
       telephone: "+27621779799",
       address: {
         "@type": "PostalAddress",
@@ -190,6 +224,7 @@ const jsonLd = {
         addressCountry: "ZA",
       },
       priceRange: "R2,499 - R11,999",
+      sameAs: ["https://www.linkedin.com/company/111745526"],
     },
   ],
 };
@@ -222,35 +257,52 @@ export default function RootLayout({
         />
       </head>
       <body className="antialiased">
+        <a href="#hero" className="skip-link">
+          Skip to content
+        </a>
+
         {children}
 
-        {/* Meta Pixel */}
+        {/* Consent-gated Meta Pixel */}
         <Script id="meta-pixel" strategy="afterInteractive">
           {`
-            !function(f,b,e,v,n,t,s)
-            {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-            n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-            if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-            n.queue=[];t=b.createElement(e);t.async=!0;
-            t.src=v;s=b.getElementsByTagName(e)[0];
-            s.parentNode.insertBefore(t,s)}(window, document,'script',
-            'https://connect.facebook.net/en_US/fbevents.js');
-            fbq('init', 'YOUR_PIXEL_ID');
-            fbq('track', 'PageView');
+            (function() {
+              try {
+                var consent = localStorage.getItem('stacked_cookie_consent');
+                if (consent !== 'accepted') return;
+              } catch(e) { return; }
+              !function(f,b,e,v,n,t,s)
+              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
+              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
+              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
+              n.queue=[];t=b.createElement(e);t.async=!0;
+              t.src=v;s=b.getElementsByTagName(e)[0];
+              s.parentNode.insertBefore(t,s)}(window, document,'script',
+              'https://connect.facebook.net/en_US/fbevents.js');
+              fbq('init', 'YOUR_PIXEL_ID');
+              fbq('track', 'PageView');
+            })();
           `}
         </Script>
 
-        {/* GA4 */}
-        <Script
-          src="https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID"
-          strategy="afterInteractive"
-        />
-        <Script id="ga4" strategy="afterInteractive">
+        {/* Consent-gated GA4 */}
+        <Script id="ga4-loader" strategy="afterInteractive">
           {`
-            window.dataLayer = window.dataLayer || [];
-            function gtag(){dataLayer.push(arguments);}
-            gtag('js', new Date());
-            gtag('config', 'YOUR_GA4_ID');
+            (function() {
+              try {
+                var consent = localStorage.getItem('stacked_cookie_consent');
+                if (consent !== 'accepted') return;
+              } catch(e) { return; }
+              var s = document.createElement('script');
+              s.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID';
+              s.async = true;
+              document.head.appendChild(s);
+              window.dataLayer = window.dataLayer || [];
+              function gtag(){dataLayer.push(arguments);}
+              window.gtag = gtag;
+              gtag('js', new Date());
+              gtag('config', 'YOUR_GA4_ID');
+            })();
           `}
         </Script>
       </body>
