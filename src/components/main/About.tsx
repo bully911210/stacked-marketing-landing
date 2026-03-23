@@ -23,58 +23,26 @@ export default function About() {
         >
           <p
             style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.75rem",
-              fontWeight: 500,
-              letterSpacing: "0.15em",
-              textTransform: "uppercase",
-              color: "var(--lime-on-light)",
+              fontFamily: "var(--font-heading)",
+              fontWeight: 700,
+              fontSize: "var(--text-h3)",
+              color: "var(--text-primary)",
               marginBottom: 16,
+              fontStyle: "italic",
             }}
-          >
-            About Us
-          </p>
-          <h2
-            className="text-h1"
-            style={{ marginBottom: 24 }}
           >
             Built by Practitioners, Not an Agency.
-          </h2>
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "1.0625rem",
-              color: "var(--text-secondary)",
-              lineHeight: 1.7,
-              marginBottom: 16,
-            }}
-          >
-            Stacked Marketing was born from R205K of our own ad spend in one of
-            Meta&apos;s most restricted categories: firearms insurance. We did not
-            learn performance marketing from a course. We learned it by spending
-            our own money, in a market where one policy violation kills your ad
-            account.
           </p>
           <p
             style={{
               fontFamily: "var(--font-body)",
-              fontSize: "1.0625rem",
+              fontSize: "var(--text-body-lg)",
               color: "var(--text-secondary)",
               lineHeight: 1.7,
             }}
           >
-            That experience is now yours.
-          </p>
-          <p
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.8125rem",
-              color: "var(--text-muted)",
-              marginTop: 24,
-              letterSpacing: "0.02em",
-            }}
-          >
-            Based in Pretoria. Built for businesses that want results.
+            We spent R205K of our own money on Meta ads before we ever spent a
+            client&apos;s. Based in Pretoria. Built for businesses that want results.
           </p>
         </div>
       </div>

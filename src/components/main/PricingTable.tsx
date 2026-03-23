@@ -8,17 +8,13 @@ const tiers = [
     price: "R2,499",
     priceNote: "once-off",
     featured: false,
-    interest: "starter",
-    bestFor: "Best for: businesses that need a professional site, fast.",
-    cta: "Get My Website",
-    deliverables: [
-      "Beautiful 4-page fully custom-built website",
-      "Home, About, Services/Products, Contact",
-      "Lightning-fast loading, mobile responsive, smooth animations",
-      "Working contact form + WhatsApp click-to-chat button",
-      "Basic on-page SEO + Google Analytics",
-      "Delivered and live in 5 business days",
-      "Full site transfer to your own hosting. 100% ownership",
+    bestFor: "Businesses that need a professional site, fast.",
+    cta: "GET MY WEBSITE",
+    benefits: [
+      "Beautiful 4-page custom website, live in 5 days",
+      "Mobile-first, lightning-fast, smooth animations",
+      "Working contact form + WhatsApp click-to-chat",
+      "Full ownership — we transfer everything to your hosting",
     ],
   },
   {
@@ -26,123 +22,205 @@ const tiers = [
     price: "R4,999",
     priceNote: "/mo",
     featured: false,
-    interest: "ads",
-    bestFor: "Best for: businesses ready to generate leads from Meta ads.",
-    cta: "Start Ads",
-    deliverables: [
-      "Daily optimisation of up to 5 campaigns",
-      "8 brand-new creatives (static + video mix) tested every month",
-      "Weekly performance dashboard + 1x 30-min strategy call",
-      "Minimum recommended ad spend: R8,000 to R12,000",
-      "Full Conversions API + tracking setup",
+    bestFor: "Businesses ready to generate leads from Meta ads.",
+    cta: "START ADS",
+    benefits: [
+      "Daily campaign optimisation (up to 5 campaigns)",
+      "8 new ad creatives tested every month",
+      "Weekly dashboard + monthly strategy call",
+      "Full Conversions API + tracking setup included",
     ],
+    note: "Recommended ad spend: R8,000 - R12,000/mo",
   },
   {
     name: "Stacked Core",
     price: "R11,999",
     priceNote: "/mo",
     featured: true,
-    interest: "core",
-    bestFor: "Best for: businesses that want the full system. Site, ads, and automations working together.",
-    cta: "Get the Full Stack",
-    intro: "Everything in Meta Ads Accelerator +",
-    deliverables: [
-      "Advanced 5-7 page custom-built website (with CMS)",
-      "6 powerful automations in Make.com (instant WhatsApp replies, lead notification, CRM pipeline, nurture sequence, retargeting triggers)",
+    bestFor: "Businesses that want the full system working together.",
+    cta: "GET THE FULL STACK",
+    benefits: [
+      "Everything in Meta Ads Accelerator, plus:",
+      "Advanced 5-7 page website with CMS",
+      "6 automations: WhatsApp replies, CRM, nurture, retargeting",
       "Full lead forms + booking integration",
-      '"Live in 5 business days" guarantee',
-      "Full site transfer. You own everything",
+      "Live in 5 business days. You own everything.",
     ],
   },
 ];
 
-interface FeatureRow {
-  label: string;
-  values: string[];
-}
+function PricingCard({
+  tier,
+  index,
+}: {
+  tier: (typeof tiers)[number];
+  index: number;
+}) {
+  const { ref, isVisible } = useScrollReveal(0.15);
 
-const features: FeatureRow[] = [
-  {
-    label: "Website",
-    values: [
-      "4-page Premium (Custom)",
-      "",
-      "5-7 page Advanced (Custom)",
-    ],
-  },
-  {
-    label: "Meta Ads Management",
-    values: ["", "Daily (up to 5 campaigns)", "Daily"],
-  },
-  {
-    label: "Automations (Make.com)",
-    values: ["", "", "6 core automations"],
-  },
-  {
-    label: "New Ad Creatives per month",
-    values: ["", "8", "8"],
-  },
-  {
-    label: "Reporting & Strategy Calls",
-    values: ["", "Weekly dashboard + 1x30min", "Bi-weekly + 2x30min"],
-  },
-  {
-    label: "Direct WhatsApp Support",
-    values: ["check", "check", "check"],
-  },
-  {
-    label: "Live Ad Spend Transparency",
-    values: ["", "check", "check"],
-  },
-  {
-    label: "Delivery Time",
-    values: ["Live in 5 days", "Live in 3 days", "Full system in 5 days"],
-  },
-  {
-    label: "Full Ownership",
-    values: ["check", "check", "check"],
-  },
-];
-
-const tools = ["Custom Code", "Make.com", "Meta Conversions API", "Google Looker Studio"];
-
-function CellContent({ value }: { value: string }) {
-  if (value === "check") {
-    return (
-      <svg
-        width="22"
-        height="22"
-        viewBox="0 0 22 22"
-        fill="none"
-        role="img"
-        aria-label="Included"
-        style={{ display: "inline-block" }}
-      >
-        <circle cx="11" cy="11" r="11" fill="#DCFCE7" />
-        <path
-          d="M7 11.5L9.5 14L15 8.5"
-          stroke="#22C55E"
-          strokeWidth="2"
-          strokeLinecap="round"
-          strokeLinejoin="round"
-        />
-      </svg>
-    );
-  }
-  if (value === "") {
-    return (
-      <span
+  return (
+    <div
+      ref={ref}
+      className={`fade-up ${isVisible ? "visible" : ""}`}
+      style={{ transitionDelay: `${index * 100}ms` }}
+    >
+      <div
+        className={tier.featured ? "card-featured" : "card"}
         style={{
-          color: "rgba(255,255,255,0.2)",
-          fontSize: "1.1rem",
-          fontWeight: 300,
+          height: "100%",
+          display: "flex",
+          flexDirection: "column",
+          position: "relative",
         }}
       >
-        —
-      </span>
-    );
-  }
-  return <span>{value}</span>;
+        {tier.featured && (
+          <span
+            style={{
+              position: "absolute",
+              top: -14,
+              left: "50%",
+              transform: "translateX(-50%)",
+              background: "var(--lime)",
+              color: "var(--text-on-accent)",
+              fontFamily: "var(--font-body)",
+              fontWeight: 600,
+              fontSize: "0.75rem",
+              letterSpacing: "0.08em",
+              padding: "6px 20px",
+              borderRadius: 100,
+              whiteSpace: "nowrap",
+            }}
+          >
+            RECOMMENDED
+          </span>
+        )}
+
+        <h3
+          style={{
+            fontFamily: "var(--font-heading)",
+            fontWeight: 700,
+            fontSize: "var(--text-h3)",
+            color: "var(--text-primary)",
+            marginBottom: 8,
+          }}
+        >
+          {tier.name}
+        </h3>
+
+        <div style={{ marginBottom: 16 }}>
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontWeight: 600,
+              fontSize: "var(--text-price)",
+              color: tier.featured ? "var(--lime)" : "var(--text-primary)",
+            }}
+          >
+            {tier.price}
+          </span>
+          <span
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-caption)",
+              color: "var(--text-secondary)",
+              marginLeft: 4,
+            }}
+          >
+            {tier.priceNote}
+          </span>
+          <span
+            style={{
+              display: "block",
+              fontFamily: "var(--font-body)",
+              fontSize: "0.75rem",
+              color: "var(--text-muted)",
+              marginTop: 2,
+            }}
+          >
+            ex VAT
+          </span>
+        </div>
+
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "var(--text-body)",
+            color: "var(--text-secondary)",
+            marginBottom: 24,
+            lineHeight: 1.5,
+          }}
+        >
+          {tier.bestFor}
+        </p>
+
+        <ul style={{ listStyle: "none", padding: 0, margin: 0, flex: 1 }}>
+          {tier.benefits.map((benefit) => (
+            <li
+              key={benefit}
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 10,
+                marginBottom: 12,
+                fontFamily: "var(--font-body)",
+                fontSize: "var(--text-body)",
+                color: "var(--text-secondary)",
+                lineHeight: 1.5,
+              }}
+            >
+              <svg
+                width="18"
+                height="18"
+                viewBox="0 0 18 18"
+                fill="none"
+                style={{ flexShrink: 0, marginTop: 3 }}
+              >
+                <circle cx="9" cy="9" r="9" fill="rgba(200,255,0,0.15)" />
+                <path
+                  d="M5.5 9.5L7.5 11.5L12.5 6.5"
+                  stroke="var(--lime)"
+                  strokeWidth="1.5"
+                  strokeLinecap="round"
+                  strokeLinejoin="round"
+                />
+              </svg>
+              {benefit}
+            </li>
+          ))}
+        </ul>
+
+        {"note" in tier && tier.note && (
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-caption)",
+              color: "var(--text-muted)",
+              marginTop: 8,
+              marginBottom: 8,
+              fontStyle: "italic",
+            }}
+          >
+            {tier.note}
+          </p>
+        )}
+
+        <a
+          href="#contact"
+          className={tier.featured ? "btn-primary" : "btn-secondary"}
+          style={{
+            marginTop: 24,
+            textAlign: "center",
+            width: "100%",
+            textTransform: "uppercase",
+            letterSpacing: "0.04em",
+            fontWeight: 700,
+          }}
+        >
+          {tier.cta}
+        </a>
+      </div>
+    </div>
+  );
 }
 
 export default function PricingTable() {
@@ -151,668 +229,88 @@ export default function PricingTable() {
   return (
     <section
       id="pricing"
-      style={{
-        backgroundColor: "var(--bg-dark)",
-        padding: "clamp(3rem, 3rem + 5vw, 7rem) 0",
-      }}
+      className="section-spacing"
+      style={{ backgroundColor: "var(--bg-tertiary)" }}
     >
       <div className="container-main">
         <div
           ref={ref}
           className={`fade-up ${isVisible ? "visible" : ""}`}
         >
-          <h2
-            className="text-h1"
+          <p
             style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-caption)",
+              fontWeight: 500,
+              textTransform: "uppercase",
+              letterSpacing: "0.05em",
+              color: "var(--lime)",
+              marginBottom: 16,
               textAlign: "center",
-              color: "#FFFFFF",
-              marginBottom: 48,
             }}
           >
-            Choose Your Stack
+            CHOOSE YOUR STACK
+          </p>
+          <h2
+            className="text-h2"
+            style={{
+              textAlign: "center",
+              marginBottom: 56,
+            }}
+          >
+            Simple pricing. No lock-in. Upgrade anytime.
           </h2>
         </div>
 
-        {/* Desktop Table */}
-        <div className="pt-desktop">
-          <table className="pt-table">
-            <thead>
-              <tr>
-                <th className="pt-feature-header">Feature</th>
-                {tiers.map((tier) => (
-                  <th
-                    key={tier.name}
-                    className={`pt-tier-header ${tier.featured ? "pt-tier-featured" : ""}`}
-                  >
-                    {tier.featured && (
-                      <span className="pt-badge">RECOMMENDED</span>
-                    )}
-                    <span className="pt-tier-name">{tier.name}</span>
-                    <span className="pt-tier-price">
-                      {tier.price}
-                      <span className="pt-tier-note"> {tier.priceNote}</span>
-                    </span>
-                    <span className="pt-tier-vat">ex VAT</span>
-                    {tier.featured && (
-                      <span className="pt-why-recommended">
-                        Most clients see the best ROI when website, ads, and automations are connected from day one.
-                      </span>
-                    )}
-                  </th>
-                ))}
-              </tr>
-            </thead>
-            <tbody>
-              {features.map((feature, i) => (
-                <tr
-                  key={feature.label}
-                  className={`pt-row ${i % 2 === 0 ? "pt-row-alt" : ""}`}
-                >
-                  <td className="pt-feature-cell">{feature.label}</td>
-                  {feature.values.map((val, j) => (
-                    <td
-                      key={j}
-                      className={`pt-cell ${tiers[j].featured ? "pt-cell-featured" : ""}`}
-                    >
-                      <CellContent value={val} />
-                    </td>
-                  ))}
-                </tr>
-              ))}
-            </tbody>
-            <tfoot>
-              <tr>
-                <td className="pt-feature-cell" />
-                {tiers.map((tier) => (
-                  <td
-                    key={tier.name}
-                    className={`pt-cell pt-cta-cell ${tier.featured ? "pt-cell-featured" : ""}`}
-                  >
-                    <a href={`#contact`} className="pt-cta-btn">
-                      {tier.cta}
-                    </a>
-                  </td>
-                ))}
-              </tr>
-            </tfoot>
-          </table>
-        </div>
-
-        {/* Mobile Cards (swipeable carousel) */}
-        <div className="pt-mobile">
-          <div className="pt-mobile-carousel">
-            {[...tiers]
-              .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-              .map((tier) => (
-                <div
-                  key={tier.name}
-                  className={`pt-mobile-card ${tier.featured ? "pt-mobile-card-featured" : ""}`}
-                >
-                  {tier.featured && (
-                    <span className="pt-mobile-badge">RECOMMENDED</span>
-                  )}
-                  <h3 className="pt-mobile-tier-name">{tier.name}</h3>
-                  <p className="pt-mobile-price">
-                    {tier.price}
-                    <span className="pt-mobile-note"> {tier.priceNote}</span>
-                  </p>
-                  <span className="pt-mobile-vat">ex VAT</span>
-                  <p className="pt-mobile-bestfor">{tier.bestFor}</p>
-                  <div className="pt-mobile-features">
-                    {features.map((feature) => {
-                      const tierIdx = tiers.findIndex(
-                        (t) => t.name === tier.name
-                      );
-                      return (
-                        <div key={feature.label} className="pt-mobile-row">
-                          <span className="pt-mobile-label">
-                            {feature.label}
-                          </span>
-                          <span className="pt-mobile-value">
-                            <CellContent value={feature.values[tierIdx]} />
-                          </span>
-                        </div>
-                      );
-                    })}
-                  </div>
-                  <a href="#contact" className="pt-cta-btn">
-                    {tier.cta}
-                  </a>
-                </div>
-              ))}
-          </div>
-        </div>
-
-        {/* Detailed Deliverables */}
-        <div
-          style={{
-            marginTop: 56,
-            paddingTop: 48,
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          <h3
-            style={{
-              textAlign: "center",
-              fontFamily: "var(--font-heading)",
-              fontWeight: 700,
-              fontSize: "clamp(1.25rem, 2vw, 1.5rem)",
-              color: "#FFFFFF",
-              marginBottom: 32,
-            }}
-          >
-            What&apos;s Included in Each Package
-          </h3>
-          <div className="pt-deliverables-grid">
-            {tiers.map((tier, i) => (
-              <DeliverableCard key={tier.name} tier={tier} index={i} />
-            ))}
-          </div>
-        </div>
-
-        {/* Tools Trust Bar */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            alignItems: "center",
-            flexWrap: "wrap",
-            gap: 8,
-            marginTop: 40,
-            paddingTop: 24,
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          <span
-            style={{
-              fontFamily: "var(--font-mono)",
-              fontSize: "0.7rem",
-              fontWeight: 500,
-              color: "rgba(255,255,255,0.35)",
-              letterSpacing: "0.04em",
-              textTransform: "uppercase",
-              marginRight: 8,
-            }}
-          >
-            Tools we use:
-          </span>
-          {tools.map((tool, i) => (
-            <span
-              key={tool}
-              style={{
-                display: "inline-flex",
-                alignItems: "center",
-                gap: 8,
-              }}
-            >
-              <span
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
-                  fontWeight: 500,
-                  color: "rgba(255,255,255,0.5)",
-                }}
-              >
-                {tool}
-              </span>
-              {i < tools.length - 1 && (
-                <span
-                  style={{
-                    color: "rgba(255,255,255,0.25)",
-                    fontSize: "0.4rem",
-                  }}
-                >
-                  ●
-                </span>
-              )}
-            </span>
+        {/* 3 pricing cards */}
+        <div className="pricing-cards-grid">
+          {tiers.map((tier, i) => (
+            <PricingCard key={tier.name} tier={tier} index={i} />
           ))}
+        </div>
+
+        {/* Upgrade credit banner */}
+        <div
+          style={{
+            marginTop: 48,
+            background: "var(--color-accent-muted)",
+            borderLeft: "4px solid var(--lime)",
+            borderRadius: 12,
+            padding: "20px 28px",
+            display: "flex",
+            alignItems: "center",
+            gap: 12,
+          }}
+        >
+          <span style={{ fontSize: "1.5rem" }}>↑</span>
+          <p
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "var(--text-body)",
+              color: "var(--text-primary)",
+              fontWeight: 500,
+            }}
+          >
+            Start with a website → Get <strong style={{ color: "var(--lime)" }}>R2,000 off</strong> when you upgrade to ads or full stack.
+          </p>
         </div>
       </div>
 
       <style>{`
-        .pt-desktop {
-          display: block;
-          overflow-x: auto;
-          -webkit-overflow-scrolling: touch;
-          padding-top: 16px;
-        }
-
-        .pt-table {
-          width: 100%;
-          border-collapse: separate;
-          border-spacing: 0;
-          background: rgba(255,255,255,0.04);
-          border-radius: 16px;
-          overflow: visible;
-          border: 1px solid rgba(255,255,255,0.08);
-          min-width: 700px;
-        }
-
-        .pt-feature-header {
-          text-align: left;
-          padding: 20px 24px;
-          color: rgba(255,255,255,0.4);
-          font-family: var(--font-mono);
-          font-weight: 500;
-          font-size: 0.75rem;
-          text-transform: uppercase;
-          letter-spacing: 0.08em;
-          border-bottom: 1px solid rgba(255,255,255,0.08);
-          background: transparent;
-          border-radius: 16px 0 0 0;
-        }
-
-        .pt-tier-header {
-          text-align: center;
-          padding: 28px 16px 20px;
-          color: #FFFFFF;
-          border-bottom: 1px solid rgba(255,255,255,0.08);
-          background: transparent;
-          position: relative;
-          vertical-align: top;
-          min-width: 160px;
-        }
-
-        .pt-tier-featured {
-          background: rgba(200, 255, 0, 0.06);
-          border-left: 1px solid rgba(200, 255, 0, 0.15);
-          border-right: 1px solid rgba(200, 255, 0, 0.15);
-        }
-
-        .pt-badge {
-          display: inline-block;
-          background: var(--lime);
-          color: #1A1A1A;
-          font-family: var(--font-mono);
-          font-size: 0.6rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          padding: 3px 10px;
-          border-radius: 100px;
-          position: absolute;
-          top: -11px;
-          left: 50%;
-          transform: translateX(-50%);
-          white-space: nowrap;
-          z-index: 10;
-        }
-
-        .pt-why-recommended {
-          display: block;
-          font-family: var(--font-body);
-          font-size: 0.7rem;
-          font-weight: 400;
-          color: rgba(255,255,255,0.5);
-          margin-top: 8px;
-          font-style: italic;
-          line-height: 1.4;
-        }
-
-        .pt-tier-name {
-          display: block;
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 0.85rem;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          margin-bottom: 8px;
-        }
-
-        .pt-tier-price {
-          display: block;
-          font-family: var(--font-mono);
-          font-weight: 700;
-          font-size: 1.3rem;
-          color: var(--lime);
-        }
-
-        .pt-tier-note {
-          font-weight: 400;
-          font-size: 0.8rem;
-          color: rgba(255,255,255,0.5);
-        }
-
-        .pt-tier-vat {
-          display: block;
-          font-family: var(--font-mono);
-          font-size: 0.65rem;
-          color: rgba(255,255,255,0.35);
-          margin-top: 2px;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-        }
-
-        .pt-row { transition: background-color 0.15s ease; }
-        .pt-row:hover { background-color: rgba(255,255,255,0.03); }
-        .pt-row-alt { background-color: rgba(255,255,255,0.02); }
-
-        .pt-feature-cell {
-          padding: 14px 24px;
-          color: rgba(255,255,255,0.8);
-          font-family: var(--font-body);
-          font-size: 0.875rem;
-          font-weight: 500;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          line-height: 1.4;
-        }
-
-        .pt-cell {
-          padding: 14px 16px;
-          text-align: center;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-          vertical-align: middle;
-          color: rgba(255,255,255,0.7);
-          font-family: var(--font-body);
-          font-size: 0.8125rem;
-        }
-
-        .pt-cell-featured {
-          background: rgba(200, 255, 0, 0.06);
-          border-left: 1px solid rgba(200, 255, 0, 0.15);
-          border-right: 1px solid rgba(200, 255, 0, 0.15);
-          color: #FFFFFF;
-          font-weight: 500;
-        }
-
-        .pt-cta-cell { padding: 20px 16px; border-bottom: none; }
-
-        .pt-cta-btn {
-          display: inline-block;
-          background: var(--lime);
-          color: #1A1A1A;
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 0.8125rem;
-          padding: 12px 28px;
-          border-radius: 8px;
-          text-decoration: none;
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          transition: background 0.2s, transform 0.15s;
-          width: 100%;
-          text-align: center;
-        }
-
-        .pt-cta-btn:hover {
-          background: var(--lime-hover);
-          transform: translateY(-1px);
-        }
-
-        /* Mobile cards - swipeable carousel */
-        .pt-mobile { display: none; }
-
-        .pt-mobile-carousel {
-          display: flex;
-          overflow-x: auto;
-          scroll-snap-type: x mandatory;
-          gap: 16px;
-          padding-bottom: 16px;
-          -webkit-overflow-scrolling: touch;
-          scrollbar-width: none;
-        }
-        .pt-mobile-carousel::-webkit-scrollbar { display: none; }
-
-        .pt-mobile-card {
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 16px;
-          padding: clamp(20px, 4vw, 28px) clamp(16px, 3vw, 24px);
-          position: relative;
-          scroll-snap-align: center;
-          min-width: 85vw;
-          flex-shrink: 0;
-        }
-
-        .pt-mobile-card-featured {
-          border-color: rgba(200, 255, 0, 0.3);
-          background: rgba(200, 255, 0, 0.06);
-        }
-
-        .pt-mobile-badge {
-          display: inline-block;
-          background: var(--lime);
-          color: #1A1A1A;
-          font-family: var(--font-mono);
-          font-size: 0.6rem;
-          font-weight: 700;
-          text-transform: uppercase;
-          letter-spacing: 0.1em;
-          padding: 3px 10px;
-          border-radius: 100px;
-          margin-bottom: 12px;
-        }
-
-        .pt-mobile-tier-name {
-          font-family: var(--font-heading);
-          font-weight: 700;
-          font-size: 1.1rem;
-          color: #FFFFFF;
-          text-transform: uppercase;
-          letter-spacing: 0.04em;
-          margin-bottom: 4px;
-        }
-
-        .pt-mobile-price {
-          font-family: var(--font-mono);
-          font-weight: 700;
-          font-size: 1.5rem;
-          color: var(--lime);
-          margin-bottom: 2px;
-        }
-
-        .pt-mobile-note { font-weight: 400; font-size: 0.85rem; color: rgba(255,255,255,0.5); }
-
-        .pt-mobile-vat {
-          display: block;
-          font-family: var(--font-mono);
-          font-size: 0.65rem;
-          color: rgba(255,255,255,0.35);
-          text-transform: uppercase;
-          letter-spacing: 0.06em;
-          margin-bottom: 8px;
-        }
-
-        .pt-mobile-bestfor {
-          font-family: var(--font-body);
-          font-size: 0.8rem;
-          color: rgba(255,255,255,0.5);
-          margin-bottom: 16px;
-          font-style: italic;
-          line-height: 1.4;
-        }
-
-        .pt-mobile-features {
-          border-top: 1px solid rgba(255,255,255,0.08);
-          margin-bottom: 16px;
-        }
-
-        .pt-mobile-row {
-          display: flex;
-          justify-content: space-between;
-          align-items: center;
-          padding: 10px 0;
-          border-bottom: 1px solid rgba(255,255,255,0.05);
-        }
-
-        .pt-mobile-row:last-child { border-bottom: none; }
-
-        .pt-mobile-label {
-          color: rgba(255,255,255,0.5);
-          font-family: var(--font-body);
-          font-size: 0.8rem;
-          flex: 1;
-          padding-right: 12px;
-        }
-
-        .pt-mobile-value {
-          color: #FFFFFF;
-          font-family: var(--font-body);
-          font-size: 0.8rem;
-          font-weight: 500;
-          text-align: right;
-          max-width: 50%;
-        }
-
-        /* Deliverables grid */
-        .pt-deliverables-grid {
+        .pricing-cards-grid {
           display: grid;
           grid-template-columns: repeat(3, 1fr);
-          gap: 20px;
+          gap: var(--card-gap);
+          align-items: stretch;
         }
-
-        .pt-del-card {
-          background: rgba(255,255,255,0.04);
-          border: 1px solid rgba(255,255,255,0.08);
-          border-radius: 12px;
-          padding: clamp(20px, 3vw, 28px) clamp(16px, 2.5vw, 24px);
-          transition: border-color 0.2s ease;
-        }
-
-        .pt-del-card:hover {
-          border-color: rgba(255,255,255,0.15);
-        }
-
-        .pt-del-card-featured {
-          border-color: rgba(200, 255, 0, 0.2);
-          background: rgba(200, 255, 0, 0.04);
-        }
-
-        .pt-del-card-featured:hover {
-          border-color: rgba(200, 255, 0, 0.35);
-        }
-
         @media (max-width: 1023px) {
-          .pt-desktop { display: none; }
-          .pt-mobile { display: block; }
-          .pt-deliverables-grid { grid-template-columns: 1fr; }
-        }
-
-        @media (min-width: 1024px) {
-          .pt-mobile { display: none; }
+          .pricing-cards-grid {
+            grid-template-columns: 1fr;
+            max-width: 500px;
+            margin-inline: auto;
+          }
         }
       `}</style>
     </section>
-  );
-}
-
-function DeliverableCard({
-  tier,
-}: {
-  tier: (typeof tiers)[number];
-  index: number;
-}) {
-  return (
-    <div
-      className={`pt-del-card ${tier.featured ? "pt-del-card-featured" : ""}`}
-    >
-      <h4
-        style={{
-          fontFamily: "var(--font-heading)",
-          fontWeight: 700,
-          fontSize: "0.85rem",
-          color: "#FFFFFF",
-          textTransform: "uppercase",
-          letterSpacing: "0.04em",
-          marginBottom: 4,
-        }}
-      >
-        {tier.name}
-      </h4>
-      <p
-        style={{
-          fontFamily: "var(--font-mono)",
-          fontWeight: 700,
-          fontSize: "1.1rem",
-          color: "var(--lime)",
-          marginBottom: 2,
-        }}
-      >
-        {tier.price}
-        <span
-          style={{
-            fontWeight: 400,
-            fontSize: "0.75rem",
-            color: "rgba(255,255,255,0.5)",
-          }}
-        >
-          {" "}
-          {tier.priceNote}
-        </span>
-      </p>
-      <span
-        style={{
-          display: "block",
-          fontFamily: "var(--font-mono)",
-          fontSize: "0.6rem",
-          color: "rgba(255,255,255,0.3)",
-          textTransform: "uppercase",
-          letterSpacing: "0.06em",
-          marginBottom: 8,
-        }}
-      >
-        ex VAT
-      </span>
-
-      <p
-        style={{
-          fontFamily: "var(--font-body)",
-          fontSize: "0.8125rem",
-          color: "rgba(255,255,255,0.45)",
-          marginBottom: 16,
-          fontStyle: "italic",
-          lineHeight: 1.4,
-        }}
-      >
-        {tier.bestFor}
-      </p>
-
-      {"intro" in tier && tier.intro && (
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontSize: "0.8rem",
-            fontWeight: 600,
-            color: "var(--lime)",
-            marginBottom: 12,
-            fontStyle: "italic",
-          }}
-        >
-          {tier.intro}
-        </p>
-      )}
-
-      <ul style={{ listStyle: "none", padding: 0, margin: 0 }}>
-        {tier.deliverables.map((item) => (
-          <li
-            key={item}
-            style={{
-              display: "flex",
-              alignItems: "flex-start",
-              gap: 8,
-              marginBottom: 8,
-              fontFamily: "var(--font-body)",
-              fontSize: "0.875rem",
-              color: "rgba(255,255,255,0.65)",
-              lineHeight: 1.5,
-            }}
-          >
-            <span
-              style={{
-                width: 5,
-                height: 5,
-                borderRadius: "50%",
-                backgroundColor: "var(--lime)",
-                marginTop: 6,
-                flexShrink: 0,
-                opacity: 0.7,
-              }}
-            />
-            {item}
-          </li>
-        ))}
-      </ul>
-    </div>
   );
 }
