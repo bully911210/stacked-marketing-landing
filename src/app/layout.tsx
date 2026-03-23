@@ -6,13 +6,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.stackedmarketing.co.za"),
   title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
   description:
-    "Premium custom websites from R2,499. Meta Ads management from R4,999/mo. Full-stack marketing (ads + website + automation) for R11,999/mo. No contracts. You own everything. Pretoria, South Africa.",
+    "Premium custom websites from R2,499. Meta Ads management from R4,999/mo. Full-stack marketing (ads + website + automation) for R9,999/mo. No contracts. You own everything. Pretoria, South Africa.",
   keywords:
     "marketing Pretoria, Meta ads management, Facebook ads Pretoria, website design Pretoria, full-stack marketing, Stacked Marketing, lead generation South Africa",
   openGraph: {
     title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
     description:
-      "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
+      "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R9,999/mo. No contracts. You own everything.",
     type: "website",
     locale: "en_ZA",
     siteName: "Stacked Marketing",
@@ -80,7 +80,7 @@ const jsonLd = {
       url: "https://www.stackedmarketing.co.za",
       name: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
       description:
-        "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
+        "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R9,999/mo. No contracts. You own everything.",
       isPartOf: {
         "@id": "https://www.stackedmarketing.co.za/#website",
       },
@@ -147,11 +147,11 @@ const jsonLd = {
       },
       offers: {
         "@type": "Offer",
-        price: "11999",
+        price: "9999",
         priceCurrency: "ZAR",
         priceSpecification: {
           "@type": "UnitPriceSpecification",
-          price: "11999",
+          price: "9999",
           priceCurrency: "ZAR",
           unitText: "month",
         },
@@ -223,7 +223,7 @@ const jsonLd = {
         addressRegion: "Gauteng",
         addressCountry: "ZA",
       },
-      priceRange: "R2,499 - R11,999",
+      priceRange: "R2,499 - R9,999",
       sameAs: ["https://www.linkedin.com/company/111745526"],
     },
   ],

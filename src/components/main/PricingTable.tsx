@@ -34,7 +34,7 @@ const tiers = [
   },
   {
     name: "Stacked Core",
-    price: "R11,999",
+    price: "R9,999",
     priceNote: "/mo",
     featured: true,
     bestFor: "Businesses that want the full system working together.",
@@ -62,7 +62,7 @@ function PricingCard({
     <div
       ref={ref}
       className={`fade-up ${isVisible ? "visible" : ""}`}
-      style={{ transitionDelay: `${index * 100}ms` }}
+      style={{ transitionDelay: `${index * 100}ms`, height: "100%" }}
     >
       <div
         className={tier.featured ? "card-featured" : "card"}

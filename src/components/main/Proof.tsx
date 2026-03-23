@@ -1,170 +1,80 @@
 "use client";
 
+import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
-interface CaseStudy {
-  industry: string;
-  metric: string;
-  metricLabel: string;
-  narrative: string;
-  tag: string;
-  kpi: string;
+/* ── data ── */
+
+const stats = [
+  { value: "R68 CPA", label: "Insurance" },
+  { value: "40K+", label: "Non-Profit" },
+  { value: "9 provinces", label: "Agriculture" },
+  { value: "100%", label: "Fin. Services" },
+  { value: "50+ seats", label: "Recruitment" },
+];
+
+interface StoryCard {
+  pill: string;
+  stat: string;
+  description: string;
+  category: string;
+  featured?: boolean;
 }
 
-const caseStudies: CaseStudy[] = [
+const storyCards: StoryCard[] = [
   {
-    industry: "INSURANCE",
-    metric: "R68 CPA",
-    metricLabel: "5,000 policyholders acquired",
-    narrative: "R205K own money. Restricted category.",
-    kpi: "Month-one payback on R205K spend",
-    tag: "Lead Ads",
+    pill: "Lead Ads",
+    stat: "R68 CPA",
+    description:
+      "5,000 subscription clients. R205K own money. Month-one payback.",
+    category: "Insurance",
+    featured: true,
   },
   {
-    industry: "NON-PROFIT",
-    metric: "Database from zero",
-    metricLabel: "Petition funnels, donor acquisition",
-    narrative: "No list, no brand recognition. Built the entire supporter base on Meta.",
-    kpi: "40,000+ contacts acquired from zero",
-    tag: "Awareness",
+    pill: "Awareness",
+    stat: "Database from zero",
+    description:
+      "Built entire supporter base on Meta. 40,000+ contacts from zero.",
+    category: "Non-Profit",
   },
   {
-    industry: "AGRICULTURE",
-    metric: "National reach",
-    metricLabel: "Niche audience, all nine provinces",
-    narrative: "Found an audience that barely existed online. Converted them at scale.",
-    kpi: "Reached all 9 provinces in 60 days",
-    tag: "Lookalikes",
+    pill: "Lookalikes",
+    stat: "National reach",
+    description:
+      "All 9 provinces in 60 days. Audience barely existed online.",
+    category: "Agriculture",
   },
   {
-    industry: "FINANCIAL SERVICES",
-    metric: "Regulated leads",
-    metricLabel: "Compliance-approved, qualified pipeline",
-    narrative: "Every ad approved. Every lead qualified. Volume the sales team could handle.",
-    kpi: "100% compliance-approved creative",
-    tag: "Retargeting",
+    pill: "Retargeting",
+    stat: "Regulated leads",
+    description:
+      "Every ad approved. Every lead qualified. 100% compliance-approved.",
+    category: "Fin. Services",
   },
   {
-    industry: "RECRUITMENT",
-    metric: "50+ seats filled",
-    metricLabel: "Ad to application to floor",
-    narrative: "Full pipeline on Meta. Every step tracked. One campaign cycle.",
-    kpi: "50+ seats filled in one campaign cycle",
-    tag: "Volume",
+    pill: "Volume",
+    stat: "50+ seats filled",
+    description:
+      "Full pipeline on Meta. One campaign cycle. Every step tracked.",
+    category: "Recruitment",
   },
 ];
 
-function CaseCard({ study, index }: { study: CaseStudy; index: number }) {
-  const { ref, isVisible } = useScrollReveal(0.15);
+/* ── animation helpers ── */
 
-  return (
-    <div
-      ref={ref}
-      className={`fade-up ${isVisible ? "visible" : ""}`}
-      style={{ transitionDelay: `${index * 100}ms` }}
-    >
-      <div
-        className="card proof-card"
-        style={{
-          height: "100%",
-          display: "flex",
-          flexDirection: "column",
-        }}
-      >
-        {/* Industry label */}
-        <span
-          style={{
-            fontFamily: "var(--font-body)",
-            fontWeight: 500,
-            fontSize: "var(--text-caption)",
-            textTransform: "uppercase",
-            letterSpacing: "0.05em",
-            color: "var(--lime)",
-            marginBottom: 16,
-          }}
-        >
-          {study.industry}
-        </span>
+const motionEase = [0.25, 0.1, 0.25, 1] as const;
 
-        {/* Big metric */}
-        <p
-          style={{
-            fontFamily: "var(--font-mono)",
-            fontWeight: 600,
-            fontSize: "var(--text-stat)",
-            color: "var(--text-primary)",
-            lineHeight: 1.1,
-          }}
-        >
-          {study.metric}
-        </p>
+const fadeUp = {
+  hidden: { opacity: 0, y: 20 },
+  visible: { opacity: 1, y: 0 },
+};
 
-        {/* Metric label */}
-        <p
-          style={{
-            color: "var(--text-secondary)",
-            fontSize: "var(--text-body)",
-            fontFamily: "var(--font-body)",
-            marginTop: 4,
-          }}
-        >
-          {study.metricLabel}
-        </p>
-
-        {/* Narrative */}
-        <p
-          style={{
-            color: "var(--text-muted)",
-            fontFamily: "var(--font-body)",
-            fontWeight: 400,
-            fontSize: "var(--text-caption)",
-            marginTop: 12,
-            lineHeight: 1.5,
-            flex: 1,
-          }}
-        >
-          {study.narrative}
-        </p>
-
-        {/* Specific KPI */}
-        <p
-          style={{
-            fontFamily: "var(--font-body)",
-            fontWeight: 600,
-            fontSize: "0.875rem",
-            color: "var(--text-primary)",
-            marginTop: 16,
-          }}
-        >
-          {study.kpi}
-        </p>
-
-        {/* Tag */}
-        <span
-          style={{
-            display: "inline-block",
-            marginTop: 16,
-            padding: "6px 14px",
-            backgroundColor: "var(--color-accent-muted)",
-            border: "1px solid var(--color-accent-border)",
-            borderRadius: "var(--radius-pill)",
-            color: "var(--lime)",
-            fontSize: "0.75rem",
-            fontFamily: "var(--font-body)",
-            fontWeight: 500,
-            letterSpacing: "0.05em",
-            width: "fit-content",
-          }}
-        >
-          {study.tag}
-        </span>
-      </div>
-    </div>
-  );
-}
+/* ── component ── */
 
 export default function Proof() {
-  const { ref: headingRef, isVisible: headingVisible } = useScrollReveal(0.2);
+  const { ref: headingRef, isVisible: headingVisible } = useScrollReveal(0.15);
+  const { ref: stripRef, isVisible: stripVisible } = useScrollReveal(0.15);
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollReveal(0.15);
   const { ref: closingRef, isVisible: closingVisible } = useScrollReveal(0.2);
 
   return (
@@ -174,6 +84,7 @@ export default function Proof() {
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
       <div className="container-main">
+        {/* ── heading ── */}
         <div
           ref={headingRef}
           className={`fade-up ${headingVisible ? "visible" : ""}`}
@@ -195,32 +106,95 @@ export default function Proof() {
           </p>
           <h2
             className="text-h2"
-            style={{ maxWidth: 900, marginInline: "auto", textAlign: "center", marginBottom: 56 }}
+            style={{
+              maxWidth: 900,
+              marginInline: "auto",
+              textAlign: "center",
+              marginBottom: 56,
+            }}
           >
-            R205K spent. R68 CPA. 5,000 policyholders. All our own money, in a restricted category.
+            R205K spent. R68 CPA. 5,000 subscription clients. All our own
+            money, in a restricted category.
           </h2>
         </div>
 
-        <div className="proof-grid">
-          {caseStudies.map((study, i) => (
-            <CaseCard key={study.industry} study={study} index={i} />
+        {/* ── stats strip ── */}
+        <motion.div
+          ref={stripRef}
+          className="stats-strip"
+          initial="hidden"
+          animate={stripVisible ? "visible" : "hidden"}
+          variants={fadeUp}
+          transition={{ duration: 0.5, ease: motionEase }}
+        >
+          {stats.map((s, i) => (
+            <div
+              key={s.label}
+              className="stats-strip__cell"
+              style={
+                i < stats.length - 1
+                  ? { borderRight: "1px solid rgba(255,255,255,0.06)" }
+                  : undefined
+              }
+            >
+              <span className="stats-strip__value">{s.value}</span>
+              <span className="stats-strip__label">{s.label}</span>
+            </div>
+          ))}
+        </motion.div>
+
+        {/* ── story cards ── */}
+        <div ref={cardsRef} style={{ marginTop: 32 }}>
+          {storyCards.map((card, i) => (
+            <motion.div
+              key={card.category}
+              className={`story-card ${card.featured ? "story-card--featured" : ""}`}
+              initial="hidden"
+              animate={cardsVisible ? "visible" : "hidden"}
+              variants={fadeUp}
+              transition={{
+                duration: 0.5,
+                ease: motionEase,
+                delay: i * 0.08,
+              }}
+            >
+              {/* pill */}
+              <span
+                className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}
+              >
+                {card.pill}
+              </span>
+
+              {/* stat */}
+              <span className="story-card__stat">{card.stat}</span>
+
+              {/* description */}
+              <span className="story-card__desc">{card.description}</span>
+
+              {/* category */}
+              <span
+                className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}
+              >
+                {card.category}
+              </span>
+            </motion.div>
           ))}
         </div>
 
+        {/* ── closing tagline ── */}
         <div
           ref={closingRef}
           className={`fade-up ${closingVisible ? "visible" : ""}`}
-          style={{ textAlign: "center", marginTop: 64 }}
         >
           <p
             style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 400,
-              fontSize: "var(--text-body-lg)",
-              color: "var(--text-secondary)",
+              textAlign: "center",
               fontStyle: "italic",
-              maxWidth: 650,
-              marginInline: "auto",
+              color: "#999",
+              fontSize: "0.9rem",
+              maxWidth: 560,
+              margin: "48px auto 0",
+              fontFamily: "var(--font-body)",
               lineHeight: 1.6,
             }}
           >
@@ -231,31 +205,141 @@ export default function Proof() {
       </div>
 
       <style>{`
-        .proof-grid {
+        /* ── stats strip ── */
+        .stats-strip {
+          max-width: 1140px;
+          margin-inline: auto;
+          background: rgba(255,255,255,0.02);
+          border: 1px solid rgba(255,255,255,0.06);
+          border-radius: 16px;
+          padding: 28px 0;
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
-          gap: var(--card-gap);
+          grid-template-columns: repeat(5, 1fr);
         }
-        .proof-card {
-          transition: border-color 0.3s ease, box-shadow 0.3s ease, transform 0.3s ease;
+        .stats-strip__cell {
+          display: flex;
+          flex-direction: column;
+          align-items: center;
+          text-align: center;
         }
-        .proof-card:hover {
-          transform: translateY(-4px);
+        .stats-strip__value {
+          font-family: 'IBM Plex Mono', monospace;
+          font-weight: 600;
+          font-size: clamp(1rem, 2vw, 1.25rem);
+          color: #ffffff;
         }
-        @media (max-width: 1023px) {
-          .proof-grid {
-            grid-template-columns: repeat(2, 1fr);
+        .stats-strip__label {
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.75rem;
+          color: #C8FF00;
+          opacity: 0.7;
+          margin-top: 6px;
+        }
+
+        /* mobile stats strip */
+        @media (max-width: 768px) {
+          .stats-strip {
+            grid-template-columns: repeat(3, 1fr);
+            gap: 20px 0;
+            padding: 24px 0;
           }
-          .proof-grid > :last-child {
-            grid-column: 1 / -1;
+          /* hide right borders on 3rd and 5th cells for clean rows */
+          .stats-strip__cell:nth-child(3),
+          .stats-strip__cell:nth-child(5) {
+            border-right: none !important;
           }
         }
-        @media (max-width: 767px) {
-          .proof-grid {
-            grid-template-columns: 1fr;
+
+        /* ── story cards ── */
+        .story-card {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
+          border: 1px solid rgba(255,255,255,0.06);
+          background: transparent;
+          border-radius: 14px;
+          padding: 18px 24px;
+          margin-bottom: 12px;
+        }
+        .story-card:last-child {
+          margin-bottom: 0;
+        }
+        .story-card--featured {
+          border: 1px solid rgba(200,255,0,0.3);
+          background: rgba(200,255,0,0.03);
+          padding: 20px 24px;
+        }
+
+        /* pill */
+        .story-card__pill {
+          background: rgba(200,255,0,0.06);
+          color: #C8FF00;
+          opacity: 0.7;
+          font-size: 0.75rem;
+          font-weight: 600;
+          padding: 4px 14px;
+          border-radius: 100px;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+        .story-card__pill--featured {
+          background: rgba(200,255,0,0.12);
+          opacity: 1;
+        }
+
+        /* stat headline */
+        .story-card__stat {
+          font-family: 'Syne', sans-serif;
+          font-weight: 600;
+          font-size: 1.1rem;
+          color: #ffffff;
+          white-space: nowrap;
+          flex-shrink: 0;
+        }
+
+        /* description */
+        .story-card__desc {
+          font-family: 'Outfit', sans-serif;
+          font-size: 0.9rem;
+          color: #888888;
+          flex: 1;
+          min-width: 0;
+        }
+        .story-card--featured .story-card__desc {
+          color: #A0A0A0;
+        }
+
+        /* category label */
+        .story-card__cat {
+          font-size: 0.75rem;
+          color: #999;
+          opacity: 0.35;
+          text-align: right;
+          white-space: nowrap;
+          margin-left: auto;
+          flex-shrink: 0;
+        }
+        .story-card__cat--featured {
+          color: #C8FF00;
+          opacity: 0.5;
+        }
+
+        /* mobile story cards */
+        @media (max-width: 400px) {
+          .story-card__cat {
+            display: none;
           }
-          .proof-grid > :last-child {
-            grid-column: auto;
+        }
+
+        /* reduced motion */
+        @media (prefers-reduced-motion: reduce) {
+          .stats-strip,
+          .story-card {
+            animation: none !important;
+            transition: none !important;
+            opacity: 1 !important;
+            transform: none !important;
           }
         }
       `}</style>
