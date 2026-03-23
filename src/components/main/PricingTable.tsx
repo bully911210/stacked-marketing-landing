@@ -9,6 +9,8 @@ const tiers = [
     priceNote: "once-off",
     featured: false,
     interest: "starter",
+    bestFor: "Best for: businesses that need a professional site, fast.",
+    cta: "Get My Website",
     deliverables: [
       "Beautiful 4-page fully custom-built website",
       "Home, About, Services/Products, Contact",
@@ -16,7 +18,7 @@ const tiers = [
       "Working contact form + WhatsApp click-to-chat button",
       "Basic on-page SEO + Google Analytics",
       "Delivered and live in 5 business days",
-      "Full site transfer to your own hosting – 100% ownership",
+      "Full site transfer to your own hosting. 100% ownership",
     ],
   },
   {
@@ -25,11 +27,13 @@ const tiers = [
     priceNote: "/mo",
     featured: false,
     interest: "ads",
+    bestFor: "Best for: businesses ready to generate leads from Meta ads.",
+    cta: "Start Ads",
     deliverables: [
       "Daily optimisation of up to 5 campaigns",
-      "8 brand-new creatives tested every month",
-      "Weekly performance dashboard + 1× 30-min strategy call",
-      "Minimum recommended ad spend: R8,000–R12,000",
+      "8 brand-new creatives (static + video mix) tested every month",
+      "Weekly performance dashboard + 1x 30-min strategy call",
+      "Minimum recommended ad spend: R8,000 to R12,000",
       "Full Conversions API + tracking setup",
     ],
   },
@@ -39,13 +43,15 @@ const tiers = [
     priceNote: "/mo",
     featured: true,
     interest: "core",
+    bestFor: "Best for: businesses that want the full system. Site, ads, and automations working together.",
+    cta: "Get the Full Stack",
     intro: "Everything in Meta Ads Accelerator +",
     deliverables: [
-      "Advanced 5–7 page custom-built website (with CMS)",
+      "Advanced 5-7 page custom-built website (with CMS)",
       "6 powerful automations in Make.com (instant WhatsApp replies, lead notification, CRM pipeline, nurture sequence, retargeting triggers)",
       "Full lead forms + booking integration",
       '"Live in 5 business days" guarantee',
-      "Full site transfer – you own everything",
+      "Full site transfer. You own everything",
     ],
   },
 ];
@@ -60,25 +66,25 @@ const features: FeatureRow[] = [
     label: "Website",
     values: [
       "4-page Premium (Custom)",
-      "–",
-      "5–7 page Advanced (Custom)",
+      "",
+      "5-7 page Advanced (Custom)",
     ],
   },
   {
     label: "Meta Ads Management",
-    values: ["–", "Daily (up to 5 campaigns)", "Daily"],
+    values: ["", "Daily (up to 5 campaigns)", "Daily"],
   },
   {
     label: "Automations (Make.com)",
-    values: ["–", "–", "6 core automations"],
+    values: ["", "", "6 core automations"],
   },
   {
     label: "New Ad Creatives per month",
-    values: ["–", "8", "8"],
+    values: ["", "8", "8"],
   },
   {
     label: "Reporting & Strategy Calls",
-    values: ["–", "Weekly dashboard + 1×30min", "Bi-weekly + 2×30min"],
+    values: ["", "Weekly dashboard + 1x30min", "Bi-weekly + 2x30min"],
   },
   {
     label: "Direct WhatsApp Support",
@@ -86,14 +92,14 @@ const features: FeatureRow[] = [
   },
   {
     label: "Live Ad Spend Transparency",
-    values: ["–", "check", "check"],
+    values: ["", "check", "check"],
   },
   {
     label: "Delivery Time",
     values: ["Live in 5 days", "Live in 3 days", "Full system in 5 days"],
   },
   {
-    label: "You Own Everything",
+    label: "Full Ownership",
     values: ["check", "check", "check"],
   },
 ];
@@ -123,15 +129,8 @@ function CellContent({ value }: { value: string }) {
       </svg>
     );
   }
-  if (value === "–") {
-    return (
-      <span
-        aria-label="Not included"
-        style={{ color: "#64748B", fontSize: "1.1rem", fontWeight: 300 }}
-      >
-        –
-      </span>
-    );
+  if (value === "") {
+    return null;
   }
   return <span>{value}</span>;
 }
@@ -152,41 +151,6 @@ export default function PricingTable() {
           ref={ref}
           className={`fade-up ${isVisible ? "visible" : ""}`}
         >
-          {/* Trust Badges */}
-          <div
-            style={{
-              display: "flex",
-              justifyContent: "center",
-              gap: 12,
-              flexWrap: "wrap",
-              marginBottom: 24,
-            }}
-          >
-            {[
-              "No contracts",
-              "You own everything",
-              "Live in 5 days",
-              "Upgrade anytime with R2,000 credit",
-            ].map((badge) => (
-              <span
-                key={badge}
-                style={{
-                  display: "inline-block",
-                  backgroundColor: "rgba(200, 255, 0, 0.15)",
-                  color: "var(--lime)",
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "0.75rem",
-                  fontWeight: 500,
-                  letterSpacing: "0.05em",
-                  padding: "6px 16px",
-                  borderRadius: 100,
-                }}
-              >
-                {badge}
-              </span>
-            ))}
-          </div>
-
           <h2
             className="text-h1"
             style={{
@@ -199,7 +163,7 @@ export default function PricingTable() {
           </h2>
         </div>
 
-        {/* ─── Desktop Table ─── */}
+        {/* Desktop Table */}
         <div className="pt-desktop">
           <table className="pt-table">
             <thead>
@@ -219,6 +183,11 @@ export default function PricingTable() {
                       <span className="pt-tier-note"> {tier.priceNote}</span>
                     </span>
                     <span className="pt-tier-vat">ex VAT</span>
+                    {tier.featured && (
+                      <span className="pt-why-recommended">
+                        Most clients see the best ROI when website, ads, and automations are connected from day one.
+                      </span>
+                    )}
                   </th>
                 ))}
               </tr>
@@ -249,8 +218,8 @@ export default function PricingTable() {
                     key={tier.name}
                     className={`pt-cell pt-cta-cell ${tier.featured ? "pt-cell-featured" : ""}`}
                   >
-                    <a href="#contact" className="pt-cta-btn">
-                      Get Started
+                    <a href={`#contact`} className="pt-cta-btn">
+                      {tier.cta}
                     </a>
                   </td>
                 ))}
@@ -259,49 +228,52 @@ export default function PricingTable() {
           </table>
         </div>
 
-        {/* ─── Mobile Cards ─── */}
+        {/* Mobile Cards (swipeable carousel) */}
         <div className="pt-mobile">
-          {[...tiers]
-            .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
-            .map((tier) => (
-              <div
-                key={tier.name}
-                className={`pt-mobile-card ${tier.featured ? "pt-mobile-card-featured" : ""}`}
-              >
-                {tier.featured && (
-                  <span className="pt-mobile-badge">RECOMMENDED</span>
-                )}
-                <h3 className="pt-mobile-tier-name">{tier.name}</h3>
-                <p className="pt-mobile-price">
-                  {tier.price}
-                  <span className="pt-mobile-note"> {tier.priceNote}</span>
-                </p>
-                <span className="pt-mobile-vat">ex VAT</span>
-                <div className="pt-mobile-features">
-                  {features.map((feature) => {
-                    const tierIdx = tiers.findIndex(
-                      (t) => t.name === tier.name
-                    );
-                    return (
-                      <div key={feature.label} className="pt-mobile-row">
-                        <span className="pt-mobile-label">
-                          {feature.label}
-                        </span>
-                        <span className="pt-mobile-value">
-                          <CellContent value={feature.values[tierIdx]} />
-                        </span>
-                      </div>
-                    );
-                  })}
+          <div className="pt-mobile-carousel">
+            {[...tiers]
+              .sort((a, b) => (b.featured ? 1 : 0) - (a.featured ? 1 : 0))
+              .map((tier) => (
+                <div
+                  key={tier.name}
+                  className={`pt-mobile-card ${tier.featured ? "pt-mobile-card-featured" : ""}`}
+                >
+                  {tier.featured && (
+                    <span className="pt-mobile-badge">RECOMMENDED</span>
+                  )}
+                  <h3 className="pt-mobile-tier-name">{tier.name}</h3>
+                  <p className="pt-mobile-price">
+                    {tier.price}
+                    <span className="pt-mobile-note"> {tier.priceNote}</span>
+                  </p>
+                  <span className="pt-mobile-vat">ex VAT</span>
+                  <p className="pt-mobile-bestfor">{tier.bestFor}</p>
+                  <div className="pt-mobile-features">
+                    {features.map((feature) => {
+                      const tierIdx = tiers.findIndex(
+                        (t) => t.name === tier.name
+                      );
+                      return (
+                        <div key={feature.label} className="pt-mobile-row">
+                          <span className="pt-mobile-label">
+                            {feature.label}
+                          </span>
+                          <span className="pt-mobile-value">
+                            <CellContent value={feature.values[tierIdx]} />
+                          </span>
+                        </div>
+                      );
+                    })}
+                  </div>
+                  <a href="#contact" className="pt-cta-btn">
+                    {tier.cta}
+                  </a>
                 </div>
-                <a href="#contact" className="pt-cta-btn">
-                  Get Started
-                </a>
-              </div>
-            ))}
+              ))}
+          </div>
         </div>
 
-        {/* ─── Detailed Deliverables ─── */}
+        {/* Detailed Deliverables */}
         <div
           style={{
             marginTop: 56,
@@ -328,7 +300,7 @@ export default function PricingTable() {
           </div>
         </div>
 
-        {/* ─── Tools Trust Bar ─── */}
+        {/* Tools Trust Bar */}
         <div
           style={{
             display: "flex",
@@ -386,51 +358,6 @@ export default function PricingTable() {
             </span>
           ))}
         </div>
-
-        {/* ─── Stats Mini-bar ─── */}
-        <div
-          style={{
-            display: "flex",
-            justifyContent: "center",
-            gap: "clamp(16px, 3vw, 40px)",
-            flexWrap: "wrap",
-            marginTop: 32,
-            paddingTop: 24,
-            borderTop: "1px solid rgba(255,255,255,0.08)",
-          }}
-        >
-          {[
-            { value: "R68", label: "Average CPA" },
-            { value: "5,000+", label: "Policyholders acquired" },
-            { value: "R205K", label: "Own ad spend" },
-            { value: "4.31%", label: "Average CTR" },
-          ].map((stat) => (
-            <div key={stat.label} style={{ textAlign: "center" }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-mono)",
-                  fontSize: "1.25rem",
-                  fontWeight: 700,
-                  color: "var(--lime)",
-                  marginBottom: 4,
-                }}
-              >
-                {stat.value}
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "0.75rem",
-                  color: "rgba(255,255,255,0.5)",
-                  textTransform: "uppercase",
-                  letterSpacing: "0.05em",
-                }}
-              >
-                {stat.label}
-              </p>
-            </div>
-          ))}
-        </div>
       </div>
 
       <style>{`
@@ -456,6 +383,7 @@ export default function PricingTable() {
           text-align: left;
           padding: 20px 24px;
           color: rgba(255,255,255,0.4);
+          font-family: var(--font-mono);
           font-weight: 500;
           font-size: 0.75rem;
           text-transform: uppercase;
@@ -486,6 +414,7 @@ export default function PricingTable() {
           display: inline-block;
           background: var(--lime);
           color: #1A1A1A;
+          font-family: var(--font-mono);
           font-size: 0.6rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -498,6 +427,17 @@ export default function PricingTable() {
           transform: translateX(-50%);
           white-space: nowrap;
           z-index: 10;
+        }
+
+        .pt-why-recommended {
+          display: block;
+          font-family: var(--font-body);
+          font-size: 0.7rem;
+          font-weight: 400;
+          color: rgba(255,255,255,0.5);
+          margin-top: 8px;
+          font-style: italic;
+          line-height: 1.4;
         }
 
         .pt-tier-name {
@@ -526,6 +466,7 @@ export default function PricingTable() {
 
         .pt-tier-vat {
           display: block;
+          font-family: var(--font-mono);
           font-size: 0.65rem;
           color: rgba(255,255,255,0.35);
           margin-top: 2px;
@@ -540,6 +481,7 @@ export default function PricingTable() {
         .pt-feature-cell {
           padding: 14px 24px;
           color: rgba(255,255,255,0.8);
+          font-family: var(--font-body);
           font-size: 0.875rem;
           font-weight: 500;
           border-bottom: 1px solid rgba(255,255,255,0.05);
@@ -552,6 +494,7 @@ export default function PricingTable() {
           border-bottom: 1px solid rgba(255,255,255,0.05);
           vertical-align: middle;
           color: rgba(255,255,255,0.7);
+          font-family: var(--font-body);
           font-size: 0.8125rem;
         }
 
@@ -569,6 +512,7 @@ export default function PricingTable() {
           display: inline-block;
           background: var(--lime);
           color: #1A1A1A;
+          font-family: var(--font-heading);
           font-weight: 700;
           font-size: 0.8125rem;
           padding: 12px 28px;
@@ -586,8 +530,19 @@ export default function PricingTable() {
           transform: translateY(-1px);
         }
 
-        /* Mobile cards */
-        .pt-mobile { display: none; flex-direction: column; gap: 20px; }
+        /* Mobile cards - swipeable carousel */
+        .pt-mobile { display: none; }
+
+        .pt-mobile-carousel {
+          display: flex;
+          overflow-x: auto;
+          scroll-snap-type: x mandatory;
+          gap: 16px;
+          padding-bottom: 16px;
+          -webkit-overflow-scrolling: touch;
+          scrollbar-width: none;
+        }
+        .pt-mobile-carousel::-webkit-scrollbar { display: none; }
 
         .pt-mobile-card {
           background: rgba(255,255,255,0.04);
@@ -595,6 +550,9 @@ export default function PricingTable() {
           border-radius: 16px;
           padding: clamp(20px, 4vw, 28px) clamp(16px, 3vw, 24px);
           position: relative;
+          scroll-snap-align: center;
+          min-width: 85vw;
+          flex-shrink: 0;
         }
 
         .pt-mobile-card-featured {
@@ -606,6 +564,7 @@ export default function PricingTable() {
           display: inline-block;
           background: var(--lime);
           color: #1A1A1A;
+          font-family: var(--font-mono);
           font-size: 0.6rem;
           font-weight: 700;
           text-transform: uppercase;
@@ -637,11 +596,21 @@ export default function PricingTable() {
 
         .pt-mobile-vat {
           display: block;
+          font-family: var(--font-mono);
           font-size: 0.65rem;
           color: rgba(255,255,255,0.35);
           text-transform: uppercase;
           letter-spacing: 0.06em;
+          margin-bottom: 8px;
+        }
+
+        .pt-mobile-bestfor {
+          font-family: var(--font-body);
+          font-size: 0.8rem;
+          color: rgba(255,255,255,0.5);
           margin-bottom: 16px;
+          font-style: italic;
+          line-height: 1.4;
         }
 
         .pt-mobile-features {
@@ -661,6 +630,7 @@ export default function PricingTable() {
 
         .pt-mobile-label {
           color: rgba(255,255,255,0.5);
+          font-family: var(--font-body);
           font-size: 0.8rem;
           flex: 1;
           padding-right: 12px;
@@ -668,6 +638,7 @@ export default function PricingTable() {
 
         .pt-mobile-value {
           color: #FFFFFF;
+          font-family: var(--font-body);
           font-size: 0.8rem;
           font-weight: 500;
           text-align: right;
@@ -704,7 +675,7 @@ export default function PricingTable() {
 
         @media (max-width: 767px) {
           .pt-desktop { display: none; }
-          .pt-mobile { display: flex; }
+          .pt-mobile { display: block; }
           .pt-deliverables-grid { grid-template-columns: 1fr; }
         }
 
@@ -763,15 +734,29 @@ function DeliverableCard({
       <span
         style={{
           display: "block",
+          fontFamily: "var(--font-mono)",
           fontSize: "0.6rem",
           color: "rgba(255,255,255,0.3)",
           textTransform: "uppercase",
           letterSpacing: "0.06em",
-          marginBottom: 16,
+          marginBottom: 8,
         }}
       >
         ex VAT
       </span>
+
+      <p
+        style={{
+          fontFamily: "var(--font-body)",
+          fontSize: "0.75rem",
+          color: "rgba(255,255,255,0.45)",
+          marginBottom: 16,
+          fontStyle: "italic",
+          lineHeight: 1.4,
+        }}
+      >
+        {tier.bestFor}
+      </p>
 
       {"intro" in tier && tier.intro && (
         <p
@@ -797,6 +782,7 @@ function DeliverableCard({
               alignItems: "flex-start",
               gap: 8,
               marginBottom: 8,
+              fontFamily: "var(--font-body)",
               fontSize: "0.78rem",
               color: "rgba(255,255,255,0.65)",
               lineHeight: 1.5,

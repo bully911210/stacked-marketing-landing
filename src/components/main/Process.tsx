@@ -5,21 +5,21 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const steps = [
   {
     number: "01",
-    title: "TELL US WHAT YOU NEED",
+    title: "TELL US YOUR GOALS",
     description:
-      "Fill in the form. We WhatsApp you within 24 hours with a custom game plan.",
+      "Fill in the form. We WhatsApp you within 24 hours with a custom game plan. Not a sales pitch.",
   },
   {
     number: "02",
-    title: "WE BUILD IT",
+    title: "WE STACK YOUR SYSTEM",
     description:
-      "Your fast custom website, full Meta Ads setup, or complete stacked system with automations. Delivered in 5 days. You own everything.",
+      "Website, Meta Ads setup, and automations. Built as one connected system. Live in 5 business days.",
   },
   {
     number: "03",
-    title: "YOU GROW",
+    title: "LEADS START FLOWING",
     description:
-      "Leads start coming in. You see the numbers. No lock-in: stay because it works.",
+      "Leads come in. Automations follow up. You see every number. No lock-in. Stay because it works.",
   },
 ];
 
@@ -42,7 +42,7 @@ export default function Process() {
               marginInline: "auto",
             }}
           >
-            Live in 5 Days. No Contracts. You Own Everything.
+            How It Works
           </h2>
         </div>
 
@@ -65,6 +65,7 @@ export default function Process() {
           padding: 24px 16px;
           border-radius: 12px;
           transition: background-color 0.3s ease, box-shadow 0.3s ease;
+          position: relative;
         }
         .process-step:hover {
           background-color: var(--bg-primary);
@@ -95,16 +96,19 @@ function ProcessStep({
       ref={ref}
       className={`fade-up process-step ${isVisible ? "visible" : ""}`}
       style={{
-        transitionDelay: `${index * 100}ms`,
+        transitionDelay: `${index * 200}ms`,
       }}
     >
+      {/* Large decorative step number */}
       <p
         style={{
-          fontFamily: "var(--font-mono)",
-          fontWeight: 700,
-          fontSize: "2rem",
-          color: "var(--lime-on-light)",
-          marginBottom: 16,
+          fontFamily: "var(--font-heading)",
+          fontWeight: 800,
+          fontSize: "clamp(4rem, 8vw, 6rem)",
+          color: "var(--color-accent-muted)",
+          lineHeight: 1,
+          marginBottom: 8,
+          userSelect: "none",
         }}
       >
         {step.number}

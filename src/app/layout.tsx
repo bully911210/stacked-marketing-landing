@@ -177,6 +177,20 @@ const jsonLd = {
         },
       ],
     },
+    {
+      "@type": "LocalBusiness",
+      "@id": "https://stackedmarketing.co.za/#localbusiness",
+      name: "Stacked Marketing",
+      url: "https://stackedmarketing.co.za",
+      telephone: "+27621779799",
+      address: {
+        "@type": "PostalAddress",
+        addressLocality: "Pretoria",
+        addressRegion: "Gauteng",
+        addressCountry: "ZA",
+      },
+      priceRange: "R2,499 - R11,999",
+    },
   ],
 };
 
@@ -195,7 +209,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500&display=swap"
+          href="https://fonts.googleapis.com/css2?family=Syne:wght@400;500;600;700;800&family=Outfit:wght@300;400;500;600;700&family=IBM+Plex+Mono:wght@400;500&display=swap"
           rel="stylesheet"
         />
         <link

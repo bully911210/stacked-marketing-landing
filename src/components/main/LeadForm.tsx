@@ -6,16 +6,18 @@ import { WEBHOOK_URL, WHATSAPP_LINK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const interestOptions = [
-  { value: "starter", label: "Basic Starter Website (R2,499 one-time)" },
+  { value: "not-sure", label: "Not sure yet - help me choose" },
+  { value: "starter", label: "Basic Starter Website (R2,499)" },
   { value: "ads", label: "Meta Ads Accelerator (R4,999/mo)" },
   { value: "core", label: "Stacked Core (R11,999/mo)" },
 ];
 
 const sourceOptions = [
-  "Google",
-  "Facebook",
-  "WhatsApp",
-  "Referral",
+  "Meta Ad (Facebook/Instagram)",
+  "Google Search",
+  "Referral / Word of Mouth",
+  "WhatsApp Forward",
+  "LinkedIn",
   "Other",
 ];
 
@@ -28,6 +30,43 @@ interface FormData {
   business: string;
   interest: string;
   source: string;
+  consent: boolean;
+}
+
+interface FormErrors {
+  name?: string;
+  whatsapp?: string;
+  email?: string;
+  consent?: string;
+}
+
+function validateForm(data: FormData): FormErrors {
+  const errors: FormErrors = {};
+
+  if (!data.name.trim()) {
+    errors.name = "Name is required";
+  }
+
+  if (!data.whatsapp.trim()) {
+    errors.whatsapp = "WhatsApp number is required";
+  } else {
+    const cleaned = data.whatsapp.replace(/[\s-]/g, "");
+    if (!/^\+27\d{9}$/.test(cleaned)) {
+      errors.whatsapp = "Must be a valid +27 number (e.g. +27 62 177 9799)";
+    }
+  }
+
+  if (!data.email.trim()) {
+    errors.email = "Email is required";
+  } else if (!/^[^\s@]+@[^\s@]+\.[^\s@]+$/.test(data.email)) {
+    errors.email = "Please enter a valid email address";
+  }
+
+  if (!data.consent) {
+    errors.consent = "Please consent to being contacted";
+  }
+
+  return errors;
 }
 
 export default function LeadForm() {
@@ -36,14 +75,17 @@ export default function LeadForm() {
   const [submitted, setSubmitted] = useState(false);
   const [submitting, setSubmitting] = useState(false);
   const [error, setError] = useState("");
+  const [fieldErrors, setFieldErrors] = useState<FormErrors>({});
+  const [touched, setTouched] = useState<Record<string, boolean>>({});
 
   const [formData, setFormData] = useState<FormData>({
     name: "",
     whatsapp: "",
     email: "",
     business: "",
-    interest: "",
+    interest: "not-sure",
     source: "",
+    consent: false,
   });
 
   // Load saved form data and pre-select interest from URL
@@ -64,22 +106,44 @@ export default function LeadForm() {
     }
   }, [searchParams]);
 
-  // Save to localStorage on change
+  // Save to localStorage on change (exclude consent)
   useEffect(() => {
     try {
-      localStorage.setItem(STORAGE_KEY, JSON.stringify(formData));
+      const { consent: _consent, ...rest } = formData;
+      void _consent;
+      localStorage.setItem(STORAGE_KEY, JSON.stringify(rest));
     } catch {
       // Ignore storage errors
     }
   }, [formData]);
 
-  const updateField = (field: keyof FormData, value: string) => {
+  const updateField = (field: keyof FormData, value: string | boolean) => {
     setFormData((prev) => ({ ...prev, [field]: value }));
+    if (touched[field]) {
+      const updated = { ...formData, [field]: value };
+      const errors = validateForm(updated);
+      setFieldErrors((prev) => ({ ...prev, [field]: errors[field as keyof FormErrors] }));
+    }
+  };
+
+  const handleBlur = (field: keyof FormData) => {
+    setTouched((prev) => ({ ...prev, [field]: true }));
+    const errors = validateForm(formData);
+    setFieldErrors((prev) => ({ ...prev, [field]: errors[field as keyof FormErrors] }));
   };
 
   const handleSubmit = async (e: FormEvent) => {
     e.preventDefault();
     setError("");
+
+    const errors = validateForm(formData);
+    setFieldErrors(errors);
+    setTouched({ name: true, whatsapp: true, email: true, consent: true });
+
+    if (Object.keys(errors).length > 0) {
+      return;
+    }
+
     setSubmitting(true);
 
     try {
@@ -118,22 +182,33 @@ export default function LeadForm() {
               padding: 48,
             }}
           >
-            <p
-              style={{
-                fontFamily: "var(--font-mono)",
-                fontWeight: 500,
-                fontSize: "3rem",
-                color: "#2D6A4F",
-                marginBottom: 24,
-              }}
+            {/* Animated checkmark */}
+            <svg
+              width="64"
+              height="64"
+              viewBox="0 0 64 64"
+              fill="none"
+              style={{ marginInline: "auto", marginBottom: 24 }}
             >
-              &#10003;
-            </p>
+              <circle cx="32" cy="32" r="30" stroke="#22C55E" strokeWidth="3" fill="#DCFCE7" />
+              <path
+                d="M20 33L28 41L44 25"
+                stroke="#22C55E"
+                strokeWidth="3.5"
+                strokeLinecap="round"
+                strokeLinejoin="round"
+                style={{
+                  strokeDasharray: 40,
+                  strokeDashoffset: 40,
+                  animation: "checkDraw 0.5s ease-out 0.3s forwards",
+                }}
+              />
+            </svg>
             <h2
               className="text-h2"
               style={{ marginBottom: 16 }}
             >
-              Thank You
+              Game plan incoming.
             </h2>
             <p
               style={{
@@ -144,8 +219,7 @@ export default function LeadForm() {
                 lineHeight: 1.6,
               }}
             >
-              We have got everything we need. A member of our team will
-              WhatsApp you within 24 hours.
+              We will WhatsApp you within 24 hours.
             </p>
             <a
               href={WHATSAPP_LINK}
@@ -179,12 +253,13 @@ export default function LeadForm() {
               marginBottom: 40,
             }}
           >
-            Let&apos;s Get You Growing.
+            Get Your Game Plan
           </h2>
         </div>
 
         <form
           onSubmit={handleSubmit}
+          noValidate
           style={{
             maxWidth: 600,
             marginInline: "auto",
@@ -199,33 +274,39 @@ export default function LeadForm() {
           <div className="form-row-2">
             <div>
               <label className="form-label" htmlFor="name">
-                Name
+                Name *
               </label>
               <input
                 id="name"
                 type="text"
-                className="form-input"
+                className={`form-input ${fieldErrors.name && touched.name ? "form-input--error" : ""}`}
                 placeholder="Your name"
                 value={formData.name}
                 onChange={(e) => updateField("name", e.target.value)}
+                onBlur={() => handleBlur("name")}
                 required
               />
+              {fieldErrors.name && touched.name && (
+                <p className="form-error">{fieldErrors.name}</p>
+              )}
             </div>
             <div>
               <label className="form-label" htmlFor="whatsapp">
-                WhatsApp Number
+                WhatsApp Number *
               </label>
               <input
                 id="whatsapp"
                 type="tel"
-                className="form-input"
-                placeholder="+27..."
+                className={`form-input ${fieldErrors.whatsapp && touched.whatsapp ? "form-input--error" : ""}`}
+                placeholder="+27 62 177 9799"
                 value={formData.whatsapp}
-                onChange={(e) =>
-                  updateField("whatsapp", e.target.value)
-                }
+                onChange={(e) => updateField("whatsapp", e.target.value)}
+                onBlur={() => handleBlur("whatsapp")}
                 required
               />
+              {fieldErrors.whatsapp && touched.whatsapp && (
+                <p className="form-error">{fieldErrors.whatsapp}</p>
+              )}
             </div>
           </div>
 
@@ -233,17 +314,21 @@ export default function LeadForm() {
           <div className="form-row-2" style={{ marginTop: 20 }}>
             <div>
               <label className="form-label" htmlFor="email">
-                Email
+                Email *
               </label>
               <input
                 id="email"
                 type="email"
-                className="form-input"
+                className={`form-input ${fieldErrors.email && touched.email ? "form-input--error" : ""}`}
                 placeholder="you@example.com"
                 value={formData.email}
                 onChange={(e) => updateField("email", e.target.value)}
+                onBlur={() => handleBlur("email")}
                 required
               />
+              {fieldErrors.email && touched.email && (
+                <p className="form-error">{fieldErrors.email}</p>
+              )}
             </div>
             <div>
               <label className="form-label" htmlFor="business">
@@ -274,7 +359,6 @@ export default function LeadForm() {
               onChange={(e) => updateField("interest", e.target.value)}
               style={{ appearance: "auto" }}
             >
-              <option value="">Select a plan</option>
               {interestOptions.map((option) => (
                 <option key={option.value} value={option.value}>
                   {option.label}
@@ -293,9 +377,7 @@ export default function LeadForm() {
               className="form-input"
               value={formData.source}
               onChange={(e) => updateField("source", e.target.value)}
-              style={{
-                appearance: "auto",
-              }}
+              style={{ appearance: "auto" }}
             >
               <option value="">Select an option</option>
               {sourceOptions.map((s) => (
@@ -306,11 +388,65 @@ export default function LeadForm() {
             </select>
           </div>
 
+          {/* POPIA Consent */}
+          <div style={{ marginTop: 24 }}>
+            <label
+              style={{
+                display: "flex",
+                alignItems: "flex-start",
+                gap: 10,
+                cursor: "pointer",
+              }}
+            >
+              <input
+                type="checkbox"
+                checked={formData.consent}
+                onChange={(e) => updateField("consent", e.target.checked)}
+                onBlur={() => handleBlur("consent")}
+                style={{
+                  width: 18,
+                  height: 18,
+                  marginTop: 2,
+                  accentColor: "var(--lime-on-light)",
+                  flexShrink: 0,
+                }}
+                required
+              />
+              <span
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.8125rem",
+                  color: "var(--text-secondary)",
+                  lineHeight: 1.5,
+                }}
+              >
+                I consent to Stacked Marketing contacting me via WhatsApp and
+                email regarding my enquiry. View our{" "}
+                <a
+                  href="/privacy"
+                  style={{
+                    color: "var(--lime-on-light)",
+                    textDecoration: "underline",
+                    textUnderlineOffset: 3,
+                  }}
+                >
+                  Privacy Policy
+                </a>
+                . *
+              </span>
+            </label>
+            {fieldErrors.consent && touched.consent && (
+              <p className="form-error" style={{ marginLeft: 28 }}>
+                {fieldErrors.consent}
+              </p>
+            )}
+          </div>
+
           {/* Error */}
           {error && (
             <p
               style={{
-                color: "#D32F2F",
+                color: "var(--color-error)",
                 fontSize: "0.875rem",
                 marginTop: 16,
                 fontFamily: "var(--font-body)",
@@ -368,28 +504,6 @@ export default function LeadForm() {
             }}
           >
             We will WhatsApp you within 24 hours.
-          </p>
-          <p
-            style={{
-              color: "var(--text-muted)",
-              fontSize: "0.875rem",
-              fontFamily: "var(--font-body)",
-              marginTop: 8,
-            }}
-          >
-            Prefer to chat?{" "}
-            <a
-              href={WHATSAPP_LINK}
-              target="_blank"
-              rel="noopener noreferrer"
-              style={{
-                color: "var(--lime-on-light)",
-                textDecoration: "none",
-                fontWeight: 500,
-              }}
-            >
-              WhatsApp us directly.
-            </a>
           </p>
         </div>
       </div>
