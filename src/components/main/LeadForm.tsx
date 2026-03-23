@@ -9,8 +9,6 @@ const interestOptions = [
   { value: "starter", label: "Basic Starter Website (R2,499 one-time)" },
   { value: "ads", label: "Meta Ads Accelerator (R4,999/mo)" },
   { value: "core", label: "Stacked Core (R11,999/mo)" },
-  { value: "growth", label: "Stacked Growth (R19,997/mo)" },
-  { value: "audit", label: "Marketing Audit + Roadmap (R2,997 one-time)" },
 ];
 
 const sourceOptions = [

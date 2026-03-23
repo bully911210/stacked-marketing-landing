@@ -11,14 +11,6 @@ const options = [
     description:
       "A beautiful 4-page custom website, live in 5 days. Mobile-perfect, lightning-fast, 100% yours.",
   },
-  {
-    name: "Marketing Audit + Custom Roadmap",
-    price: "R2,997",
-    note: "one-time",
-    platform: null,
-    description:
-      "Full audit of your current marketing with a step-by-step roadmap to grow. Delivered in 5 business days.",
-  },
 ];
 
 export default function QuickStart() {
@@ -55,17 +47,11 @@ export default function QuickStart() {
 
       <style>{`
         .qs-grid {
-          display: grid;
-          grid-template-columns: repeat(2, 1fr);
+          display: flex;
+          justify-content: center;
           gap: 24px;
-          max-width: 800px;
+          max-width: 480px;
           margin: 0 auto;
-        }
-
-        @media (max-width: 639px) {
-          .qs-grid {
-            grid-template-columns: 1fr;
-          }
         }
       `}</style>
     </section>
