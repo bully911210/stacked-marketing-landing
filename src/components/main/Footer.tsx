@@ -144,7 +144,7 @@ export default function Footer() {
             </p>
             {/* LinkedIn */}
             <a
-              href="https://www.linkedin.com/company/stacked-marketing"
+              href="https://www.linkedin.com/company/111745526"
               target="_blank"
               rel="noopener noreferrer"
               className="footer-link"
