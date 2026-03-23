@@ -166,7 +166,7 @@ export default function Proof() {
             className="text-h1"
             style={{ maxWidth: 800, marginInline: "auto" }}
           >
-            R205K spent. R68 CPA. 5,000 customers. All our own money, in a restricted category.
+            R205K spent. R68 CPA. 5,000 policyholders. All our own money, in a restricted category.
           </h2>
         </div>
 
@@ -221,10 +221,16 @@ export default function Proof() {
           .proof-grid {
             grid-template-columns: repeat(2, 1fr);
           }
+          .proof-grid > :last-child {
+            grid-column: 1 / -1;
+          }
         }
         @media (max-width: 767px) {
           .proof-grid {
             grid-template-columns: 1fr;
+          }
+          .proof-grid > :last-child {
+            grid-column: auto;
           }
         }
       `}</style>

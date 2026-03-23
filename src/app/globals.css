@@ -445,6 +445,27 @@ a, button, input, select, textarea {
   }
 }
 
+/* Skip to content link */
+.skip-link {
+  position: fixed;
+  top: -100%;
+  left: 16px;
+  z-index: 9999;
+  background: var(--lime);
+  color: var(--text-primary);
+  font-family: var(--font-heading);
+  font-weight: 700;
+  font-size: 0.875rem;
+  padding: 12px 24px;
+  border-radius: 0 0 var(--radius-md) var(--radius-md);
+  text-decoration: none;
+  transition: top 0.2s ease;
+}
+
+.skip-link:focus {
+  top: 0;
+}
+
 /* Reduced Motion */
 @media (prefers-reduced-motion: reduce) {
   *,
