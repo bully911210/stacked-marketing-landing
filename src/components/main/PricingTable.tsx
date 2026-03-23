@@ -130,7 +130,17 @@ function CellContent({ value }: { value: string }) {
     );
   }
   if (value === "") {
-    return null;
+    return (
+      <span
+        style={{
+          color: "rgba(255,255,255,0.2)",
+          fontSize: "1.1rem",
+          fontWeight: 300,
+        }}
+      >
+        —
+      </span>
+    );
   }
   return <span>{value}</span>;
 }
