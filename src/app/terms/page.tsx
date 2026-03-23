@@ -16,9 +16,9 @@ export default function TermsPage() {
     <main>
       <Nav />
 
-      <section style={{ paddingTop: 160, paddingBottom: 80 }}>
+      <section style={{ paddingTop: 160, paddingBottom: 80, backgroundColor: "var(--bg-primary)" }}>
         <div className="container-main" style={{ maxWidth: 720 }}>
-          <h1 className="text-display" style={{ marginBottom: 48 }}>
+          <h1 className="text-h2" style={{ marginBottom: 48 }}>
             Terms of Service
           </h1>
 
@@ -200,19 +200,33 @@ export default function TermsPage() {
           color: var(--text-primary);
           margin-top: 40px;
           margin-bottom: 16px;
-          letter-spacing: -0.02em;
         }
         .legal-content p {
           color: var(--text-secondary);
           font-family: var(--font-body);
-          font-weight: 400;
           font-size: 1rem;
           line-height: 1.8;
           margin-bottom: 16px;
         }
-        .legal-content strong {
-          color: var(--text-primary);
-          font-weight: 500;
+        .legal-content strong { color: var(--text-primary); font-weight: 500; }
+        .legal-content ul { list-style: none; padding: 0; margin-bottom: 16px; }
+        .legal-content li {
+          color: var(--text-secondary);
+          font-family: var(--font-body);
+          font-size: 1rem;
+          line-height: 1.8;
+          padding-left: 20px;
+          position: relative;
+        }
+        .legal-content li::before {
+          content: "";
+          position: absolute;
+          left: 0;
+          top: 12px;
+          width: 6px;
+          height: 6px;
+          border-radius: 50%;
+          background-color: var(--lime);
         }
         .legal-content ul {
           list-style: none;
