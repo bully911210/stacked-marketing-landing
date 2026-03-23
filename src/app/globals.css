@@ -17,8 +17,8 @@
   --color-border-hover: rgba(255, 255, 255, 0.15);
   --color-whatsapp: #25D366;
 
-  --font-heading: "Syne", system-ui, sans-serif;
-  --font-body: "Outfit", system-ui, sans-serif;
+  --font-heading: "DM Sans", system-ui, sans-serif;
+  --font-body: "DM Sans", system-ui, sans-serif;
   --font-mono: "IBM Plex Mono", ui-monospace, monospace;
 }
 
@@ -295,8 +295,8 @@ body {
 /* Form Input Styles */
 .form-input {
   width: 100%;
-  background: var(--bg-secondary);
-  border: 1px solid var(--border);
+  background: rgba(255, 255, 255, 0.07);
+  border: 1px solid rgba(255, 255, 255, 0.15);
   border-radius: var(--input-radius);
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -309,7 +309,7 @@ body {
 }
 
 .form-input::placeholder {
-  color: var(--text-muted);
+  color: rgba(255, 255, 255, 0.35);
 }
 
 .form-input:focus {
@@ -324,7 +324,7 @@ body {
 
 .form-label {
   display: block;
-  color: var(--text-muted);
+  color: var(--text-secondary);
   font-family: var(--font-body);
   font-weight: 500;
   font-size: var(--text-caption);
