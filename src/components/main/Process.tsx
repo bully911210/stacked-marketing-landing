@@ -13,7 +13,7 @@ const steps = [
     number: "02",
     title: "WE BUILD IT",
     description:
-      "Your fast Framer website, full Meta Ads setup, or complete stacked system with automations. Delivered in 5 days. You own everything.",
+      "Your fast custom website, full Meta Ads setup, or complete stacked system with automations. Delivered in 5 days. You own everything.",
   },
   {
     number: "03",

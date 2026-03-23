@@ -40,7 +40,7 @@ const rows: ComparisonRow[] = [
     stacked: "check",
   },
   {
-    feature: "Start for just R2,499 with a premium Framer website",
+    feature: "Start for just R2,499 with a premium custom website",
     agency: "dash",
     stacked: "check",
   },
