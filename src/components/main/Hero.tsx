@@ -64,7 +64,7 @@ export default function Hero() {
           }}
         >
           <a
-            href="#contact"
+            href="#pricing"
             className="btn-primary"
             style={{
               padding: "18px 40px",
@@ -72,10 +72,10 @@ export default function Hero() {
               fontWeight: 600,
             }}
           >
-            See How It Stacks
+            Start with R2,499 Website
           </a>
           <a
-            href="#proof"
+            href="#contact"
             className="btn-ghost"
             style={{
               display: "inline-flex",
@@ -83,7 +83,7 @@ export default function Hero() {
               gap: 6,
             }}
           >
-            View Case Studies
+            Get Your Custom Plan
             <span aria-hidden="true" style={{ fontSize: "1.1em" }}>&rarr;</span>
           </a>
         </div>

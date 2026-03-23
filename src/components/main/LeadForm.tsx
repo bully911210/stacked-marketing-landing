@@ -6,9 +6,11 @@ import { WEBHOOK_URL, WHATSAPP_LINK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const interestOptions = [
-  { value: "ads", label: "Meta Ads from R4,999/mo" },
-  { value: "fullstack", label: "Full Stack R11,999/mo" },
-  { value: "unsure", label: "Not sure yet" },
+  { value: "starter", label: "Basic Starter Website (R2,499 one-time)" },
+  { value: "ads", label: "Meta Ads Accelerator (R4,999/mo)" },
+  { value: "core", label: "Stacked Core (R11,999/mo)" },
+  { value: "growth", label: "Stacked Growth (R19,997/mo)" },
+  { value: "audit", label: "Marketing Audit + Roadmap (R2,997 one-time)" },
 ];
 
 const sourceOptions = [
@@ -179,7 +181,7 @@ export default function LeadForm() {
               marginBottom: 40,
             }}
           >
-            Let&apos;s Get You Growing.
+            Let&apos;s Get You Growing – From R2,499 Framer Website or Full Stack
           </h2>
         </div>
 
@@ -264,62 +266,23 @@ export default function LeadForm() {
 
           {/* Row 3: Interest */}
           <div style={{ marginTop: 20 }}>
-            <p className="form-label">What are you interested in?</p>
-            <div
-              style={{
-                display: "flex",
-                flexDirection: "column",
-                gap: 10,
-              }}
+            <label className="form-label" htmlFor="interest">
+              I&apos;m interested in...
+            </label>
+            <select
+              id="interest"
+              className="form-input"
+              value={formData.interest}
+              onChange={(e) => updateField("interest", e.target.value)}
+              style={{ appearance: "auto" }}
             >
+              <option value="">Select a plan</option>
               {interestOptions.map((option) => (
-                <label
-                  key={option.value}
-                  style={{
-                    display: "flex",
-                    alignItems: "center",
-                    gap: 12,
-                    cursor: "pointer",
-                    color:
-                      formData.interest === option.value
-                        ? "var(--text-primary)"
-                        : "var(--text-secondary)",
-                    fontSize: "0.9375rem",
-                    fontFamily: "var(--font-body)",
-                    fontWeight:
-                      formData.interest === option.value ? 500 : 400,
-                    padding: "8px 12px",
-                    borderRadius: 8,
-                    border:
-                      formData.interest === option.value
-                        ? "1px solid var(--lime-on-light)"
-                        : "1px solid transparent",
-                    backgroundColor:
-                      formData.interest === option.value
-                        ? "#F5FFD6"
-                        : "transparent",
-                    transition:
-                      "background-color 0.2s ease, border-color 0.2s ease",
-                  }}
-                >
-                  <input
-                    type="radio"
-                    name="interest"
-                    value={option.value}
-                    checked={formData.interest === option.value}
-                    onChange={(e) =>
-                      updateField("interest", e.target.value)
-                    }
-                    style={{
-                      accentColor: "var(--lime-on-light)",
-                      width: 18,
-                      height: 18,
-                    }}
-                  />
+                <option key={option.value} value={option.value}>
                   {option.label}
-                </label>
+                </option>
               ))}
-            </div>
+            </select>
           </div>
 
           {/* Row 4: Source */}
@@ -387,7 +350,7 @@ export default function LeadForm() {
               opacity: submitting ? 0.7 : 1,
             }}
           >
-            {submitting ? "Sending..." : "Send My Game Plan Request"}
+            {submitting ? "Sending..." : "Send My Game Plan"}
           </button>
         </form>
 
