@@ -64,7 +64,7 @@ export default async function BlogPostPage({
           backgroundColor: "var(--bg-primary)",
         }}
       >
-        <div className="container-main" style={{ maxWidth: 760 }}>
+        <div className="container-main" style={{ maxWidth: 900 }}>
           {/* Back link */}
           <Link
             href="/blog"
@@ -114,8 +114,14 @@ export default async function BlogPostPage({
 
           {/* Title */}
           <h1
-            className="text-display"
-            style={{ marginBottom: 16 }}
+            style={{
+              fontFamily: "var(--font-heading)",
+              fontWeight: 800,
+              fontSize: "clamp(2rem, 4vw, 3.25rem)",
+              lineHeight: 1.15,
+              color: "var(--text-primary)",
+              marginBottom: 16,
+            }}
           >
             {post.title}
           </h1>
