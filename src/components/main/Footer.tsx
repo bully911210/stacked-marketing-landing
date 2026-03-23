@@ -70,7 +70,7 @@ export default function Footer() {
             &copy; {currentYear} Stacked Marketing. All rights reserved.
           </p>
           <p style={{ color: "var(--text-muted)", fontSize: "0.75rem", fontFamily: "var(--font-mono)", textAlign: "center", letterSpacing: "0.02em" }}>
-            R205K own spend &bull; R68 CPA &bull; 5,000 policyholders
+            R205K own spend &bull; R68 CPA &bull; 5,000 subscription clients
           </p>
         </div>
       </div>
