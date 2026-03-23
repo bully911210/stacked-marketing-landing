@@ -38,7 +38,7 @@ function StatItem({
         flexDirection: "column",
         alignItems: "center",
         gap: 8,
-        minWidth: 160,
+        minWidth: 120,
         scrollSnapAlign: "center",
         padding: "0 16px",
       }}

@@ -249,6 +249,15 @@ export default function Proof() {
             border-right: none !important;
           }
         }
+        @media (max-width: 400px) {
+          .stats-strip {
+            grid-template-columns: repeat(2, 1fr);
+          }
+          .stats-strip__cell:nth-child(2),
+          .stats-strip__cell:nth-child(4) {
+            border-right: none !important;
+          }
+        }
 
         /* ── story cards ── */
         .story-card {
@@ -326,6 +335,23 @@ export default function Proof() {
         }
 
         /* mobile story cards */
+        @media (max-width: 767px) {
+          .story-card {
+            flex-direction: column;
+            align-items: flex-start;
+            gap: 8px;
+            padding: 16px 18px;
+          }
+          .story-card--featured {
+            padding: 18px 20px;
+          }
+          .story-card__stat {
+            white-space: normal;
+          }
+          .story-card__cat {
+            margin-left: 0;
+          }
+        }
         @media (max-width: 400px) {
           .story-card__cat {
             display: none;

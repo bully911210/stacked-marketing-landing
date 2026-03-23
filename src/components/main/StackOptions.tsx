@@ -145,7 +145,7 @@ export default function StackOptions() {
           }
         }
 
-        @media (max-width: 639px) {
+        @media (max-width: 767px) {
           .so-grid {
             grid-template-columns: 1fr;
           }

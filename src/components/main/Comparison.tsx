@@ -383,6 +383,8 @@ export default function Comparison() {
           font-size: 0.8125rem;
           flex: 1;
           padding-right: 12px;
+          min-width: 0;
+          word-break: break-word;
         }
       `}</style>
     </section>

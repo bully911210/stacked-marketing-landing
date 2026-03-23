@@ -82,14 +82,14 @@
   --color-error: #FF5252;
 
   /* Typography */
-  --text-hero: clamp(3rem, 6vw, 5.5rem);
-  --text-h2: clamp(2rem, 4vw, 3.5rem);
-  --text-h3: clamp(1.25rem, 2.5vw, 1.75rem);
-  --text-body: clamp(1rem, 1.5vw, 1.125rem);
-  --text-body-lg: clamp(1.125rem, 1.75vw, 1.25rem);
+  --text-hero: clamp(2.25rem, 6vw, 5.5rem);
+  --text-h2: clamp(1.5rem, 4vw, 3.5rem);
+  --text-h3: clamp(1.125rem, 2.5vw, 1.75rem);
+  --text-body: clamp(0.9375rem, 1.5vw, 1.125rem);
+  --text-body-lg: clamp(1rem, 1.75vw, 1.25rem);
   --text-caption: 0.875rem;
-  --text-stat: clamp(2.5rem, 5vw, 4rem);
-  --text-price: clamp(2rem, 4vw, 3rem);
+  --text-stat: clamp(1.75rem, 5vw, 4rem);
+  --text-price: clamp(1.75rem, 4vw, 3rem);
 }
 
 /* Reset */

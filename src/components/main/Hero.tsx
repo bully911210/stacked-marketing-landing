@@ -227,6 +227,13 @@ export default function Hero() {
             grid-template-columns: 1fr 1fr;
             justify-content: center;
             justify-items: start;
+            gap: 12px;
+          }
+        }
+        @media (max-width: 374px) {
+          .hero-usp-grid {
+            grid-template-columns: 1fr;
+            justify-items: center;
           }
         }
       `}</style>

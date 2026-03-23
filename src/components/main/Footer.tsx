@@ -80,7 +80,7 @@ export default function Footer() {
           .footer-grid { grid-template-columns: 1fr 1fr 1fr !important; }
         }
         @media (max-width: 767px) {
-          .footer-grid { text-align: center; }
+          .footer-grid { text-align: center; gap: 2rem !important; }
           .footer-grid > div { display: flex; flex-direction: column; align-items: center; }
         }
         .footer-link { transition: color 0.2s ease !important; }

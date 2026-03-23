@@ -30,7 +30,7 @@ export default function ThankYouPage() {
             style={{
               fontFamily: "var(--font-mono)",
               fontWeight: 500,
-              fontSize: "4rem",
+              fontSize: "clamp(2.5rem, 8vw, 4rem)",
               color: "#2D6A4F",
               marginBottom: 24,
             }}
@@ -50,7 +50,7 @@ export default function ThankYouPage() {
               color: "var(--text-secondary)",
               fontFamily: "var(--font-body)",
               fontWeight: 400,
-              fontSize: "1.125rem",
+              fontSize: "clamp(0.9375rem, 2.5vw, 1.125rem)",
               lineHeight: 1.6,
               marginBottom: 40,
             }}
