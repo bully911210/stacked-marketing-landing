@@ -86,11 +86,11 @@ export default function CookieConsent() {
         zIndex: 998,
         backgroundColor: "#1A1A1A",
         borderTop: "1px solid rgba(255,255,255,0.1)",
-        padding: "16px 24px",
+        padding: "16px clamp(12px, 3vw, 24px)",
         display: "flex",
         alignItems: "center",
         justifyContent: "center",
-        gap: 16,
+        gap: 12,
         flexWrap: "wrap",
         animation: "slideUpIn 0.4s ease-out",
       }}

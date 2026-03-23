@@ -30,8 +30,9 @@ export default function FloatingCTA() {
       style={{
         position: "fixed",
         bottom: 20,
-        right: 20,
-        zIndex: 90,
+        left: 20,
+        right: "auto",
+        zIndex: 990,
         background: "var(--lime)",
         color: "var(--text-on-accent)",
         fontFamily: "var(--font-body)",

@@ -14,7 +14,7 @@ export default function ContactPage() {
   return (
     <main>
       <Nav />
-      <section style={{ paddingTop: 160 }}>
+      <section style={{ paddingTop: "clamp(100px, 15vw, 160px)" }}>
         <div className="container-main">
           <h1
             className="text-display"

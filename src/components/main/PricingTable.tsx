@@ -305,6 +305,11 @@ export default function PricingTable() {
         }
         @media (max-width: 1023px) {
           .pricing-cards-grid {
+            grid-template-columns: repeat(2, 1fr);
+          }
+        }
+        @media (max-width: 767px) {
+          .pricing-cards-grid {
             grid-template-columns: 1fr;
             max-width: 500px;
             margin-inline: auto;

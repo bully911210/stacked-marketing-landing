@@ -93,12 +93,13 @@ export default function Offers() {
           }
           .offers-grid .card {
             transform: none !important;
+            padding: 24px 20px !important;
           }
         }
         @media (min-width: 768px) and (max-width: 1023px) {
           .offers-grid {
             grid-template-columns: 1fr;
-            max-width: 480px;
+            max-width: 560px;
             margin-inline: auto;
           }
         }
@@ -185,7 +186,7 @@ function OfferCardComponent({ offer }: { offer: OfferCard }) {
         style={{
           fontFamily: "var(--font-mono)",
           fontWeight: 600,
-          fontSize: "2.5rem",
+          fontSize: "clamp(1.75rem, 5vw, 2.5rem)",
           color: offer.featured ? "var(--lime-on-light)" : "var(--text-primary)",
           lineHeight: 1.2,
         }}
