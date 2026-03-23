@@ -9,13 +9,13 @@ const packages = [
     vat: "ex VAT",
     intro: null,
     items: [
-      "Beautiful 4-page fully custom website built on Framer",
+      "Beautiful 4-page fully custom-built website",
       "Home, About, Services/Products, Contact",
       "Lightning-fast loading, mobile responsive, smooth animations",
       "Working contact form + WhatsApp click-to-chat button",
       "Basic on-page SEO + Google Analytics",
       "Delivered and live in 5 business days",
-      "Full site transfer to your own Framer account – 100% ownership & exportable code",
+      "Full site transfer to your own hosting – 100% ownership",
     ],
   },
   {
@@ -37,17 +37,17 @@ const packages = [
     vat: "ex VAT",
     intro: "Everything in Meta Ads Accelerator +",
     items: [
-      "Advanced 5–7 page custom website built on Framer (with CMS)",
+      "Advanced 5–7 page custom-built website (with CMS)",
       "6 powerful automations in Make.com (instant WhatsApp replies, lead notification, CRM pipeline, nurture sequence, retargeting triggers)",
       "Full lead forms + booking integration",
       '"Live in 5 business days" guarantee',
-      "Full Framer site transfer – you own everything",
+      "Full site transfer – you own everything",
     ],
   },
 ];
 
 const tools = [
-  "Framer",
+  "Custom Code",
   "Make.com",
   "Meta Conversions API",
   "Google Looker Studio",

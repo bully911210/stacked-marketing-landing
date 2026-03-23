@@ -10,13 +10,13 @@ const tiers = [
     featured: false,
     interest: "starter",
     deliverables: [
-      "Beautiful 4-page fully custom website built on Framer",
+      "Beautiful 4-page fully custom-built website",
       "Home, About, Services/Products, Contact",
       "Lightning-fast loading, mobile responsive, smooth animations",
       "Working contact form + WhatsApp click-to-chat button",
       "Basic on-page SEO + Google Analytics",
       "Delivered and live in 5 business days",
-      "Full site transfer to your own Framer account – 100% ownership & exportable code",
+      "Full site transfer to your own hosting – 100% ownership",
     ],
   },
   {
@@ -41,11 +41,11 @@ const tiers = [
     interest: "core",
     intro: "Everything in Meta Ads Accelerator +",
     deliverables: [
-      "Advanced 5–7 page custom website built on Framer (with CMS)",
+      "Advanced 5–7 page custom-built website (with CMS)",
       "6 powerful automations in Make.com (instant WhatsApp replies, lead notification, CRM pipeline, nurture sequence, retargeting triggers)",
       "Full lead forms + booking integration",
       '"Live in 5 business days" guarantee',
-      "Full Framer site transfer – you own everything",
+      "Full site transfer – you own everything",
     ],
   },
 ];
@@ -59,9 +59,9 @@ const features: FeatureRow[] = [
   {
     label: "Website",
     values: [
-      "4-page Premium (Framer)",
+      "4-page Premium (Custom)",
       "–",
-      "5–7 page Advanced (Framer)",
+      "5–7 page Advanced (Custom)",
     ],
   },
   {
@@ -98,7 +98,7 @@ const features: FeatureRow[] = [
   },
 ];
 
-const tools = ["Framer", "Make.com", "Meta Conversions API", "Google Looker Studio"];
+const tools = ["Custom Code", "Make.com", "Meta Conversions API", "Google Looker Studio"];
 
 function CellContent({ value }: { value: string }) {
   if (value === "check") {

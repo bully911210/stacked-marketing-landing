@@ -5,13 +5,13 @@ import "./globals.css";
 export const metadata: Metadata = {
   title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
   description:
-    "Premium Framer websites from R2,499. Meta Ads management from R4,999/mo. Full-stack marketing (ads + website + automation) for R11,999/mo. No contracts. You own everything. Pretoria, South Africa.",
+    "Premium custom websites from R2,499. Meta Ads management from R4,999/mo. Full-stack marketing (ads + website + automation) for R11,999/mo. No contracts. You own everything. Pretoria, South Africa.",
   keywords:
     "marketing Pretoria, Meta ads management, Facebook ads Pretoria, website design Pretoria, full-stack marketing, Stacked Marketing, lead generation South Africa",
   openGraph: {
     title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
     description:
-      "Premium Framer websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
+      "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
     type: "website",
     locale: "en_ZA",
     siteName: "Stacked Marketing",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
     description:
-      "Framer websites from R2,499. Meta Ads from R4,999/mo. No contracts. You own everything. Pretoria.",
+      "Custom websites from R2,499. Meta Ads from R4,999/mo. No contracts. You own everything. Pretoria.",
   },
   robots: {
     index: true,
@@ -70,7 +70,7 @@ const jsonLd = {
       url: "https://stackedmarketing.co.za",
       name: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
       description:
-        "Premium Framer websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
+        "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R11,999/mo. No contracts. You own everything.",
       isPartOf: {
         "@id": "https://stackedmarketing.co.za/#website",
       },
@@ -83,7 +83,7 @@ const jsonLd = {
       "@id": "https://stackedmarketing.co.za/#starter-website",
       name: "Basic Starter Website",
       description:
-        "Beautiful 4-page fully custom website built on Framer. Mobile responsive, fast loading, with contact form and WhatsApp integration. Delivered in 5 business days.",
+        "Beautiful 4-page fully custom-built website. Mobile responsive, fast loading, with contact form and WhatsApp integration. Delivered in 5 business days.",
       provider: {
         "@id": "https://stackedmarketing.co.za/#organization",
       },
@@ -164,7 +164,7 @@ const jsonLd = {
           name: "How much does Meta Ads management cost?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "A premium Framer website starts from R2,499 once-off. Meta Ads management starts from R4,999 per month. Our Stacked Core package (ads + website + automation) is R11,999 per month. No contracts, cancel any time.",
+            text: "A premium custom website starts from R2,499 once-off. Meta Ads management starts from R4,999 per month. Our Stacked Core package (ads + website + automation) is R11,999 per month. No contracts, cancel any time.",
           },
         },
         {

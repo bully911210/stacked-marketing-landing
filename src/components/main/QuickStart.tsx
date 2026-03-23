@@ -7,7 +7,7 @@ const options = [
     name: "Basic Starter Website",
     price: "R2,499",
     note: "once-off",
-    platform: "Framer",
+    platform: "Custom",
     description:
       "A beautiful 4-page custom website, live in 5 days. Mobile-perfect, lightning-fast, 100% yours.",
   },
