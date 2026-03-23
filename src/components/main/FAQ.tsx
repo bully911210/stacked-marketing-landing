@@ -81,7 +81,7 @@ function FAQItem({
             </svg>
           </span>
         </summary>
-        <div style={{ padding: "0 0 16px" }}>
+        <div style={{ padding: "0 24px 20px" }}>
           <p
             style={{
               fontFamily: "var(--font-body)",
