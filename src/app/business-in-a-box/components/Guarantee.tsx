@@ -8,10 +8,6 @@ const guarantees = [
     body: "If your website is not live and looking professional within 7 business days, we keep working until it is. Zero extra cost.",
   },
   {
-    heading: "The 'Show Up on Google' Guarantee",
-    body: "If your Google Business Profile is not live and showing in Maps within 14 days, we personally chase it until it is.",
-  },
-  {
     heading: "The 'No Blank Screen' Guarantee",
     body: "If you still do not know what to post after your 5 creatives and 30-day playbook, book a second strategy call with us. Free.",
   },
@@ -41,7 +37,7 @@ export default function Guarantee() {
               marginBottom: 48,
             }}
           >
-            Three guarantees.{" "}
+            Two guarantees.{" "}
             <span style={{ color: "var(--lime)" }}>Zero risk.</span>
           </h2>
 

@@ -197,7 +197,7 @@ export default function Hero() {
             "No contracts",
             "You own everything",
             "Live in 7 days",
-            "R2,000 upgrade credit",
+            "Full SEO included",
           ].map((item, i) => (
             <span key={i} style={{ display: "flex", alignItems: "center", gap: 12 }}>
               {i > 0 && (

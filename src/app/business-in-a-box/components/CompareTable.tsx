@@ -4,14 +4,13 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const rows = [
   { feature: "Custom website", diy: "Template", freelancer: "Maybe", agency: "Yes", stacked: "\u2713" },
+  { feature: "Full suite SEO", diy: "Basic", freelancer: "Extra cost", agency: "R2,500+", stacked: "\u2713" },
   { feature: "Facebook + content bridge", diy: "\u2717", freelancer: "\u2717", agency: "Extra cost", stacked: "\u2713" },
-  { feature: "Google Business setup", diy: "\u2717", freelancer: "\u2717", agency: "Extra cost", stacked: "\u2713" },
   { feature: "WhatsApp Business", diy: "\u2717", freelancer: "\u2717", agency: "\u2717", stacked: "\u2713" },
   { feature: "Brand kit", diy: "\u2717", freelancer: "R3,000+", agency: "R8,000+", stacked: "\u2713" },
   { feature: "Social content", diy: "\u2717", freelancer: "\u2717", agency: "R3,000/mo", stacked: "\u2713" },
   { feature: "Strategy call", diy: "\u2717", freelancer: "\u2717", agency: "Maybe", stacked: "\u2713" },
   { feature: "Bonuses (pitch template, quick replies, checklist)", diy: "No", freelancer: "No", agency: "No", stacked: "\u2713" },
-  { feature: "Meta Ads upgrade credit", diy: "No", freelancer: "No", agency: "No", stacked: "R2,000" },
   { feature: "Live in 7 days", diy: "Weeks", freelancer: "3-6 weeks", agency: "6-12 weeks", stacked: "\u2713" },
   { feature: "You own everything", diy: "No (platform lock)", freelancer: "Maybe", agency: "Rarely", stacked: "\u2713" },
   { feature: "Price", diy: "R0 + months", freelancer: "R8,000+", agency: "R25,000+", stacked: "R2,999", isPrice: true },

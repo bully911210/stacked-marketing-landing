@@ -21,11 +21,11 @@ import CookieConsent from "@/components/main/CookieConsent";
 export const metadata: Metadata = {
   title: "Business in a Box / R2,999 | Stacked Marketing",
   description:
-    "Everything you need to launch your business in 7 days. Professional website, Facebook integration, Google profile, brand kit. R2,999 once-off.",
+    "Everything you need to launch your business in 7 days. Professional website with full SEO, Facebook integration, WhatsApp Business, brand kit. R2,999 once-off.",
   openGraph: {
     title: "Business in a Box / R2,999 | Stacked Marketing",
     description:
-      "Everything you need to launch your business in 7 days. Professional website, Facebook integration, Google profile, brand kit. R2,999 once-off.",
+      "Everything you need to launch your business in 7 days. Professional website with full SEO, Facebook integration, WhatsApp Business, brand kit. R2,999 once-off.",
     type: "website",
     locale: "en_ZA",
     siteName: "Stacked Marketing",
@@ -43,7 +43,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Business in a Box / R2,999 | Stacked Marketing",
     description:
-      "Everything you need to launch your business in 7 days. Professional website, Facebook integration, Google profile, brand kit. R2,999 once-off.",
+      "Everything you need to launch your business in 7 days. Professional website with full SEO, Facebook integration, WhatsApp Business, brand kit. R2,999 once-off.",
     images: [
       "https://www.stackedmarketing.co.za/images/og-business-in-a-box.png",
     ],
@@ -62,7 +62,7 @@ const jsonLd = {
   "@type": "Product",
   name: "Business in a Box",
   description:
-    "Everything you need to launch your business in 7 days. Professional website, Facebook integration, Google profile, brand kit, social content, and strategy call.",
+    "Everything you need to launch your business in 7 days. Professional website with full SEO, Facebook integration, WhatsApp Business, brand kit, social content, and strategy call.",
   url: "https://www.stackedmarketing.co.za/business-in-a-box/",
   brand: {
     "@type": "Organization",
