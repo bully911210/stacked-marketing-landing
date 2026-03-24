@@ -81,6 +81,7 @@ export default function CompareTable() {
                   <tr
                     key={i}
                     className="biab-table-row"
+                    style={row.isPrice ? { background: "rgba(200, 255, 0, 0.05)" } : undefined}
                   >
                     <td
                       style={{
@@ -118,7 +119,7 @@ export default function CompareTable() {
                         textAlign: "center",
                         padding: "14px 16px",
                         borderBottom: "1px solid var(--border)",
-                        fontSize: row.isPrice ? "1.1rem" : "var(--text-body)",
+                        fontSize: row.isPrice ? "1.25rem" : "var(--text-body)",
                       }}
                     >
                       {row.stacked}

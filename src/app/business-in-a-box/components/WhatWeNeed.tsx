@@ -94,7 +94,8 @@ export default function WhatWeNeed() {
               marginTop: 32,
             }}
           >
-            That is it. We handle everything else.
+            <span style={{ color: "var(--lime)", fontWeight: 700 }}>That is it.</span>{" "}
+            <span style={{ fontWeight: 700 }}>We handle everything else.</span>
           </p>
         </div>
       </div>

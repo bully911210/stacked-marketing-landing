@@ -177,7 +177,7 @@ export default function OfferStack() {
                           fontFamily: "var(--font-heading)",
                           fontWeight: 700,
                           fontSize: "2rem",
-                          color: "rgba(200, 255, 0, 0.12)",
+                          color: "rgba(200, 255, 0, 0.15)",
                           minWidth: 48,
                           lineHeight: 1,
                         }}

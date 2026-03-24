@@ -58,7 +58,7 @@ export default function Guarantee() {
               <div
                 key={i}
                 style={{
-                  background: "var(--bg-card)",
+                  background: "rgba(200, 255, 0, 0.03)",
                   border: "1px solid var(--border-accent)",
                   borderRadius: "var(--card-radius)",
                   padding: 32,
@@ -89,6 +89,21 @@ export default function Guarantee() {
                 </p>
               </div>
             ))}
+          </div>
+
+          {/* Mid-page CTA */}
+          <div style={{ textAlign: "center", marginTop: 48 }}>
+            <a
+              href="#order"
+              className="btn-primary"
+              style={{
+                padding: "16px 36px",
+                borderRadius: "var(--radius-pill)",
+                fontWeight: 700,
+              }}
+            >
+              I WANT THIS
+            </a>
           </div>
         </div>
       </div>
