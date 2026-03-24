@@ -3,6 +3,7 @@ import Script from "next/script";
 import BiabNav from "./components/BiabNav";
 import Hero from "./components/Hero";
 import ProblemCards from "./components/ProblemCards";
+import SocialProof from "./components/SocialProof";
 import OfferStack from "./components/OfferStack";
 import TimelineStrip from "./components/TimelineStrip";
 import Bonuses from "./components/Bonuses";
@@ -12,6 +13,7 @@ import Guarantee from "./components/Guarantee";
 import FAQ from "./components/FAQ";
 import WhatWeNeed from "./components/WhatWeNeed";
 import LeadForm from "./components/LeadForm";
+import StickyCTA from "./components/StickyCTA";
 import Footer from "@/components/main/Footer";
 import WhatsApp from "@/components/main/WhatsApp";
 import CookieConsent from "@/components/main/CookieConsent";
@@ -87,6 +89,7 @@ export default function BusinessInABox() {
       <BiabNav />
       <Hero />
       <ProblemCards />
+      <SocialProof />
       <OfferStack />
       <TimelineStrip />
       <Bonuses />
@@ -97,6 +100,7 @@ export default function BusinessInABox() {
       <WhatWeNeed />
       <LeadForm />
       <Footer />
+      <StickyCTA />
       <WhatsApp />
       <CookieConsent />
 

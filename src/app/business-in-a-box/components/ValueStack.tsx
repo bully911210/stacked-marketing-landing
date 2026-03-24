@@ -53,8 +53,9 @@ export default function ValueStack() {
                   display: "flex",
                   justifyContent: "space-between",
                   alignItems: "center",
-                  padding: "14px 0",
+                  padding: "14px 8px",
                   borderBottom: "1px solid var(--border)",
+                  background: i % 2 === 1 ? "rgba(255, 255, 255, 0.015)" : "transparent",
                 }}
               >
                 <span
@@ -130,8 +131,29 @@ export default function ValueStack() {
               display: "flex",
               justifyContent: "space-between",
               alignItems: "center",
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            {/* Badge */}
+            <span
+              style={{
+                position: "absolute",
+                top: 12,
+                right: 16,
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "1.5px",
+                color: "var(--lime)",
+                background: "rgba(200, 255, 0, 0.12)",
+                padding: "4px 10px",
+                borderRadius: "var(--radius-pill)",
+              }}
+            >
+              MOST POPULAR
+            </span>
             <span
               style={{
                 fontFamily: "var(--font-heading)",
@@ -168,8 +190,29 @@ export default function ValueStack() {
               justifyContent: "space-between",
               alignItems: "flex-start",
               gap: 24,
+              position: "relative",
+              overflow: "hidden",
             }}
           >
+            {/* Badge */}
+            <span
+              style={{
+                position: "absolute",
+                top: 12,
+                right: 16,
+                fontFamily: "var(--font-mono)",
+                fontSize: "0.65rem",
+                fontWeight: 600,
+                textTransform: "uppercase",
+                letterSpacing: "1.5px",
+                color: "var(--text-muted)",
+                background: "rgba(255, 255, 255, 0.06)",
+                padding: "4px 10px",
+                borderRadius: "var(--radius-pill)",
+              }}
+            >
+              HANDS-FREE
+            </span>
             <div style={{ flex: 1 }}>
               <h3
                 style={{

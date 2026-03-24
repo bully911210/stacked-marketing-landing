@@ -121,6 +121,18 @@ export default function Hero() {
               You own everything.
             </span>
           </p>
+          <p
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              color: "var(--lime)",
+              opacity: 0.7,
+              marginTop: 6,
+              letterSpacing: "0.5px",
+            }}
+          >
+            Launch price. Will not last.
+          </p>
         </div>
 
         {/* Buttons */}
@@ -158,11 +170,26 @@ export default function Hero() {
           </a>
         </div>
 
+        {/* Trust bar - stats */}
+        <p
+          className="hero-fade"
+          style={{
+            marginTop: 32,
+            animationDelay: "0.45s",
+            fontFamily: "var(--font-mono)",
+            fontSize: "0.75rem",
+            color: "var(--text-muted)",
+            letterSpacing: "0.02em",
+          }}
+        >
+          R205K own ad spend&nbsp;&nbsp;&bull;&nbsp;&nbsp;R68 CPA&nbsp;&nbsp;&bull;&nbsp;&nbsp;5,000+ clients acquired
+        </p>
+
         {/* USP strip */}
         <div
           className="hero-fade biab-usp-strip"
           style={{
-            marginTop: 40,
+            marginTop: 20,
             animationDelay: "0.5s",
           }}
         >
@@ -196,6 +223,34 @@ export default function Hero() {
             </span>
           ))}
         </div>
+      </div>
+
+      {/* Scroll indicator */}
+      <div
+        style={{
+          position: "absolute",
+          bottom: 20,
+          left: "50%",
+          transform: "translateX(-50%)",
+          display: "flex",
+          flexDirection: "column",
+          alignItems: "center",
+          gap: 4,
+        }}
+      >
+        <svg
+          width="24"
+          height="24"
+          viewBox="0 0 24 24"
+          fill="none"
+          stroke="var(--lime)"
+          strokeWidth="2"
+          strokeLinecap="round"
+          strokeLinejoin="round"
+          style={{ animation: "chevronPulse 2s ease-in-out infinite", opacity: 0.4 }}
+        >
+          <polyline points="6 9 12 15 18 9" />
+        </svg>
       </div>
 
       <style>{`

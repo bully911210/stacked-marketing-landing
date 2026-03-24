@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const faqs = [
   {
     q: "Do I need my own domain and hosting?",
-    a: "Yes, you will need a domain and hosting account. We will recommend the best options for your budget and help you set it up. Domain and hosting costs go directly to the provider, typically R50 to R150 per month.",
+    a: "Yes, you will need a domain and hosting account. We recommend and help you set up hosting. Typical cost: R50 to R150 per month, paid directly to the provider.",
   },
   {
     q: "What if I already have a logo?",
@@ -13,7 +13,7 @@ const faqs = [
   },
   {
     q: "Can I upgrade to Meta Ads later?",
-    a: "Absolutely. Every Business in a Box client gets a R2,000 upgrade credit toward our Meta Ads Accelerator (R4,999/mo) or Stacked Core (R9,999/mo) plans. Your website is already built for conversion. Adding ads is the natural next step.",
+    a: "Yes. Every Business in a Box client gets a R2,000 upgrade credit toward our Meta Ads Accelerator (R4,999/mo) or Stacked Core (R9,999/mo) plans. Your website is already built for conversion. Adding ads is the natural next step.",
   },
   {
     q: "What does 'you own everything' mean?",
