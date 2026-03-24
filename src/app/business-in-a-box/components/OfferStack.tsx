@@ -22,17 +22,17 @@ const tiers: { label: string; items: OfferItem[] }[] = [
       },
       {
         number: "02",
-        heading: "Google Business Profile",
-        description:
-          "Set up and optimised so you show up on Google Maps and Search. When someone Googles your type of business in your area, you are there.",
-        tag: "SHOW UP ON GOOGLE MAPS",
-      },
-      {
-        number: "03",
         heading: "WhatsApp Business Setup",
         description:
           "Branded WhatsApp Business profile with auto-reply greeting, away message, and product catalogue stub. The channel your customers actually use.",
         tag: "PROFESSIONAL FROM MESSAGE ONE",
+      },
+      {
+        number: "03",
+        heading: "Full Suite SEO",
+        description:
+          "On-page SEO, meta titles, meta descriptions, schema markup, XML sitemap, and speed optimisation baked into your website from day one. Not bolted on later. Built in.",
+        tag: "SEARCH-READY FROM LAUNCH",
       },
     ],
   },
@@ -78,13 +78,6 @@ const tiers: { label: string; items: OfferItem[] }[] = [
         description:
           "Not support. Not troubleshooting. A proper one-on-one session where we map out how you get customers. And when you are ready to scale, we are already here.",
         tag: "1-ON-1 WITH OUR STRATEGIST",
-      },
-      {
-        number: "09",
-        heading: "R2,000 Meta Ads Credit",
-        description:
-          "When you are ready to pour fuel on the fire, this credit goes straight toward your first ad campaign with us. No expiry.",
-        tag: "YOUR SCALE PATH",
       },
     ],
   },

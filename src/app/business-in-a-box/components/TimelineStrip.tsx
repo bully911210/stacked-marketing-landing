@@ -5,7 +5,7 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 const steps = [
   { day: "DAY 1", desc: "Onboarding call + brand briefing" },
   { day: "DAY 2-3", desc: "Brand kit + website build" },
-  { day: "DAY 4-5", desc: "Facebook, Google, WhatsApp setup" },
+  { day: "DAY 4-5", desc: "Facebook, WhatsApp, SEO setup" },
   { day: "DAY 6", desc: "Content loaded + final review" },
   { day: "DAY 7", desc: "You are live. Open for business." },
 ];

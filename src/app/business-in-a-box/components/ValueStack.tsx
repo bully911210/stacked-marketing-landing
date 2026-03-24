@@ -4,14 +4,13 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const lineItems = [
   { name: "Custom website (freelancer rate)", price: "R8,000" },
+  { name: "Full suite SEO setup", price: "R2,500" },
   { name: "Facebook page setup + content bridge", price: "R2,500" },
-  { name: "Google Business Profile setup", price: "R1,500" },
   { name: "WhatsApp Business setup", price: "R800" },
   { name: "Brand kit (logo, colours, fonts, card)", price: "R3,500" },
   { name: "5 social media creatives", price: "R2,000" },
   { name: "30-day launch playbook", price: "R1,000" },
   { name: "Strategy call (consulting rate)", price: "R1,500" },
-  { name: "R2,000 Meta Ads credit", price: "R2,000" },
   { name: "Elevator pitch template", price: "R500" },
   { name: "WhatsApp quick replies pack", price: "R500" },
   { name: "First 5 customers checklist", price: "R500" },
@@ -113,7 +112,7 @@ export default function ValueStack() {
                   fontSize: "1.15rem",
                 }}
               >
-                R24,300
+                R23,300
               </span>
             </div>
           </div>
@@ -176,105 +175,6 @@ export default function ValueStack() {
             </span>
           </div>
 
-          {/* Upsell card */}
-          <div
-            className="biab-value-upsell-card"
-            style={{
-              maxWidth: 600,
-              margin: "16px auto 0",
-              background: "var(--bg-card)",
-              border: "1px solid var(--border)",
-              borderRadius: "var(--card-radius)",
-              padding: "28px 32px",
-              display: "flex",
-              justifyContent: "space-between",
-              alignItems: "flex-start",
-              gap: 24,
-              position: "relative",
-              overflow: "hidden",
-            }}
-          >
-            {/* Badge */}
-            <span
-              style={{
-                position: "absolute",
-                top: 12,
-                right: 16,
-                fontFamily: "var(--font-mono)",
-                fontSize: "0.65rem",
-                fontWeight: 600,
-                textTransform: "uppercase",
-                letterSpacing: "1.5px",
-                color: "var(--text-muted)",
-                background: "rgba(255, 255, 255, 0.06)",
-                padding: "4px 10px",
-                borderRadius: "var(--radius-pill)",
-              }}
-            >
-              HANDS-FREE
-            </span>
-            <div style={{ flex: 1 }}>
-              <h3
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: "1.1rem",
-                  color: "var(--text-primary)",
-                  marginBottom: 8,
-                }}
-              >
-                Want us to keep posting for you?
-              </h3>
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontWeight: 400,
-                  color: "var(--text-secondary)",
-                  lineHeight: 1.7,
-                  fontSize: "var(--text-body)",
-                }}
-              >
-                Business in a Box + 3 Months Content. Everything in the box, plus 10 designed social posts per month for 3 months. We post. You sell.
-              </p>
-            </div>
-            <div style={{ textAlign: "right", flexShrink: 0 }}>
-              <p
-                style={{
-                  fontFamily: "var(--font-heading)",
-                  fontWeight: 700,
-                  fontSize: "clamp(1.5rem, 3vw, 2rem)",
-                  color: "var(--lime)",
-                  lineHeight: 1,
-                }}
-              >
-                R5,999
-              </p>
-              <p
-                style={{
-                  fontFamily: "var(--font-body)",
-                  color: "var(--text-muted)",
-                  fontSize: "0.875rem",
-                  marginTop: 4,
-                }}
-              >
-                once-off
-              </p>
-            </div>
-          </div>
-
-          {/* Bottom text */}
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontWeight: 400,
-              color: "var(--text-muted)",
-              fontSize: "var(--text-body)",
-              textAlign: "center",
-              marginTop: 24,
-            }}
-          >
-            R2,999 is the self-starter. R5,999 is hands-free.
-          </p>
         </div>
       </div>
 
@@ -285,13 +185,6 @@ export default function ValueStack() {
             text-align: center;
             gap: 12px;
             padding: 24px 20px !important;
-          }
-          .biab-value-upsell-card {
-            flex-direction: column !important;
-            padding: 24px 20px !important;
-          }
-          .biab-value-upsell-card > div:last-child {
-            text-align: left !important;
           }
         }
       `}</style>

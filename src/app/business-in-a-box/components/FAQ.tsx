@@ -12,20 +12,16 @@ const faqs = [
     a: "Perfect. We will use your existing logo and build the brand kit around it. If your logo needs cleaning up, we will let you know, but there is no obligation.",
   },
   {
-    q: "Can I upgrade to Meta Ads later?",
-    a: "Yes. Every Business in a Box client gets a R2,000 upgrade credit toward our Meta Ads Accelerator (R4,999/mo) or Stacked Core (R9,999/mo) plans. Your website is already built for conversion. Adding ads is the natural next step.",
+    q: "Does the website include SEO?",
+    a: "Yes. Every Business in a Box website includes full on-page SEO: meta titles, meta descriptions, schema markup, XML sitemap, image optimisation, and speed optimisation. This is not a plugin or an add-on. It is built into the website from the start.",
   },
   {
     q: "What does 'you own everything' mean?",
-    a: "Your website code, your Facebook page, your Google profile, your brand kit files, your content. All of it is yours. If you leave, you take everything. No hostage situations.",
+    a: "Your website code, your Facebook page, your brand kit files, your content. All of it is yours. If you leave, you take everything. No hostage situations.",
   },
   {
     q: "Do you work with businesses outside Pretoria?",
     a: "Yes. Everything is delivered remotely. Your location does not matter.",
-  },
-  {
-    q: "What is the difference between R2,999 and R5,999?",
-    a: "R2,999 gives you everything in the box. You handle your own posting after we hand over the 5 starter creatives and playbook. R5,999 includes everything in the box plus 10 designed social posts per month for 3 months. We post, you sell.",
   },
   {
     q: "What is the 1-month support?",
