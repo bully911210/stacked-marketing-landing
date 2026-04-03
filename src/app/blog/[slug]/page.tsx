@@ -1,10 +1,11 @@
 import type { Metadata } from "next";
 import { getPostBySlug, getPublishedPosts } from "@/lib/blog";
-import { marked } from "marked";
+import { marked, Renderer } from "marked";
 import Nav from "@/components/main/Nav";
 import Footer from "@/components/main/Footer";
 import WhatsApp from "@/components/main/WhatsApp";
 import Link from "next/link";
+import Image from "next/image";
 import { notFound } from "next/navigation";
 
 export const revalidate = 60;
@@ -52,7 +53,16 @@ export default async function BlogPostPage({
     notFound();
   }
 
-  const htmlContent = await marked(post.content);
+  // Sanitize: only allow known safe link protocols
+  const renderer = new Renderer();
+  const originalLink = renderer.link;
+  renderer.link = function (token) {
+    if (token.href && !/^https?:\/\/|^\/|^#|^mailto:/.test(token.href)) {
+      token.href = "#";
+    }
+    return originalLink.call(this, token);
+  };
+  const htmlContent = await marked(post.content, { renderer });
 
   return (
     <main>
@@ -172,12 +182,16 @@ export default async function BlogPostPage({
                 overflow: "hidden",
                 marginBottom: 48,
                 border: "1px solid var(--border)",
+                position: "relative",
               }}
             >
-              <img
+              <Image
                 src={post.coverImage}
                 alt={post.title}
-                style={{ width: "100%", height: "100%", objectFit: "cover" }}
+                fill
+                sizes="(max-width: 768px) 100vw, 900px"
+                style={{ objectFit: "cover" }}
+                priority
               />
             </div>
           )}

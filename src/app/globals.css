@@ -186,6 +186,21 @@ body {
   letter-spacing: 0.05em;
 }
 
+/* Gradient text utility */
+.text-gradient {
+  background: linear-gradient(to bottom, #FFFFFF, rgba(255, 255, 255, 0.4));
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
+.text-gradient-lime {
+  background: linear-gradient(135deg, #C8FF00, #7AFF00);
+  -webkit-background-clip: text;
+  -webkit-text-fill-color: transparent;
+  background-clip: text;
+}
+
 /* Container */
 .container-main {
   max-width: var(--content-max-width);
@@ -198,6 +213,38 @@ body {
   padding-block: var(--section-gap-desktop);
 }
 
+/* Section eyebrow pill */
+.section-eyebrow {
+  display: inline-flex;
+  align-items: center;
+  gap: 8px;
+  padding: 6px 16px;
+  border-radius: 100px;
+  border: 1px solid rgba(200, 255, 0, 0.2);
+  background: rgba(200, 255, 0, 0.05);
+  font-family: var(--font-mono);
+  font-size: 0.75rem;
+  font-weight: 600;
+  letter-spacing: 0.08em;
+  text-transform: uppercase;
+  color: var(--lime);
+  margin-bottom: 16px;
+}
+
+.section-eyebrow::before {
+  content: '';
+  width: 6px;
+  height: 6px;
+  border-radius: 50%;
+  background: var(--lime);
+  animation: eyebrowPulse 2s ease-in-out infinite;
+}
+
+@keyframes eyebrowPulse {
+  0%, 100% { opacity: 0.4; }
+  50% { opacity: 1; }
+}
+
 /* Card Styles */
 .card {
   background: var(--bg-secondary);
@@ -205,11 +252,26 @@ body {
   border-radius: var(--card-radius);
   padding: var(--card-padding-desktop);
   transition: border-color 0.2s ease, box-shadow 0.2s ease, transform 0.3s ease;
+  position: relative;
 }
 
 .card:hover {
   border-color: var(--border-accent);
-  box-shadow: 0 4px 20px rgba(200, 255, 0, 0.08);
+  box-shadow:
+    0 1px 2px rgba(0, 0, 0, 0.3),
+    0 8px 16px rgba(0, 0, 0, 0.25),
+    0 0 40px rgba(200, 255, 0, 0.05);
+}
+
+/* Gradient border card wrapper */
+.card-glow-wrap {
+  padding: 1px;
+  border-radius: calc(var(--card-radius) + 1px);
+  background: linear-gradient(135deg, rgba(200, 255, 0, 0.3), transparent 50%, rgba(200, 255, 0, 0.1));
+}
+
+.card-glow-wrap > .card {
+  border: none;
 }
 
 /* Featured Card */
@@ -220,6 +282,33 @@ body {
   padding: var(--card-padding-desktop);
   box-shadow: 0 0 40px rgba(200, 255, 0, 0.12);
   position: relative;
+}
+
+/* Cursor-tracking glow on cards */
+.card-spotlight {
+  --x: 50%;
+  --y: 50%;
+  position: relative;
+  overflow: hidden;
+}
+
+.card-spotlight::before {
+  content: '';
+  position: absolute;
+  inset: 0;
+  border-radius: inherit;
+  background: radial-gradient(
+    400px circle at var(--x) var(--y),
+    rgba(200, 255, 0, 0.06),
+    transparent 60%
+  );
+  pointer-events: none;
+  opacity: 0;
+  transition: opacity 0.3s ease;
+}
+
+.card-spotlight:hover::before {
+  opacity: 1;
 }
 
 /* Button Styles */
@@ -243,8 +332,10 @@ body {
 
 .btn-primary:hover {
   background: var(--lime-hover);
-  transform: translateY(-2px);
-  box-shadow: 0 8px 30px rgba(200, 255, 0, 0.25);
+  transform: translateY(-3px) scale(1.02);
+  box-shadow:
+    0 4px 15px rgba(200, 255, 0, 0.3),
+    0 12px 40px rgba(200, 255, 0, 0.15);
 }
 
 .btn-primary:active {
@@ -277,6 +368,7 @@ body {
   border-color: var(--lime);
   color: var(--lime);
   transform: translateY(-2px);
+  box-shadow: 0 4px 20px rgba(200, 255, 0, 0.1);
 }
 
 .btn-secondary:active {
@@ -287,10 +379,6 @@ body {
   outline: 2px solid var(--lime);
   outline-offset: 3px;
 }
-
-/* Legacy button aliases */
-.btn-accent { composes: btn-primary; }
-.btn-ghost { composes: btn-secondary; }
 
 /* Form Input Styles */
 .form-input {
@@ -437,6 +525,52 @@ a, button, input, select, textarea {
 /* Checkmark draw animation */
 @keyframes checkDraw {
   to { stroke-dashoffset: 0; }
+}
+
+/* Grain overlay animation */
+@keyframes grain {
+  0%, 100% { transform: translate(0, 0); }
+  10% { transform: translate(-5%, -10%); }
+  30% { transform: translate(3%, -15%); }
+  50% { transform: translate(12%, 9%); }
+  70% { transform: translate(9%, 4%); }
+  90% { transform: translate(-1%, 7%); }
+}
+
+/* Marquee animation */
+@keyframes marqueeScroll {
+  from { transform: translateX(0); }
+  to { transform: translateX(-50%); }
+}
+
+/* Gradient border rotate for featured cards */
+@keyframes borderRotate {
+  from { --angle: 0deg; }
+  to { --angle: 360deg; }
+}
+
+/* Dot grid background */
+.dot-grid-bg {
+  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-size: 24px 24px;
+}
+
+/* Section gradient divider */
+.section-divider {
+  width: 100%;
+  height: 1px;
+  background: linear-gradient(90deg, transparent, rgba(200, 255, 0, 0.2), transparent);
+}
+
+/* Scroll progress bar */
+.scroll-progress {
+  position: fixed;
+  top: 0;
+  left: 0;
+  height: 2px;
+  background: var(--lime);
+  z-index: 1001;
+  transition: width 50ms linear;
 }
 
 /* Skip to content link */

@@ -1,7 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { useCallback } from "react";
 
 /* ── data ── */
 
@@ -60,21 +60,48 @@ const storyCards: StoryCard[] = [
   },
 ];
 
-/* ── animation helpers ── */
-
-const motionEase = [0.25, 0.1, 0.25, 1] as const;
-
-const fadeUp = {
-  hidden: { opacity: 0, y: 20 },
-  visible: { opacity: 1, y: 0 },
-};
-
 /* ── component ── */
+
+function StoryCardItem({ card, index }: { card: StoryCard; index: number }) {
+  const { ref, isVisible } = useScrollReveal(0.15);
+
+  const handleMouseMove = useCallback((e: React.MouseEvent<HTMLDivElement>) => {
+    const rect = e.currentTarget.getBoundingClientRect();
+    e.currentTarget.style.setProperty("--x", `${e.clientX - rect.left}px`);
+    e.currentTarget.style.setProperty("--y", `${e.clientY - rect.top}px`);
+  }, []);
+
+  return (
+    <div
+      ref={ref}
+      className={`fade-up card-spotlight ${card.featured ? "story-card--featured" : "story-card"}`}
+      style={{ transitionDelay: `${index * 80}ms` }}
+      onMouseMove={handleMouseMove}
+      data-visible={isVisible || undefined}
+    >
+      {isVisible && (
+        <>
+          <span
+            className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}
+          >
+            {card.pill}
+          </span>
+          <span className="story-card__stat">{card.stat}</span>
+          <span className="story-card__desc">{card.description}</span>
+          <span
+            className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}
+          >
+            {card.category}
+          </span>
+        </>
+      )}
+    </div>
+  );
+}
 
 export default function Proof() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollReveal(0.15);
   const { ref: stripRef, isVisible: stripVisible } = useScrollReveal(0.15);
-  const { ref: cardsRef, isVisible: cardsVisible } = useScrollReveal(0.15);
   const { ref: closingRef, isVisible: closingVisible } = useScrollReveal(0.2);
 
   return (
@@ -83,27 +110,17 @@ export default function Proof() {
       className="section-spacing"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
+      {/* Section divider */}
+      <div className="section-divider" style={{ marginBottom: "var(--section-gap-desktop)" }} />
+
       <div className="container-main">
         {/* ── heading ── */}
         <div
           ref={headingRef}
           className={`fade-up ${headingVisible ? "visible" : ""}`}
-          style={{ marginBottom: 16 }}
+          style={{ marginBottom: 16, textAlign: "center" }}
         >
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "var(--text-caption)",
-              fontWeight: 500,
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-              color: "var(--lime)",
-              marginBottom: 16,
-              textAlign: "center",
-            }}
-          >
-            PROOF, NOT PROMISES
-          </p>
+          <span className="section-eyebrow">PROOF, NOT PROMISES</span>
           <h2
             className="text-h2"
             style={{
@@ -113,19 +130,17 @@ export default function Proof() {
               marginBottom: 56,
             }}
           >
-            R205K spent. R68 CPA. 5,000 subscription clients. All our own
-            money, in a restricted category.
+            <span className="text-gradient">
+              R205K spent. R68 CPA. 5,000 subscription clients.
+            </span>{" "}
+            All our own money, in a restricted category.
           </h2>
         </div>
 
         {/* ── stats strip ── */}
-        <motion.div
+        <div
           ref={stripRef}
-          className="stats-strip"
-          initial="hidden"
-          animate={stripVisible ? "visible" : "hidden"}
-          variants={fadeUp}
-          transition={{ duration: 0.5, ease: motionEase }}
+          className={`fade-up stats-strip ${stripVisible ? "visible" : ""}`}
         >
           {stats.map((s, i) => (
             <div
@@ -141,43 +156,12 @@ export default function Proof() {
               <span className="stats-strip__label">{s.label}</span>
             </div>
           ))}
-        </motion.div>
+        </div>
 
         {/* ── story cards ── */}
-        <div ref={cardsRef} style={{ marginTop: 32 }}>
+        <div style={{ marginTop: 32 }}>
           {storyCards.map((card, i) => (
-            <motion.div
-              key={card.category}
-              className={`story-card ${card.featured ? "story-card--featured" : ""}`}
-              initial="hidden"
-              animate={cardsVisible ? "visible" : "hidden"}
-              variants={fadeUp}
-              transition={{
-                duration: 0.5,
-                ease: motionEase,
-                delay: i * 0.08,
-              }}
-            >
-              {/* pill */}
-              <span
-                className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}
-              >
-                {card.pill}
-              </span>
-
-              {/* stat */}
-              <span className="story-card__stat">{card.stat}</span>
-
-              {/* description */}
-              <span className="story-card__desc">{card.description}</span>
-
-              {/* category */}
-              <span
-                className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}
-              >
-                {card.category}
-              </span>
-            </motion.div>
+            <StoryCardItem key={card.category} card={card} index={i} />
           ))}
         </div>
 
@@ -223,27 +207,26 @@ export default function Proof() {
           text-align: center;
         }
         .stats-strip__value {
-          font-family: 'IBM Plex Mono', monospace;
+          font-family: var(--font-mono);
           font-weight: 600;
           font-size: clamp(1rem, 2vw, 1.25rem);
           color: #ffffff;
+          text-shadow: 0 0 40px rgba(200, 255, 0, 0.2);
         }
         .stats-strip__label {
-          font-family: 'Outfit', sans-serif;
+          font-family: var(--font-body);
           font-size: 0.75rem;
           color: #C8FF00;
           opacity: 0.7;
           margin-top: 6px;
         }
 
-        /* mobile stats strip */
         @media (max-width: 768px) {
           .stats-strip {
             grid-template-columns: repeat(3, 1fr);
             gap: 20px 0;
             padding: 24px 0;
           }
-          /* hide right borders on 3rd and 5th cells for clean rows */
           .stats-strip__cell:nth-child(3),
           .stats-strip__cell:nth-child(5) {
             border-right: none !important;
@@ -270,17 +253,26 @@ export default function Proof() {
           border-radius: 14px;
           padding: 18px 24px;
           margin-bottom: 12px;
+          position: relative;
+          overflow: hidden;
         }
         .story-card:last-child {
           margin-bottom: 0;
         }
         .story-card--featured {
+          display: flex;
+          align-items: center;
+          gap: 16px;
+          flex-wrap: wrap;
           border: 1px solid rgba(200,255,0,0.3);
           background: rgba(200,255,0,0.03);
+          border-radius: 14px;
           padding: 20px 24px;
+          margin-bottom: 12px;
+          position: relative;
+          overflow: hidden;
         }
 
-        /* pill */
         .story-card__pill {
           background: rgba(200,255,0,0.06);
           color: #C8FF00;
@@ -297,9 +289,8 @@ export default function Proof() {
           opacity: 1;
         }
 
-        /* stat headline */
         .story-card__stat {
-          font-family: 'Syne', sans-serif;
+          font-family: var(--font-heading);
           font-weight: 600;
           font-size: 1.1rem;
           color: #ffffff;
@@ -307,9 +298,8 @@ export default function Proof() {
           flex-shrink: 0;
         }
 
-        /* description */
         .story-card__desc {
-          font-family: 'Outfit', sans-serif;
+          font-family: var(--font-body);
           font-size: 0.9rem;
           color: #888888;
           flex: 1;
@@ -319,7 +309,6 @@ export default function Proof() {
           color: #A0A0A0;
         }
 
-        /* category label */
         .story-card__cat {
           font-size: 0.75rem;
           color: #999;
@@ -334,9 +323,9 @@ export default function Proof() {
           opacity: 0.5;
         }
 
-        /* mobile story cards */
         @media (max-width: 767px) {
-          .story-card {
+          .story-card,
+          .story-card--featured {
             flex-direction: column;
             align-items: flex-start;
             gap: 8px;
@@ -358,10 +347,10 @@ export default function Proof() {
           }
         }
 
-        /* reduced motion */
         @media (prefers-reduced-motion: reduce) {
           .stats-strip,
-          .story-card {
+          .story-card,
+          .story-card--featured {
             animation: none !important;
             transition: none !important;
             opacity: 1 !important;

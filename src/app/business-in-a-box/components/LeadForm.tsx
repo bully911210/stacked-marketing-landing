@@ -2,7 +2,7 @@
 
 import { useState, FormEvent } from "react";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
-import { WHATSAPP_NUMBER, WEBHOOK_URL } from "@/lib/constants";
+import { WHATSAPP_NUMBER } from "@/lib/constants";
 
 const stageOptions = [
   "I have an idea but haven't started",
@@ -68,7 +68,7 @@ export default function LeadForm() {
 
     // Fire webhook
     try {
-      await fetch(WEBHOOK_URL, {
+      await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({

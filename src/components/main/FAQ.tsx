@@ -113,20 +113,7 @@ export default function FAQ() {
           ref={ref}
           className={`fade-up ${isVisible ? "visible" : ""}`}
         >
-          <p
-            style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "var(--text-caption)",
-              fontWeight: 500,
-              textTransform: "uppercase",
-              letterSpacing: "0.05em",
-              color: "var(--lime)",
-              marginBottom: 16,
-              textAlign: "center",
-            }}
-          >
-            FREQUENTLY ASKED QUESTIONS
-          </p>
+          <span className="section-eyebrow" style={{ display: "inline-flex" }}>FREQUENTLY ASKED</span>
           <h2
             className="text-h2"
             style={{
