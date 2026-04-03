@@ -74,27 +74,22 @@ function StoryCardItem({ card, index }: { card: StoryCard; index: number }) {
   return (
     <div
       ref={ref}
-      className={`fade-up card-spotlight ${card.featured ? "story-card--featured" : "story-card"}`}
+      className={`fade-up card-spotlight ${isVisible ? "visible" : ""} ${card.featured ? "story-card--featured" : "story-card"}`}
       style={{ transitionDelay: `${index * 80}ms` }}
       onMouseMove={handleMouseMove}
-      data-visible={isVisible || undefined}
     >
-      {isVisible && (
-        <>
-          <span
-            className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}
-          >
-            {card.pill}
-          </span>
-          <span className="story-card__stat">{card.stat}</span>
-          <span className="story-card__desc">{card.description}</span>
-          <span
-            className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}
-          >
-            {card.category}
-          </span>
-        </>
-      )}
+      <span
+        className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}
+      >
+        {card.pill}
+      </span>
+      <span className="story-card__stat">{card.stat}</span>
+      <span className="story-card__desc">{card.description}</span>
+      <span
+        className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}
+      >
+        {card.category}
+      </span>
     </div>
   );
 }
