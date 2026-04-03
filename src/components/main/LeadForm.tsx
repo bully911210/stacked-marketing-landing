@@ -1,8 +1,9 @@
 "use client";
 
 import { useState, useEffect, type FormEvent } from "react";
-import { WEBHOOK_URL, WHATSAPP_LINK } from "@/lib/constants";
+import { WHATSAPP_LINK } from "@/lib/constants";
 import { useScrollReveal } from "@/hooks/useScrollReveal";
+import { trackLead } from "@/components/main/CookieConsent";
 
 const STORAGE_KEY = "stacked_form_data";
 
@@ -119,7 +120,7 @@ export default function LeadForm() {
 
     setSubmitting(true);
     try {
-      const response = await fetch(WEBHOOK_URL, {
+      const response = await fetch("/api/lead", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify(formData),
@@ -127,6 +128,7 @@ export default function LeadForm() {
       if (!response.ok) throw new Error("Submission failed");
       setSubmitted(true);
       localStorage.removeItem(STORAGE_KEY);
+      trackLead();
     } catch {
       setError("Something went wrong. Please try again or WhatsApp us directly.");
     } finally {

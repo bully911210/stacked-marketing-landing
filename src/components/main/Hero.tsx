@@ -12,13 +12,61 @@ export default function Hero() {
         paddingBottom: 0,
         backgroundColor: "var(--bg-primary)",
         position: "relative",
-        background:
-          "radial-gradient(ellipse at 50% 30%, rgba(200, 255, 0, 0.04) 0%, transparent 60%) var(--bg-primary)",
+        overflow: "hidden",
       }}
     >
+      {/* Aurora spotlight */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "-20%",
+          left: "50%",
+          transform: "translateX(-50%)",
+          width: "80vw",
+          height: "60vh",
+          background: "radial-gradient(ellipse, rgba(200,255,0,0.07) 0%, transparent 70%)",
+          filter: "blur(80px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
+      {/* Floating glow orbs */}
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          top: "10%",
+          left: "-5%",
+          width: "35vw",
+          height: "35vw",
+          borderRadius: "50%",
+          background: "rgba(200,255,0,0.03)",
+          filter: "blur(120px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+      <div
+        aria-hidden="true"
+        style={{
+          position: "absolute",
+          bottom: "5%",
+          right: "-8%",
+          width: "30vw",
+          height: "30vw",
+          borderRadius: "50%",
+          background: "rgba(200,255,0,0.02)",
+          filter: "blur(100px)",
+          pointerEvents: "none",
+          zIndex: 0,
+        }}
+      />
+
       <div
         className="container-main hero-content"
-        style={{ paddingTop: "clamp(32px, 4vw, 48px)" }}
+        style={{ paddingTop: "clamp(32px, 4vw, 48px)", position: "relative", zIndex: 1 }}
       >
         {/* Pill label */}
         <div
@@ -27,18 +75,29 @@ export default function Hero() {
             display: "inline-flex",
             alignItems: "center",
             gap: 8,
-            padding: "8px 20px",
-            border: "1px solid var(--border-accent)",
+            padding: "6px 16px",
+            border: "1px solid rgba(200,255,0,0.2)",
+            background: "rgba(200,255,0,0.05)",
             borderRadius: 100,
             marginBottom: 32,
           }}
         >
           <span
             style={{
-              fontFamily: "var(--font-body)",
-              fontSize: "var(--text-caption)",
-              fontWeight: 500,
-              letterSpacing: "0.05em",
+              width: 6,
+              height: 6,
+              borderRadius: "50%",
+              background: "var(--lime)",
+              animation: "eyebrowPulse 2s ease-in-out infinite",
+              flexShrink: 0,
+            }}
+          />
+          <span
+            style={{
+              fontFamily: "var(--font-mono)",
+              fontSize: "0.75rem",
+              fontWeight: 600,
+              letterSpacing: "0.08em",
               textTransform: "uppercase",
               color: "var(--lime)",
             }}
@@ -51,9 +110,9 @@ export default function Hero() {
           className="text-h1 hero-fade hero-fade-delay-1"
           style={{ maxWidth: 800 }}
         >
-          Your Marketing Isn&apos;t Broken.
+          <span className="text-gradient">Your Marketing Isn&apos;t Broken.</span>
           <br />
-          <span style={{ color: "var(--lime)" }}>It&apos;s Disconnected.</span>
+          <span className="text-gradient-lime">It&apos;s Disconnected.</span>
         </h1>
 
         <p
@@ -127,10 +186,10 @@ export default function Hero() {
           }}
         >
           {[
-            { icon: "🔓", label: "No Contracts" },
-            { icon: "🛡️", label: "You Own Everything" },
-            { icon: "⚡", label: "Live in 5 Days" },
-            { icon: "↑", label: "R2,000 Upgrade Credit" },
+            { icon: "\u{1F513}", label: "No Contracts" },
+            { icon: "\u{1F6E1}\uFE0F", label: "You Own Everything" },
+            { icon: "\u26A1", label: "Live in 5 Days" },
+            { icon: "\u2191", label: "R2,000 Upgrade Credit" },
           ].map((usp) => (
             <div
               key={usp.label}
@@ -185,6 +244,7 @@ export default function Hero() {
           flexDirection: "column",
           alignItems: "center",
           textDecoration: "none",
+          zIndex: 1,
         }}
       >
         <svg

@@ -2,6 +2,41 @@
 
 import { WHATSAPP_LINK } from "@/lib/constants";
 
+const trustBadges = [
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
+      </svg>
+    ),
+    label: "SSL Secured",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <rect x="3" y="11" width="18" height="11" rx="2" ry="2" /><path d="M7 11V7a5 5 0 0110 0v4" />
+      </svg>
+    ),
+    label: "Data Protected",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <path d="M21 10c0 7-9 13-9 13s-9-6-9-13a9 9 0 0118 0z" /><circle cx="12" cy="10" r="3" />
+      </svg>
+    ),
+    label: "Pretoria, SA",
+  },
+  {
+    icon: (
+      <svg width="20" height="20" viewBox="0 0 24 24" fill="none" stroke="var(--lime)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
+        <polyline points="20 6 9 17 4 12" />
+      </svg>
+    ),
+    label: "Meta Ads Certified",
+  },
+];
+
 export default function Footer() {
   const currentYear = new Date().getFullYear();
 
@@ -16,6 +51,44 @@ export default function Footer() {
       }}
     >
       <div className="container-main">
+        {/* Trust badges row */}
+        <div
+          style={{
+            display: "flex",
+            justifyContent: "center",
+            gap: 32,
+            flexWrap: "wrap",
+            marginBottom: 56,
+            paddingBottom: 40,
+            borderBottom: "1px solid var(--border)",
+          }}
+        >
+          {trustBadges.map((badge) => (
+            <div
+              key={badge.label}
+              style={{
+                display: "flex",
+                alignItems: "center",
+                gap: 8,
+              }}
+            >
+              {badge.icon}
+              <span
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.75rem",
+                  fontWeight: 500,
+                  color: "var(--text-muted)",
+                  textTransform: "uppercase",
+                  letterSpacing: "0.05em",
+                }}
+              >
+                {badge.label}
+              </span>
+            </div>
+          ))}
+        </div>
+
         <div className="footer-grid" style={{ display: "grid", gap: "2rem" }}>
           {/* Col 1: Brand */}
           <div>
@@ -32,9 +105,10 @@ export default function Footer() {
             {[
               { label: "Home", href: "/" },
               { label: "Pricing", href: "/#pricing" },
+              { label: "Blog", href: "/blog" },
               { label: "Contact", href: "/#contact" },
-              { label: "Privacy Policy", href: "https://www.stackedmarketing.co.za/privacy" },
-              { label: "Terms of Service", href: "https://www.stackedmarketing.co.za/terms" },
+              { label: "Privacy Policy", href: "/privacy" },
+              { label: "Terms of Service", href: "/terms" },
             ].map((link) => (
               <a key={link.href} href={link.href} className="footer-link"
                 style={{ color: "var(--text-secondary)", textDecoration: "none", fontSize: "var(--text-body)", fontFamily: "var(--font-body)", width: "fit-content" }}>

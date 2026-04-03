@@ -1,6 +1,7 @@
 "use client";
 
 import { useEffect, useState, useCallback } from "react";
+import Image from "next/image";
 
 const navLinks = [
   { label: "Results", href: "#proof" },
@@ -70,10 +71,10 @@ export default function Nav() {
           right: 0,
           height: 77,
           zIndex: 1000,
-          backgroundColor: scrolled ? "rgba(13, 13, 13, 0.95)" : "rgba(13, 13, 13, 0.85)",
-          backdropFilter: "blur(12px)",
-          WebkitBackdropFilter: "blur(12px)",
-          borderBottom: "1px solid var(--border)",
+          backgroundColor: scrolled ? "rgba(13, 13, 13, 0.8)" : "rgba(13, 13, 13, 0.6)",
+          backdropFilter: "blur(16px) saturate(180%)",
+          WebkitBackdropFilter: "blur(16px) saturate(180%)",
+          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -81,8 +82,8 @@ export default function Nav() {
       >
         <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
           <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
-            <img src="/images/stacked-logo.png" alt="Stacked Marketing" width={160} height={53}
-              style={{ height: 53, width: "auto", objectFit: "contain" }} />
+            <Image src="/images/stacked-logo.png" alt="Stacked Marketing" width={160} height={53}
+              style={{ height: 53, width: "auto", objectFit: "contain" }} priority />
             <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: "1.25rem", letterSpacing: "0.05em", marginLeft: 8, fontFamily: "var(--font-heading)" }}>
               STACKED
             </span>
@@ -129,11 +130,13 @@ export default function Nav() {
         <div style={{
           position: "fixed", inset: 0, zIndex: 2000,
           backgroundColor: "rgba(13, 13, 13, 0.98)",
+          backdropFilter: "blur(16px)",
+          WebkitBackdropFilter: "blur(16px)",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.5rem",
         }}>
           <button onClick={closeMobile} aria-label="Close menu"
             style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", color: "#FFFFFF", fontSize: "1.5rem", cursor: "pointer", fontFamily: "var(--font-body)", fontWeight: 500 }}>
-            ✕
+            &#x2715;
           </button>
           {navLinks.map((link) => (
             <a key={link.href} href={link.href} onClick={closeMobile}

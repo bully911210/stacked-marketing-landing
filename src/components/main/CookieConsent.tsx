@@ -3,12 +3,15 @@
 import { useState, useEffect } from "react";
 
 const CONSENT_KEY = "stacked_cookie_consent";
+const PIXEL_ID = process.env.NEXT_PUBLIC_META_PIXEL_ID || "";
+const GA4_ID = process.env.NEXT_PUBLIC_GA4_ID || "";
 
 function loadTrackingScripts() {
-  // Load Meta Pixel
   // eslint-disable-next-line @typescript-eslint/no-explicit-any
   const w = window as any;
-  if (!w.fbq) {
+
+  // Load Meta Pixel
+  if (PIXEL_ID && !w.fbq) {
     const n = function () {
       // eslint-disable-next-line prefer-rest-params
       n.callMethod ? n.callMethod.apply(n, arguments) : n.queue.push(arguments);
@@ -25,16 +28,15 @@ function loadTrackingScripts() {
     script.src = "https://connect.facebook.net/en_US/fbevents.js";
     document.head.appendChild(script);
 
-    w.fbq("init", "YOUR_PIXEL_ID");
+    w.fbq("init", PIXEL_ID);
     w.fbq("track", "PageView");
   }
 
   // Load GA4
-  if (!w.gtag) {
+  if (GA4_ID && !w.gtag) {
     const gaScript = document.createElement("script");
     gaScript.async = true;
-    gaScript.src =
-      "https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID";
+    gaScript.src = `https://www.googletagmanager.com/gtag/js?id=${GA4_ID}`;
     document.head.appendChild(gaScript);
 
     w.dataLayer = w.dataLayer || [];
@@ -44,8 +46,15 @@ function loadTrackingScripts() {
     }
     w.gtag = gtag;
     (gtag as any)("js", new Date());
-    (gtag as any)("config", "YOUR_GA4_ID");
+    (gtag as any)("config", GA4_ID);
   }
+}
+
+export function trackLead() {
+  // eslint-disable-next-line @typescript-eslint/no-explicit-any
+  const w = window as any;
+  if (w.fbq) w.fbq("track", "Lead");
+  if (w.gtag) w.gtag("event", "generate_lead", { event_category: "form", event_label: "game_plan" });
 }
 
 export default function CookieConsent() {
@@ -84,7 +93,9 @@ export default function CookieConsent() {
         left: 0,
         right: 0,
         zIndex: 998,
-        backgroundColor: "#1A1A1A",
+        backgroundColor: "rgba(26, 26, 26, 0.95)",
+        backdropFilter: "blur(12px)",
+        WebkitBackdropFilter: "blur(12px)",
         borderTop: "1px solid rgba(255,255,255,0.1)",
         padding: "16px clamp(12px, 3vw, 24px)",
         display: "flex",

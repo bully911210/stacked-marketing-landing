@@ -4,6 +4,7 @@ import Nav from "@/components/main/Nav";
 import Footer from "@/components/main/Footer";
 import WhatsApp from "@/components/main/WhatsApp";
 import Link from "next/link";
+import Image from "next/image";
 
 export const metadata: Metadata = {
   title: "Blog | Stacked Marketing",
@@ -94,16 +95,15 @@ export default function BlogPage() {
                           aspectRatio: "16/9",
                           overflow: "hidden",
                           borderRadius: "16px 16px 0 0",
+                          position: "relative",
                         }}
                       >
-                        <img
+                        <Image
                           src={post.coverImage}
                           alt={post.title}
-                          style={{
-                            width: "100%",
-                            height: "100%",
-                            objectFit: "cover",
-                          }}
+                          fill
+                          sizes="(max-width: 768px) 100vw, 340px"
+                          style={{ objectFit: "cover" }}
                         />
                       </div>
                     )}

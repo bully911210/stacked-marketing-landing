@@ -1,5 +1,4 @@
 import type { Metadata } from "next";
-import Script from "next/script";
 import "./globals.css";
 
 export const metadata: Metadata = {
@@ -174,7 +173,7 @@ const jsonLd = {
           name: "How much does Meta Ads management cost?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "A premium custom website starts from R2,499 once-off. Meta Ads management starts from R4,999 per month. Our Stacked Core package (ads + website + automation) is R11,999 per month. No contracts, cancel any time.",
+            text: "A premium custom website starts from R2,499 once-off. Meta Ads management starts from R4,999 per month. Our Stacked Core package (ads + website + automation) is R9,999 per month. No contracts, cancel any time.",
           },
         },
         {
@@ -235,7 +234,7 @@ export default function RootLayout({
   children: React.ReactNode;
 }) {
   return (
-    <html lang="en">
+    <html lang="en-ZA">
       <head>
         <link rel="preconnect" href="https://fonts.googleapis.com" />
         <link
@@ -244,7 +243,7 @@ export default function RootLayout({
           crossOrigin="anonymous"
         />
         <link
-          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700&family=IBM+Plex+Mono:wght@500;600&display=swap"
+          href="https://fonts.googleapis.com/css2?family=DM+Sans:wght@400;500;600;700;800&family=IBM+Plex+Mono:wght@500;600&display=swap"
           rel="stylesheet"
         />
         <link
@@ -263,48 +262,7 @@ export default function RootLayout({
 
         {children}
 
-        {/* Consent-gated Meta Pixel */}
-        <Script id="meta-pixel" strategy="afterInteractive">
-          {`
-            (function() {
-              try {
-                var consent = localStorage.getItem('stacked_cookie_consent');
-                if (consent !== 'accepted') return;
-              } catch(e) { return; }
-              !function(f,b,e,v,n,t,s)
-              {if(f.fbq)return;n=f.fbq=function(){n.callMethod?
-              n.callMethod.apply(n,arguments):n.queue.push(arguments)};
-              if(!f._fbq)f._fbq=n;n.push=n;n.loaded=!0;n.version='2.0';
-              n.queue=[];t=b.createElement(e);t.async=!0;
-              t.src=v;s=b.getElementsByTagName(e)[0];
-              s.parentNode.insertBefore(t,s)}(window, document,'script',
-              'https://connect.facebook.net/en_US/fbevents.js');
-              fbq('init', 'YOUR_PIXEL_ID');
-              fbq('track', 'PageView');
-            })();
-          `}
-        </Script>
-
-        {/* Consent-gated GA4 */}
-        <Script id="ga4-loader" strategy="afterInteractive">
-          {`
-            (function() {
-              try {
-                var consent = localStorage.getItem('stacked_cookie_consent');
-                if (consent !== 'accepted') return;
-              } catch(e) { return; }
-              var s = document.createElement('script');
-              s.src = 'https://www.googletagmanager.com/gtag/js?id=YOUR_GA4_ID';
-              s.async = true;
-              document.head.appendChild(s);
-              window.dataLayer = window.dataLayer || [];
-              function gtag(){dataLayer.push(arguments);}
-              window.gtag = gtag;
-              gtag('js', new Date());
-              gtag('config', 'YOUR_GA4_ID');
-            })();
-          `}
-        </Script>
+        {/* Analytics loaded exclusively via CookieConsent component — no duplication */}
       </body>
     </html>
   );
