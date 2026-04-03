@@ -110,9 +110,6 @@ export default function Proof() {
       className="section-spacing"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      {/* Section divider */}
-      <div className="section-divider" style={{ marginBottom: "var(--section-gap-desktop)" }} />
-
       <div className="container-main">
         {/* ── heading ── */}
         <div

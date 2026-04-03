@@ -1,6 +1,5 @@
 import Nav from "@/components/main/Nav";
 import Hero from "@/components/main/Hero";
-import LogoMarquee from "@/components/main/LogoMarquee";
 import Proof from "@/components/main/Proof";
 import Testimonials from "@/components/main/Testimonials";
 import Process from "@/components/main/Process";
@@ -22,7 +21,6 @@ export default function Home() {
       <GrainOverlay />
       <Nav />
       <Hero />
-      <LogoMarquee />
       <Proof />
       <Testimonials />
       <Process />
