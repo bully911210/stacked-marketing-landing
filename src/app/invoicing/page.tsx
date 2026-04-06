@@ -62,13 +62,69 @@ const SERVICE_PRESETS: { label: string; description: string; detail: string; amo
 /* ── banking details (placeholder for user to fill in) ── */
 
 const BANKING_DETAILS = {
-  bankName: "[Bank Name]",
+  bankName: "Capitec",
   accountHolder: "Stacked Marketing",
-  accountNumber: "[Account Number]",
-  branchCode: "[Branch Code]",
-  accountType: "[Account Type]",
+  accountNumber: "2522959642",
+  branchCode: "470010",
+  accountType: "Cheque Account",
   reference: "Invoice Number",
 };
+
+/* ── saved clients ── */
+
+interface SavedClient {
+  clientName: string;
+  clientEmail: string;
+  clientPhone: string;
+  clientBusiness: string;
+}
+
+const DEFAULT_CLIENTS: SavedClient[] = [
+  {
+    clientName: "Moira Kloppers",
+    clientBusiness: "Idille Bemarking",
+    clientEmail: "idille.bemarking@gmail.com",
+    clientPhone: "082 480 3338",
+  },
+  {
+    clientName: "Dawid Botha",
+    clientBusiness: "Waardevast Finansiële Advieseursdienste",
+    clientEmail: "",
+    clientPhone: "+27 84 777 0945",
+  },
+  {
+    clientName: "Johannes Stoker",
+    clientBusiness: "SIG Solutions",
+    clientEmail: "johannes@sigsolutions.co.za",
+    clientPhone: "+27 84 607 4324",
+  },
+];
+
+function getSavedClients(): SavedClient[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem("stacked_saved_clients");
+    if (raw) return JSON.parse(raw);
+    // Seed defaults on first use
+    localStorage.setItem("stacked_saved_clients", JSON.stringify(DEFAULT_CLIENTS));
+    return DEFAULT_CLIENTS;
+  } catch {
+    return DEFAULT_CLIENTS;
+  }
+}
+
+function saveClient(client: SavedClient) {
+  const clients = getSavedClients();
+  const exists = clients.findIndex(
+    (c) => c.clientName === client.clientName && c.clientBusiness === client.clientBusiness
+  );
+  if (exists >= 0) {
+    clients[exists] = client;
+  } else {
+    clients.push(client);
+  }
+  localStorage.setItem("stacked_saved_clients", JSON.stringify(clients));
+}
 
 /* ── helpers ── */
 
@@ -186,8 +242,6 @@ function generateInvoicePDF(invoice: Invoice) {
       </table>
 
       <div class="totals">
-        <div class="row"><span>Subtotal</span><span>${formatCurrency(invoice.subtotal)}</span></div>
-        <div class="row"><span>VAT (15%)</span><span>${formatCurrency(invoice.vat)}</span></div>
         <div class="row total"><span>Total Due</span><span>${formatCurrency(invoice.total)}</span></div>
       </div>
 
@@ -359,6 +413,8 @@ export default function InvoicingPage() {
 
     if (res.ok) {
       const inv = await res.json();
+      saveClient({ clientName, clientEmail, clientPhone, clientBusiness });
+      setSavedClients(getSavedClients());
       resetForm();
       setPreviewInvoice(inv);
       setView("preview");
@@ -394,8 +450,23 @@ export default function InvoicingPage() {
   });
 
   const subtotal = items.reduce((sum, i) => sum + (Number(i.amount) || 0), 0);
-  const vat = Math.round(subtotal * 0.15 * 100) / 100;
-  const total = Math.round((subtotal + vat) * 100) / 100;
+  const total = subtotal;
+
+  /* ── saved clients ── */
+  const [savedClients, setSavedClients] = useState<SavedClient[]>([]);
+
+  useEffect(() => {
+    setSavedClients(getSavedClients());
+  }, []);
+
+  const loadSavedClient = (index: number) => {
+    const client = savedClients[index];
+    if (!client) return;
+    setClientName(client.clientName);
+    setClientEmail(client.clientEmail);
+    setClientPhone(client.clientPhone);
+    setClientBusiness(client.clientBusiness);
+  };
 
   const totalOutstanding = invoices
     .filter((i) => i.status === "unpaid")
@@ -620,12 +691,6 @@ export default function InvoicingPage() {
 
             {/* Totals */}
             <div style={{ marginLeft: "auto", width: 280 }}>
-              <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", fontSize: 14, color: "#A0A0A0" }}>
-                <span>Subtotal</span><span style={{ color: "#fff" }}>{formatCurrency(previewInvoice.subtotal)}</span>
-              </div>
-              <div style={{ display: "flex", justifyContent: "space-between", padding: "8px 0", fontSize: 14, color: "#A0A0A0" }}>
-                <span>VAT (15%)</span><span style={{ color: "#fff" }}>{formatCurrency(previewInvoice.vat)}</span>
-              </div>
               <div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", fontSize: 20, fontWeight: 700, borderTop: "2px solid rgba(255,255,255,0.2)", marginTop: 4 }}>
                 <span>Total</span><span style={{ color: "#C8FF00" }}>{formatCurrency(previewInvoice.total)}</span>
               </div>
@@ -683,6 +748,28 @@ export default function InvoicingPage() {
             {/* Client Details */}
             <div style={S.card}>
               <h2 style={{ fontSize: 16, fontWeight: 600, marginBottom: 20 }}>Client Details</h2>
+
+              {savedClients.length > 0 && (
+                <div style={{ marginBottom: 16 }}>
+                  <label style={S.label}>Load Saved Client</label>
+                  <select
+                    style={{ ...S.input, cursor: "pointer" }}
+                    defaultValue=""
+                    onChange={(e) => {
+                      if (e.target.value !== "") loadSavedClient(Number(e.target.value));
+                      e.target.value = "";
+                    }}
+                  >
+                    <option value="" disabled>Select a saved client...</option>
+                    {savedClients.map((c, i) => (
+                      <option key={i} value={i} style={{ background: "#141414", color: "#fff" }}>
+                        {c.clientName}{c.clientBusiness ? ` — ${c.clientBusiness}` : ""}
+                      </option>
+                    ))}
+                  </select>
+                </div>
+              )}
+
               <div style={{ display: "grid", gridTemplateColumns: "1fr 1fr", gap: 16 }}>
                 <div>
                   <label style={S.label}>Client Name *</label>
@@ -792,12 +879,6 @@ export default function InvoicingPage() {
               {/* Running totals */}
               {items.length > 0 && (
                 <div style={{ marginTop: 20, marginLeft: "auto", width: 280 }}>
-                  <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", fontSize: 14, color: "#A0A0A0" }}>
-                    <span>Subtotal</span><span style={{ color: "#fff" }}>{formatCurrency(subtotal)}</span>
-                  </div>
-                  <div style={{ display: "flex", justifyContent: "space-between", padding: "6px 0", fontSize: 14, color: "#A0A0A0" }}>
-                    <span>VAT (15%)</span><span style={{ color: "#fff" }}>{formatCurrency(vat)}</span>
-                  </div>
                   <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", fontSize: 18, fontWeight: 700, borderTop: "2px solid rgba(255,255,255,0.15)", marginTop: 4 }}>
                     <span>Total</span><span style={{ color: "#C8FF00" }}>{formatCurrency(total)}</span>
                   </div>
