@@ -27,20 +27,28 @@ export interface Invoice {
   notes: string;
 }
 
+async function fetchBlobJson(url: string): Promise<unknown> {
+  const res = await fetch(url, {
+    headers: {
+      Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`,
+    },
+  });
+  return res.json();
+}
+
 async function getNextNumber(): Promise<string> {
   let counter = 1;
   try {
     const existing = await head(COUNTER_KEY);
     if (existing) {
-      const res = await fetch(existing.url);
-      const data = await res.json();
+      const data = (await fetchBlobJson(existing.url)) as { counter?: number };
       counter = (data.counter || 0) + 1;
     }
   } catch {
     // First invoice — counter starts at 1
   }
   await put(COUNTER_KEY, JSON.stringify({ counter }), {
-    access: "public",
+    access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
   });
@@ -54,8 +62,7 @@ export async function getAllInvoices(): Promise<Invoice[]> {
   for (const blob of blobs) {
     if (blob.pathname === COUNTER_KEY) continue;
     try {
-      const res = await fetch(blob.url);
-      const invoice = (await res.json()) as Invoice;
+      const invoice = (await fetchBlobJson(blob.url)) as Invoice;
       invoices.push(invoice);
     } catch {
       console.error(`Skipping corrupted invoice blob: ${blob.pathname}`);
@@ -72,8 +79,7 @@ export async function getInvoiceById(id: string): Promise<Invoice | null> {
     const blobKey = `${PREFIX}${id}.json`;
     const existing = await head(blobKey);
     if (!existing) return null;
-    const res = await fetch(existing.url);
-    return (await res.json()) as Invoice;
+    return (await fetchBlobJson(existing.url)) as Invoice;
   } catch {
     return null;
   }
@@ -108,7 +114,7 @@ export async function createInvoice(
   };
 
   await put(`${PREFIX}${id}.json`, JSON.stringify(invoice, null, 2), {
-    access: "public",
+    access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
   });
@@ -127,7 +133,7 @@ export async function updateInvoiceStatus(
   invoice.paidDate = status === "paid" ? new Date().toISOString() : null;
 
   await put(`${PREFIX}${id}.json`, JSON.stringify(invoice, null, 2), {
-    access: "public",
+    access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
   });
