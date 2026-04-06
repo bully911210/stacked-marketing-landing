@@ -76,8 +76,8 @@ export function createInvoice(
   const id = invoiceNumber.toLowerCase().replace("sm-", "inv-");
 
   const subtotal = data.items.reduce((sum, item) => sum + item.amount, 0);
-  const vat = Math.round(subtotal * 0.15 * 100) / 100;
-  const total = Math.round((subtotal + vat) * 100) / 100;
+  const vat = 0;
+  const total = subtotal;
 
   const invoice: Invoice = {
     id,
