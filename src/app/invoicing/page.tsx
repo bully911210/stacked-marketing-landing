@@ -79,13 +79,37 @@ interface SavedClient {
   clientBusiness: string;
 }
 
+const DEFAULT_CLIENTS: SavedClient[] = [
+  {
+    clientName: "Moira Kloppers",
+    clientBusiness: "Idille Bemarking",
+    clientEmail: "idille.bemarking@gmail.com",
+    clientPhone: "082 480 3338",
+  },
+  {
+    clientName: "Dawid Botha",
+    clientBusiness: "Waardevast Finansiële Advieseursdienste",
+    clientEmail: "",
+    clientPhone: "+27 84 777 0945",
+  },
+  {
+    clientName: "Johannes Stoker",
+    clientBusiness: "SIG Solutions",
+    clientEmail: "johannes@sigsolutions.co.za",
+    clientPhone: "+27 84 607 4324",
+  },
+];
+
 function getSavedClients(): SavedClient[] {
   if (typeof window === "undefined") return [];
   try {
     const raw = localStorage.getItem("stacked_saved_clients");
-    return raw ? JSON.parse(raw) : [];
+    if (raw) return JSON.parse(raw);
+    // Seed defaults on first use
+    localStorage.setItem("stacked_saved_clients", JSON.stringify(DEFAULT_CLIENTS));
+    return DEFAULT_CLIENTS;
   } catch {
-    return [];
+    return DEFAULT_CLIENTS;
   }
 }
 
