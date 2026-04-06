@@ -1,4 +1,4 @@
-import { put, list, del, head } from "@vercel/blob";
+import { put, list, del } from "@vercel/blob";
 
 const PREFIX = "invoices/";
 const COUNTER_KEY = "invoices/_counter.json";
@@ -27,21 +27,22 @@ export interface Invoice {
   notes: string;
 }
 
-async function fetchBlobJson(url: string): Promise<unknown> {
-  const res = await fetch(url, {
-    headers: {
-      Authorization: `Bearer ${process.env.BLOB_READ_WRITE_TOKEN}`,
-    },
-  });
+async function findBlob(pathname: string) {
+  const { blobs } = await list({ prefix: pathname });
+  return blobs.find((b) => b.pathname === pathname) ?? null;
+}
+
+async function downloadBlobJson(downloadUrl: string): Promise<unknown> {
+  const res = await fetch(downloadUrl);
   return res.json();
 }
 
 async function getNextNumber(): Promise<string> {
   let counter = 1;
   try {
-    const existing = await head(COUNTER_KEY);
-    if (existing) {
-      const data = (await fetchBlobJson(existing.url)) as { counter?: number };
+    const blob = await findBlob(COUNTER_KEY);
+    if (blob) {
+      const data = (await downloadBlobJson(blob.downloadUrl)) as { counter?: number };
       counter = (data.counter || 0) + 1;
     }
   } catch {
@@ -62,7 +63,7 @@ export async function getAllInvoices(): Promise<Invoice[]> {
   for (const blob of blobs) {
     if (blob.pathname === COUNTER_KEY) continue;
     try {
-      const invoice = (await fetchBlobJson(blob.url)) as Invoice;
+      const invoice = (await downloadBlobJson(blob.downloadUrl)) as Invoice;
       invoices.push(invoice);
     } catch {
       console.error(`Skipping corrupted invoice blob: ${blob.pathname}`);
@@ -76,10 +77,9 @@ export async function getAllInvoices(): Promise<Invoice[]> {
 
 export async function getInvoiceById(id: string): Promise<Invoice | null> {
   try {
-    const blobKey = `${PREFIX}${id}.json`;
-    const existing = await head(blobKey);
-    if (!existing) return null;
-    return (await fetchBlobJson(existing.url)) as Invoice;
+    const blob = await findBlob(`${PREFIX}${id}.json`);
+    if (!blob) return null;
+    return (await downloadBlobJson(blob.downloadUrl)) as Invoice;
   } catch {
     return null;
   }
@@ -143,10 +143,9 @@ export async function updateInvoiceStatus(
 
 export async function deleteInvoice(id: string): Promise<boolean> {
   try {
-    const blobKey = `${PREFIX}${id}.json`;
-    const existing = await head(blobKey);
-    if (!existing) return false;
-    await del(existing.url);
+    const blob = await findBlob(`${PREFIX}${id}.json`);
+    if (!blob) return false;
+    await del(blob.url);
     return true;
   } catch {
     return false;
