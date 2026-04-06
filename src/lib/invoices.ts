@@ -2,6 +2,7 @@ import { put, list, del } from "@vercel/blob";
 
 const PREFIX = "invoices/";
 const COUNTER_KEY = "invoices/_counter.json";
+const BLOB_TOKEN = process.env.BLOB_READ_WRITE_TOKEN || process.env.stacked1_READ_WRITE_TOKEN || "";
 
 export interface InvoiceLineItem {
   description: string;
@@ -28,7 +29,7 @@ export interface Invoice {
 }
 
 async function findBlob(pathname: string) {
-  const { blobs } = await list({ prefix: pathname });
+  const { blobs } = await list({ prefix: pathname, token: BLOB_TOKEN });
   return blobs.find((b) => b.pathname === pathname) ?? null;
 }
 
@@ -52,12 +53,13 @@ async function getNextNumber(): Promise<string> {
     access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
+    token: BLOB_TOKEN,
   });
   return `SM-${String(counter).padStart(4, "0")}`;
 }
 
 export async function getAllInvoices(): Promise<Invoice[]> {
-  const { blobs } = await list({ prefix: PREFIX });
+  const { blobs } = await list({ prefix: PREFIX, token: BLOB_TOKEN });
 
   const invoices: Invoice[] = [];
   for (const blob of blobs) {
@@ -117,6 +119,7 @@ export async function createInvoice(
     access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
+    token: BLOB_TOKEN,
   });
 
   return invoice;
@@ -136,6 +139,7 @@ export async function updateInvoiceStatus(
     access: "private",
     addRandomSuffix: false,
     contentType: "application/json",
+    token: BLOB_TOKEN,
   });
 
   return invoice;
@@ -145,7 +149,7 @@ export async function deleteInvoice(id: string): Promise<boolean> {
   try {
     const blob = await findBlob(`${PREFIX}${id}.json`);
     if (!blob) return false;
-    await del(blob.url);
+    await del(blob.url, { token: BLOB_TOKEN });
     return true;
   } catch {
     return false;
