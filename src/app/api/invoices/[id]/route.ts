@@ -14,13 +14,17 @@ export async function GET(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
-  const invoice = getInvoiceById(id);
-  if (!invoice) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+  try {
+    const { id } = await params;
+    const invoice = getInvoiceById(id);
+    if (!invoice) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json(invoice);
+  } catch (err) {
+    console.error("Failed to get invoice:", err);
+    return NextResponse.json({ error: "Failed to get invoice" }, { status: 500 });
   }
-
-  return NextResponse.json(invoice);
 }
 
 export async function PATCH(
@@ -31,15 +35,19 @@ export async function PATCH(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
-  const body = await req.json();
-  const invoice = updateInvoiceStatus(id, body.status);
+  try {
+    const { id } = await params;
+    const body = await req.json();
+    const invoice = updateInvoiceStatus(id, body.status);
 
-  if (!invoice) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    if (!invoice) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json(invoice);
+  } catch (err) {
+    console.error("Failed to update invoice:", err);
+    return NextResponse.json({ error: "Failed to update invoice" }, { status: 500 });
   }
-
-  return NextResponse.json(invoice);
 }
 
 export async function DELETE(
@@ -50,12 +58,16 @@ export async function DELETE(
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const { id } = await params;
-  const deleted = deleteInvoice(id);
+  try {
+    const { id } = await params;
+    const deleted = deleteInvoice(id);
 
-  if (!deleted) {
-    return NextResponse.json({ error: "Not found" }, { status: 404 });
+    if (!deleted) {
+      return NextResponse.json({ error: "Not found" }, { status: 404 });
+    }
+    return NextResponse.json({ success: true });
+  } catch (err) {
+    console.error("Failed to delete invoice:", err);
+    return NextResponse.json({ error: "Failed to delete invoice" }, { status: 500 });
   }
-
-  return NextResponse.json({ success: true });
 }
