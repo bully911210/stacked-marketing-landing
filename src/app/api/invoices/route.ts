@@ -7,7 +7,7 @@ export async function GET() {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
   try {
-    const invoices = getAllInvoices();
+    const invoices = await getAllInvoices();
     return NextResponse.json(invoices);
   } catch (err) {
     console.error("Failed to load invoices:", err);
@@ -30,7 +30,7 @@ export async function POST(req: NextRequest) {
       );
     }
 
-    const invoice = createInvoice({
+    const invoice = await createInvoice({
       clientName: body.clientName,
       clientEmail: body.clientEmail ?? "",
       clientPhone: body.clientPhone ?? "",
