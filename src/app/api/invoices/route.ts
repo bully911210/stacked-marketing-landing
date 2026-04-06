@@ -6,8 +6,13 @@ export async function GET() {
   if (!(await isAuthenticated())) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
-  const invoices = getAllInvoices();
-  return NextResponse.json(invoices);
+  try {
+    const invoices = getAllInvoices();
+    return NextResponse.json(invoices);
+  } catch (err) {
+    console.error("Failed to load invoices:", err);
+    return NextResponse.json({ error: "Failed to load invoices" }, { status: 500 });
+  }
 }
 
 export async function POST(req: NextRequest) {
@@ -24,15 +29,20 @@ export async function POST(req: NextRequest) {
     );
   }
 
-  const invoice = createInvoice({
-    clientName: body.clientName,
-    clientEmail: body.clientEmail ?? "",
-    clientPhone: body.clientPhone ?? "",
-    clientBusiness: body.clientBusiness ?? "",
-    items: body.items,
-    dueDate: body.dueDate ?? new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0],
-    notes: body.notes ?? "",
-  });
+  try {
+    const invoice = createInvoice({
+      clientName: body.clientName,
+      clientEmail: body.clientEmail ?? "",
+      clientPhone: body.clientPhone ?? "",
+      clientBusiness: body.clientBusiness ?? "",
+      items: body.items,
+      dueDate: body.dueDate ?? new Date(Date.now() + 7 * 86400000).toISOString().split("T")[0],
+      notes: body.notes ?? "",
+    });
 
-  return NextResponse.json(invoice, { status: 201 });
+    return NextResponse.json(invoice, { status: 201 });
+  } catch (err) {
+    console.error("Failed to create invoice:", err);
+    return NextResponse.json({ error: "Failed to create invoice" }, { status: 500 });
+  }
 }

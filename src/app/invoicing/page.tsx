@@ -265,6 +265,12 @@ function generateInvoicePDF(invoice: Invoice) {
           : ""
       }
 
+      <div style="margin-top: 48px; padding: 24px; background: linear-gradient(135deg, #0D0D0D, #1a1a1a); border: 1px solid #C8FF0040; border-radius: 10px; text-align: center;">
+        <p style="font-size: 15px; font-weight: 600; color: #C8FF00; margin-bottom: 6px;">Need more from your online presence?</p>
+        <p style="font-size: 13px; color: #888; line-height: 1.6;">Stacked Marketing offers website design, performance advertising, SEO &amp; more.<br/>Get in touch for a free consultation.</p>
+        <p style="margin-top: 12px; font-size: 13px;"><a href="https://www.stackedmarketing.co.za" style="color: #C8FF00; text-decoration: none; font-weight: 600;">www.stackedmarketing.co.za</a> &nbsp;&middot;&nbsp; <a href="https://wa.me/27621779799" style="color: #C8FF00; text-decoration: none; font-weight: 600;">WhatsApp Us</a></p>
+      </div>
+
       <div class="footer">
         <p>Stacked Marketing &middot; Pretoria, South Africa &middot; www.stackedmarketing.co.za</p>
       </div>
@@ -330,11 +336,15 @@ export default function InvoicingPage() {
   /* ── data ── */
 
   const loadInvoices = useCallback(async () => {
-    const res = await fetch("/api/invoices");
-    if (res.ok) {
-      setInvoices(await res.json());
-    } else if (res.status === 401) {
-      setView("login");
+    try {
+      const res = await fetch("/api/invoices");
+      if (res.ok) {
+        setInvoices(await res.json());
+      } else if (res.status === 401) {
+        setView("login");
+      }
+    } catch {
+      // Network or parse error — invoices list stays as-is
     }
   }, []);
 
@@ -719,6 +729,17 @@ export default function InvoicingPage() {
                 <p style={{ fontSize: 13, color: "#A0A0A0", lineHeight: 1.6 }}>{previewInvoice.notes}</p>
               </div>
             )}
+
+            {/* Upsell */}
+            <div style={{ marginTop: 48, padding: 24, background: "linear-gradient(135deg, rgba(200,255,0,0.04), rgba(200,255,0,0.01))", border: "1px solid rgba(200,255,0,0.15)", borderRadius: 10, textAlign: "center" }}>
+              <p style={{ fontSize: 15, fontWeight: 600, color: "#C8FF00", marginBottom: 6 }}>Need more from your online presence?</p>
+              <p style={{ fontSize: 13, color: "#888", lineHeight: 1.6 }}>Stacked Marketing offers website design, performance advertising, SEO &amp; more.<br />Get in touch for a free consultation.</p>
+              <p style={{ marginTop: 12, fontSize: 13 }}>
+                <a href="https://www.stackedmarketing.co.za" style={{ color: "#C8FF00", textDecoration: "none", fontWeight: 600 }}>www.stackedmarketing.co.za</a>
+                {" "}&middot;{" "}
+                <a href="https://wa.me/27621779799" style={{ color: "#C8FF00", textDecoration: "none", fontWeight: 600 }}>WhatsApp Us</a>
+              </p>
+            </div>
           </div>
         </div>
       </div>
