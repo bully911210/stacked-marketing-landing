@@ -51,10 +51,15 @@ export function getAllInvoices(): Invoice[] {
     .readdirSync(INVOICES_DIR)
     .filter((f) => f.endsWith(".json") && !f.startsWith("_"));
 
-  const invoices = files.map((file) => {
-    const raw = fs.readFileSync(path.join(INVOICES_DIR, file), "utf-8");
-    return JSON.parse(raw) as Invoice;
-  });
+  const invoices: Invoice[] = [];
+  for (const file of files) {
+    try {
+      const raw = fs.readFileSync(path.join(INVOICES_DIR, file), "utf-8");
+      invoices.push(JSON.parse(raw) as Invoice);
+    } catch {
+      console.error(`Skipping corrupted invoice file: ${file}`);
+    }
+  }
 
   return invoices.sort(
     (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()

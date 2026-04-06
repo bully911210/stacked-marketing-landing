@@ -407,31 +407,39 @@ export default function InvoicingPage() {
     }
 
     setSaving(true);
-    const res = await fetch("/api/invoices", {
-      method: "POST",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({
-        clientName,
-        clientEmail,
-        clientPhone,
-        clientBusiness,
-        items,
-        dueDate,
-        notes,
-      }),
-    });
+    try {
+      const res = await fetch("/api/invoices", {
+        method: "POST",
+        headers: { "Content-Type": "application/json" },
+        body: JSON.stringify({
+          clientName,
+          clientEmail,
+          clientPhone,
+          clientBusiness,
+          items,
+          dueDate,
+          notes,
+        }),
+      });
 
-    if (res.ok) {
-      const inv = await res.json();
-      saveClient({ clientName, clientEmail, clientPhone, clientBusiness });
-      setSavedClients(getSavedClients());
-      resetForm();
-      setPreviewInvoice(inv);
-      setView("preview");
-      loadInvoices();
-    } else {
-      const data = await res.json();
-      setError(data.error || "Failed to create invoice");
+      if (res.ok) {
+        const inv = await res.json();
+        saveClient({ clientName, clientEmail, clientPhone, clientBusiness });
+        setSavedClients(getSavedClients());
+        resetForm();
+        setPreviewInvoice(inv);
+        setView("preview");
+        loadInvoices();
+      } else {
+        try {
+          const data = await res.json();
+          setError(data.error || "Failed to create invoice");
+        } catch {
+          setError("Failed to create invoice. Please try again.");
+        }
+      }
+    } catch {
+      setError("Network error. Please check your connection and try again.");
     }
     setSaving(false);
   };

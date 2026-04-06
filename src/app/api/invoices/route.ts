@@ -20,16 +20,16 @@ export async function POST(req: NextRequest) {
     return NextResponse.json({ error: "Unauthorized" }, { status: 401 });
   }
 
-  const body = await req.json();
-
-  if (!body.clientName || !body.items?.length) {
-    return NextResponse.json(
-      { error: "Client name and at least one line item required" },
-      { status: 400 }
-    );
-  }
-
   try {
+    const body = await req.json();
+
+    if (!body.clientName || !body.items?.length) {
+      return NextResponse.json(
+        { error: "Client name and at least one line item required" },
+        { status: 400 }
+      );
+    }
+
     const invoice = createInvoice({
       clientName: body.clientName,
       clientEmail: body.clientEmail ?? "",
