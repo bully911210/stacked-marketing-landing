@@ -350,13 +350,17 @@ export default function InvoicingPage() {
 
   useEffect(() => {
     fetch("/api/cms/auth")
-      .then((r) => r.json())
+      .then((r) => {
+        if (!r.ok) return null;
+        return r.json();
+      })
       .then((d) => {
-        if (d.authenticated) {
+        if (d?.authenticated) {
           setView("list");
           loadInvoices();
         }
-      });
+      })
+      .catch(() => {});
   }, [loadInvoices]);
 
   /* ── actions ── */
