@@ -16,7 +16,7 @@ export async function GET(
 
   try {
     const { id } = await params;
-    const invoice = getInvoiceById(id);
+    const invoice = await getInvoiceById(id);
     if (!invoice) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
     }
@@ -38,7 +38,7 @@ export async function PATCH(
   try {
     const { id } = await params;
     const body = await req.json();
-    const invoice = updateInvoiceStatus(id, body.status);
+    const invoice = await updateInvoiceStatus(id, body.status);
 
     if (!invoice) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });
@@ -60,7 +60,7 @@ export async function DELETE(
 
   try {
     const { id } = await params;
-    const deleted = deleteInvoice(id);
+    const deleted = await deleteInvoice(id);
 
     if (!deleted) {
       return NextResponse.json({ error: "Not found" }, { status: 404 });

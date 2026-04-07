@@ -1,8 +1,4 @@
-import fs from "fs";
-import path from "path";
-
-const INVOICES_DIR = path.join(process.cwd(), "content/invoices");
-const COUNTER_FILE = path.join(INVOICES_DIR, "_counter.json");
+import { put, list, del } from "@vercel/blob";
 
 export interface InvoiceLineItem {
   description: string;
@@ -28,56 +24,87 @@ export interface Invoice {
   notes: string;
 }
 
-function ensureDir() {
-  if (!fs.existsSync(INVOICES_DIR)) {
-    fs.mkdirSync(INVOICES_DIR, { recursive: true });
-  }
-}
-
-function getNextNumber(): string {
-  ensureDir();
+async function getNextNumber(): Promise<string> {
   let counter = 1;
-  if (fs.existsSync(COUNTER_FILE)) {
-    const data = JSON.parse(fs.readFileSync(COUNTER_FILE, "utf-8"));
-    counter = (data.counter || 0) + 1;
+  try {
+    const { blobs } = await list({ prefix: "invoices/_counter.json" });
+    if (blobs.length > 0) {
+      const res = await fetch(blobs[0].url);
+      const data = await res.json();
+      counter = (data.counter || 0) + 1;
+    }
+  } catch {
+    // First invoice — counter starts at 1
   }
-  fs.writeFileSync(COUNTER_FILE, JSON.stringify({ counter }));
+  await put("invoices/_counter.json", JSON.stringify({ counter }), {
+    access: "public",
+    addRandomSuffix: false,
+    contentType: "application/json",
+  });
   return `SM-${String(counter).padStart(4, "0")}`;
 }
 
-export function getAllInvoices(): Invoice[] {
-  ensureDir();
-  const files = fs
-    .readdirSync(INVOICES_DIR)
-    .filter((f) => f.endsWith(".json") && !f.startsWith("_"));
-
+export async function getAllInvoices(): Promise<Invoice[]> {
   const invoices: Invoice[] = [];
-  for (const file of files) {
-    try {
-      const raw = fs.readFileSync(path.join(INVOICES_DIR, file), "utf-8");
-      invoices.push(JSON.parse(raw) as Invoice);
-    } catch {
-      console.error(`Skipping corrupted invoice file: ${file}`);
-    }
-  }
+  let cursor: string | undefined;
+
+  do {
+    const result = await list({
+      prefix: "invoices/",
+      ...(cursor ? { cursor } : {}),
+    });
+
+    const invoiceBlobs = result.blobs.filter(
+      (b) => b.pathname.endsWith(".json") && !b.pathname.includes("_counter")
+    );
+
+    const fetched = await Promise.all(
+      invoiceBlobs.map(async (blob) => {
+        try {
+          const res = await fetch(blob.url);
+          return (await res.json()) as Invoice;
+        } catch {
+          console.error(`Skipping corrupted invoice blob: ${blob.pathname}`);
+          return null;
+        }
+      })
+    );
+
+    invoices.push(...fetched.filter((inv): inv is Invoice => inv !== null));
+    cursor = result.hasMore ? result.cursor : undefined;
+  } while (cursor);
 
   return invoices.sort(
-    (a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
+    (a, b) =>
+      new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime()
   );
 }
 
-export function getInvoiceById(id: string): Invoice | null {
-  ensureDir();
-  const filePath = path.join(INVOICES_DIR, `${id}.json`);
-  if (!fs.existsSync(filePath)) return null;
-  return JSON.parse(fs.readFileSync(filePath, "utf-8"));
+export async function getInvoiceById(id: string): Promise<Invoice | null> {
+  try {
+    const { blobs } = await list({ prefix: `invoices/${id}.json` });
+    if (blobs.length === 0) return null;
+    const res = await fetch(blobs[0].url);
+    return (await res.json()) as Invoice;
+  } catch {
+    return null;
+  }
 }
 
-export function createInvoice(
-  data: Omit<Invoice, "id" | "invoiceNumber" | "subtotal" | "vat" | "total" | "status" | "paidDate" | "createdAt">
-): Invoice {
-  ensureDir();
-  const invoiceNumber = getNextNumber();
+export async function createInvoice(
+  data: Omit<
+    Invoice,
+    | "id"
+    | "invoiceNumber"
+    | "subtotal"
+    | "vat"
+    | "total"
+    | "status"
+    | "paidDate"
+    | "createdAt"
+  >
+): Promise<Invoice> {
+  const invoiceNumber = await getNextNumber();
   const id = invoiceNumber.toLowerCase().replace("sm-", "inv-");
 
   const subtotal = data.items.reduce((sum, item) => sum + item.amount, 0);
@@ -102,35 +129,49 @@ export function createInvoice(
     notes: data.notes,
   };
 
-  fs.writeFileSync(
-    path.join(INVOICES_DIR, `${id}.json`),
-    JSON.stringify(invoice, null, 2)
+  await put(
+    `invoices/${id}.json`,
+    JSON.stringify(invoice, null, 2),
+    {
+      access: "public",
+      addRandomSuffix: false,
+      contentType: "application/json",
+    }
   );
 
   return invoice;
 }
 
-export function updateInvoiceStatus(
+export async function updateInvoiceStatus(
   id: string,
   status: "paid" | "unpaid"
-): Invoice | null {
-  const invoice = getInvoiceById(id);
+): Promise<Invoice | null> {
+  const invoice = await getInvoiceById(id);
   if (!invoice) return null;
 
   invoice.status = status;
   invoice.paidDate = status === "paid" ? new Date().toISOString() : null;
 
-  fs.writeFileSync(
-    path.join(INVOICES_DIR, `${id}.json`),
-    JSON.stringify(invoice, null, 2)
+  await put(
+    `invoices/${id}.json`,
+    JSON.stringify(invoice, null, 2),
+    {
+      access: "public",
+      addRandomSuffix: false,
+      contentType: "application/json",
+    }
   );
 
   return invoice;
 }
 
-export function deleteInvoice(id: string): boolean {
-  const filePath = path.join(INVOICES_DIR, `${id}.json`);
-  if (!fs.existsSync(filePath)) return false;
-  fs.unlinkSync(filePath);
-  return true;
+export async function deleteInvoice(id: string): Promise<boolean> {
+  try {
+    const { blobs } = await list({ prefix: `invoices/${id}.json` });
+    if (blobs.length === 0) return false;
+    await del(blobs[0].url);
+    return true;
+  } catch {
+    return false;
+  }
 }
