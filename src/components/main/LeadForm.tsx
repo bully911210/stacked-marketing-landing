@@ -163,7 +163,7 @@ export default function LeadForm() {
       className="section-spacing"
       style={{
         backgroundColor: "var(--bg-primary)",
-        background: "radial-gradient(ellipse at 50% 50%, rgba(200,255,0,0.04) 0%, transparent 60%) var(--bg-primary)",
+        background: "radial-gradient(ellipse at 50% 50%, rgba(107,122,63,0.05) 0%, transparent 60%) var(--bg-primary)",
       }}
     >
       <div className="container-main">

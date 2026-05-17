@@ -388,9 +388,9 @@ export default function CMSPage() {
               <label style={styles.label}>Tags</label>
               <div style={{ display: "flex", gap: 8, flexWrap: "wrap", marginBottom: 8 }}>
                 {currentPost.tags.map((tag) => (
-                  <span key={tag} style={{ background: "rgba(200,255,0,0.12)", color: "#C8FF00", fontSize: "0.75rem", fontWeight: 600, padding: "4px 12px", borderRadius: 100, display: "flex", alignItems: "center", gap: 6 }}>
+                  <span key={tag} style={{ background: "rgba(107,122,63,0.12)", color: "#6B7A3F", fontSize: "0.75rem", fontWeight: 600, padding: "4px 12px", borderRadius: 100, display: "flex", alignItems: "center", gap: 6 }}>
                     {tag}
-                    <button onClick={() => removeTag(tag)} style={{ background: "none", border: "none", color: "#C8FF00", cursor: "pointer", fontSize: "0.875rem", padding: 0, lineHeight: 1 }}>&times;</button>
+                    <button onClick={() => removeTag(tag)} style={{ background: "none", border: "none", color: "#6B7A3F", cursor: "pointer", fontSize: "0.875rem", padding: 0, lineHeight: 1 }}>&times;</button>
                   </span>
                 ))}
               </div>
@@ -452,15 +452,15 @@ export default function CMSPage() {
             key={s}
             onClick={() => setFilter(s)}
             style={{
-              background: filter === s ? "rgba(200,255,0,0.1)" : "#1A1A1A",
-              border: filter === s ? "1px solid rgba(200,255,0,0.3)" : "1px solid rgba(255,255,255,0.08)",
+              background: filter === s ? "rgba(107,122,63,0.1)" : "#1A1A1A",
+              border: filter === s ? "1px solid rgba(107,122,63,0.3)" : "1px solid rgba(255,255,255,0.08)",
               borderRadius: 10,
               padding: "16px 12px",
               cursor: "pointer",
               textAlign: "center",
             }}
           >
-            <span style={{ display: "block", fontSize: "1.5rem", fontWeight: 700, color: filter === s ? "#C8FF00" : "#fff", fontFamily: "var(--font-mono)" }}>
+            <span style={{ display: "block", fontSize: "1.5rem", fontWeight: 700, color: filter === s ? "#6B7A3F" : "#fff", fontFamily: "var(--font-mono)" }}>
               {counts[s]}
             </span>
             <span style={{ fontSize: "0.7rem", textTransform: "uppercase", letterSpacing: "0.08em", color: "#A0A0A0" }}>
@@ -576,7 +576,7 @@ function CMSShell({ children, onLogout, title }: {
       <div style={{ background: "#111", borderBottom: "1px solid rgba(255,255,255,0.06)", padding: "12px 0", position: "sticky", top: 0, zIndex: 100 }}>
         <div style={{ maxWidth: 1100, margin: "0 auto", padding: "0 24px", display: "flex", justifyContent: "space-between", alignItems: "center" }}>
           <div style={{ display: "flex", alignItems: "center", gap: 12 }}>
-            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.9375rem", color: "#C8FF00" }}>STACKED</span>
+            <span style={{ fontFamily: "var(--font-heading)", fontWeight: 700, fontSize: "0.9375rem", color: "#6B7A3F" }}>STACKED</span>
             <span style={{ color: "#333" }}>|</span>
             <span style={{ fontSize: "0.8125rem", color: "#A0A0A0" }}>{title}</span>
           </div>
@@ -622,7 +622,7 @@ const styles: Record<string, React.CSSProperties> = {
     marginBottom: 6,
   },
   btnPrimary: {
-    background: "#C8FF00",
+    background: "#6B7A3F",
     color: "#0D0D0D",
     border: "none",
     borderRadius: 10,
@@ -656,7 +656,7 @@ const styles: Record<string, React.CSSProperties> = {
   backBtn: {
     background: "none",
     border: "none",
-    color: "#C8FF00",
+    color: "#6B7A3F",
     fontSize: "0.875rem",
     fontWeight: 500,
     cursor: "pointer",
@@ -698,10 +698,10 @@ const blogContentStyles = `
   .blog-content h2 { color: #fff; font-size: 1.5rem; font-weight: 700; margin: 1.5em 0 0.5em; }
   .blog-content h3 { color: #fff; font-size: 1.25rem; font-weight: 600; margin: 1.5em 0 0.5em; }
   .blog-content p { margin-bottom: 1.25em; }
-  .blog-content a { color: #C8FF00; }
+  .blog-content a { color: #6B7A3F; }
   .blog-content ul, .blog-content ol { padding-left: 1.5em; margin-bottom: 1.25em; }
   .blog-content li { margin-bottom: 0.5em; }
-  .blog-content blockquote { border-left: 3px solid #C8FF00; padding: 12px 20px; margin: 1.5em 0; background: rgba(200,255,0,0.04); border-radius: 0 8px 8px 0; }
+  .blog-content blockquote { border-left: 3px solid #6B7A3F; padding: 12px 20px; margin: 1.5em 0; background: rgba(107,122,63,0.04); border-radius: 0 8px 8px 0; }
   .blog-content img { max-width: 100%; border-radius: 8px; margin: 1.5em 0; }
   .blog-content code { font-family: var(--font-mono); background: rgba(255,255,255,0.08); padding: 2px 6px; border-radius: 4px; }
   .blog-content pre { background: #1A1A1A; border-radius: 8px; padding: 16px; overflow-x: auto; margin: 1.5em 0; }

@@ -7,7 +7,7 @@ import WhatsApp from "@/components/main/WhatsApp";
 export const metadata: Metadata = {
   title: "Contact | Stacked Marketing",
   description:
-    "Get in touch with Stacked Marketing. Website, ads, email automation. One team. One invoice. Pretoria.",
+    "Get in touch with Stacked Marketing. Professional websites and managed Meta Ads. Pretoria.",
 };
 
 export default function ContactPage() {

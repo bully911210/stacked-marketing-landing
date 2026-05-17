@@ -15,50 +15,46 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Aurora spotlight */}
+      {/* Background media — olive gradient always renders as fallback;
+          optional looping video sits on top when public/brand assets exist */}
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          top: "-20%",
-          left: "50%",
-          transform: "translateX(-50%)",
-          width: "80vw",
-          height: "60vh",
-          background: "radial-gradient(ellipse, rgba(200,255,0,0.07) 0%, transparent 70%)",
-          filter: "blur(80px)",
+          inset: 0,
+          background:
+            "radial-gradient(ellipse 80vw 60vh at 50% 0%, rgba(107,122,63,0.10) 0%, transparent 70%), linear-gradient(180deg, var(--bg-primary) 0%, var(--bg-tertiary) 100%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
       />
-
-      {/* Floating glow orbs */}
-      <div
+      <video
         aria-hidden="true"
+        autoPlay
+        muted
+        loop
+        playsInline
+        poster="/brand/hero-16x9.jpg"
         style={{
           position: "absolute",
-          top: "10%",
-          left: "-5%",
-          width: "35vw",
-          height: "35vw",
-          borderRadius: "50%",
-          background: "rgba(200,255,0,0.03)",
-          filter: "blur(120px)",
+          inset: 0,
+          width: "100%",
+          height: "100%",
+          objectFit: "cover",
+          opacity: 0.22,
           pointerEvents: "none",
           zIndex: 0,
         }}
-      />
+      >
+        <source src="/brand/hero-16x9.mp4" type="video/mp4" />
+      </video>
       <div
         aria-hidden="true"
         style={{
           position: "absolute",
-          bottom: "5%",
-          right: "-8%",
-          width: "30vw",
-          height: "30vw",
-          borderRadius: "50%",
-          background: "rgba(200,255,0,0.02)",
-          filter: "blur(100px)",
+          inset: 0,
+          background:
+            "linear-gradient(180deg, rgba(255,255,255,0.82) 0%, rgba(247,245,239,0.78) 100%)",
           pointerEvents: "none",
           zIndex: 0,
         }}
@@ -76,8 +72,8 @@ export default function Hero() {
             alignItems: "center",
             gap: 8,
             padding: "6px 16px",
-            border: "1px solid rgba(200,255,0,0.2)",
-            background: "rgba(200,255,0,0.05)",
+            border: "1px solid rgba(107,122,63,0.25)",
+            background: "rgba(107,122,63,0.08)",
             borderRadius: 100,
             marginBottom: 32,
           }}
@@ -102,17 +98,17 @@ export default function Hero() {
               color: "var(--lime)",
             }}
           >
-            WEBSITE + ADS + AUTOMATIONS
+            WEBSITES &middot; MANAGED ADS
           </span>
         </div>
 
         <h1
           className="text-h1 hero-fade hero-fade-delay-1"
-          style={{ maxWidth: 800 }}
+          style={{ maxWidth: 820 }}
         >
-          <span className="text-gradient">Your Marketing Isn&apos;t Broken.</span>
+          <span className="text-gradient">Two things,</span>
           <br />
-          <span className="text-gradient-lime">It&apos;s Disconnected.</span>
+          <span className="text-gradient-lime">done brilliantly.</span>
         </h1>
 
         <p
@@ -128,8 +124,8 @@ export default function Hero() {
             lineHeight: 1.6,
           }}
         >
-          One system that turns ad spend into paying customers.
-          Website. Ads. Automations. All connected.
+          A professional website from R3,999. Managed Meta Ads from R4,999/mo.
+          Both built to get you leads. Nothing more. Nothing else.
         </p>
 
         <div
@@ -189,7 +185,7 @@ export default function Hero() {
             { icon: "\u{1F513}", label: "No Contracts" },
             { icon: "\u{1F6E1}\uFE0F", label: "You Own Everything" },
             { icon: "\u26A1", label: "Live in 5 Days" },
-            { icon: "\u2191", label: "R2,000 Upgrade Credit" },
+            { icon: "\u{1F4C9}", label: "R68 Avg CPA" },
           ].map((usp) => (
             <div
               key={usp.label}

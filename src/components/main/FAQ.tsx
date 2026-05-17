@@ -18,7 +18,7 @@ const faqs = [
   {
     question: 'What does "you own everything" actually mean?',
     answer:
-      "Your website code, your ad accounts, your automations, your data. All of it belongs to you. If you leave, you take everything with you. No hostage situations.",
+      "Your website code, your ad accounts, your data. All of it belongs to you. If you leave, you take everything with you. No hostage situations.",
     defaultOpen: true,
   },
   {
@@ -30,13 +30,13 @@ const faqs = [
   {
     question: "Do you work with businesses outside Pretoria?",
     answer:
-      "Absolutely. Everything is delivered remotely. Your website, ads, and automations work regardless of your location.",
+      "Absolutely. Everything is delivered remotely. Your website and ads work regardless of location.",
     defaultOpen: false,
   },
   {
-    question: "What is the R2,000 upgrade credit?",
+    question: "Do you offer automations, CRM, or full-funnel builds?",
     answer:
-      "If you start with the Basic Starter Website (R2,499) and later upgrade to Meta Ads Accelerator or Stacked Core, we apply R2,000 as a credit toward your first month. It makes starting small risk-free.",
+      "Yes — and they work brilliantly. We scope those directly with you once your site or ads are live. It's not something we put on a price list because every business is different. Book a call and let's talk.",
     defaultOpen: false,
   },
 ];

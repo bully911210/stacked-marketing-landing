@@ -44,16 +44,12 @@ export default function TermsPage() {
             </p>
             <ul>
               <li>
-                <strong>Basic Starter Website (R2,499 once-off):</strong> A 4-page
+                <strong>Professional Website (R3,999 once-off):</strong> A 4-page
                 custom-built website delivered in 5 business days
               </li>
               <li>
                 <strong>Meta Ads Accelerator (R4,999/mo):</strong> Daily managed Meta
                 advertising campaigns with creative production and reporting
-              </li>
-              <li>
-                <strong>Stacked Core (R11,999/mo):</strong> Full-stack marketing
-                including website, Meta Ads management, and automation
               </li>
             </ul>
             <p>
@@ -63,7 +59,7 @@ export default function TermsPage() {
 
             <h2>3. No Lock-In Contracts</h2>
             <p>
-              Our recurring services (Meta Ads Accelerator, Stacked Core) operate
+              Our recurring service (Meta Ads Accelerator) operates
               on a month-to-month basis unless otherwise agreed in writing.
               You may cancel recurring services at any time by providing written
               notice before the start of the next billing period. Once-off
@@ -78,7 +74,6 @@ export default function TermsPage() {
             <ul>
               <li>Website source code and all associated files</li>
               <li>Ad creative assets (images, videos, copy)</li>
-              <li>Automation workflows built on your accounts</li>
               <li>All data collected through your campaigns</li>
             </ul>
             <p>
@@ -96,15 +91,7 @@ export default function TermsPage() {
               of services.
             </p>
 
-            <h2>6. Upgrade Credit</h2>
-            <p>
-              Clients who start with the Basic Starter Website (R2,499) and
-              subsequently upgrade to Meta Ads Accelerator or Stacked Core
-              receive a R2,000 credit toward their first month of the upgraded
-              service. This credit is non-transferable and has no cash value.
-            </p>
-
-            <h2>7. Advertising Spend</h2>
+            <h2>6. Advertising Spend</h2>
             <p>
               Advertising budget (ad spend) is separate from our management
               fees and is paid directly to the advertising platform (e.g.
@@ -114,7 +101,7 @@ export default function TermsPage() {
               as guidance and are not guarantees of performance.
             </p>
 
-            <h2>8. Results Disclaimer</h2>
+            <h2>7. Results Disclaimer</h2>
             <p>
               While we use proven strategies and share our own advertising
               results transparently, we cannot guarantee specific results
@@ -124,14 +111,14 @@ export default function TermsPage() {
               performance.
             </p>
 
-            <h2>9. Intellectual Property</h2>
+            <h2>8. Intellectual Property</h2>
             <p>
               The Stacked Marketing brand, logo, and website design remain
               the property of Stacked Marketing. You may not use our
               branding without prior written consent.
             </p>
 
-            <h2>10. Limitation of Liability</h2>
+            <h2>9. Limitation of Liability</h2>
             <p>
               Stacked Marketing shall not be liable for any indirect,
               incidental, or consequential damages arising from the use of
@@ -139,7 +126,7 @@ export default function TermsPage() {
               paid for the services in question during the preceding 3 months.
             </p>
 
-            <h2>11. Privacy</h2>
+            <h2>10. Privacy</h2>
             <p>
               Your use of our services is also governed by our{" "}
               <a
@@ -156,21 +143,21 @@ export default function TermsPage() {
               information.
             </p>
 
-            <h2>12. Governing Law</h2>
+            <h2>11. Governing Law</h2>
             <p>
               These terms are governed by the laws of the Republic of South
               Africa. Any disputes shall be resolved in the courts of
               Pretoria, Gauteng.
             </p>
 
-            <h2>13. Changes</h2>
+            <h2>12. Changes</h2>
             <p>
               We reserve the right to update these terms at any time.
               Continued use of our services after changes constitutes
               acceptance of the revised terms.
             </p>
 
-            <h2>14. Contact</h2>
+            <h2>13. Contact</h2>
             <p>
               For questions about these terms, contact us via WhatsApp at
               +27 62 177 9799 or visit our{" "}

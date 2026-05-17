@@ -1,20 +1,20 @@
 @import "tailwindcss";
 
 @theme {
-  --color-lime: #C8FF00;
-  --color-lime-hover: #D4FF33;
-  --color-lime-on-light: #7A9B00;
-  --color-bg-primary: #0D0D0D;
-  --color-bg-secondary: #1A1A1A;
-  --color-bg-tertiary: #141414;
-  --color-bg-contrast: #F5F5F0;
-  --color-bg-card: #1A1A1A;
-  --color-bg-dark: #0D0D0D;
-  --color-text-primary: #FFFFFF;
-  --color-text-secondary: #A0A0A0;
-  --color-text-muted: #666666;
-  --color-border: rgba(255, 255, 255, 0.08);
-  --color-border-hover: rgba(255, 255, 255, 0.15);
+  --color-lime: #6B7A3F;
+  --color-lime-hover: #7D8F4A;
+  --color-lime-on-light: #4A5528;
+  --color-bg-primary: #FFFFFF;
+  --color-bg-secondary: #F7F5EF;
+  --color-bg-tertiary: #EFF2E8;
+  --color-bg-contrast: #2D3820;
+  --color-bg-card: #FFFFFF;
+  --color-bg-dark: #2D3820;
+  --color-text-primary: #1C2010;
+  --color-text-secondary: #4A5230;
+  --color-text-muted: #7A8868;
+  --color-border: rgba(107, 122, 63, 0.15);
+  --color-border-hover: rgba(107, 122, 63, 0.28);
   --color-whatsapp: #25D366;
 
   --font-heading: "DM Sans", system-ui, sans-serif;
@@ -24,23 +24,29 @@
 
 /* CSS Custom Properties */
 :root {
-  --lime: #C8FF00;
-  --lime-hover: #D4FF33;
-  --lime-on-light: #7A9B00;
-  --bg-primary: #0D0D0D;
-  --bg-secondary: #1A1A1A;
-  --bg-tertiary: #141414;
-  --bg-contrast: #F5F5F0;
-  --bg-card: #1A1A1A;
-  --text-primary: #FFFFFF;
-  --text-secondary: #A0A0A0;
-  --text-muted: #666666;
-  --text-on-accent: #0D0D0D;
-  --text-on-light: #1A1A1A;
-  --accent-dark: #0D0D0D;
-  --border: rgba(255, 255, 255, 0.08);
-  --border-hover: rgba(255, 255, 255, 0.15);
-  --border-accent: rgba(200, 255, 0, 0.3);
+  --lime: #6B7A3F;
+  --lime-hover: #7D8F4A;
+  --lime-on-light: #4A5528;
+  --bg-primary: #FFFFFF;
+  --bg-secondary: #F7F5EF;
+  --bg-tertiary: #EFF2E8;
+  --bg-contrast: #2D3820;
+  --bg-card: #FFFFFF;
+  --text-primary: #1C2010;
+  --text-secondary: #4A5230;
+  --text-muted: #7A8868;
+  --text-on-accent: #FFFFFF;
+  --text-on-light: #1C2010;
+  --text-on-dark: #E8EDD8;
+  --accent-dark: #2D3820;
+  --border: rgba(107, 122, 63, 0.15);
+  --border-hover: rgba(107, 122, 63, 0.28);
+  --border-accent: rgba(107, 122, 63, 0.4);
+
+  /* Pastel accents */
+  --sage-pastel: #C8D5A8;
+  --cream: #F5EFE0;
+  --moss: #E3EAD4;
 
   /* Design system spacing */
   --section-gap-desktop: 120px;
@@ -76,10 +82,10 @@
   --radius-pill: 999px;
 
   /* Design system colors (extended) */
-  --color-accent-muted: rgba(200, 255, 0, 0.15);
-  --color-accent-border: rgba(200, 255, 0, 0.3);
-  --color-success: #00E676;
-  --color-error: #FF5252;
+  --color-accent-muted: rgba(107, 122, 63, 0.12);
+  --color-accent-border: rgba(107, 122, 63, 0.3);
+  --color-success: #4A7C2F;
+  --color-error: #C0392B;
 
   /* Typography */
   --text-hero: clamp(2.25rem, 6vw, 5.5rem);
@@ -188,14 +194,14 @@ body {
 
 /* Gradient text utility */
 .text-gradient {
-  background: linear-gradient(to bottom, #FFFFFF, rgba(255, 255, 255, 0.4));
+  background: linear-gradient(to bottom, #1C2010, rgba(28, 32, 16, 0.55));
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
 }
 
 .text-gradient-lime {
-  background: linear-gradient(135deg, #C8FF00, #7AFF00);
+  background: linear-gradient(135deg, #4A5528, #6B7A3F);
   -webkit-background-clip: text;
   -webkit-text-fill-color: transparent;
   background-clip: text;
@@ -220,8 +226,8 @@ body {
   gap: 8px;
   padding: 6px 16px;
   border-radius: 100px;
-  border: 1px solid rgba(200, 255, 0, 0.2);
-  background: rgba(200, 255, 0, 0.05);
+  border: 1px solid rgba(107, 122, 63, 0.25);
+  background: rgba(107, 122, 63, 0.08);
   font-family: var(--font-mono);
   font-size: 0.75rem;
   font-weight: 600;
@@ -258,16 +264,16 @@ body {
 .card:hover {
   border-color: var(--border-accent);
   box-shadow:
-    0 1px 2px rgba(0, 0, 0, 0.3),
-    0 8px 16px rgba(0, 0, 0, 0.25),
-    0 0 40px rgba(200, 255, 0, 0.05);
+    0 1px 2px rgba(28, 32, 16, 0.04),
+    0 8px 24px rgba(28, 32, 16, 0.08),
+    0 0 40px rgba(107, 122, 63, 0.06);
 }
 
 /* Gradient border card wrapper */
 .card-glow-wrap {
   padding: 1px;
   border-radius: calc(var(--card-radius) + 1px);
-  background: linear-gradient(135deg, rgba(200, 255, 0, 0.3), transparent 50%, rgba(200, 255, 0, 0.1));
+  background: linear-gradient(135deg, rgba(107, 122, 63, 0.4), transparent 50%, rgba(107, 122, 63, 0.12));
 }
 
 .card-glow-wrap > .card {
@@ -276,11 +282,11 @@ body {
 
 /* Featured Card */
 .card-featured {
-  background: var(--bg-secondary);
+  background: var(--bg-card);
   border: 2px solid var(--lime);
   border-radius: var(--card-radius);
   padding: var(--card-padding-desktop);
-  box-shadow: 0 0 40px rgba(200, 255, 0, 0.12);
+  box-shadow: 0 8px 40px rgba(107, 122, 63, 0.18);
   position: relative;
 }
 
@@ -299,7 +305,7 @@ body {
   border-radius: inherit;
   background: radial-gradient(
     400px circle at var(--x) var(--y),
-    rgba(200, 255, 0, 0.06),
+    rgba(107, 122, 63, 0.07),
     transparent 60%
   );
   pointer-events: none;
@@ -334,8 +340,8 @@ body {
   background: var(--lime-hover);
   transform: translateY(-3px) scale(1.02);
   box-shadow:
-    0 4px 15px rgba(200, 255, 0, 0.3),
-    0 12px 40px rgba(200, 255, 0, 0.15);
+    0 4px 15px rgba(107, 122, 63, 0.35),
+    0 12px 40px rgba(107, 122, 63, 0.2);
 }
 
 .btn-primary:active {
@@ -368,7 +374,7 @@ body {
   border-color: var(--lime);
   color: var(--lime);
   transform: translateY(-2px);
-  box-shadow: 0 4px 20px rgba(200, 255, 0, 0.1);
+  box-shadow: 0 4px 20px rgba(107, 122, 63, 0.15);
 }
 
 .btn-secondary:active {
@@ -383,8 +389,8 @@ body {
 /* Form Input Styles */
 .form-input {
   width: 100%;
-  background: rgba(255, 255, 255, 0.07);
-  border: 1px solid rgba(255, 255, 255, 0.15);
+  background: rgba(107, 122, 63, 0.05);
+  border: 1px solid rgba(107, 122, 63, 0.2);
   border-radius: var(--input-radius);
   color: var(--text-primary);
   font-family: var(--font-body);
@@ -397,17 +403,17 @@ body {
 }
 
 .form-input::placeholder {
-  color: rgba(255, 255, 255, 0.35);
+  color: rgba(28, 32, 16, 0.35);
 }
 
 .form-input:focus {
   border-color: var(--lime);
-  box-shadow: 0 0 0 3px rgba(200, 255, 0, 0.15);
+  box-shadow: 0 0 0 3px rgba(107, 122, 63, 0.18);
 }
 
 .form-input--error {
   border-color: var(--color-error) !important;
-  box-shadow: 0 0 0 3px rgba(255, 82, 82, 0.15) !important;
+  box-shadow: 0 0 0 3px rgba(192, 57, 43, 0.15) !important;
 }
 
 .form-label {
@@ -491,12 +497,12 @@ a, button, input, select, textarea {
 }
 
 ::-webkit-scrollbar-thumb {
-  background: rgba(255, 255, 255, 0.15);
+  background: rgba(107, 122, 63, 0.25);
   border-radius: 3px;
 }
 
 ::-webkit-scrollbar-thumb:hover {
-  background: rgba(255, 255, 255, 0.25);
+  background: rgba(107, 122, 63, 0.4);
 }
 
 /* WhatsApp Pulse */
@@ -551,7 +557,7 @@ a, button, input, select, textarea {
 
 /* Dot grid background */
 .dot-grid-bg {
-  background-image: radial-gradient(rgba(255, 255, 255, 0.05) 1px, transparent 1px);
+  background-image: radial-gradient(rgba(107, 122, 63, 0.08) 1px, transparent 1px);
   background-size: 24px 24px;
 }
 
@@ -559,7 +565,7 @@ a, button, input, select, textarea {
 .section-divider {
   width: 100%;
   height: 1px;
-  background: linear-gradient(90deg, transparent, rgba(200, 255, 0, 0.2), transparent);
+  background: linear-gradient(90deg, transparent, rgba(107, 122, 63, 0.25), transparent);
 }
 
 /* Scroll progress bar */

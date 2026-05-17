@@ -2,7 +2,7 @@ import { ImageResponse } from "next/og";
 
 export const runtime = "edge";
 export const alt =
-  "Stacked Marketing - Your Marketing Isn't Broken. It's Disconnected.";
+  "Stacked Marketing - Two things, done brilliantly.";
 export const size = { width: 1200, height: 630 };
 export const contentType = "image/png";
 
@@ -17,7 +17,7 @@ export default function OGImage() {
           flexDirection: "column",
           justifyContent: "center",
           alignItems: "flex-start",
-          backgroundColor: "#1A1A1A",
+          backgroundColor: "#FFFFFF",
           padding: "80px",
           fontFamily: "system-ui, sans-serif",
         }}
@@ -30,7 +30,7 @@ export default function OGImage() {
             left: 0,
             right: 0,
             height: 6,
-            backgroundColor: "#C8FF00",
+            backgroundColor: "#6B7A3F",
           }}
         />
 
@@ -48,20 +48,20 @@ export default function OGImage() {
               width: 40,
               height: 40,
               borderRadius: 8,
-              backgroundColor: "#C8FF00",
+              backgroundColor: "#6B7A3F",
               display: "flex",
               alignItems: "center",
               justifyContent: "center",
               fontSize: 24,
               fontWeight: 700,
-              color: "#1A1A1A",
+              color: "#FFFFFF",
             }}
           >
             S
           </div>
           <span
             style={{
-              color: "#FFFFFF",
+              color: "#1C2010",
               fontSize: 24,
               fontWeight: 700,
               letterSpacing: "0.05em",
@@ -74,7 +74,7 @@ export default function OGImage() {
         {/* Headline */}
         <h1
           style={{
-            color: "#FFFFFF",
+            color: "#1C2010",
             fontSize: 64,
             fontWeight: 700,
             lineHeight: 1.1,
@@ -83,20 +83,20 @@ export default function OGImage() {
             maxWidth: 900,
           }}
         >
-          Your Marketing Isn&apos;t Broken.{" "}
-          <span style={{ color: "#C8FF00" }}>It&apos;s Disconnected.</span>
+          Two things,{" "}
+          <span style={{ color: "#6B7A3F" }}>done brilliantly.</span>
         </h1>
 
         {/* Subline */}
         <p
           style={{
-            color: "rgba(255,255,255,0.6)",
+            color: "#4A5230",
             fontSize: 24,
             marginTop: 24,
             lineHeight: 1.5,
           }}
         >
-          Website + Ads + Automations | Pretoria, South Africa
+          Websites · Managed Ads | Pretoria, South Africa
         </p>
 
         {/* URL */}
@@ -105,7 +105,7 @@ export default function OGImage() {
             position: "absolute",
             bottom: 40,
             right: 80,
-            color: "rgba(255,255,255,0.3)",
+            color: "#7A8868",
             fontSize: 18,
             fontFamily: "monospace",
           }}
