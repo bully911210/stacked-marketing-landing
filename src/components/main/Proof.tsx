@@ -3,14 +3,11 @@
 import { useScrollReveal } from "@/hooks/useScrollReveal";
 import { useCallback } from "react";
 
-/* ── data ── */
-
-const stats = [
-  { value: "R68 CPA", label: "Insurance" },
-  { value: "40K+", label: "Non-Profit" },
-  { value: "9 provinces", label: "Agriculture" },
-  { value: "100%", label: "Fin. Services" },
-  { value: "50+ seats", label: "Recruitment" },
+const bigStats = [
+  { value: "R68", label: "Average cost per lead" },
+  { value: "5,000+", label: "Subscription clients" },
+  { value: "R205K", label: "Own ad spend" },
+  { value: "9", label: "Provinces reached" },
 ];
 
 interface StoryCard {
@@ -60,8 +57,6 @@ const storyCards: StoryCard[] = [
   },
 ];
 
-/* ── component ── */
-
 function StoryCardItem({ card, index }: { card: StoryCard; index: number }) {
   const { ref, isVisible } = useScrollReveal(0.15);
 
@@ -78,16 +73,12 @@ function StoryCardItem({ card, index }: { card: StoryCard; index: number }) {
       style={{ transitionDelay: `${index * 80}ms` }}
       onMouseMove={handleMouseMove}
     >
-      <span
-        className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}
-      >
+      <span className={`story-card__pill ${card.featured ? "story-card__pill--featured" : ""}`}>
         {card.pill}
       </span>
       <span className="story-card__stat">{card.stat}</span>
       <span className="story-card__desc">{card.description}</span>
-      <span
-        className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}
-      >
+      <span className={`story-card__cat ${card.featured ? "story-card__cat--featured" : ""}`}>
         {card.category}
       </span>
     </div>
@@ -96,68 +87,126 @@ function StoryCardItem({ card, index }: { card: StoryCard; index: number }) {
 
 export default function Proof() {
   const { ref: headingRef, isVisible: headingVisible } = useScrollReveal(0.15);
-  const { ref: stripRef, isVisible: stripVisible } = useScrollReveal(0.15);
+  const { ref: statsRef, isVisible: statsVisible } = useScrollReveal(0.1);
+  const { ref: cardsRef, isVisible: cardsVisible } = useScrollReveal(0.1);
   const { ref: closingRef, isVisible: closingVisible } = useScrollReveal(0.2);
 
   return (
     <section
       id="proof"
-      className="section-spacing"
-      style={{ backgroundColor: "var(--bg-primary)" }}
+      style={{
+        backgroundColor: "var(--bg-primary)",
+        paddingTop: "var(--section-gap-desktop)",
+        paddingBottom: "var(--section-gap-desktop)",
+      }}
     >
-      <div className="container-main">
-        {/* ── heading ── */}
-        <div
-          ref={headingRef}
-          className={`fade-up ${headingVisible ? "visible" : ""}`}
-          style={{ marginBottom: 16, textAlign: "center" }}
+      {/* Heading */}
+      <div
+        ref={headingRef}
+        className={`fade-up container-main ${headingVisible ? "visible" : ""}`}
+        style={{ marginBottom: 48, textAlign: "center" }}
+      >
+        <h2
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: "var(--text-h2)",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            color: "var(--text-primary)",
+            maxWidth: 800,
+            marginInline: "auto",
+            marginBottom: 20,
+          }}
         >
-          <span className="section-eyebrow">PROOF, NOT PROMISES</span>
-          <h2
-            className="text-h2"
-            style={{
-              maxWidth: 900,
-              marginInline: "auto",
-              textAlign: "center",
-              marginBottom: 56,
-            }}
-          >
-            <span className="text-gradient">
-              R205K spent. R68 CPA. 5,000 subscription clients.
-            </span>{" "}
-            All our own money, in a restricted category.
-          </h2>
-        </div>
+          We didn&apos;t start with clients.{" "}
+          <br />
+          We started with conviction.
+        </h2>
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "1rem",
+            color: "var(--text-secondary)",
+            maxWidth: 640,
+            marginInline: "auto",
+            lineHeight: 1.7,
+          }}
+        >
+          R205K spent. R68 CPA. 5,000 subscription clients. All our own money, in a restricted category.
+        </p>
+      </div>
 
-        {/* ── stats strip ── */}
-        <div
-          ref={stripRef}
-          className={`fade-up stats-strip ${stripVisible ? "visible" : ""}`}
-        >
-          {stats.map((s, i) => (
-            <div
-              key={s.label}
-              className="stats-strip__cell"
-              style={
-                i < stats.length - 1
-                  ? { borderRight: "1px solid rgba(28,32,16,0.06)" }
-                  : undefined
-              }
-            >
-              <span className="stats-strip__value">{s.value}</span>
-              <span className="stats-strip__label">{s.label}</span>
+      {/* Full-width dark stat grid */}
+      <div
+        ref={statsRef}
+        className={`fade-up ${statsVisible ? "visible" : ""}`}
+        style={{
+          background: "var(--bg-contrast)",
+          padding: "60px 40px",
+          marginBottom: 0,
+        }}
+      >
+        <div className="proof-stat-grid">
+          {bigStats.map((s) => (
+            <div key={s.label} style={{ textAlign: "center" }}>
+              <div
+                style={{
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 700,
+                  fontSize: "clamp(2.8rem, 5vw, 4rem)",
+                  color: "var(--gold)",
+                  lineHeight: 1,
+                  marginBottom: 12,
+                }}
+              >
+                {s.value}
+              </div>
+              <div
+                style={{
+                  fontFamily: "var(--font-body)",
+                  fontSize: "0.8rem",
+                  color: "var(--text-on-dark)",
+                  opacity: 0.75,
+                  fontWeight: 500,
+                  letterSpacing: "0.02em",
+                }}
+              >
+                {s.label}
+              </div>
             </div>
           ))}
         </div>
+      </div>
 
-        {/* ── story cards ── */}
-        <div style={{ marginTop: 32 }}>
+      {/* Story cards */}
+      <div
+        ref={cardsRef}
+        className={`fade-up container-main ${cardsVisible ? "visible" : ""}`}
+        style={{ marginTop: 48 }}
+      >
+        <p
+          style={{
+            fontFamily: "var(--font-body)",
+            fontSize: "0.75rem",
+            fontWeight: 600,
+            letterSpacing: "0.08em",
+            textTransform: "uppercase",
+            color: "var(--lime)",
+            marginBottom: 20,
+            textAlign: "center",
+          }}
+        >
+          Results across restricted categories.
+        </p>
+
+        <div>
           {storyCards.map((card, i) => (
             <StoryCardItem key={card.category} card={card} index={i} />
           ))}
         </div>
 
-        {/* ── closing tagline ── */}
+        {/* Closing tagline */}
         <div
           ref={closingRef}
           className={`fade-up ${closingVisible ? "visible" : ""}`}
@@ -168,73 +217,32 @@ export default function Proof() {
               fontStyle: "italic",
               color: "var(--text-muted)",
               fontSize: "0.9rem",
-              maxWidth: 560,
+              maxWidth: 600,
               margin: "48px auto 0",
               fontFamily: "var(--font-body)",
-              lineHeight: 1.6,
+              lineHeight: 1.7,
             }}
           >
-            These results come from restricted, hard-to-advertise verticals.
-            Imagine what we do in yours.
+            Every category above required compliance approval. Every lead was qualified. None of it used a client&apos;s money to learn.
           </p>
         </div>
       </div>
 
       <style>{`
-        /* ── stats strip ── */
-        .stats-strip {
-          max-width: 1140px;
+        .proof-stat-grid {
+          max-width: 1100px;
           margin-inline: auto;
-          background: var(--bg-secondary);
-          border: 1px solid rgba(28,32,16,0.06);
-          border-radius: 16px;
-          padding: 28px 0;
           display: grid;
-          grid-template-columns: repeat(5, 1fr);
+          grid-template-columns: repeat(4, 1fr);
+          gap: 32px;
         }
-        .stats-strip__cell {
-          display: flex;
-          flex-direction: column;
-          align-items: center;
-          text-align: center;
-        }
-        .stats-strip__value {
-          font-family: var(--font-mono);
-          font-weight: 600;
-          font-size: clamp(1rem, 2vw, 1.25rem);
-          color: var(--text-primary);
-          text-shadow: 0 0 40px rgba(107, 122, 63, 0.2);
-        }
-        .stats-strip__label {
-          font-family: var(--font-body);
-          font-size: 0.75rem;
-          color: var(--lime);
-          opacity: 0.9;
-          margin-top: 6px;
-        }
-
-        @media (max-width: 768px) {
-          .stats-strip {
-            grid-template-columns: repeat(3, 1fr);
-            gap: 20px 0;
-            padding: 24px 0;
-          }
-          .stats-strip__cell:nth-child(3),
-          .stats-strip__cell:nth-child(5) {
-            border-right: none !important;
-          }
-        }
-        @media (max-width: 400px) {
-          .stats-strip {
+        @media (max-width: 767px) {
+          .proof-stat-grid {
             grid-template-columns: repeat(2, 1fr);
-          }
-          .stats-strip__cell:nth-child(2),
-          .stats-strip__cell:nth-child(4) {
-            border-right: none !important;
+            gap: 40px 24px;
           }
         }
 
-        /* ── story cards ── */
         .story-card {
           display: flex;
           align-items: center;
@@ -248,9 +256,7 @@ export default function Proof() {
           position: relative;
           overflow: hidden;
         }
-        .story-card:last-child {
-          margin-bottom: 0;
-        }
+        .story-card:last-child { margin-bottom: 0; }
         .story-card--featured {
           display: flex;
           align-items: center;
@@ -264,7 +270,6 @@ export default function Proof() {
           position: relative;
           overflow: hidden;
         }
-
         .story-card__pill {
           background: rgba(107,122,63,0.1);
           color: var(--lime);
@@ -276,11 +281,7 @@ export default function Proof() {
           white-space: nowrap;
           flex-shrink: 0;
         }
-        .story-card__pill--featured {
-          background: rgba(107,122,63,0.16);
-          opacity: 1;
-        }
-
+        .story-card__pill--featured { background: rgba(107,122,63,0.16); opacity: 1; }
         .story-card__stat {
           font-family: var(--font-heading);
           font-weight: 600;
@@ -289,7 +290,6 @@ export default function Proof() {
           white-space: nowrap;
           flex-shrink: 0;
         }
-
         .story-card__desc {
           font-family: var(--font-body);
           font-size: 0.9rem;
@@ -297,10 +297,6 @@ export default function Proof() {
           flex: 1;
           min-width: 0;
         }
-        .story-card--featured .story-card__desc {
-          color: var(--text-secondary);
-        }
-
         .story-card__cat {
           font-size: 0.75rem;
           color: var(--text-muted);
@@ -310,44 +306,21 @@ export default function Proof() {
           margin-left: auto;
           flex-shrink: 0;
         }
-        .story-card__cat--featured {
-          color: var(--lime);
-          opacity: 0.9;
-        }
+        .story-card__cat--featured { color: var(--lime); opacity: 0.9; }
 
         @media (max-width: 767px) {
-          .story-card,
-          .story-card--featured {
+          .story-card, .story-card--featured {
             flex-direction: column;
             align-items: flex-start;
             gap: 8px;
             padding: 16px 18px;
           }
-          .story-card--featured {
-            padding: 18px 20px;
-          }
-          .story-card__stat {
-            white-space: normal;
-          }
-          .story-card__cat {
-            margin-left: 0;
-          }
+          .story-card--featured { padding: 18px 20px; }
+          .story-card__stat { white-space: normal; }
+          .story-card__cat { margin-left: 0; }
         }
         @media (max-width: 400px) {
-          .story-card__cat {
-            display: none;
-          }
-        }
-
-        @media (prefers-reduced-motion: reduce) {
-          .stats-strip,
-          .story-card,
-          .story-card--featured {
-            animation: none !important;
-            transition: none !important;
-            opacity: 1 !important;
-            transform: none !important;
-          }
+          .story-card__cat { display: none; }
         }
       `}</style>
     </section>

@@ -279,6 +279,27 @@ export default async function BlogPostPage({
           margin: 3em 0;
         }
         .blog-content strong { color: var(--text-primary); }
+        .mid-article-cta {
+          background: var(--color-accent-muted);
+          border-left: 3px solid var(--lime-on-light);
+          border-radius: 0 8px 8px 0;
+          padding: 1.25rem 1.5rem;
+          margin: 2rem 0;
+          font-style: normal;
+        }
+        .mid-article-cta strong { color: var(--text-primary); }
+        .mid-article-cta p { font-size: 0.95rem; color: var(--text-secondary); margin: 0 0 0.75rem; font-style: normal; }
+        .btn-wa {
+          display: inline-block;
+          background: #25D366;
+          color: white;
+          padding: 10px 20px;
+          border-radius: 6px;
+          font-size: 0.875rem;
+          font-weight: 500;
+          text-decoration: none;
+        }
+        .btn-wa:hover { opacity: 0.9; }
       `}</style>
     </main>
   );

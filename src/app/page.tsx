@@ -13,6 +13,7 @@ import FloatingCTA from "@/components/main/FloatingCTA";
 import CookieConsent from "@/components/main/CookieConsent";
 import ScrollProgress from "@/components/main/ScrollProgress";
 import GrainOverlay from "@/components/main/GrainOverlay";
+import StickyWhatsAppBar from "@/components/main/StickyWhatsAppBar";
 
 export default function Home() {
   return (
@@ -32,6 +33,7 @@ export default function Home() {
       <WhatsApp />
       <FloatingCTA />
       <CookieConsent />
+      <StickyWhatsAppBar />
     </main>
   );
 }
