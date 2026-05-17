@@ -31,7 +31,6 @@ export default function Nav() {
     return () => window.removeEventListener("scroll", handleScroll);
   }, [handleScroll]);
 
-  // Active section tracking
   useEffect(() => {
     const sections = ["proof", "process", "pricing", "faq", "contact"];
     const observer = new IntersectionObserver(
@@ -71,13 +70,14 @@ export default function Nav() {
           right: 0,
           height: 77,
           zIndex: 1000,
-          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.65)",
-          backdropFilter: "blur(16px) saturate(180%)",
-          WebkitBackdropFilter: "blur(16px) saturate(180%)",
-          borderBottom: "1px solid rgba(28, 32, 16, 0.06)",
+          backgroundColor: scrolled ? "rgba(245,241,235,0.95)" : "rgba(245,241,235,0.75)",
+          backdropFilter: "blur(8px) saturate(160%)",
+          WebkitBackdropFilter: "blur(8px) saturate(160%)",
+          borderBottom: scrolled ? "1px solid rgba(0,0,0,0.08)" : "1px solid transparent",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
+          transition: "background-color 0.3s ease, border-color 0.3s ease",
         }}
       >
         <div className="container-main" style={{ display: "flex", alignItems: "center", justifyContent: "space-between", width: "100%" }}>
@@ -110,6 +110,20 @@ export default function Nav() {
                 {link.label}
               </a>
             ))}
+            <a
+              href="https://wa.me/27621779799"
+              target="_blank"
+              rel="noopener noreferrer"
+              style={{
+                fontFamily: "var(--font-body)",
+                fontSize: "0.8rem",
+                color: "var(--text-secondary)",
+                textDecoration: "none",
+                whiteSpace: "nowrap",
+              }}
+            >
+              +27 62 177 9799
+            </a>
             <a href="#contact" className="btn-primary" style={{ padding: "10px 24px", fontSize: "0.8125rem", fontWeight: 600 }}>
               Get My Plan
             </a>
@@ -129,7 +143,7 @@ export default function Nav() {
       {mobileOpen && (
         <div style={{
           position: "fixed", inset: 0, zIndex: 2000,
-          backgroundColor: "rgba(255, 255, 255, 0.98)",
+          backgroundColor: "rgba(245, 241, 235, 0.98)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.5rem",
@@ -144,6 +158,20 @@ export default function Nav() {
               {link.label}
             </a>
           ))}
+          <a
+            href="https://wa.me/27621779799"
+            target="_blank"
+            rel="noopener noreferrer"
+            onClick={closeMobile}
+            style={{
+              fontFamily: "var(--font-body)",
+              fontSize: "1rem",
+              color: "var(--text-secondary)",
+              textDecoration: "none",
+            }}
+          >
+            +27 62 177 9799
+          </a>
           <a href="#contact" onClick={closeMobile} className="btn-primary" style={{ fontSize: "1rem", marginTop: 8 }}>
             Get My Plan
           </a>

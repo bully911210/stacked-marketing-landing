@@ -4,10 +4,9 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const steps = [
   {
-    number: "01",
-    title: "Tell Us Your Goals",
+    title: "You tell us where you want to go.",
     description:
-      "Fill in the form. We WhatsApp you within 24 hours with a custom game plan. Not a sales pitch — a real recommendation.",
+      "Fill in the form. We WhatsApp you within 24 hours with a real recommendation — not a sales pitch.",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--sage-pastel)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <path d="M21 15a2 2 0 01-2 2H7l-4 4V5a2 2 0 012-2h14a2 2 0 012 2z" />
@@ -15,10 +14,9 @@ const steps = [
     ),
   },
   {
-    number: "02",
-    title: "We Build What You Need",
+    title: "We build it. You own every piece of it.",
     description:
-      "A website that converts, or ads that generate leads. Delivered and live in 5 business days. No fluff.",
+      "A website that converts, or ads that generate leads. Delivered live in 5 business days.",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--sage-pastel)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <rect x="2" y="3" width="20" height="14" rx="2" ry="2" />
@@ -28,10 +26,9 @@ const steps = [
     ),
   },
   {
-    number: "03",
-    title: "Leads Start Flowing",
+    title: "Leads arrive. You stay because it works.",
     description:
-      "Leads come in. You see every number. No lock-in. Stay because it works.",
+      "Leads come in. You see every number. No contracts. No lock-in. If it stops working, you leave. Simple.",
     icon: (
       <svg width="32" height="32" viewBox="0 0 24 24" fill="none" stroke="var(--sage-pastel)" strokeWidth="1.5" strokeLinecap="round" strokeLinejoin="round">
         <polyline points="22 12 18 12 15 21 9 3 6 12 2 12" />
@@ -66,6 +63,8 @@ export default function Process() {
               maxWidth: 700,
               marginInline: "auto",
               color: "var(--text-on-dark)",
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
             }}
           >
             Three steps to paying customers.
@@ -74,7 +73,7 @@ export default function Process() {
 
         <div className="process-grid">
           {steps.map((step, i) => (
-            <ProcessStep key={step.number} step={step} index={i} isLast={i === steps.length - 1} />
+            <ProcessStep key={step.title} step={step} index={i} isLast={i === steps.length - 1} />
           ))}
         </div>
       </div>
@@ -94,9 +93,7 @@ export default function Process() {
           border: 1px solid rgba(200, 213, 168, 0.14);
           border-radius: 16px;
         }
-        .process-connector {
-          display: none;
-        }
+        .process-connector { display: none; }
         @media (min-width: 768px) {
           .process-connector {
             display: block;
@@ -110,19 +107,15 @@ export default function Process() {
           .process-connector::before {
             content: '';
             position: absolute;
-            top: 0;
-            left: 0;
-            width: 100%;
-            height: 100%;
+            top: 0; left: 0;
+            width: 100%; height: 100%;
             background: linear-gradient(90deg, rgba(200, 213, 168, 0.45), rgba(200, 213, 168, 0.12));
           }
           .process-connector::after {
             content: '';
             position: absolute;
-            top: -3px;
-            right: 0;
-            width: 8px;
-            height: 8px;
+            top: -3px; right: 0;
+            width: 8px; height: 8px;
             border-radius: 50%;
             background: rgba(200, 213, 168, 0.35);
           }
@@ -174,21 +167,18 @@ function ProcessStep({
         {step.icon}
       </div>
 
-      {/* Step number */}
-      <p
+      {/* Gold dot indicator */}
+      <div
         style={{
-          fontFamily: "var(--font-mono)",
-          fontWeight: 600,
-          fontSize: "0.75rem",
-          color: "var(--sage-pastel)",
-          opacity: 0.7,
-          lineHeight: 1,
-          marginBottom: 12,
-          letterSpacing: "0.1em",
+          width: 12,
+          height: 12,
+          borderRadius: "50%",
+          background: "var(--gold)",
+          marginInline: "auto",
+          marginBottom: 16,
         }}
-      >
-        STEP {step.number}
-      </p>
+      />
+
       <p
         style={{
           fontFamily: "var(--font-heading)",
@@ -214,7 +204,6 @@ function ProcessStep({
         {step.description}
       </p>
 
-      {/* Connector line to next step */}
       {!isLast && <div className="process-connector" />}
     </div>
   );

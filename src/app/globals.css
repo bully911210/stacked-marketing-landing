@@ -81,6 +81,13 @@
   --radius-lg: 16px;
   --radius-pill: 999px;
 
+  /* Gold accent */
+  --gold: #C8962A;
+  --gold-light: #F0C96A;
+
+  /* Display font */
+  --font-display: 'Fraunces', Georgia, serif;
+
   /* Design system colors (extended) */
   --color-accent-muted: rgba(107, 122, 63, 0.12);
   --color-accent-border: rgba(107, 122, 63, 0.3);

@@ -1,5 +1,20 @@
 "use client";
 
+function TickIcon() {
+  return (
+    <svg width="14" height="14" viewBox="0 0 14 14" fill="none" style={{ flexShrink: 0 }}>
+      <path d="M2.5 7L5.5 10L11.5 4" stroke="var(--lime-on-light)" strokeWidth="1.75" strokeLinecap="round" strokeLinejoin="round" />
+    </svg>
+  );
+}
+
+const proofItems = [
+  "No contracts",
+  "You own everything",
+  "Live in 5 days",
+  "R68 avg. CPA",
+];
+
 export default function Hero() {
   return (
     <section
@@ -15,8 +30,7 @@ export default function Hero() {
         overflow: "hidden",
       }}
     >
-      {/* Background media — olive gradient always renders as fallback;
-          optional looping video sits on top when public/brand assets exist */}
+      {/* Background */}
       <div
         aria-hidden="true"
         style={{
@@ -103,12 +117,27 @@ export default function Hero() {
         </div>
 
         <h1
-          className="text-h1 hero-fade hero-fade-delay-1"
-          style={{ maxWidth: 820 }}
+          className="hero-fade hero-fade-delay-1"
+          style={{
+            fontFamily: "var(--font-display)",
+            fontWeight: 700,
+            fontSize: "var(--text-hero)",
+            letterSpacing: "-0.02em",
+            lineHeight: 1.1,
+            color: "var(--text-primary)",
+            maxWidth: 820,
+          }}
         >
-          <span className="text-gradient">Two things,</span>
-          <br />
-          <span className="text-gradient-lime">done brilliantly.</span>
+          We spent R205K of our own money{" "}
+          <em
+            style={{
+              fontStyle: "italic",
+              fontFamily: "var(--font-display)",
+              color: "var(--gold)",
+            }}
+          >
+            first.
+          </em>
         </h1>
 
         <p
@@ -116,17 +145,47 @@ export default function Hero() {
           style={{
             fontFamily: "var(--font-body)",
             fontWeight: 400,
-            fontSize: "var(--text-body-lg)",
+            fontSize: "1.1rem",
             color: "var(--text-secondary)",
-            maxWidth: 600,
+            maxWidth: 580,
             marginTop: 24,
-            marginBottom: 32,
-            lineHeight: 1.6,
+            lineHeight: 1.75,
           }}
         >
-          A professional website from R3,999. Managed Meta Ads from R4,999/mo.
-          Both built to get you leads. Nothing more. Nothing else.
+          R68 cost per lead. 5,000 subscription clients.
+          A restricted category everyone told us was impossible.
+          We proved the model on our own rand — then opened it to clients.
         </p>
+
+        {/* Proof ribbon */}
+        <div
+          className="hero-fade hero-fade-delay-3 hero-proof-ribbon"
+          style={{
+            display: "flex",
+            gap: 24,
+            flexWrap: "wrap",
+            alignItems: "center",
+            marginTop: 28,
+            marginBottom: 32,
+          }}
+        >
+          {proofItems.map((label) => (
+            <span
+              key={label}
+              style={{
+                display: "inline-flex",
+                alignItems: "center",
+                gap: 6,
+                fontFamily: "var(--font-body)",
+                fontSize: "0.8rem",
+                color: "var(--text-secondary)",
+              }}
+            >
+              <TickIcon />
+              {label}
+            </span>
+          ))}
+        </div>
 
         <div
           className="hero-buttons hero-fade hero-fade-delay-3"
@@ -143,23 +202,20 @@ export default function Hero() {
               padding: "18px 40px",
               fontSize: "1rem",
               fontWeight: 700,
-              textTransform: "uppercase",
-              letterSpacing: "0.02em",
             }}
           >
-            GET MY FREE GAME PLAN
+            Get my free game plan
             <span aria-hidden="true" style={{ marginLeft: 8 }}>&rarr;</span>
           </a>
           <a
             href="#pricing"
             className="btn-secondary"
           >
-            SEE PRICING
+            See what we charge
             <span aria-hidden="true" style={{ marginLeft: 6 }}>&darr;</span>
           </a>
         </div>
 
-        {/* Microcopy */}
         <p
           className="hero-fade hero-fade-delay-3"
           style={{
@@ -171,59 +227,6 @@ export default function Hero() {
         >
           Free. No obligation. We WhatsApp you within 24 hours.
         </p>
-
-        {/* 4-column USP strip */}
-        <div
-          className="hero-fade hero-fade-delay-4 hero-usp-grid"
-          style={{
-            display: "grid",
-            gap: 16,
-            marginTop: 56,
-          }}
-        >
-          {[
-            { icon: "\u{1F513}", label: "No Contracts" },
-            { icon: "\u{1F6E1}\uFE0F", label: "You Own Everything" },
-            { icon: "\u26A1", label: "Live in 5 Days" },
-            { icon: "\u{1F4C9}", label: "R68 Avg CPA" },
-          ].map((usp) => (
-            <div
-              key={usp.label}
-              style={{
-                display: "flex",
-                alignItems: "center",
-                gap: 10,
-              }}
-            >
-              <span
-                style={{
-                  fontSize: "1.25rem",
-                  width: 32,
-                  height: 32,
-                  display: "flex",
-                  alignItems: "center",
-                  justifyContent: "center",
-                  borderRadius: 8,
-                  backgroundColor: "var(--color-accent-muted)",
-                  flexShrink: 0,
-                }}
-              >
-                {usp.icon}
-              </span>
-              <span
-                style={{
-                  fontFamily: "var(--font-body)",
-                  fontSize: "var(--text-caption)",
-                  fontWeight: 500,
-                  color: "var(--text-secondary)",
-                  letterSpacing: "0.02em",
-                }}
-              >
-                {usp.label}
-              </span>
-            </div>
-          ))}
-        </div>
       </div>
 
       {/* Animated chevron */}
@@ -264,10 +267,6 @@ export default function Hero() {
         .hero-content {
           text-align: left;
         }
-        .hero-usp-grid {
-          grid-template-columns: repeat(4, auto);
-          justify-content: start;
-        }
         @media (max-width: 767px) {
           .hero-content {
             text-align: center;
@@ -279,17 +278,8 @@ export default function Hero() {
             flex-direction: column;
             width: 100%;
           }
-          .hero-usp-grid {
-            grid-template-columns: 1fr 1fr;
+          .hero-proof-ribbon {
             justify-content: center;
-            justify-items: start;
-            gap: 12px;
-          }
-        }
-        @media (max-width: 374px) {
-          .hero-usp-grid {
-            grid-template-columns: 1fr;
-            justify-items: center;
           }
         }
       `}</style>

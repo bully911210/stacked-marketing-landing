@@ -16,8 +16,8 @@ const differentiators = [
         <path d="M12 22s8-4 8-10V5l-8-3-8 3v7c0 6 8 10 8 10z" />
       </svg>
     ),
-    title: "Practitioners, Not Salespeople",
-    description: "We spent R205K of our own money on Meta ads before we ever spent a client's.",
+    title: "Skin in the game.",
+    description: "We ran restricted-category Meta ads with our own money, our own accounts, and our own risk. We know what works because we paid to find out.",
   },
   {
     icon: (
@@ -25,8 +25,8 @@ const differentiators = [
         <rect x="2" y="7" width="20" height="14" rx="2" ry="2" /><path d="M16 21V5a2 2 0 00-2-2h-4a2 2 0 00-2 2v16" />
       </svg>
     ),
-    title: "You Own Everything",
-    description: "Your code, your ad accounts, your data. Leave and take it all. No hostage games.",
+    title: "You own everything.",
+    description: "Your website code, your ad accounts, your audience data. Leave tomorrow and take all of it. No hostage situations.",
   },
   {
     icon: (
@@ -34,8 +34,8 @@ const differentiators = [
         <circle cx="12" cy="12" r="10" /><polyline points="12 6 12 12 16 14" />
       </svg>
     ),
-    title: "Live in 5 Days",
-    description: "Not weeks or months. Your full system goes live within 5 business days.",
+    title: "Live in 5 business days.",
+    description: "Not 6 weeks. Not \"we'll be in touch.\" Your site or your ads go live within 5 business days of sign-off. We've never missed it.",
   },
 ];
 
@@ -50,7 +50,6 @@ export default function About() {
       className="section-spacing"
       style={{ backgroundColor: "var(--bg-primary)" }}
     >
-      {/* Section divider */}
       <div className="section-divider" style={{ marginBottom: "var(--section-gap-desktop)" }} />
 
       <div className="container-main">
@@ -65,9 +64,15 @@ export default function About() {
             marginBottom: 56,
           }}
         >
-          <span className="section-eyebrow">WHY STACKED</span>
-          <h2 className="text-h2" style={{ marginBottom: 16 }}>
-            <span className="text-gradient">Built by Practitioners,</span> Not an Agency.
+          <h2
+            className="text-h2"
+            style={{
+              marginBottom: 16,
+              fontFamily: "var(--font-display)",
+              fontWeight: 700,
+            }}
+          >
+            Why this is different.
           </h2>
           <p
             style={{
@@ -98,10 +103,10 @@ export default function About() {
             <div key={cred.label} style={{ textAlign: "center" }}>
               <p
                 style={{
-                  fontFamily: "var(--font-mono)",
-                  fontWeight: 600,
+                  fontFamily: "var(--font-display)",
+                  fontWeight: 700,
                   fontSize: "clamp(1.25rem, 3vw, 2rem)",
-                  color: "var(--lime)",
+                  color: "var(--gold)",
                   lineHeight: 1.2,
                   marginBottom: 4,
                 }}
@@ -191,12 +196,6 @@ export default function About() {
             grid-template-columns: 1fr;
             max-width: 500px;
             margin-inline: auto;
-          }
-        }
-        @media (max-width: 767px) {
-          .about-diff-grid + style + div,
-          [style*="grid-template-columns: repeat(4"] {
-            grid-template-columns: repeat(2, 1fr) !important;
           }
         }
       `}</style>

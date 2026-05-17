@@ -4,12 +4,6 @@ import { useScrollReveal } from "@/hooks/useScrollReveal";
 
 const faqs = [
   {
-    question: "Do I need to pay for ad spend separately?",
-    answer:
-      "Yes. Your ad spend goes directly to Meta — you control it, you see every rand in real time. Our fee covers strategy, optimisation, creative production, and reporting.",
-    defaultOpen: true,
-  },
-  {
     question: "Can I cancel anytime?",
     answer:
       "Yes. No contracts, no lock-in, no cancellation fees. We keep you because results keep you, not paperwork.",
@@ -19,6 +13,12 @@ const faqs = [
     question: 'What does "you own everything" actually mean?',
     answer:
       "Your website code, your ad accounts, your data. All of it belongs to you. If you leave, you take everything with you. No hostage situations.",
+    defaultOpen: true,
+  },
+  {
+    question: "Do I need to pay for ad spend separately?",
+    answer:
+      "Yes. Your ad spend goes directly to Meta — you control it, you see every rand in real time. Our fee covers strategy, optimisation, creative production, and reporting.",
     defaultOpen: true,
   },
   {
@@ -112,17 +112,9 @@ export default function FAQ() {
         <div
           ref={ref}
           className={`fade-up ${isVisible ? "visible" : ""}`}
+          style={{ marginBottom: 48 }}
         >
-          <span className="section-eyebrow" style={{ display: "inline-flex" }}>FREQUENTLY ASKED</span>
-          <h2
-            className="text-h2"
-            style={{
-              textAlign: "center",
-              marginBottom: 48,
-            }}
-          >
-            Got questions? We&apos;ve got answers.
-          </h2>
+          {/* No section header — context is obvious from placement */}
         </div>
 
         <div style={{ maxWidth: 700, marginInline: "auto" }}>
@@ -149,26 +141,15 @@ export default function FAQ() {
           cursor: pointer;
           list-style: none;
         }
-        .faq-summary::-webkit-details-marker {
-          display: none;
-        }
-        .faq-summary::marker {
-          display: none;
-          content: "";
-        }
+        .faq-summary::-webkit-details-marker { display: none; }
+        .faq-summary::marker { display: none; content: ""; }
         .faq-icon {
           flex-shrink: 0;
           transition: transform 0.2s ease;
         }
-        .faq-details[open] .faq-icon {
-          transform: rotate(180deg);
-        }
-        .faq-details[open] {
-          border-color: var(--border-accent);
-        }
-        .faq-details > div {
-          padding-inline: 24px;
-        }
+        .faq-details[open] .faq-icon { transform: rotate(180deg); }
+        .faq-details[open] { border-color: var(--border-accent); }
+        .faq-details > div { padding-inline: 24px; }
       `}</style>
     </section>
   );

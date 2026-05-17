@@ -62,6 +62,12 @@ If you've been running the same 2–3 ads for months, your costs have gone up. T
 
 ## Realistic Budget Recommendations for SA Businesses
 
+<div class="mid-article-cta">
+  <p><strong>Already thinking about running Meta ads?</strong></p>
+  <p>We manage campaigns for South African businesses from R4,999/month. No contracts. You own your ad accounts. WhatsApp us for a straight answer.</p>
+  <a href="https://wa.me/27621779799" class="btn-wa">WhatsApp us &rarr; +27 62 177 9799</a>
+</div>
+
 Here's what we actually recommend based on what we've seen work:
 
 ### Starting Out (Testing Phase)
