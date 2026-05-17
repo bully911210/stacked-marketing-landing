@@ -140,7 +140,7 @@ export default function Proof() {
               className="stats-strip__cell"
               style={
                 i < stats.length - 1
-                  ? { borderRight: "1px solid rgba(255,255,255,0.06)" }
+                  ? { borderRight: "1px solid rgba(28,32,16,0.06)" }
                   : undefined
               }
             >
@@ -166,7 +166,7 @@ export default function Proof() {
             style={{
               textAlign: "center",
               fontStyle: "italic",
-              color: "#999",
+              color: "var(--text-muted)",
               fontSize: "0.9rem",
               maxWidth: 560,
               margin: "48px auto 0",
@@ -185,8 +185,8 @@ export default function Proof() {
         .stats-strip {
           max-width: 1140px;
           margin-inline: auto;
-          background: rgba(255,255,255,0.02);
-          border: 1px solid rgba(255,255,255,0.06);
+          background: var(--bg-secondary);
+          border: 1px solid rgba(28,32,16,0.06);
           border-radius: 16px;
           padding: 28px 0;
           display: grid;
@@ -202,14 +202,14 @@ export default function Proof() {
           font-family: var(--font-mono);
           font-weight: 600;
           font-size: clamp(1rem, 2vw, 1.25rem);
-          color: #ffffff;
-          text-shadow: 0 0 40px rgba(200, 255, 0, 0.2);
+          color: var(--text-primary);
+          text-shadow: 0 0 40px rgba(107, 122, 63, 0.2);
         }
         .stats-strip__label {
           font-family: var(--font-body);
           font-size: 0.75rem;
-          color: #C8FF00;
-          opacity: 0.7;
+          color: var(--lime);
+          opacity: 0.9;
           margin-top: 6px;
         }
 
@@ -240,7 +240,7 @@ export default function Proof() {
           align-items: center;
           gap: 16px;
           flex-wrap: wrap;
-          border: 1px solid rgba(255,255,255,0.06);
+          border: 1px solid rgba(28,32,16,0.08);
           background: transparent;
           border-radius: 14px;
           padding: 18px 24px;
@@ -256,8 +256,8 @@ export default function Proof() {
           align-items: center;
           gap: 16px;
           flex-wrap: wrap;
-          border: 1px solid rgba(200,255,0,0.3);
-          background: rgba(200,255,0,0.03);
+          border: 1px solid rgba(107,122,63,0.3);
+          background: rgba(107,122,63,0.06);
           border-radius: 14px;
           padding: 20px 24px;
           margin-bottom: 12px;
@@ -266,9 +266,9 @@ export default function Proof() {
         }
 
         .story-card__pill {
-          background: rgba(200,255,0,0.06);
-          color: #C8FF00;
-          opacity: 0.7;
+          background: rgba(107,122,63,0.1);
+          color: var(--lime);
+          opacity: 0.9;
           font-size: 0.75rem;
           font-weight: 600;
           padding: 4px 14px;
@@ -277,7 +277,7 @@ export default function Proof() {
           flex-shrink: 0;
         }
         .story-card__pill--featured {
-          background: rgba(200,255,0,0.12);
+          background: rgba(107,122,63,0.16);
           opacity: 1;
         }
 
@@ -285,7 +285,7 @@ export default function Proof() {
           font-family: var(--font-heading);
           font-weight: 600;
           font-size: 1.1rem;
-          color: #ffffff;
+          color: var(--text-primary);
           white-space: nowrap;
           flex-shrink: 0;
         }
@@ -293,26 +293,26 @@ export default function Proof() {
         .story-card__desc {
           font-family: var(--font-body);
           font-size: 0.9rem;
-          color: #888888;
+          color: var(--text-secondary);
           flex: 1;
           min-width: 0;
         }
         .story-card--featured .story-card__desc {
-          color: #A0A0A0;
+          color: var(--text-secondary);
         }
 
         .story-card__cat {
           font-size: 0.75rem;
-          color: #999;
-          opacity: 0.35;
+          color: var(--text-muted);
+          opacity: 0.6;
           text-align: right;
           white-space: nowrap;
           margin-left: auto;
           flex-shrink: 0;
         }
         .story-card__cat--featured {
-          color: #C8FF00;
-          opacity: 0.5;
+          color: var(--lime);
+          opacity: 0.9;
         }
 
         @media (max-width: 767px) {

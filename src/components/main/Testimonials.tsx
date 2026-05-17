@@ -106,7 +106,7 @@ function TestimonialCard({
         style={{
           padding: 1,
           borderRadius: "calc(var(--card-radius) + 1px)",
-          background: "linear-gradient(135deg, rgba(200,255,0,0.2), transparent 60%, rgba(200,255,0,0.08))",
+          background: "linear-gradient(135deg, rgba(107,122,63,0.2), transparent 60%, rgba(107,122,63,0.08))",
           height: "100%",
         }}
       >
@@ -125,7 +125,7 @@ function TestimonialCard({
             style={{
               fontFamily: "Georgia, serif",
               fontSize: "3rem",
-              color: "rgba(200, 255, 0, 0.15)",
+              color: "rgba(107, 122, 63, 0.2)",
               lineHeight: 1,
               marginBottom: -8,
               userSelect: "none",
@@ -146,7 +146,7 @@ function TestimonialCard({
             style={{
               fontFamily: "var(--font-body)",
               fontSize: "var(--text-body)",
-              color: "rgba(255, 255, 255, 0.8)",
+              color: "var(--text-secondary)",
               lineHeight: 1.7,
               flex: 1,
               marginBottom: 24,
@@ -162,7 +162,7 @@ function TestimonialCard({
                 width: 40,
                 height: 40,
                 borderRadius: "50%",
-                background: "rgba(200, 255, 0, 0.1)",
+                background: "rgba(107, 122, 63, 0.12)",
                 display: "flex",
                 alignItems: "center",
                 justifyContent: "center",

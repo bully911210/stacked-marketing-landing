@@ -93,10 +93,10 @@ export default function CookieConsent() {
         left: 0,
         right: 0,
         zIndex: 998,
-        backgroundColor: "rgba(26, 26, 26, 0.95)",
+        backgroundColor: "rgba(255, 255, 255, 0.96)",
         backdropFilter: "blur(12px)",
         WebkitBackdropFilter: "blur(12px)",
-        borderTop: "1px solid rgba(255,255,255,0.1)",
+        borderTop: "1px solid rgba(28,32,16,0.1)",
         padding: "16px clamp(12px, 3vw, 24px)",
         display: "flex",
         alignItems: "center",
@@ -108,7 +108,7 @@ export default function CookieConsent() {
     >
       <p
         style={{
-          color: "rgba(255,255,255,0.8)",
+          color: "var(--text-secondary)",
           fontSize: "0.8125rem",
           fontFamily: "var(--font-body)",
           lineHeight: 1.5,
@@ -133,7 +133,7 @@ export default function CookieConsent() {
           onClick={accept}
           style={{
             background: "var(--lime)",
-            color: "#1A1A1A",
+            color: "var(--text-on-accent)",
             border: "none",
             borderRadius: 6,
             padding: "8px 20px",
@@ -149,8 +149,8 @@ export default function CookieConsent() {
           onClick={decline}
           style={{
             background: "transparent",
-            color: "rgba(255,255,255,0.6)",
-            border: "1px solid rgba(255,255,255,0.2)",
+            color: "var(--text-muted)",
+            border: "1px solid rgba(28,32,16,0.2)",
             borderRadius: 6,
             padding: "8px 20px",
             fontSize: "0.8125rem",

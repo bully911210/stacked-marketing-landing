@@ -5,13 +5,13 @@ export const metadata: Metadata = {
   metadataBase: new URL("https://www.stackedmarketing.co.za"),
   title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
   description:
-    "Premium custom websites from R2,499. Meta Ads management from R4,999/mo. Full-stack marketing (ads + website + automation) for R9,999/mo. No contracts. You own everything. Pretoria, South Africa.",
+    "Professional websites from R3,999. Managed Meta Ads from R4,999/mo. Two things done brilliantly, no contracts, you own everything. Pretoria, South Africa.",
   keywords:
     "marketing Pretoria, Meta ads management, Facebook ads Pretoria, website design Pretoria, full-stack marketing, Stacked Marketing, lead generation South Africa",
   openGraph: {
     title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
     description:
-      "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R9,999/mo. No contracts. You own everything.",
+      "Professional websites from R3,999. Managed Meta Ads from R4,999/mo. Two things done brilliantly. No contracts. You own everything.",
     type: "website",
     locale: "en_ZA",
     siteName: "Stacked Marketing",
@@ -21,7 +21,7 @@ export const metadata: Metadata = {
         url: "https://www.stackedmarketing.co.za/opengraph-image",
         width: 1200,
         height: 630,
-        alt: "Stacked Marketing - Your Marketing Isn't Broken. It's Disconnected.",
+        alt: "Stacked Marketing - Two things, done brilliantly.",
       },
     ],
   },
@@ -29,7 +29,7 @@ export const metadata: Metadata = {
     card: "summary_large_image",
     title: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
     description:
-      "Custom websites from R2,499. Meta Ads from R4,999/mo. No contracts. You own everything. Pretoria.",
+      "Professional websites from R3,999. Managed Meta Ads from R4,999/mo. No contracts. You own everything. Pretoria.",
     images: ["https://www.stackedmarketing.co.za/opengraph-image"],
   },
   robots: {
@@ -50,7 +50,7 @@ const jsonLd = {
       name: "Stacked Marketing",
       url: "https://www.stackedmarketing.co.za",
       description:
-        "Meta Ads management and full-stack marketing for growing businesses in Pretoria, South Africa.",
+        "Professional websites and managed Meta Ads for growing businesses in Pretoria, South Africa.",
       address: {
         "@type": "PostalAddress",
         addressLocality: "Pretoria",
@@ -79,7 +79,7 @@ const jsonLd = {
       url: "https://www.stackedmarketing.co.za",
       name: "Stacked Marketing | Meta Ads and Websites. Pretoria.",
       description:
-        "Premium custom websites from R2,499. Meta Ads from R4,999/mo. Full-stack marketing for R9,999/mo. No contracts. You own everything.",
+        "Professional websites from R3,999. Managed Meta Ads from R4,999/mo. Two things done brilliantly. No contracts. You own everything.",
       isPartOf: {
         "@id": "https://www.stackedmarketing.co.za/#website",
       },
@@ -90,7 +90,7 @@ const jsonLd = {
     {
       "@type": "Service",
       "@id": "https://www.stackedmarketing.co.za/#starter-website",
-      name: "Basic Starter Website",
+      name: "Professional Website",
       description:
         "Beautiful 4-page fully custom-built website. Mobile responsive, fast loading, with contact form and WhatsApp integration. Delivered in 5 business days.",
       provider: {
@@ -102,7 +102,7 @@ const jsonLd = {
       },
       offers: {
         "@type": "Offer",
-        price: "2499",
+        price: "3999",
         priceCurrency: "ZAR",
       },
     },
@@ -132,31 +132,6 @@ const jsonLd = {
       },
     },
     {
-      "@type": "Service",
-      "@id": "https://www.stackedmarketing.co.za/#full-stack",
-      name: "Full Stack Marketing",
-      description:
-        "Complete marketing system including Meta Ads management, custom website, landing pages, automation, and strategy calls.",
-      provider: {
-        "@id": "https://www.stackedmarketing.co.za/#organization",
-      },
-      areaServed: {
-        "@type": "Country",
-        name: "South Africa",
-      },
-      offers: {
-        "@type": "Offer",
-        price: "9999",
-        priceCurrency: "ZAR",
-        priceSpecification: {
-          "@type": "UnitPriceSpecification",
-          price: "9999",
-          priceCurrency: "ZAR",
-          unitText: "month",
-        },
-      },
-    },
-    {
       "@type": "FAQPage",
       "@id": "https://www.stackedmarketing.co.za/#faq",
       mainEntity: [
@@ -165,7 +140,7 @@ const jsonLd = {
           name: "What does Stacked Marketing do?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "We manage Meta (Facebook and Instagram) ad campaigns and build full-stack marketing systems including websites, landing pages, and automation for businesses in South Africa.",
+            text: "We do two things, obsessively well: build professional websites and manage Meta (Facebook and Instagram) ad campaigns for businesses in South Africa.",
           },
         },
         {
@@ -173,7 +148,7 @@ const jsonLd = {
           name: "How much does Meta Ads management cost?",
           acceptedAnswer: {
             "@type": "Answer",
-            text: "A premium custom website starts from R2,499 once-off. Meta Ads management starts from R4,999 per month. Our Stacked Core package (ads + website + automation) is R9,999 per month. No contracts, cancel any time.",
+            text: "A professional website starts from R3,999 once-off. Managed Meta Ads start from R4,999 per month. No contracts, cancel any time.",
           },
         },
         {
@@ -205,7 +180,7 @@ const jsonLd = {
           name: 'What does "you own everything" actually mean?',
           acceptedAnswer: {
             "@type": "Answer",
-            text: "Your website code, your ad accounts, your automations, your data. All of it belongs to you. If you leave, you take everything with you. No hostage situations.",
+            text: "Your website code, your ad accounts, your data. All of it belongs to you. If you leave, you take everything with you. No hostage situations.",
           },
         },
       ],
@@ -222,7 +197,7 @@ const jsonLd = {
         addressRegion: "Gauteng",
         addressCountry: "ZA",
       },
-      priceRange: "R2,499 - R9,999",
+      priceRange: "R3,999 - R4,999",
       sameAs: ["https://www.linkedin.com/company/111745526"],
     },
   ],
@@ -248,7 +223,7 @@ export default function RootLayout({
         />
         <link
           rel="icon"
-          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%231A1A1A'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='20' fill='%23C8FF00'>S</text></svg>"
+          href="data:image/svg+xml,<svg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 32 32'><rect width='32' height='32' rx='6' fill='%232D3820'/><text x='50%25' y='50%25' dominant-baseline='central' text-anchor='middle' font-family='sans-serif' font-weight='700' font-size='20' fill='%23FFFFFF'>S</text></svg>"
         />
         <script
           type="application/ld+json"

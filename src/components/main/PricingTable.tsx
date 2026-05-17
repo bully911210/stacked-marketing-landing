@@ -5,10 +5,11 @@ import { useCallback } from "react";
 
 const tiers = [
   {
-    name: "Basic Starter Website",
-    price: "R2,499",
+    name: "Professional Website",
+    price: "R3,999",
     priceNote: "once-off",
     featured: false,
+    media: "website-card",
     bestFor: "Businesses that need a professional site, fast.",
     cta: "GET MY WEBSITE",
     benefits: [
@@ -22,7 +23,8 @@ const tiers = [
     name: "Meta Ads Accelerator",
     price: "R4,999",
     priceNote: "/mo",
-    featured: false,
+    featured: true,
+    media: "ads-card",
     bestFor: "Businesses ready to generate leads from Meta ads.",
     cta: "START ADS",
     benefits: [
@@ -32,21 +34,6 @@ const tiers = [
       "Full Conversions API + tracking setup included",
     ],
     note: "Recommended ad spend: R8,000 - R12,000/mo",
-  },
-  {
-    name: "Stacked Core",
-    price: "R9,999",
-    priceNote: "/mo",
-    featured: true,
-    bestFor: "Businesses that want the full system working together.",
-    cta: "GET THE FULL STACK",
-    benefits: [
-      "Everything in Meta Ads Accelerator, plus:",
-      "Advanced 5-7 page website with CMS",
-      "6 automations: WhatsApp replies, CRM, nurture, retargeting",
-      "Full lead forms + booking integration",
-      "Live in 5 business days. You own everything.",
-    ],
   },
 ];
 
@@ -77,7 +64,7 @@ function PricingCard({
           style={{
             padding: 2,
             borderRadius: "calc(var(--card-radius) + 2px)",
-            background: "linear-gradient(135deg, rgba(200,255,0,0.5), rgba(200,255,0,0.1) 50%, rgba(200,255,0,0.3))",
+            background: "linear-gradient(135deg, rgba(107,122,63,0.5), rgba(107,122,63,0.12) 50%, rgba(107,122,63,0.35))",
             height: "100%",
           }}
         >
@@ -85,14 +72,14 @@ function PricingCard({
             className="card-spotlight"
             onMouseMove={handleMouseMove}
             style={{
-              background: "var(--bg-secondary)",
+              background: "var(--bg-card)",
               borderRadius: "var(--card-radius)",
               padding: "var(--card-padding-desktop)",
               height: "100%",
               display: "flex",
               flexDirection: "column",
               position: "relative",
-              boxShadow: "0 0 60px rgba(200, 255, 0, 0.1)",
+              boxShadow: "0 8px 50px rgba(107, 122, 63, 0.18)",
             }}
           >
             <span
@@ -137,6 +124,36 @@ function PricingCard({
 function CardContent({ tier }: { tier: (typeof tiers)[number] }) {
   return (
     <>
+      <div
+        style={{
+          position: "relative",
+          width: "100%",
+          aspectRatio: "4 / 3",
+          borderRadius: 12,
+          overflow: "hidden",
+          marginBottom: 24,
+          background:
+            "linear-gradient(135deg, var(--moss) 0%, var(--cream) 100%)",
+        }}
+      >
+        <video
+          aria-hidden="true"
+          autoPlay
+          muted
+          loop
+          playsInline
+          poster={`/brand/${tier.media}.jpg`}
+          style={{
+            width: "100%",
+            height: "100%",
+            objectFit: "cover",
+            display: "block",
+          }}
+        >
+          <source src={`/brand/${tier.media}.mp4`} type="video/mp4" />
+        </video>
+      </div>
+
       <h3
         style={{
           fontFamily: "var(--font-heading)",
@@ -217,7 +234,7 @@ function CardContent({ tier }: { tier: (typeof tiers)[number] }) {
               fill="none"
               style={{ flexShrink: 0, marginTop: 3 }}
             >
-              <circle cx="9" cy="9" r="9" fill="rgba(200,255,0,0.15)" />
+              <circle cx="9" cy="9" r="9" fill="rgba(107,122,63,0.15)" />
               <path
                 d="M5.5 9.5L7.5 11.5L12.5 6.5"
                 stroke="var(--lime)"
@@ -279,7 +296,7 @@ export default function PricingTable() {
           className={`fade-up ${isVisible ? "visible" : ""}`}
           style={{ textAlign: "center" }}
         >
-          <span className="section-eyebrow">CHOOSE YOUR STACK</span>
+          <span className="section-eyebrow">TWO WAYS IN</span>
           <h2
             className="text-h2"
             style={{
@@ -287,7 +304,7 @@ export default function PricingTable() {
               marginBottom: 56,
             }}
           >
-            Simple pricing. No lock-in. Upgrade anytime.
+            Simple pricing. No lock-in.
           </h2>
         </div>
 
@@ -296,58 +313,21 @@ export default function PricingTable() {
             <PricingCard key={tier.name} tier={tier} index={i} />
           ))}
         </div>
-
-        {/* Upgrade credit banner */}
-        <div
-          style={{
-            marginTop: 48,
-            padding: 1,
-            borderRadius: 12,
-            background: "linear-gradient(90deg, rgba(200,255,0,0.3), rgba(200,255,0,0.05))",
-          }}
-        >
-          <div
-            style={{
-              background: "var(--bg-tertiary)",
-              borderRadius: 11,
-              padding: "20px 28px",
-              display: "flex",
-              alignItems: "center",
-              gap: 12,
-            }}
-          >
-            <span style={{ fontSize: "1.5rem" }}>&uarr;</span>
-            <p
-              style={{
-                fontFamily: "var(--font-body)",
-                fontSize: "var(--text-body)",
-                color: "var(--text-primary)",
-                fontWeight: 500,
-              }}
-            >
-              Start with a website &rarr; Get <strong style={{ color: "var(--lime)" }}>R2,000 off</strong> when you upgrade to ads or full stack.
-            </p>
-          </div>
-        </div>
       </div>
 
       <style>{`
         .pricing-cards-grid {
           display: grid;
-          grid-template-columns: repeat(3, 1fr);
+          grid-template-columns: repeat(2, 1fr);
           gap: var(--card-gap);
           align-items: stretch;
-        }
-        @media (max-width: 1023px) {
-          .pricing-cards-grid {
-            grid-template-columns: repeat(2, 1fr);
-          }
+          max-width: 880px;
+          margin-inline: auto;
         }
         @media (max-width: 767px) {
           .pricing-cards-grid {
             grid-template-columns: 1fr;
             max-width: 500px;
-            margin-inline: auto;
           }
         }
       `}</style>

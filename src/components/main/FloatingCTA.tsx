@@ -41,7 +41,7 @@ export default function FloatingCTA() {
         padding: "14px 24px",
         borderRadius: "var(--radius-pill)",
         textDecoration: "none",
-        boxShadow: "0 4px 20px rgba(200, 255, 0, 0.3)",
+        boxShadow: "0 4px 20px rgba(107, 122, 63, 0.3)",
         display: "flex",
         alignItems: "center",
         gap: 6,

@@ -37,13 +37,13 @@ const SERVICE_PRESETS: { label: string; description: string; detail: string; amo
     label: "Basic WordPress Website",
     description: "Basic WordPress Website",
     detail: "Design, development, and deployment of a responsive WordPress website with up to 5 pages, mobile optimised, basic SEO setup, contact form, and WhatsApp integration.",
-    amount: 2499,
+    amount: 3999,
   },
   {
     label: "Basic Custom Website",
     description: "Basic Custom Website",
     detail: "Custom-coded responsive website built on Next.js with up to 5 pages, mobile optimised, on-page SEO, contact form, WhatsApp integration, and Vercel hosting setup.",
-    amount: 2499,
+    amount: 3999,
   },
   {
     label: "Basic Performance Advertising Management",
@@ -150,7 +150,7 @@ function generateInvoicePDF(invoice: Invoice) {
       <style>
         * { margin: 0; padding: 0; box-sizing: border-box; }
         body { font-family: 'Helvetica Neue', Arial, sans-serif; color: #1a1a1a; padding: 40px; max-width: 800px; margin: 0 auto; }
-        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; border-bottom: 3px solid #C8FF00; padding-bottom: 24px; }
+        .header { display: flex; justify-content: space-between; align-items: flex-start; margin-bottom: 48px; border-bottom: 3px solid #6B7A3F; padding-bottom: 24px; }
         .brand h1 { font-size: 24px; font-weight: 700; letter-spacing: -0.5px; }
         .brand p { color: #666; font-size: 13px; margin-top: 4px; }
         .invoice-meta { text-align: right; }
@@ -176,7 +176,7 @@ function generateInvoicePDF(invoice: Invoice) {
         .banking h3 { font-size: 14px; font-weight: 700; margin-bottom: 12px; }
         .banking p { font-size: 13px; line-height: 1.8; color: #444; }
         .banking .ref-note { margin-top: 12px; padding: 12px; background: #FEF3C7; border-radius: 6px; font-weight: 600; color: #92400E; font-size: 13px; }
-        .notes { margin-top: 24px; padding: 16px; border-left: 3px solid #C8FF00; background: #fafafa; border-radius: 0 8px 8px 0; }
+        .notes { margin-top: 24px; padding: 16px; border-left: 3px solid #6B7A3F; background: #fafafa; border-radius: 0 8px 8px 0; }
         .notes h3 { font-size: 12px; text-transform: uppercase; letter-spacing: 1px; color: #999; margin-bottom: 8px; }
         .notes p { font-size: 13px; color: #444; line-height: 1.6; }
         .footer { margin-top: 48px; text-align: center; font-size: 12px; color: #999; border-top: 1px solid #eee; padding-top: 24px; }
@@ -265,10 +265,10 @@ function generateInvoicePDF(invoice: Invoice) {
           : ""
       }
 
-      <div style="margin-top: 48px; padding: 24px; background: linear-gradient(135deg, #0D0D0D, #1a1a1a); border: 1px solid #C8FF0040; border-radius: 10px; text-align: center;">
-        <p style="font-size: 15px; font-weight: 600; color: #C8FF00; margin-bottom: 6px;">Need more from your online presence?</p>
+      <div style="margin-top: 48px; padding: 24px; background: linear-gradient(135deg, #2D3820, #3A4A2A); border: 1px solid #6B7A3F40; border-radius: 10px; text-align: center;">
+        <p style="font-size: 15px; font-weight: 600; color: #6B7A3F; margin-bottom: 6px;">Need more from your online presence?</p>
         <p style="font-size: 13px; color: #888; line-height: 1.6;">Stacked Marketing offers website design, performance advertising, SEO &amp; more.<br/>Get in touch for a free consultation.</p>
-        <p style="margin-top: 12px; font-size: 13px;"><a href="https://www.stackedmarketing.co.za" style="color: #C8FF00; text-decoration: none; font-weight: 600;">www.stackedmarketing.co.za</a> &nbsp;&middot;&nbsp; <a href="https://wa.me/27621779799" style="color: #C8FF00; text-decoration: none; font-weight: 600;">WhatsApp Us</a></p>
+        <p style="margin-top: 12px; font-size: 13px;"><a href="https://www.stackedmarketing.co.za" style="color: #6B7A3F; text-decoration: none; font-weight: 600;">www.stackedmarketing.co.za</a> &nbsp;&middot;&nbsp; <a href="https://wa.me/27621779799" style="color: #6B7A3F; text-decoration: none; font-weight: 600;">WhatsApp Us</a></p>
       </div>
 
       <div class="footer">
@@ -554,7 +554,7 @@ export default function InvoicingPage() {
     } as React.CSSProperties,
     btnPrimary: {
       padding: "12px 24px",
-      background: "#C8FF00",
+      background: "#6B7A3F",
       color: "#0D0D0D",
       border: "none",
       borderRadius: 8,
@@ -660,7 +660,7 @@ export default function InvoicingPage() {
 
           <div style={{ ...S.card, padding: 40 }}>
             {/* Header */}
-            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 40, paddingBottom: 20, borderBottom: "2px solid #C8FF00" }}>
+            <div style={{ display: "flex", justifyContent: "space-between", marginBottom: 40, paddingBottom: 20, borderBottom: "2px solid #6B7A3F" }}>
               <div>
                 <h1 style={{ fontSize: 22, fontWeight: 700 }}>Stacked Marketing</h1>
                 <p style={{ color: "#A0A0A0", fontSize: 13, marginTop: 4 }}>Pretoria, South Africa</p>
@@ -714,7 +714,7 @@ export default function InvoicingPage() {
             {/* Totals */}
             <div style={{ marginLeft: "auto", width: 280 }}>
               <div style={{ display: "flex", justifyContent: "space-between", padding: "12px 0", fontSize: 20, fontWeight: 700, borderTop: "2px solid rgba(255,255,255,0.2)", marginTop: 4 }}>
-                <span>Total</span><span style={{ color: "#C8FF00" }}>{formatCurrency(previewInvoice.total)}</span>
+                <span>Total</span><span style={{ color: "#6B7A3F" }}>{formatCurrency(previewInvoice.total)}</span>
               </div>
             </div>
 
@@ -728,28 +728,28 @@ export default function InvoicingPage() {
                 <p><strong style={{ color: "#fff" }}>Branch Code:</strong> {BANKING_DETAILS.branchCode}</p>
                 <p><strong style={{ color: "#fff" }}>Account Type:</strong> {BANKING_DETAILS.accountType}</p>
               </div>
-              <div style={{ marginTop: 12, padding: 12, background: "rgba(200,255,0,0.08)", borderRadius: 6, border: "1px solid rgba(200,255,0,0.2)" }}>
-                <p style={{ fontSize: 13, fontWeight: 600, color: "#C8FF00" }}>
+              <div style={{ marginTop: 12, padding: 12, background: "rgba(107,122,63,0.08)", borderRadius: 6, border: "1px solid rgba(107,122,63,0.2)" }}>
+                <p style={{ fontSize: 13, fontWeight: 600, color: "#6B7A3F" }}>
                   Payment Reference: Please use the invoice number <strong>{previewInvoice.invoiceNumber}</strong> as your payment reference.
                 </p>
               </div>
             </div>
 
             {previewInvoice.notes && (
-              <div style={{ marginTop: 24, padding: 16, borderLeft: "3px solid #C8FF00", background: "rgba(255,255,255,0.02)", borderRadius: "0 8px 8px 0" }}>
+              <div style={{ marginTop: 24, padding: 16, borderLeft: "3px solid #6B7A3F", background: "rgba(255,255,255,0.02)", borderRadius: "0 8px 8px 0" }}>
                 <h3 style={{ fontSize: 11, textTransform: "uppercase", letterSpacing: 1, color: "#666", marginBottom: 8 }}>Notes</h3>
                 <p style={{ fontSize: 13, color: "#A0A0A0", lineHeight: 1.6 }}>{previewInvoice.notes}</p>
               </div>
             )}
 
             {/* Upsell */}
-            <div style={{ marginTop: 48, padding: 24, background: "linear-gradient(135deg, rgba(200,255,0,0.04), rgba(200,255,0,0.01))", border: "1px solid rgba(200,255,0,0.15)", borderRadius: 10, textAlign: "center" }}>
-              <p style={{ fontSize: 15, fontWeight: 600, color: "#C8FF00", marginBottom: 6 }}>Need more from your online presence?</p>
+            <div style={{ marginTop: 48, padding: 24, background: "linear-gradient(135deg, rgba(107,122,63,0.04), rgba(107,122,63,0.01))", border: "1px solid rgba(107,122,63,0.15)", borderRadius: 10, textAlign: "center" }}>
+              <p style={{ fontSize: 15, fontWeight: 600, color: "#6B7A3F", marginBottom: 6 }}>Need more from your online presence?</p>
               <p style={{ fontSize: 13, color: "#888", lineHeight: 1.6 }}>Stacked Marketing offers website design, performance advertising, SEO &amp; more.<br />Get in touch for a free consultation.</p>
               <p style={{ marginTop: 12, fontSize: 13 }}>
-                <a href="https://www.stackedmarketing.co.za" style={{ color: "#C8FF00", textDecoration: "none", fontWeight: 600 }}>www.stackedmarketing.co.za</a>
+                <a href="https://www.stackedmarketing.co.za" style={{ color: "#6B7A3F", textDecoration: "none", fontWeight: 600 }}>www.stackedmarketing.co.za</a>
                 {" "}&middot;{" "}
-                <a href="https://wa.me/27621779799" style={{ color: "#C8FF00", textDecoration: "none", fontWeight: 600 }}>WhatsApp Us</a>
+                <a href="https://wa.me/27621779799" style={{ color: "#6B7A3F", textDecoration: "none", fontWeight: 600 }}>WhatsApp Us</a>
               </p>
             </div>
           </div>
@@ -835,10 +835,10 @@ export default function InvoicingPage() {
                     onClick={() => addPresetItem(i)}
                     style={{
                       padding: "8px 14px",
-                      background: i === SERVICE_PRESETS.length - 1 ? "rgba(255,255,255,0.05)" : "rgba(200,255,0,0.08)",
-                      border: `1px solid ${i === SERVICE_PRESETS.length - 1 ? "rgba(255,255,255,0.12)" : "rgba(200,255,0,0.2)"}`,
+                      background: i === SERVICE_PRESETS.length - 1 ? "rgba(255,255,255,0.05)" : "rgba(107,122,63,0.08)",
+                      border: `1px solid ${i === SERVICE_PRESETS.length - 1 ? "rgba(255,255,255,0.12)" : "rgba(107,122,63,0.2)"}`,
                       borderRadius: 6,
-                      color: i === SERVICE_PRESETS.length - 1 ? "#A0A0A0" : "#C8FF00",
+                      color: i === SERVICE_PRESETS.length - 1 ? "#A0A0A0" : "#6B7A3F",
                       fontSize: 12,
                       fontWeight: 500,
                       cursor: "pointer",
@@ -913,7 +913,7 @@ export default function InvoicingPage() {
               {items.length > 0 && (
                 <div style={{ marginTop: 20, marginLeft: "auto", width: 280 }}>
                   <div style={{ display: "flex", justifyContent: "space-between", padding: "10px 0", fontSize: 18, fontWeight: 700, borderTop: "2px solid rgba(255,255,255,0.15)", marginTop: 4 }}>
-                    <span>Total</span><span style={{ color: "#C8FF00" }}>{formatCurrency(total)}</span>
+                    <span>Total</span><span style={{ color: "#6B7A3F" }}>{formatCurrency(total)}</span>
                   </div>
                 </div>
               )}
@@ -997,9 +997,9 @@ export default function InvoicingPage() {
                 padding: "6px 16px",
                 borderRadius: 20,
                 border: "1px solid",
-                borderColor: filter === f ? "#C8FF00" : "rgba(255,255,255,0.1)",
-                background: filter === f ? "rgba(200,255,0,0.1)" : "transparent",
-                color: filter === f ? "#C8FF00" : "#A0A0A0",
+                borderColor: filter === f ? "#6B7A3F" : "rgba(255,255,255,0.1)",
+                background: filter === f ? "rgba(107,122,63,0.1)" : "transparent",
+                color: filter === f ? "#6B7A3F" : "#A0A0A0",
                 fontSize: 13,
                 cursor: "pointer",
                 fontFamily: "inherit",
@@ -1022,7 +1022,7 @@ export default function InvoicingPage() {
           <div key={inv.id} style={{ ...S.card, display: "flex", justifyContent: "space-between", alignItems: "center" }}>
             <div style={{ flex: 1 }}>
               <div style={{ display: "flex", alignItems: "center", gap: 12, marginBottom: 6 }}>
-                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 600, color: "#C8FF00" }}>{inv.invoiceNumber}</span>
+                <span style={{ fontFamily: "'IBM Plex Mono', monospace", fontSize: 14, fontWeight: 600, color: "#6B7A3F" }}>{inv.invoiceNumber}</span>
                 <span style={S.badge(inv.status)}>{inv.status}</span>
               </div>
               <p style={{ fontSize: 15, fontWeight: 600 }}>{inv.clientName}{inv.clientBusiness ? ` — ${inv.clientBusiness}` : ""}</p>

@@ -71,10 +71,10 @@ export default function Nav() {
           right: 0,
           height: 77,
           zIndex: 1000,
-          backgroundColor: scrolled ? "rgba(13, 13, 13, 0.8)" : "rgba(13, 13, 13, 0.6)",
+          backgroundColor: scrolled ? "rgba(255, 255, 255, 0.85)" : "rgba(255, 255, 255, 0.65)",
           backdropFilter: "blur(16px) saturate(180%)",
           WebkitBackdropFilter: "blur(16px) saturate(180%)",
-          borderBottom: "1px solid rgba(255, 255, 255, 0.06)",
+          borderBottom: "1px solid rgba(28, 32, 16, 0.06)",
           display: "flex",
           alignItems: "center",
           justifyContent: "center",
@@ -84,7 +84,7 @@ export default function Nav() {
           <a href="/" style={{ display: "flex", alignItems: "center", textDecoration: "none" }}>
             <Image src="/images/stacked-logo.png" alt="Stacked Marketing" width={160} height={53}
               style={{ height: 53, width: "auto", objectFit: "contain" }} priority />
-            <span style={{ color: "#FFFFFF", fontWeight: 700, fontSize: "1.25rem", letterSpacing: "0.05em", marginLeft: 8, fontFamily: "var(--font-heading)" }}>
+            <span style={{ color: "var(--text-primary)", fontWeight: 700, fontSize: "1.25rem", letterSpacing: "0.05em", marginLeft: 8, fontFamily: "var(--font-heading)" }}>
               STACKED
             </span>
           </a>
@@ -118,9 +118,9 @@ export default function Nav() {
           {/* Mobile hamburger */}
           <button className="mobile-only" onClick={() => setMobileOpen(true)} aria-label="Open menu"
             style={{ background: "none", border: "none", cursor: "pointer", display: "flex", flexDirection: "column", gap: 5, padding: 8 }}>
-            <span style={{ width: 22, height: 2, backgroundColor: "#FFFFFF", display: "block" }} />
-            <span style={{ width: 22, height: 2, backgroundColor: "#FFFFFF", display: "block" }} />
-            <span style={{ width: 22, height: 2, backgroundColor: "#FFFFFF", display: "block" }} />
+            <span style={{ width: 22, height: 2, backgroundColor: "var(--text-primary)", display: "block" }} />
+            <span style={{ width: 22, height: 2, backgroundColor: "var(--text-primary)", display: "block" }} />
+            <span style={{ width: 22, height: 2, backgroundColor: "var(--text-primary)", display: "block" }} />
           </button>
         </div>
       </nav>
@@ -129,13 +129,13 @@ export default function Nav() {
       {mobileOpen && (
         <div style={{
           position: "fixed", inset: 0, zIndex: 2000,
-          backgroundColor: "rgba(13, 13, 13, 0.98)",
+          backgroundColor: "rgba(255, 255, 255, 0.98)",
           backdropFilter: "blur(16px)",
           WebkitBackdropFilter: "blur(16px)",
           display: "flex", flexDirection: "column", alignItems: "center", justifyContent: "center", gap: "1.5rem",
         }}>
           <button onClick={closeMobile} aria-label="Close menu"
-            style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", color: "#FFFFFF", fontSize: "1.5rem", cursor: "pointer", fontFamily: "var(--font-body)", fontWeight: 500 }}>
+            style={{ position: "absolute", top: 20, right: 20, background: "none", border: "none", color: "var(--text-primary)", fontSize: "1.5rem", cursor: "pointer", fontFamily: "var(--font-body)", fontWeight: 500 }}>
             &#x2715;
           </button>
           {navLinks.map((link) => (
