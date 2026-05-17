@@ -2,8 +2,8 @@
 title: 'What "You Own Everything" Should Mean From Your Marketing Partner'
 excerpt: 'Agencies say you own your marketing. But do you own the ad account? The pixel data? The website code? Here is what true ownership means and why it matters for your business.'
 coverImage: ''
-date: '2026-02-23'
-publishDate: '2026-02-23T06:00:00'
+date: '2025-03-15'
+publishDate: '2025-03-15T06:00:00'
 status: published
 tags:
   - Agency Ownership

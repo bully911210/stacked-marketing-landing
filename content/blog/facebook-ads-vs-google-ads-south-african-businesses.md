@@ -2,8 +2,8 @@
 title: 'Facebook Ads vs Google Ads for South African Businesses: Where to Spend Your Budget'
 excerpt: 'Two platforms. Limited budget. We break down exactly when to use Facebook Ads, when to use Google Ads, and when the answer is both — with SA-specific data.'
 coverImage: ''
-date: '2026-03-20'
-publishDate: '2026-03-20T06:00:00'
+date: '2026-04-01'
+publishDate: '2026-04-01T06:00:00'
 status: published
 tags:
   - Facebook Ads

@@ -2,8 +2,8 @@
 title: 'How We Achieved a R68 CPA Across 5,000 Clients Using Lead Ads'
 excerpt: 'R205K spent. R68 cost per acquisition. 5,000 subscription clients. In a restricted category. Here is the full breakdown of the system, mistakes, and what we would do differently.'
 coverImage: ''
-date: '2026-03-17'
-publishDate: '2026-03-17T06:00:00'
+date: '2026-02-15'
+publishDate: '2026-02-15T06:00:00'
 status: published
 tags:
   - Case Study

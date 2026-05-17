@@ -2,8 +2,8 @@
 title: 'Why Most SA Businesses Waste Money on Marketing (And How to Stop)'
 excerpt: 'It is not that marketing does not work. It is that most businesses spend on disconnected tactics instead of a connected system. Here are the 7 most common ways SA businesses waste marketing budget.'
 coverImage: ''
-date: '2026-02-28'
-publishDate: '2026-02-28T06:00:00'
+date: '2025-06-01'
+publishDate: '2025-06-01T06:00:00'
 status: published
 tags:
   - Marketing Strategy

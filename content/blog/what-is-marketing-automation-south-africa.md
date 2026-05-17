@@ -2,8 +2,8 @@
 title: 'What Is Marketing Automation? A Plain-English Guide for SA Business Owners'
 excerpt: 'Marketing automation sounds complex. It is not. It is the difference between manually chasing every lead and having a system that does it for you. Here is how it works.'
 coverImage: ''
-date: '2026-03-09'
-publishDate: '2026-03-09T06:00:00'
+date: '2025-10-15'
+publishDate: '2025-10-15T06:00:00'
 status: published
 tags:
   - Marketing Automation

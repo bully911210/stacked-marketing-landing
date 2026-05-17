@@ -2,8 +2,8 @@
 title: 'How Much Does a Business Website Cost in South Africa in 2026?'
 excerpt: 'From R500 DIY to R100,000+ agency builds. We break down exactly what you get at each price point so you can stop overpaying or underinvesting.'
 coverImage: ''
-date: '2026-03-14'
-publishDate: '2026-03-14T06:00:00'
+date: '2026-01-01'
+publishDate: '2026-01-01T06:00:00'
 status: published
 tags:
   - Website Design

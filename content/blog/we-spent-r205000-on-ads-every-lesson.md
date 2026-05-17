@@ -2,8 +2,8 @@
 title: 'We Spent R205,000 of Our Own Money on Ads. Here Is Every Lesson.'
 excerpt: 'Not client money. Our money. R205K invested across Meta ad campaigns in restricted categories in South Africa. Here are the 20 lessons we paid for so you don not have to.'
 coverImage: ''
-date: '2026-02-22'
-publishDate: '2026-02-22T06:00:00'
+date: '2025-03-01'
+publishDate: '2025-03-01T06:00:00'
 status: published
 tags:
   - Case Study

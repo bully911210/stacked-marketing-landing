@@ -2,8 +2,8 @@
 title: 'How to Generate Leads for Financial Services in South Africa (Compliance-First)'
 excerpt: 'Financial services marketing in SA means navigating FSCA regulations, Special Ad Categories, and suspicious consumers. Here is the compliance-first framework that gets results.'
 coverImage: ''
-date: '2026-02-26'
-publishDate: '2026-02-26T06:00:00'
+date: '2025-05-01'
+publishDate: '2025-05-01T06:00:00'
 status: published
 tags:
   - Financial Services

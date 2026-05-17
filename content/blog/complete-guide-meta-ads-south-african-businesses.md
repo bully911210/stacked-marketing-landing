@@ -2,8 +2,8 @@
 title: 'The Complete Guide to Meta Ads for South African Businesses'
 excerpt: 'Everything you need to know about running Facebook and Instagram ads in South Africa — from account setup to scaling. No fluff, just the playbook we use ourselves.'
 coverImage: ''
-date: '2026-03-22'
-publishDate: '2026-03-22T06:00:00'
+date: '2026-05-01'
+publishDate: '2026-05-01T06:00:00'
 status: published
 tags:
   - Meta Ads

@@ -86,7 +86,7 @@
   --gold-light: #F0C96A;
 
   /* Display font */
-  --font-display: 'Fraunces', Georgia, serif;
+  --font-display: "DM Sans", system-ui, sans-serif;
 
   /* Design system colors (extended) */
   --color-accent-muted: rgba(107, 122, 63, 0.12);

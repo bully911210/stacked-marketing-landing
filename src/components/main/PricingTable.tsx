@@ -125,30 +125,6 @@ function PricingCard({
 function CardContent({ tier }: { tier: (typeof tiers)[number] }) {
   return (
     <>
-      <div
-        style={{
-          position: "relative",
-          width: "100%",
-          aspectRatio: "4 / 3",
-          borderRadius: 12,
-          overflow: "hidden",
-          marginBottom: 24,
-          background: "linear-gradient(135deg, var(--moss) 0%, var(--cream) 100%)",
-        }}
-      >
-        <video
-          aria-hidden="true"
-          autoPlay
-          muted
-          loop
-          playsInline
-          poster={`/brand/${tier.media}.jpg`}
-          style={{ width: "100%", height: "100%", objectFit: "cover", display: "block" }}
-        >
-          <source src={`/brand/${tier.media}.mp4`} type="video/mp4" />
-        </video>
-      </div>
-
       <h3
         style={{
           fontFamily: "var(--font-heading)",

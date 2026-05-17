@@ -2,8 +2,8 @@
 title: 'Digital Marketing for Insurance Brokers in South Africa'
 excerpt: 'Insurance is one of the hardest categories to advertise on Meta. We know — we spent R205K of our own money in it. Here is the playbook that works for SA insurance brokers.'
 coverImage: ''
-date: '2026-02-27'
-publishDate: '2026-02-27T06:00:00'
+date: '2025-05-15'
+publishDate: '2025-05-15T06:00:00'
 status: published
 tags:
   - Insurance

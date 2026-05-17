@@ -2,8 +2,8 @@
 title: 'Marketing on a Budget: Where to Spend Your First R5,000'
 excerpt: 'You have R5,000 to invest in marketing. Not R50,000. Not R5 million. Five thousand rand. Here is exactly where that money should go to generate the most customers.'
 coverImage: ''
-date: '2026-03-01'
-publishDate: '2026-03-01T06:00:00'
+date: '2025-06-15'
+publishDate: '2025-06-15T06:00:00'
 status: published
 tags:
   - Budgeting

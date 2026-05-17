@@ -2,8 +2,8 @@
 title: 'How to Set Up Automated WhatsApp Replies for Your Business'
 excerpt: 'WhatsApp is how South Africa does business. But you can not be on your phone 24/7. Here is how to set up automated replies that respond instantly, qualify leads, and never miss an enquiry.'
 coverImage: ''
-date: '2026-03-08'
-publishDate: '2026-03-08T06:00:00'
+date: '2025-10-01'
+publishDate: '2025-10-01T06:00:00'
 status: published
 tags:
   - WhatsApp

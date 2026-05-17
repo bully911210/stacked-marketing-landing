@@ -2,8 +2,8 @@
 title: 'Lead Nurturing: How to Convert More Enquiries Without Hiring More Staff'
 excerpt: 'You are generating leads. Half of them go cold. Not because they are bad leads — because nobody followed up consistently. Here is the nurture system that fixes it.'
 coverImage: ''
-date: '2026-03-06'
-publishDate: '2026-03-06T06:00:00'
+date: '2025-09-01'
+publishDate: '2025-09-01T06:00:00'
 status: published
 tags:
   - Lead Nurturing

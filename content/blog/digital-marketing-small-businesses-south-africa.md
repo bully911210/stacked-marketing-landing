@@ -2,8 +2,8 @@
 title: 'Digital Marketing for Small Businesses in South Africa: Where to Start'
 excerpt: 'You know you need digital marketing. But where do you actually start when budget is limited and time is scarce? Here is the step-by-step priority list for SA small businesses.'
 coverImage: ''
-date: '2026-03-04'
-publishDate: '2026-03-04T06:00:00'
+date: '2025-08-01'
+publishDate: '2025-08-01T06:00:00'
 status: published
 tags:
   - Digital Marketing
