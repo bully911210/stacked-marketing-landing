@@ -294,6 +294,7 @@ export default function InvoicingPage() {
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
   const [saving, setSaving] = useState(false);
+  const [loadError, setLoadError] = useState("");
   const [filter, setFilter] = useState<"all" | "paid" | "unpaid">("all");
   const [previewInvoice, setPreviewInvoice] = useState<Invoice | null>(null);
 
@@ -339,12 +340,20 @@ export default function InvoicingPage() {
     try {
       const res = await fetch("/api/invoices");
       if (res.ok) {
+        setLoadError("");
         setInvoices(await res.json());
       } else if (res.status === 401) {
         setView("login");
+      } else {
+        try {
+          const data = await res.json();
+          setLoadError(data.error || "Failed to load invoices");
+        } catch {
+          setLoadError("Failed to load invoices (server error)");
+        }
       }
     } catch {
-      // Network or parse error — invoices list stays as-is
+      setLoadError("Network error — could not reach the server");
     }
   }, []);
 
@@ -970,6 +979,16 @@ export default function InvoicingPage() {
             <button onClick={() => setView("create")} style={S.btnPrimary}>+ New Invoice</button>
           </div>
         </div>
+
+        {/* Storage error banner */}
+        {loadError && (
+          <div style={{ padding: "14px 18px", background: "rgba(239,68,68,0.1)", border: "1px solid rgba(239,68,68,0.3)", borderRadius: 8, color: "#EF4444", fontSize: 13, marginBottom: 24, lineHeight: 1.6 }}>
+            <strong>Storage error:</strong> {loadError}
+            {loadError.includes("BLOB_READ_WRITE_TOKEN") && (
+              <span> — Go to <strong>Vercel Dashboard → your project → Settings → Environment Variables</strong> and add <code style={{ background: "rgba(239,68,68,0.15)", padding: "1px 6px", borderRadius: 4 }}>BLOB_READ_WRITE_TOKEN</code>, then redeploy.</span>
+            )}
+          </div>
+        )}
 
         {/* Stats */}
         <div style={{ display: "grid", gridTemplateColumns: "repeat(3, 1fr)", gap: 16, marginBottom: 32 }}>
