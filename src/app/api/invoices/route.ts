@@ -10,8 +10,20 @@ export async function GET() {
     const invoices = await getAllInvoices();
     return NextResponse.json(invoices);
   } catch (err) {
+    const message = err instanceof Error ? err.message : String(err);
+    const isMissingToken =
+      message.includes("BLOB_READ_WRITE_TOKEN") ||
+      message.includes("No blob store") ||
+      message.includes("token");
     console.error("Failed to load invoices:", err);
-    return NextResponse.json({ error: "Failed to load invoices" }, { status: 500 });
+    return NextResponse.json(
+      {
+        error: isMissingToken
+          ? "Vercel Blob storage is not configured. Add BLOB_READ_WRITE_TOKEN to your Vercel environment variables."
+          : "Failed to load invoices",
+      },
+      { status: 500 }
+    );
   }
 }
 

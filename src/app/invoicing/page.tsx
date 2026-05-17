@@ -126,6 +126,29 @@ function saveClient(client: SavedClient) {
   localStorage.setItem("stacked_saved_clients", JSON.stringify(clients));
 }
 
+/* ── local invoice storage ── */
+
+function getInvoicesLocal(): Invoice[] {
+  if (typeof window === "undefined") return [];
+  try {
+    const raw = localStorage.getItem("stacked_invoices");
+    if (!raw) return [];
+    return JSON.parse(raw) as Invoice[];
+  } catch {
+    return [];
+  }
+}
+
+function saveInvoicesLocal(invoices: Invoice[]): void {
+  localStorage.setItem("stacked_invoices", JSON.stringify(invoices));
+}
+
+function getNextInvoiceNumber(): string {
+  const counter = parseInt(localStorage.getItem("stacked_invoice_counter") || "0", 10) + 1;
+  localStorage.setItem("stacked_invoice_counter", String(counter));
+  return `SM-${String(counter).padStart(4, "0")}`;
+}
+
 /* ── helpers ── */
 
 function formatCurrency(amount: number): string {
@@ -293,7 +316,6 @@ export default function InvoicingPage() {
   const [invoices, setInvoices] = useState<Invoice[]>([]);
   const [password, setPassword] = useState("");
   const [error, setError] = useState("");
-  const [saving, setSaving] = useState(false);
   const [filter, setFilter] = useState<"all" | "paid" | "unpaid">("all");
   const [previewInvoice, setPreviewInvoice] = useState<Invoice | null>(null);
 
@@ -335,17 +357,11 @@ export default function InvoicingPage() {
 
   /* ── data ── */
 
-  const loadInvoices = useCallback(async () => {
-    try {
-      const res = await fetch("/api/invoices");
-      if (res.ok) {
-        setInvoices(await res.json());
-      } else if (res.status === 401) {
-        setView("login");
-      }
-    } catch {
-      // Network or parse error — invoices list stays as-is
-    }
+  const loadInvoices = useCallback(() => {
+    const all = getInvoicesLocal();
+    setInvoices(
+      all.sort((a, b) => new Date(b.createdAt).getTime() - new Date(a.createdAt).getTime())
+    );
   }, []);
 
   useEffect(() => {
@@ -394,7 +410,7 @@ export default function InvoicingPage() {
     setError("");
   };
 
-  const handleCreate = async () => {
+  const handleCreate = () => {
     setError("");
 
     if (!clientName.trim()) {
@@ -410,58 +426,55 @@ export default function InvoicingPage() {
       return;
     }
 
-    setSaving(true);
-    try {
-      const res = await fetch("/api/invoices", {
-        method: "POST",
-        headers: { "Content-Type": "application/json" },
-        body: JSON.stringify({
-          clientName,
-          clientEmail,
-          clientPhone,
-          clientBusiness,
-          items,
-          dueDate,
-          notes,
-        }),
-      });
+    const invoiceNumber = getNextInvoiceNumber();
+    const id = invoiceNumber.toLowerCase().replace("sm-", "inv-");
+    const subtotal = items.reduce((sum, i) => sum + (Number(i.amount) || 0), 0);
 
-      if (res.ok) {
-        const inv = await res.json();
-        saveClient({ clientName, clientEmail, clientPhone, clientBusiness });
-        setSavedClients(getSavedClients());
-        resetForm();
-        setPreviewInvoice(inv);
-        setView("preview");
-        loadInvoices();
-      } else {
-        try {
-          const data = await res.json();
-          setError(data.error || "Failed to create invoice");
-        } catch {
-          setError("Failed to create invoice. Please try again.");
-        }
-      }
-    } catch {
-      setError("Network error. Please check your connection and try again.");
-    }
-    setSaving(false);
+    const invoice: Invoice = {
+      id,
+      invoiceNumber,
+      clientName,
+      clientEmail,
+      clientPhone,
+      clientBusiness,
+      items,
+      subtotal,
+      vat: 0,
+      total: subtotal,
+      status: "unpaid",
+      paidDate: null,
+      createdAt: new Date().toISOString(),
+      dueDate,
+      notes,
+    };
+
+    const existing = getInvoicesLocal();
+    saveInvoicesLocal([invoice, ...existing]);
+    saveClient({ clientName, clientEmail, clientPhone, clientBusiness });
+    setSavedClients(getSavedClients());
+    resetForm();
+    setPreviewInvoice(invoice);
+    setView("preview");
+    loadInvoices();
   };
 
-  const toggleStatus = async (invoice: Invoice) => {
+  const toggleStatus = (invoice: Invoice) => {
     const newStatus = invoice.status === "paid" ? "unpaid" : "paid";
-    const res = await fetch(`/api/invoices/${invoice.id}`, {
-      method: "PATCH",
-      headers: { "Content-Type": "application/json" },
-      body: JSON.stringify({ status: newStatus }),
-    });
-    if (res.ok) loadInvoices();
+    const all = getInvoicesLocal();
+    saveInvoicesLocal(
+      all.map((inv) =>
+        inv.id === invoice.id
+          ? { ...inv, status: newStatus, paidDate: newStatus === "paid" ? new Date().toISOString() : null }
+          : inv
+      )
+    );
+    loadInvoices();
   };
 
-  const handleDelete = async (invoice: Invoice) => {
+  const handleDelete = (invoice: Invoice) => {
     if (!confirm(`Delete invoice ${invoice.invoiceNumber}?`)) return;
-    const res = await fetch(`/api/invoices/${invoice.id}`, { method: "DELETE" });
-    if (res.ok) loadInvoices();
+    saveInvoicesLocal(getInvoicesLocal().filter((inv) => inv.id !== invoice.id));
+    loadInvoices();
   };
 
   /* ── computed ── */
@@ -944,8 +957,8 @@ export default function InvoicingPage() {
               <button onClick={() => { resetForm(); setView("list"); }} style={S.btnSecondary}>
                 Cancel
               </button>
-              <button onClick={handleCreate} disabled={saving} style={{ ...S.btnPrimary, opacity: saving ? 0.6 : 1 }}>
-                {saving ? "Creating..." : "Create Invoice"}
+              <button onClick={handleCreate} style={S.btnPrimary}>
+                Create Invoice
               </button>
             </div>
           </div>
