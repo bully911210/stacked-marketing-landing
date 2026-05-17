@@ -129,15 +129,14 @@ export default function Hero() {
           }}
         >
           We spent R205K of our own money{" "}
-          <em
+          <span
             style={{
-              fontStyle: "italic",
               fontFamily: "var(--font-display)",
               color: "var(--gold)",
             }}
           >
             first.
-          </em>
+          </span>
         </h1>
 
         <p
