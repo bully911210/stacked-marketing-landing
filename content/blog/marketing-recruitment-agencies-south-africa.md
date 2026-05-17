@@ -2,8 +2,8 @@
 title: 'Marketing for Recruitment Agencies: How to Fill 50+ Seats in One Campaign Cycle'
 excerpt: 'Recruitment marketing on Meta is a volume game. Here is how we helped a recruitment agency fill 50+ positions in a single campaign cycle — every step tracked.'
 coverImage: ''
-date: '2026-02-25'
-publishDate: '2026-02-25T06:00:00'
+date: '2025-04-15'
+publishDate: '2025-04-15T06:00:00'
 status: published
 tags:
   - Recruitment

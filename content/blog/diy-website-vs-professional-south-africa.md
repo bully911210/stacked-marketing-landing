@@ -2,8 +2,8 @@
 title: 'DIY Website vs Professional: An Honest Cost Comparison for SA Businesses'
 excerpt: 'Wix is free. WordPress is cheap. But what does a DIY website actually cost when you factor in time, speed, conversions, and opportunity cost? Here is the real comparison.'
 coverImage: ''
-date: '2026-03-11'
-publishDate: '2026-03-11T06:00:00'
+date: '2025-11-15'
+publishDate: '2025-11-15T06:00:00'
 status: published
 tags:
   - Website Design

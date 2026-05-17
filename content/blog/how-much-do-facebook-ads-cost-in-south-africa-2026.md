@@ -2,8 +2,8 @@
 title: 'How Much Do Facebook Ads Cost in South Africa in 2026?'
 excerpt: 'Real numbers from real campaigns. We break down actual CPMs, CPCs, and CPAs across industries in South Africa so you can budget with confidence — not guesswork.'
 coverImage: ''
-date: '2026-03-23'
-publishDate: '2026-03-23T06:00:00'
+date: '2026-05-15'
+publishDate: '2026-05-15T06:00:00'
 status: published
 tags:
   - Facebook Ads

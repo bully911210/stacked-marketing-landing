@@ -2,8 +2,8 @@
 title: '5 Signs Your Website Is Costing You Customers (Not Just Money)'
 excerpt: 'Your website might look fine to you. But if it commits any of these 5 sins, it is actively driving potential customers to your competitors.'
 coverImage: ''
-date: '2026-03-13'
-publishDate: '2026-03-13T06:00:00'
+date: '2025-12-15'
+publishDate: '2025-12-15T06:00:00'
 status: published
 tags:
   - Website Design

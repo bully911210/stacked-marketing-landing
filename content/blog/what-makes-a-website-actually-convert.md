@@ -2,8 +2,8 @@
 title: 'What Makes a Website Actually Convert? The Anatomy of a High-Performance Landing Page'
 excerpt: 'Most websites look good but don''t convert. Here are the 9 elements that separate a website that generates leads from one that just exists on the internet.'
 coverImage: ''
-date: '2026-03-15'
-publishDate: '2026-03-15T06:00:00'
+date: '2026-01-15'
+publishDate: '2026-01-15T06:00:00'
 status: published
 tags:
   - Website Design

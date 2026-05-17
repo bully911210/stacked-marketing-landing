@@ -2,8 +2,8 @@
 title: 'Page Speed Kills: How Slow Websites Destroy Your Ad ROI'
 excerpt: 'You are paying for every click. If your website takes 5 seconds to load, you are paying for clicks that never see your offer. Here is the maths and the fix.'
 coverImage: ''
-date: '2026-03-10'
-publishDate: '2026-03-10T06:00:00'
+date: '2025-11-01'
+publishDate: '2025-11-01T06:00:00'
 status: published
 tags:
   - Page Speed

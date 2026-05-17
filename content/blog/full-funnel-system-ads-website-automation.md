@@ -2,8 +2,8 @@
 title: 'The Full-Funnel System: How Ads, Website, and Automation Work Together'
 excerpt: 'Most businesses treat ads, websites, and follow-up as separate things. They are not. They are one system. Here is how to connect them into a machine that converts.'
 coverImage: ''
-date: '2026-03-07'
-publishDate: '2026-03-07T06:00:00'
+date: '2025-09-15'
+publishDate: '2025-09-15T06:00:00'
 status: published
 tags:
   - Marketing Funnel

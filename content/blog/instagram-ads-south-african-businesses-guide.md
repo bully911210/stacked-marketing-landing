@@ -2,8 +2,8 @@
 title: 'Instagram Ads for South African Businesses: A Practical Guide'
 excerpt: 'Instagram isn''t just for influencers. With 12 million SA users and lower competition than Facebook, it''s a genuine lead generation platform — if you know how to use it.'
 coverImage: ''
-date: '2026-03-16'
-publishDate: '2026-03-16T06:00:00'
+date: '2026-02-01'
+publishDate: '2026-02-01T06:00:00'
 status: published
 tags:
   - Instagram Ads

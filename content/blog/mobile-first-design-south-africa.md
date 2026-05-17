@@ -2,8 +2,8 @@
 title: 'Mobile-First Design: Why 78% of Your South African Customers Are on Their Phone'
 excerpt: 'Most SA websites are still designed for desktop and then squeezed onto mobile. That is backwards. Here is why mobile-first matters and how to actually implement it.'
 coverImage: ''
-date: '2026-03-12'
-publishDate: '2026-03-12T06:00:00'
+date: '2025-12-01'
+publishDate: '2025-12-01T06:00:00'
 status: published
 tags:
   - Mobile Design

@@ -2,8 +2,8 @@
 title: 'How to Choose a Digital Marketing Agency in South Africa (Without Getting Burned)'
 excerpt: 'Most agencies lock you in, hide your data, and blame the algorithm when results are poor. Here are 11 questions that separate good agencies from expensive liabilities.'
 coverImage: ''
-date: '2026-02-24'
-publishDate: '2026-02-24T06:00:00'
+date: '2025-04-01'
+publishDate: '2025-04-01T06:00:00'
 status: published
 tags:
   - Agency Selection

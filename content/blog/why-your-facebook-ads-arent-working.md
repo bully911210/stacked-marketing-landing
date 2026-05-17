@@ -2,8 +2,8 @@
 title: 'Why Your Facebook Ads Aren''t Working (And What to Fix First)'
 excerpt: 'Before you blame the algorithm or increase your budget, check these 8 things. We diagnose the most common reasons Facebook ads fail for SA businesses.'
 coverImage: ''
-date: '2026-03-18'
-publishDate: '2026-03-18T06:00:00'
+date: '2026-03-01'
+publishDate: '2026-03-01T06:00:00'
 status: published
 tags:
   - Facebook Ads

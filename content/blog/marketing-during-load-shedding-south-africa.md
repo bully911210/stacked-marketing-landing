@@ -2,8 +2,8 @@
 title: 'How to Market Your Business During Load Shedding (Yes, Really)'
 excerpt: 'Load shedding changes how South Africans browse, buy, and respond. Smart marketers adapt their campaigns to load shedding patterns. Here is how.'
 coverImage: ''
-date: '2026-03-03'
-publishDate: '2026-03-03T06:00:00'
+date: '2025-07-15'
+publishDate: '2025-07-15T06:00:00'
 status: published
 tags:
   - Load Shedding

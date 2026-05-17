@@ -2,8 +2,8 @@
 title: 'CRM for Small Business: Why You Are Losing Leads Without One'
 excerpt: 'A CRM is not enterprise software for big companies. It is a system that stops leads from falling through the cracks. Here is what SA small businesses actually need.'
 coverImage: ''
-date: '2026-03-05'
-publishDate: '2026-03-05T06:00:00'
+date: '2025-08-15'
+publishDate: '2025-08-15T06:00:00'
 status: published
 tags:
   - CRM

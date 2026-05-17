@@ -2,8 +2,8 @@
 title: 'How to Build Lookalike Audiences That Actually Convert in South Africa'
 excerpt: 'Lookalike audiences are Meta''s most powerful tool — if you use them right. Here is how we used them to reach all 9 provinces in 60 days for an agriculture client.'
 coverImage: ''
-date: '2026-03-19'
-publishDate: '2026-03-19T06:00:00'
+date: '2026-03-15'
+publishDate: '2026-03-15T06:00:00'
 status: published
 tags:
   - Lookalike Audiences

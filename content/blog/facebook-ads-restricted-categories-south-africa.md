@@ -2,8 +2,8 @@
 title: 'How to Run Facebook Ads in Restricted Categories in South Africa'
 excerpt: 'Insurance, financial services, health, politics — Meta restricts them all. Here is exactly how we run compliant, high-performing campaigns in these categories.'
 coverImage: ''
-date: '2026-03-21'
-publishDate: '2026-03-21T06:00:00'
+date: '2026-04-15'
+publishDate: '2026-04-15T06:00:00'
 status: published
 tags:
   - Facebook Ads

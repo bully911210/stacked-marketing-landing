@@ -211,8 +211,10 @@ export default async function BlogPostPage({
         .blog-content {
           color: var(--text-secondary);
           font-family: var(--font-body);
-          font-size: var(--text-body);
+          font-size: 1.0625rem;
           line-height: 1.8;
+          max-width: 720px;
+          margin-inline: auto;
         }
         .blog-content h1,
         .blog-content h2,
@@ -221,12 +223,41 @@ export default async function BlogPostPage({
           color: var(--text-primary);
           font-family: var(--font-heading);
           margin-top: 2em;
-          margin-bottom: 0.75em;
+          margin-bottom: 0.6em;
           line-height: 1.3;
+          letter-spacing: -0.01em;
         }
-        .blog-content h2 { font-size: var(--text-h2); font-weight: 700; }
-        .blog-content h3 { font-size: var(--text-h3); font-weight: 600; }
+        .blog-content h2 { font-size: 1.625rem; font-weight: 700; }
+        .blog-content h3 { font-size: 1.25rem; font-weight: 600; }
+        .blog-content h4 { font-size: 1.0625rem; font-weight: 600; }
         .blog-content p { margin-bottom: 1.5em; }
+        .blog-content > *:first-child { margin-top: 0; }
+        .blog-content table {
+          width: 100%;
+          border-collapse: collapse;
+          margin: 2em 0;
+          font-size: 0.9375rem;
+          display: block;
+          overflow-x: auto;
+        }
+        .blog-content thead {
+          background: var(--bg-tertiary);
+        }
+        .blog-content th,
+        .blog-content td {
+          border: 1px solid var(--border);
+          padding: 10px 14px;
+          text-align: left;
+          vertical-align: top;
+        }
+        .blog-content th {
+          color: var(--text-primary);
+          font-weight: 600;
+          white-space: nowrap;
+        }
+        .blog-content tbody tr:nth-child(even) {
+          background: rgba(107, 122, 63, 0.04);
+        }
         .blog-content a {
           color: var(--lime);
           text-decoration: underline;
@@ -256,7 +287,8 @@ export default async function BlogPostPage({
         }
         .blog-content code {
           font-family: var(--font-mono);
-          background: rgba(255, 255, 255, 0.08);
+          background: rgba(107, 122, 63, 0.1);
+          color: var(--text-primary);
           padding: 2px 6px;
           border-radius: 4px;
           font-size: 0.9em;
