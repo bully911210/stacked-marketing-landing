@@ -1,0 +1,85 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Stacked · section preview</title>
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="css/base.css">
+</head>
+<body>
+<!--
+  Section preview harness (dev only, same-origin fragments). Loads one or more
+  section fragments exactly as the real page will, so a section can be built
+  and screenshotted on its own.
+    preview.html?s=how            one section
+    preview.html?s=hero,how       several, in the given order
+    preview.html?s=how&pad=1      adds a spacer above and below (to test scroll entry/exit)
+  Ready signal: <html data-preview-ready="1"> once every script has loaded.
+-->
+<header class="nav">
+  <a class="nav__mark" href="#top" aria-label="Stacked" data-logo="load">
+    <img src="assets/logo/stacked.svg" alt="" width="137" height="29">
+  </a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="#how" data-spy="#how,#problem">How it works</a><a href="#free" data-spy="#free">What’s free</a><a href="#pricing" data-spy="#run,#pricing,#proof">Pricing</a><a href="#faq" data-spy="#faq">FAQ</a>
+  </nav>
+  <a class="btn btn--dark btn--sm" href="#start">Get my free setup</a>
+</header>
+<main id="preview-main"></main>
+<script>
+(async function () {
+  var q = new URLSearchParams(location.search);
+  var names = (q.get("s") || "hero").split(",").map(function (s) { return s.trim(); }).filter(function (s) { return /^[a-z0-9-]+$/.test(s); });
+  var pad = q.get("pad") === "1";
+  var main = document.getElementById("preview-main");
+
+  function spacer() {
+    var d = document.createElement("div");
+    d.textContent = "spacer";
+    d.style.cssText = "height:90vh;display:grid;place-items:center;color:#8a8f9c;font:14px Inter,sans-serif;border-block:1px dashed rgba(10,11,15,.1)";
+    return d;
+  }
+  function appendFragment(text) {
+    var parsed = new DOMParser().parseFromString(text, "text/html");
+    Array.prototype.slice.call(parsed.body.childNodes).forEach(function (n) { main.appendChild(document.importNode(n, true)); });
+  }
+
+  if (pad) main.appendChild(spacer());
+  for (var i = 0; i < names.length; i++) {
+    var res = await fetch("sections/" + names[i] + ".html", { cache: "no-store" });
+    if (!res.ok) { console.error("[preview] missing sections/" + names[i] + ".html"); continue; }
+    appendFragment(await res.text());
+  }
+  if (pad) main.appendChild(spacer());
+
+  function load(tag, attrs) {
+    return new Promise(function (ok) {
+      var el = document.createElement(tag);
+      Object.keys(attrs).forEach(function (k) { el[k] = attrs[k]; });
+      el.onload = ok; el.onerror = function () { ok(); };
+      document[tag === "link" ? "head" : "body"].appendChild(el);
+    });
+  }
+  async function exists(url) { try { var r = await fetch(url, { method: "HEAD", cache: "no-store" }); return r.ok; } catch (e) { return false; } }
+
+  var v = "?v=" + Date.now();
+  for (var j = 0; j < names.length; j++) {
+    if (await exists("css/" + names[j] + ".css")) await load("link", { rel: "stylesheet", href: "css/" + names[j] + ".css" + v });
+  }
+  await load("script", { src: "config.js" + v });
+  await load("script", { src: "js/base.js" + v });
+  await load("script", { src: "js/logo-path.js" + v });
+  await load("script", { src: "js/logo.js" + v });
+  for (var k = 0; k < names.length; k++) {
+    if (await exists("js/" + names[k] + ".js")) await load("script", { src: "js/" + names[k] + ".js" + v });
+  }
+  document.documentElement.setAttribute("data-preview-ready", "1");
+})();
+</script>
+</body>
+</html>

@@ -1,0 +1,150 @@
+/* ==========================================================================
+   Pricing, direction A: the stack. One object, read from the bottom up.
+   The free foundation is a wide, thick plate whose front edge shows four
+   plies (one for each part it is built from). Managed Meta Ads is a narrower
+   plate resting on it. The guarantee sits on top. Faces are flat and face the
+   reader, so the type stays crisp; depth comes from each plate's extruded
+   edge, the contact shadow on the plate below and a soft ground shadow.
+   Default (no JS, reduced motion): the settled stack. js/pricing-a.js adds
+   .pricing-a--arm (the top plate hovers, its shadow faint and wide) and then
+   .is-set once the seam between the plates is on screen: it lowers into place.
+   ========================================================================== */
+.pricing-a {
+  --inset: 56px;          /* how much narrower the top plate is, each side */
+  --pad: 56px;            /* face padding (the base adds --inset so the columns line up) */
+  --tuck: 56px;           /* how far the foundation runs in under the top plate */
+  --edge-top: 14px;       /* plate thickness, top plate */
+  --edge-base: 24px;      /* plate thickness, foundation (four plies) */
+  --lift: 46px;           /* hover height before it settles */
+  --r: 26px;
+  --side: 330px;          /* the price column */
+  background: var(--bg);
+  overflow-x: clip;
+}
+
+/* ---- head: centred, a change of rhythm between #run and #proof ---------- */
+.pricing-a .pricing-a__head { display: flex; flex-direction: column; align-items: center; max-width: 780px; margin-inline: auto; text-align: center; }
+.pricing-a .pricing-a__h { margin-top: 14px; }
+.pricing-a .pricing-a__lead { margin-top: 22px; max-width: 28em; }
+/* the logo's green full stop, once: the only place this section uses it */
+.pricing-a .pricing-a__dot { color: var(--logo-green); }
+
+/* ---- the stack ---------------------------------------------------------- */
+.pricing-a .pricing-a__stack { position: relative; display: grid; grid-template-columns: minmax(0, 1fr); margin-top: clamp(104px, 9.5vw, 136px); padding-bottom: var(--edge-base); }
+.pricing-a .pricing-a__plate { position: relative; min-width: 0; }
+.pricing-a .pricing-a__plate--top { grid-row: 1; z-index: 2; margin: 0 var(--inset) calc(var(--edge-top) - var(--tuck)); }
+/* so the top plate's edge meets the foundation --tuck below the foundation's top */
+.pricing-a .pricing-a__plate--base { grid-row: 2; z-index: 1; }
+
+/* A face is the plate's top surface. Its edge is drawn with solid offset shadows:
+   each is the rounded outline moved down, so the edge follows the corners the way
+   a real slab's side does. Soft shadows after them ground the plate. */
+.pricing-a .pricing-a__face {
+  position: relative; z-index: 1;
+  display: grid; grid-template-columns: minmax(0, 1fr) var(--side); column-gap: 72px;
+  padding: var(--pad);
+  border-radius: var(--r);
+  background: #fff;
+}
+.pricing-a .pricing-a__plate--top .pricing-a__face {
+  box-shadow:
+    inset 0 0 0 1px rgba(10, 11, 15, 0.07),
+    2px 7px 0 #eef0f4, 4px 13px 0 #e5e8ed, 4px 14px 0 #cdd3dc,
+    0 22px 26px -14px rgba(16, 24, 40, 0.3), 0 44px 70px -34px rgba(16, 24, 40, 0.26);
+}
+/* the foundation: a cool, slightly deeper material than the white plate on it, four
+   plies deep, lighter toward the top. Its face runs in under the top plate, so its
+   content starts below the contact line. */
+.pricing-a .pricing-a__plate--base .pricing-a__face {
+  padding: calc(var(--tuck) + 60px) calc(var(--inset) + var(--pad)) calc(var(--pad) + 4px);
+  background: #f6f7f9;
+  box-shadow:
+    inset 0 0 0 1px rgba(10, 11, 15, 0.075),
+    1.5px 5px 0 #eceff3, 2px 6px 0 #d3d8e0,
+    3.5px 11px 0 #e6e9ee, 4px 12px 0 #cfd4dc,
+    5px 17px 0 #e0e4e9, 5.5px 18px 0 #cad0d9,
+    7px 23px 0 #d9dde4, 7px 24px 0 #bcc3ce,
+    0 36px 44px -22px rgba(16, 24, 40, 0.28), 0 80px 110px -46px rgba(16, 24, 40, 0.24);
+}
+
+/* contact shadow: where the top plate's edge meets the foundation */
+.pricing-a .pricing-a__cast {
+  position: absolute; left: calc(var(--inset) + 8px); right: calc(var(--inset) + 8px);
+  top: calc(var(--tuck) - 10px); height: 24px;
+  border-radius: 999px; background: rgba(16, 24, 40, 0.22); filter: blur(8px);
+  pointer-events: none; transform-origin: 50% 0;
+}
+
+/* ---- type inside the plates -------------------------------------------- */
+.pricing-a .pricing-a__main { min-width: 0; }
+.pricing-a .pricing-a__sub { margin-top: 10px; max-width: 30em; color: var(--soft); text-wrap: pretty; }
+.pricing-a .pricing-a__listh { margin-top: 36px; font-size: var(--t-small); font-weight: 600; color: var(--ink); }
+.pricing-a .pricing-a__list { margin-top: 16px; grid-template-columns: repeat(2, max-content); gap: 14px 44px; font-size: 16px; color: var(--ink-2); }
+
+.pricing-a .pricing-a__parts { list-style: none; margin-top: 30px; display: grid; grid-template-columns: repeat(2, max-content); gap: 16px 44px; }
+.pricing-a .pricing-a__parts li { display: flex; align-items: center; gap: 14px; font-size: 16px; font-weight: 500; color: var(--ink-2); }
+.pricing-a .pricing-a__parts svg {
+  width: 40px; height: 40px; flex: none; padding: 10px; border-radius: 12px; background: #fff;
+  fill: none; stroke: var(--ink-2); stroke-width: 1.6; stroke-linecap: round; stroke-linejoin: round;
+  box-shadow: 0 0 0 1px rgba(10, 11, 15, 0.07), 0 2px 4px -1px rgba(16, 24, 40, 0.08);
+}
+
+.pricing-a .pricing-a__side { min-width: 0; }
+.pricing-a .pricing-a__price { display: flex; flex-wrap: wrap; align-items: baseline; column-gap: 12px; }
+.pricing-a .pricing-a__from { flex-basis: 100%; margin-bottom: 8px; font-size: var(--t-small); font-weight: 500; color: var(--soft); }
+.pricing-a .pricing-a__num { font-family: var(--display); font-weight: 700; font-size: clamp(2.9rem, 2.1rem + 2vw, 3.75rem); line-height: 0.95; letter-spacing: -0.045em; font-variant-numeric: tabular-nums; }
+.pricing-a .pricing-a__per { font-size: 17px; color: var(--soft); }
+.pricing-a .pricing-a__plate--base .pricing-a__per { font-family: var(--display); font-weight: 650; font-size: 22px; letter-spacing: -0.02em; color: var(--ink); }
+
+.pricing-a .pricing-a__bill { margin: 26px 0 0; }
+.pricing-a .pricing-a__bill > div { display: grid; grid-template-columns: minmax(0, 1fr) auto; align-items: baseline; column-gap: 16px; padding: 13px 0; border-top: 1px solid var(--line); font-size: var(--t-small); }
+.pricing-a .pricing-a__bill > div:last-child { border-bottom: 1px solid var(--line); }
+.pricing-a .pricing-a__bill dt { color: var(--ink-2); font-weight: 500; }
+.pricing-a .pricing-a__bill .pricing-a__note { grid-column: 1 / -1; margin-top: 3px; font-size: 13px; font-weight: 400; color: var(--soft); white-space: normal; }
+.pricing-a .pricing-a__bill dd { margin: 0; font-weight: 600; color: var(--ink); font-variant-numeric: tabular-nums; white-space: nowrap; }
+
+.pricing-a .pricing-a__keep { margin-top: 16px; max-width: 19em; font-size: var(--t-small); color: var(--soft); text-wrap: pretty; }
+.pricing-a .pricing-a__cta { margin-top: 26px; }
+
+/* the guarantee: the top of the stack, resting on the back of the monthly plate */
+.pricing-a .pricing-a__promise { position: absolute; z-index: 3; right: calc(var(--pad) - 6px); top: -34px; rotate: -2deg; }
+
+/* ---- settle (js/pricing-a.js) -------------------------------------------
+   Armed: the top plate hovers --lift above its seat, the contact shadow is faint
+   and spread, the guarantee is not placed yet. Solid plates never fade. The
+   transitions live on .is-set only, so arming snaps without a visible move. */
+.pricing-a.pricing-a--arm .pricing-a__plate--top { transform: translateY(calc(-1 * var(--lift))) scale(1.025); }
+.pricing-a.pricing-a--arm .pricing-a__cast { opacity: 0.3; transform: scale(1.08, 1.9); }
+.pricing-a.pricing-a--arm .pricing-a__promise { opacity: 0; transform: translateY(-26px) scale(1.06); }
+.pricing-a.pricing-a--arm.is-set .pricing-a__plate--top { transform: none; transition: transform 1.1s var(--ease); }
+.pricing-a.pricing-a--arm.is-set .pricing-a__cast { opacity: 1; transform: none; transition: opacity 0.9s var(--ease) 0.2s, transform 1s var(--ease) 0.1s; }
+.pricing-a.pricing-a--arm.is-set .pricing-a__promise { opacity: 1; transform: none; transition: opacity 0.45s var(--ease) 0.8s, transform 0.9s var(--ease) 0.8s; }
+
+/* ---- narrower desktops -------------------------------------------------- */
+@media (max-width: 1100px) {
+  .pricing-a { --inset: 36px; --pad: 44px; --side: 300px; }
+  .pricing-a .pricing-a__face { column-gap: 48px; }
+}
+@media (max-width: 1010px) {
+  .pricing-a .pricing-a__list, .pricing-a .pricing-a__parts { grid-template-columns: max-content; }
+}
+
+/* ---- phone and tablet: one column inside each plate ---------------------- */
+@media (max-width: 760px) {
+  .pricing-a { --inset: 14px; --pad: 26px; --tuck: 44px; --lift: 30px; --r: 22px; }
+  .pricing-a .pricing-a__head { align-items: flex-start; text-align: left; }
+  .pricing-a .pricing-a__stack { margin-top: 88px; }
+  .pricing-a .pricing-a__face { grid-template-columns: minmax(0, 1fr); row-gap: 32px; }
+  .pricing-a .pricing-a__plate--base .pricing-a__face { padding-top: calc(var(--tuck) + 36px); }
+  .pricing-a .pricing-a__side { padding-top: 28px; border-top: 1px solid var(--line); }
+  .pricing-a .pricing-a__plate--base .pricing-a__side { border-top-color: rgba(10, 11, 15, 0.1); }
+  .pricing-a .pricing-a__listh { margin-top: 28px; }
+  /* the guarantee needs headroom here: it sits over the heading's column on a phone */
+  .pricing-a .pricing-a__plate--top .pricing-a__face { padding-top: 58px; }
+  .pricing-a .pricing-a__promise { right: 16px; top: -32px; }
+  .pricing-a .pricing-a__cta { width: 100%; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  .pricing-a .pricing-a__plate--top, .pricing-a .pricing-a__cast, .pricing-a .pricing-a__promise { transition: none; }
+}

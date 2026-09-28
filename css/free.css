@@ -1,0 +1,214 @@
+/* What's free: Meta Ads Foundations. The four parts stacked into one foundation.
+   Default (no JS, reduced motion): the finished stack and the full list.
+   .free--build (set by js/free.js): the stack is empty until the scene comes into view,
+   then the four parts drop onto it one after another and click together. No pin: the
+   page keeps moving while it builds, and the list is plain, full-ink text throughout. */
+#free { overflow-x: clip; }
+
+/* ---- intro ------------------------------------------------------------ */
+#free .free__intro { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 28px 64px; align-items: end; }
+#free .free__head .h2 { margin-top: 18px; }
+#free .free__head .h2 span { display: block; }
+#free .free__lead { max-width: 25em; padding-bottom: 6px; }
+
+/* ---- stage ------------------------------------------------------------ */
+#free .free__stage { position: relative; padding-top: 40px; }
+#free .free__grid { display: grid; grid-template-columns: minmax(0, 1.12fr) minmax(0, 0.88fr); gap: 56px; align-items: center; }
+
+/* ---- the scene -------------------------------------------------------- */
+#free .free__scene { position: relative; height: 640px; perspective: 2400px; perspective-origin: 50% 18%; }
+#free .free__scene::before {
+  content: ""; position: absolute; inset: -10% -25% -5% -30%; pointer-events: none;
+  background: radial-gradient(closest-side at 50% 58%, rgba(8, 102, 255, 0.075), rgba(8, 102, 255, 0.025) 55%, transparent 80%);
+}
+#free .free__rig { position: absolute; left: 46%; top: 69%; width: 0; height: 0; transform-style: preserve-3d; }
+/* --gap: resting distance between slabs. --air: extra gap while they land (0 at rest). */
+#free .free__iso {
+  --w: 360px; --d: 260px; --rad: 16px; --gap: 98px; --air: 0px; --rx: 60deg; --rz: -38deg;
+  position: absolute; left: calc(var(--w) / -2); top: calc(var(--d) / -2); width: var(--w); height: var(--d);
+  transform-style: preserve-3d; transform: rotateX(var(--rx)) rotateZ(var(--rz));
+}
+#free .free__ground {
+  position: absolute; inset: -40px -30px -60px -40px; border-radius: 80px;
+  background: radial-gradient(closest-side, rgba(16, 24, 40, 0.13), rgba(16, 24, 40, 0.04) 60%, transparent);
+  transform: translateZ(-14px) translate(26px, 34px);
+}
+#free .free__floor {
+  position: absolute; inset: -18px; border-radius: calc(var(--rad) + 12px);
+  border: 1.5px dashed rgba(8, 102, 255, 0.3); transform: translateZ(-13px);
+}
+#free .free__shade {
+  position: absolute; inset: 6px; border-radius: var(--rad); pointer-events: none;
+  background: rgba(16, 24, 40, 0.03); box-shadow: 0 0 40px 16px rgba(16, 24, 40, 0.06);
+  transform: translateZ(calc((var(--i) - 1) * (var(--gap) + var(--air)) + 1px)) translate(14px, 18px); opacity: 0.8;
+}
+#free .free__shade[data-shade="0"] { transform: translateZ(-12px) translate(14px, 18px); }
+
+/* a slab: six plies make a rounded edge, the face carries the UI */
+#free .free__slab { --spin: 1; position: absolute; inset: 0; transform-style: preserve-3d; transform: translateZ(calc(var(--i) * (var(--gap) + var(--air)))); will-change: transform; }
+#free .free__slab[data-layer="1"], #free .free__slab[data-layer="3"] { --spin: -1; }
+#free .free__ply {
+  position: absolute; inset: 0; border-radius: var(--rad);
+  background: color-mix(in srgb, #cfd5df calc(var(--p) * 15%), #f3f5f8);
+  transform: translateZ(calc(var(--p) * -2px));
+}
+#free .free__ply:first-child { box-shadow: 0 0 0 1px rgba(10, 11, 15, 0.05); }
+#free .free__face {
+  position: absolute; inset: 0; overflow: hidden; border-radius: var(--rad);
+  background: #fff; box-shadow: inset 0 0 0 1px rgba(10, 11, 15, 0.07), inset 0 0 0 2px #fff;
+}
+
+/* R0 tag: counter-rotated so it faces the viewer, pinned to the slab's right corner.
+   The only per-part price on the page; the list stays price-free so "R0. Yours to keep." is the payoff. */
+#free .free__tag {
+  position: absolute; left: 100%; top: 100%; transform-origin: 0 0;
+  transform: translateZ(2px) rotateZ(calc(var(--rz) * -1)) rotateX(calc(var(--rx) * -1)) translate(22px, -50%);
+  padding: 6px 13px; border-radius: var(--r-pill); background: #fff; white-space: nowrap;
+  box-shadow: 0 0 0 1px var(--line), var(--shadow-md);
+  font-family: var(--display); font-weight: 700; font-size: 16px; line-height: 1.2; letter-spacing: -0.01em; color: var(--ink);
+  transition: opacity 0.5s var(--ease), scale 0.6s var(--ease);
+}
+#free .free__tag::before { content: ""; position: absolute; right: 100%; top: 50%; width: 16px; height: 1px; background: var(--line-2); }
+
+/* ---- face UI: website ------------------------------------------------- */
+#free .st { padding: 18px 20px; display: flex; flex-direction: column; gap: 16px; }
+#free .st i, #free .st b { display: block; }
+#free .st__nav { display: flex; align-items: center; gap: 10px; }
+#free .st__nav i { width: 26px; height: 5px; border-radius: 3px; background: #e3e6ec; }
+#free .st__nav .st__logo { width: 14px; height: 14px; border-radius: 5px; background: var(--ink); margin-right: 8px; }
+#free .st__nav b { margin-left: auto; width: 52px; height: 16px; border-radius: 8px; background: #eef1f5; }
+#free .st__hero { flex: 1; display: grid; grid-template-columns: 1fr 1fr; gap: 16px; }
+#free .st__copy { display: flex; flex-direction: column; gap: 8px; padding-top: 14px; }
+#free .st__h { height: 10px; width: 100%; border-radius: 4px; background: var(--ink-2); }
+#free .st__h--2 { width: 66%; }
+#free .st__p { height: 5px; width: 86%; margin-top: 6px; border-radius: 3px; background: #dfe3ea; box-shadow: 0 10px 0 #eceff3; }
+#free .st__btn { margin-top: 20px; width: 84px; height: 26px; border-radius: 13px; background: var(--blue); }
+#free .st__art { position: relative; border-radius: 12px; background: linear-gradient(160deg, #e8f0ff 0%, #cfe0ff 45%, #b9f0cf 100%); }
+#free .st__art span { position: absolute; left: 14px; right: 22px; height: 18px; border-radius: 6px; background: rgba(255, 255, 255, 0.8); }
+#free .st__art span:first-child { bottom: 44px; right: 44px; }
+#free .st__art span:last-child { bottom: 18px; }
+
+/* ---- face UI: pixel + Conversions API --------------------------------- */
+#free .px__title { position: absolute; left: 22px; top: 22px; width: 96px; height: 8px; border-radius: 4px; background: var(--ink-2); box-shadow: 0 14px 0 -1px #e3e6ec; }
+#free .px__lines { position: absolute; inset: 0; width: 100%; height: 100%; }
+#free .px__lines path { fill: none; stroke: #d5dbe5; stroke-width: 2; stroke-linecap: round; stroke-dasharray: 1 6; }
+#free .px__node { position: absolute; display: grid; place-items: center; translate: -50% -50%; }
+/* nodes sit in the face's front band (y > 170), the part that stays visible once forms land on top */
+#free .px__node--site { left: 50px; top: 208px; width: 52px; height: 42px; border-radius: 10px; background: #fff; box-shadow: 0 0 0 1.5px #dfe3ea, 0 6px 14px -6px rgba(16, 24, 40, 0.2); }
+#free .px__node--site i { width: 26px; height: 5px; border-radius: 3px; background: var(--ink-2); box-shadow: 0 9px 0 -1px #d9dee6; margin-top: -8px; }
+#free .px__node--pixel { left: 140px; top: 190px; width: 30px; height: 30px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 6px rgba(8, 102, 255, 0.14); }
+#free .px__node--api { left: 222px; top: 229px; width: 40px; height: 34px; border-radius: 9px; background: var(--ink); }
+#free .px__node--api i { width: 18px; height: 3px; border-radius: 2px; background: rgba(255, 255, 255, 0.85); box-shadow: 0 6px 0 rgba(255, 255, 255, 0.5), 0 -6px 0 rgba(255, 255, 255, 0.5); }
+#free .px__node--meta { left: 306px; top: 204px; width: 44px; height: 44px; border-radius: 50%; background: linear-gradient(135deg, #0a0b0f, #3a3f4d); box-shadow: 0 0 0 4px #fff, 0 0 0 5.5px #dfe3ea; }
+#free .px__pulse { position: absolute; left: 0; top: 0; width: 12px; height: 12px; margin: -6px 0 0 -6px; border-radius: 50%; background: var(--blue); box-shadow: 0 0 0 4px rgba(8, 102, 255, 0.18); opacity: 0; }
+#free .px__pulse--a { animation: free-pulse-a 2.8s linear infinite paused; }
+#free .px__pulse--b { animation: free-pulse-b 2.8s linear 1.4s infinite paused; }
+#free.is-live .px__pulse { animation-play-state: running; }
+@keyframes free-pulse-a {
+  0% { transform: translate(50px, 208px); opacity: 0; } 8% { opacity: 1; }
+  35% { transform: translate(140px, 190px); } 92% { opacity: 1; }
+  100% { transform: translate(306px, 204px); opacity: 0; }
+}
+@keyframes free-pulse-b {
+  0% { transform: translate(50px, 208px); opacity: 0; } 8% { opacity: 1; }
+  67% { transform: translate(222px, 229px); } 92% { opacity: 1; }
+  100% { transform: translate(306px, 204px); opacity: 0; }
+}
+
+/* ---- face UI: lead form ----------------------------------------------- */
+/* content sits low, so the focused field and the button stay in view under the WhatsApp layer */
+#free .fm { padding: 22px 24px; display: flex; flex-direction: column; justify-content: flex-end; gap: 10px; }
+#free .fm i, #free .fm b { display: block; }
+#free .fm__title { width: 42%; height: 9px; border-radius: 4px; background: var(--ink-2); margin-bottom: 6px; }
+#free .fm__field { height: 34px; border-radius: 9px; box-shadow: inset 0 0 0 1.5px #e1e5eb; display: flex; align-items: center; gap: 3px; padding: 0 12px; }
+#free .fm__field i { width: 38%; height: 6px; border-radius: 3px; background: #dfe3ea; }
+#free .fm__field:nth-of-type(2) i { width: 52%; }
+#free .fm__field--on { box-shadow: inset 0 0 0 1.5px var(--blue), 0 0 0 4px rgba(8, 102, 255, 0.1); }
+#free .fm__field--on i { width: 28%; background: var(--ink-2); }
+#free .fm__field--on b { width: 2px; height: 15px; border-radius: 1px; background: var(--blue); }
+#free .fm__btn { margin-top: 6px; width: 40%; height: 30px; border-radius: 15px; background: var(--ink-2); }
+
+/* ---- face UI: WhatsApp assistant -------------------------------------- */
+#free .wz { display: flex; flex-direction: column; }
+#free .wz i { display: block; }
+#free .wz__top { display: flex; align-items: center; gap: 10px; height: 52px; padding: 0 18px; border-bottom: 1px solid var(--line); }
+#free .wz__av { width: 26px; height: 26px; border-radius: 50%; background: linear-gradient(135deg, #0a0b0f, #3a3f4d); }
+#free .wz__name { width: 90px; height: 7px; border-radius: 4px; background: var(--ink); }
+#free .wz__on { width: 9px; height: 9px; border-radius: 50%; background: var(--wa); margin-left: auto; }
+#free .wz__chat { flex: 1; display: flex; flex-direction: column; justify-content: center; gap: 12px; padding: 14px 18px; }
+#free .wz__b { display: flex; flex-direction: column; gap: 7px; width: 58%; padding: 12px 14px; border-radius: 12px; }
+#free .wz__b i { height: 6px; border-radius: 3px; }
+#free .wz__b i:last-child { width: 64%; }
+#free .wz__b--in { background: #eef1f5; border-top-left-radius: 4px; }
+#free .wz__b--in i { background: #cfd5de; }
+#free .wz__b--out { align-self: flex-end; background: var(--wa); border-top-right-radius: 4px; }
+#free .wz__b--out i { background: rgba(255, 255, 255, 0.85); }
+
+/* ---- the list: plain and complete, no stepper states ------------------- */
+#free .free__list { list-style: none; }
+#free .free__item { display: grid; grid-template-columns: 22px minmax(0, 1fr); gap: 18px; padding: 20px 0; border-top: 1px solid var(--line); }
+#free .free__item:last-child { border-bottom: 1px solid var(--line); }
+#free .free__mark {
+  width: 22px; height: 22px; margin-top: 1px; border-radius: 50%;
+  background: var(--ink) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.9' fill='none' stroke='white' stroke-width='1.9' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 14px no-repeat;
+}
+#free .free__name { font-family: var(--display); font-weight: 650; font-size: 20px; line-height: 1.2; letter-spacing: -0.015em; }
+#free .free__txt p { margin-top: 5px; font-size: var(--t-small); line-height: 1.5; color: var(--soft); max-width: 30em; }
+
+#free .free__total { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 20px 28px; }
+#free .free__sum { font-family: var(--display); font-weight: 700; font-size: clamp(2.2rem, 1.5rem + 1.7vw, 3.1rem); line-height: 1; letter-spacing: -0.04em; }
+#free .free__sum span { color: var(--blue); }
+
+/* ---- the build (js/free.js adds .free--build, then .is-built, then .is-set) ----
+   Waiting: slabs hang above the floor, spun a little, invisible. is-built: they drop
+   in turn, each one's shadow sharpening on the surface below, then its R0 tag pops.
+   is-set: the last one is down and the stack closes its gaps in one move. */
+#free.free--build .free__iso { --air: 18px; }
+#free.free--build.is-set .free__iso { --air: 0px; }
+#free.free--build .free__slab {
+  opacity: 0;
+  transform: translateZ(calc(var(--i) * (var(--gap) + var(--air)) + 260px)) rotateZ(calc(var(--spin) * 9deg));
+  transition: transform 1s var(--ease), opacity 0.3s linear;
+  transition-delay: calc(var(--i) * 420ms + 120ms);
+}
+#free.free--build.is-built .free__slab { opacity: 1; transform: translateZ(calc(var(--i) * (var(--gap) + var(--air)))); }
+#free.free--build.is-set .free__slab { transition: transform 0.8s var(--ease); }
+#free.free--build .free__shade { opacity: 0; scale: 1.3; transition: opacity 0.8s var(--ease), scale 1s var(--ease), transform 0.8s var(--ease); transition-delay: calc(var(--i) * 420ms + 240ms); }
+#free.free--build.is-built .free__shade { opacity: 0.8; scale: 1; }
+#free.free--build.is-set .free__shade { transition-delay: 0ms; }
+#free.free--build .free__tag { opacity: 0; scale: 0.8 0.8 0.8; transition-delay: calc(var(--i) * 420ms + 820ms); }
+#free.free--build.is-built .free__tag { opacity: 1; scale: 1 1 1; }
+#free.free--build .free__ground { opacity: 0.2; transition: opacity 1s var(--ease) 0.3s; }
+#free.free--build.is-built .free__ground { opacity: 1; }
+
+/* ---- short desktop viewports ------------------------------------------ */
+@media (min-width: 961px) and (max-height: 820px) {
+  #free .free__scene { height: 560px; }
+  #free .free__rig { scale: 0.86; }
+  #free .free__item { padding: 15px 0; }
+  #free .free__total { margin-top: 26px; }
+}
+
+/* ---- mobile composition ----------------------------------------------- */
+@media (max-width: 960px) {
+  #free .free__intro { grid-template-columns: 1fr; gap: 20px; }
+  #free .free__stage { padding-top: 16px; }
+  #free .free__grid { grid-template-columns: 1fr; gap: 8px; }
+  #free .free__scene { height: 420px; margin-inline: -20px; }
+  #free .free__rig { left: 44%; top: 72%; scale: 0.66; }
+  #free .free__tag { padding: 8px 18px; font-size: 22px; }
+  #free .free__tag::before { width: 22px; }
+  #free .free__name { font-size: 19px; }
+  #free .free__total { margin-top: 32px; flex-direction: column; align-items: flex-start; }
+}
+@media (max-width: 400px) {
+  #free .free__rig { scale: 0.62; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #free .px__pulse { animation: none; opacity: 1; transform: translate(223px, 197px); }
+  #free .px__pulse--b { transform: translate(180px, 224px); }
+  #free .free__tag, #free .free__slab, #free .free__shade { transition: none; }
+}
+
+#free .free__cond { margin: 10px 0 0; max-width: 30em; font-size: var(--t-small); color: var(--soft); }

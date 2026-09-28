@@ -1,0 +1,46 @@
+/* hero */
+/* Clip sideways only (the glow and toast overhang the edges). Vertically the planes and
+   their soft shadows may fall into the white space above #how instead of being cut flat. */
+.hero { position: relative; min-height: 100svh; padding: 150px 24px 80px; display: flex; align-items: center; overflow-x: clip; overflow-y: visible; }
+.hero__glow {
+  position: absolute; inset: -20% -10% auto auto; width: 70vw; height: 90vh; pointer-events: none;
+  background: radial-gradient(closest-side, rgba(8, 102, 255, 0.13), rgba(8, 102, 255, 0.04) 55%, transparent),
+              radial-gradient(closest-side at 30% 70%, rgba(37, 211, 102, 0.10), transparent 70%);
+  filter: blur(10px);
+}
+.hero__grid { position: relative; width: min(var(--wrap), 100%); margin: 0 auto; display: grid; grid-template-columns: 1.05fr 0.95fr; gap: 48px; align-items: center; }
+.hero__copy { display: flex; flex-direction: column; align-items: flex-start; }
+.hero__h { margin-top: 24px; font-family: var(--display); font-weight: 700; font-size: var(--t-h1); line-height: 0.98; letter-spacing: -0.036em; text-wrap: balance; }
+.hero__sub { margin-top: 24px; max-width: 30em; font-size: var(--t-lead); color: var(--soft); line-height: 1.5; text-wrap: pretty; }
+.hero__cta { margin-top: 36px; display: flex; flex-wrap: wrap; align-items: center; gap: 8px; }
+.hero .ticks { margin-top: 36px; }
+
+/* scene: three planes */
+.scene { position: relative; height: 620px; }
+.plane { position: absolute; will-change: transform; }
+.plane--ad { left: -2%; top: 300px; z-index: 1; }
+.plane--phone { left: 50%; top: 0; margin-left: -150px; z-index: 2; }
+/* The toast overhangs the scene, but stays 32px (pointer travel plus a margin) inside the
+   screen edge. The gutter beside the grid is the larger of the hero padding and the
+   space left over by the 1120px wrap. */
+.plane--toast { right: max(-9%, 32px - max(24px, (100vw - var(--wrap)) / 2)); top: 140px; z-index: 3; }
+/* Final state is the default, so the product visual shows without JavaScript. */
+.plane--ad > * { transform: rotate(-7deg); }
+html:not(.js) #top .msg:not(.msg--typing) { display: block; opacity: 1; transform: none; }
+.js .plane > * { opacity: 0; transform: translateY(24px) scale(0.98); transition: opacity 0.9s var(--ease), transform 1.1s var(--ease); }
+.js .is-in .plane--ad > * { opacity: 1; transform: rotate(-7deg); transition-delay: 0.15s; }
+.js .is-in .plane--phone > * { opacity: 1; transform: none; }
+.js .is-in .plane--toast > * { opacity: 1; transform: none; transition-delay: 2.6s; }
+
+@media (max-width: 960px) {
+  .hero { padding: 110px 20px 40px; align-items: flex-start; }
+  .hero__grid { grid-template-columns: 1fr; gap: 40px; }
+  /* The scene is scaled to 0.84, so the 612px phone draws 514px tall. Reserve exactly that
+     (612 - 97 = 515) so the whole phone ends inside the hero. */
+  .scene { height: 612px; transform: scale(0.84); transform-origin: top center; margin-bottom: -97px; }
+  /* Scroll drifts the ad down (it is the back plane), so it starts higher here, where the
+     scene is mostly seen mid-scroll. */
+  .plane--ad { left: 0; top: 230px; }
+  .plane--toast { right: 0; top: 130px; }
+}
+@media (prefers-reduced-motion: reduce) { .js .plane > * { transition: none; } }

@@ -1,0 +1,11 @@
+# Source and tooling: kept in git, not served.
+sections
+tools
+lab
+brand
+build.mjs
+preview.html
+index.template.html
+DESIGN.md
+README.md
+.claude

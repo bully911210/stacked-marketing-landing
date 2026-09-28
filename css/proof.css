@@ -1,0 +1,160 @@
+/* ==========================================================================
+   proof-c: trusted where Meta ads are hardest, then the guarantee.
+   One idea: new enquiries in SIG's four categories land one by one and stack
+   up, each new one pushing the others back (a stacked month). The pile rests
+   on the guarantee line: structure underneath, abundance on top.
+   Every rule is scoped under .proof-c.
+   ========================================================================== */
+.proof-c {
+  --pc-w: 540px;       /* card width */
+  --pc-h: 108px;       /* card height */
+  --pc-tab: 66px;      /* top row of a card: what still shows once it is pushed back */
+  --pc-step: 56px;     /* how far each older card sits above the one in front */
+  --pc-shrink: 0.045;  /* scale lost per step back */
+  --pc-gap: clamp(48px, 7vw, 104px);
+  overflow: clip;
+}
+
+/* ---- top: the pile left, copy right --------------------------------------- */
+.proof-c .proof-c__top {
+  display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr);
+  grid-template-areas: "vis copy"; column-gap: var(--pc-gap); align-items: center;
+}
+.proof-c .proof-c__copy { grid-area: copy; }
+.proof-c .proof-c__vis { grid-area: vis; margin: 0; align-self: end; }
+.proof-c .proof-c__h { max-width: 9em; }
+.proof-c .proof-c__trust {
+  margin-top: 28px; max-width: 19em;
+  font-size: clamp(1.2rem, 1.02rem + 0.5vw, 1.45rem); line-height: 1.4; letter-spacing: -0.012em;
+  color: var(--soft); text-wrap: pretty;
+}
+.proof-c .proof-c__trust b, .proof-c .proof-c__why b { color: var(--ink); font-weight: 600; }
+.proof-c .proof-c__why { margin-top: 20px; max-width: 27em; font-size: var(--t-body); line-height: 1.6; color: var(--soft); text-wrap: pretty; }
+
+/* ---- the stage: soft light, the pile sits on its floor ---------------------- */
+.proof-c .proof-c__stage { position: relative; display: grid; justify-items: center; align-items: end; padding-top: 40px; isolation: isolate; }
+.proof-c .proof-c__glow {
+  position: absolute; z-index: -1; inset: -4% -16% -20%; pointer-events: none;
+  background: radial-gradient(closest-side at 52% 56%, rgba(8, 102, 255, 0.12), rgba(8, 102, 255, 0.05) 46%, rgba(8, 102, 255, 0) 100%),
+              radial-gradient(closest-side at 28% 78%, rgba(37, 211, 102, 0.09), rgba(37, 211, 102, 0) 100%);
+}
+.proof-c .proof-c__stack {
+  position: relative; width: min(var(--pc-w), 100%);
+  height: calc(var(--pc-h) + 6 * var(--pc-step));
+}
+/* contact shadow where the pile meets the guarantee line */
+.proof-c .proof-c__stack::after {
+  content: ""; position: absolute; z-index: -1; left: 6%; right: 6%; bottom: -18px; height: 34px; border-radius: 50%;
+  background: radial-gradient(closest-side, rgba(16, 24, 40, 0.16), rgba(16, 24, 40, 0));
+}
+
+/* ---- a card: depth d (0 = front) comes from data-d -------------------------- */
+.proof-c [data-d="0"] { --d: 0; z-index: 7; }
+.proof-c [data-d="1"] { --d: 1; z-index: 6; }
+.proof-c [data-d="2"] { --d: 2; z-index: 5; }
+.proof-c [data-d="3"] { --d: 3; z-index: 4; }
+.proof-c [data-d="4"] { --d: 4; z-index: 3; }
+.proof-c [data-d="5"] { --d: 5; z-index: 2; }
+.proof-c [data-d="6"] { --d: 6; z-index: 1; }
+.proof-c .proof-c__card {
+  position: absolute; left: 0; right: 0; bottom: 0; height: var(--pc-h);
+  background: #fff; border: 1px solid var(--line); border-radius: 24px;
+  box-shadow: 0 1px 2px rgba(16, 24, 40, 0.05), 0 10px 24px -12px rgba(16, 24, 40, 0.16);
+  transform-origin: 50% 0;
+  transform: translateY(calc(var(--d) * var(--pc-step) * -1)) scale(calc(1 - var(--d) * var(--pc-shrink)));
+}
+/* older cards sit a touch further back in the light */
+.proof-c .proof-c__card::after {
+  content: ""; position: absolute; inset: 0; border-radius: inherit; background: var(--bg-2); pointer-events: none;
+  opacity: calc(var(--d) * 0.07);
+}
+.proof-c .proof-c__card[data-d="0"] { box-shadow: var(--shadow-lg); }
+
+.proof-c .proof-c__row { display: flex; align-items: center; gap: 16px; height: var(--pc-tab); padding: 0 24px 0 20px; }
+.proof-c .proof-c__av {
+  position: relative; flex: none; width: 42px; height: 42px; border-radius: 50%; display: grid; place-items: center;
+  color: #fff; background: linear-gradient(135deg, #0a0b0f, #3a3f4d);
+}
+.proof-c .proof-c__av svg { width: 21px; height: 21px; fill: none; stroke: currentColor; stroke-width: 1.55; stroke-linecap: round; stroke-linejoin: round; }
+/* WhatsApp badge on the avatar: where the enquiry arrived */
+.proof-c .proof-c__badge {
+  position: absolute; right: -3px; bottom: -3px; width: 18px; height: 18px; border-radius: 50%;
+  background: var(--wa) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M12 4.6c-4.2 0-7.6 3-7.6 6.7 0 1.4.5 2.7 1.3 3.8L5 19l4.1-1.3c.9.4 1.9.6 2.9.6 4.2 0 7.6-3 7.6-6.9S16.2 4.6 12 4.6z' fill='white'/%3E%3C/svg%3E") center / 12px no-repeat;
+  box-shadow: 0 0 0 2px #fff;
+}
+.proof-c .proof-c__title { flex: 1; min-width: 0; font-family: var(--display); font-weight: 600; font-size: 19px; letter-spacing: -0.018em; white-space: nowrap; }
+.proof-c .proof-c__time { font-size: 14px; color: var(--faint); }
+.proof-c .proof-c__body { margin-top: -12px; padding: 0 24px 0 78px; font-size: 16px; line-height: 1.4; color: var(--soft); }
+/* once a card is pushed back only its top row shows; its details step away */
+.proof-c .proof-c__card:not([data-d="0"]) .proof-c__time,
+.proof-c .proof-c__card:not([data-d="0"]) .proof-c__body { opacity: 0; }
+
+/* earlier enquiries, far back in the pile: just their edges, fading into the distance */
+.proof-c .proof-c__card--ghost[data-d="4"] { opacity: 0.8; }
+.proof-c .proof-c__card--ghost[data-d="5"] { opacity: 0.5; }
+
+/* ---- the guarantee: a sign-off under the pile, on the same two columns ------ */
+.proof-c .proof-c__deal {
+  position: relative; margin-top: 30px; padding-top: clamp(44px, 4.6vw, 64px);
+  display: grid; grid-template-columns: minmax(0, 6fr) minmax(0, 5fr); column-gap: var(--pc-gap); align-items: start;
+}
+.proof-c .proof-c__deal::before {
+  content: ""; position: absolute; left: 0; right: 0; top: 0; height: 1px; background: var(--line-2); transform-origin: 0 50%;
+}
+/* a sub-point of the h2, never louder: about three quarters of the h2 tier */
+.proof-c .proof-c__deal-h {
+  font-family: var(--display); font-weight: 700; font-size: calc(var(--t-h2) * 0.8);
+  line-height: 1.02; letter-spacing: -0.034em;
+}
+.proof-c .proof-c__dot { color: var(--logo-green); }   /* the logo's dot: the one brand touch */
+.proof-c .proof-c__side { padding-top: 4px; }
+.proof-c .proof-c__deal-p { max-width: 22em; font-size: var(--t-lead); line-height: 1.5; color: var(--soft); text-wrap: pretty; }
+.proof-c .proof-c__terms { margin-top: 20px; max-width: 30em; }
+.proof-c .proof-c__terms[hidden] { display: none; }
+.proof-c .proof-c__cta { margin-top: 28px; display: flex; flex-wrap: wrap; align-items: center; gap: 12px 18px; }
+.proof-c .proof-c__meta { font-size: 14px; color: var(--soft); }
+
+/* ---- motion: armed only by js/proof-c.js --------------------------------- */
+.proof-c.proof-c--motion .proof-c__card { transition: transform 0.95s var(--ease), opacity 0.6s var(--ease), box-shadow 0.8s var(--ease); }
+.proof-c.proof-c--motion .proof-c__card::after,
+.proof-c.proof-c--motion .proof-c__time,
+.proof-c.proof-c--motion .proof-c__body { transition: opacity 0.5s var(--ease) 0.15s; }
+/* a card being pushed back drops its details at once, so two lines never overlap */
+.proof-c.proof-c--motion .proof-c__card:not([data-d="0"]) .proof-c__time,
+.proof-c.proof-c--motion .proof-c__card:not([data-d="0"]) .proof-c__body { transition-duration: 0.18s; transition-delay: 0s; }
+.proof-c.proof-c--motion .proof-c__card:not(.is-on) { opacity: 0; transform: translateY(44px) scale(0.97); }
+.proof-c.proof-c--motion .proof-c__card--ghost:not(.is-on) { transform: translateY(calc(var(--d) * var(--pc-step) * -1 + 24px)) scale(calc(1 - var(--d) * var(--pc-shrink))); }
+.proof-c.proof-c--motion .proof-c__stack::after { opacity: 0; transition: opacity 0.9s var(--ease); }
+.proof-c.proof-c--motion .proof-c__stack.is-on::after { opacity: 1; }
+.proof-c.proof-c--motion .proof-c__deal::before { transform: scaleX(0); transition: transform 1.1s var(--ease); }
+.proof-c.proof-c--motion .proof-c__deal.is-on::before { transform: none; }
+
+/* ---- tablet: copy first, the pile under it --------------------------------- */
+@media (max-width: 960px) {
+  .proof-c .proof-c__top { grid-template-columns: minmax(0, 1fr); grid-template-areas: "copy" "vis"; row-gap: 8px; }
+  .proof-c .proof-c__stage { justify-items: start; }
+  .proof-c .proof-c__glow { inset: 0 -20% -24% -30%; }
+  .proof-c .proof-c__deal { grid-template-columns: minmax(0, 1fr); row-gap: 20px; }
+}
+
+/* ---- phone: its own proportions ------------------------------------------- */
+@media (max-width: 600px) {
+  .proof-c { --pc-h: 94px; --pc-tab: 56px; --pc-step: 44px; --pc-shrink: 0.036; }
+  .proof-c .proof-c__trust { margin-top: 22px; }
+  .proof-c .proof-c__row { gap: 12px; padding: 0 16px 0 14px; }
+  .proof-c .proof-c__av { width: 36px; height: 36px; }
+  .proof-c .proof-c__av svg { width: 19px; height: 19px; }
+  .proof-c .proof-c__badge { width: 16px; height: 16px; background-size: 10px; }
+  .proof-c .proof-c__title { font-size: 16.5px; }
+  .proof-c .proof-c__time { font-size: 13px; }
+  .proof-c .proof-c__body { margin-top: -10px; padding: 0 16px 0 62px; font-size: 14.5px; }
+  .proof-c .proof-c__card { border-radius: 20px; }
+  .proof-c .proof-c__deal { margin-top: 30px; }
+  .proof-c .proof-c__deal-h { font-size: calc(var(--t-h2) * 0.86); }
+  .proof-c .proof-c__cta .btn { width: 100%; }
+}
+
+/* ---- reduced motion: the finished pile, nothing moving --------------------- */
+@media (prefers-reduced-motion: reduce) {
+  .proof-c .proof-c__card, .proof-c .proof-c__card::after, .proof-c .proof-c__time, .proof-c .proof-c__body { transition: none; }
+}

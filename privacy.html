@@ -1,0 +1,187 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Privacy · Stacked</title>
+<meta name="description" content="What happens to what you tell Stacked: the form stores nothing, nothing reaches us until you press send in WhatsApp, and you can ask us what we hold at any time.">
+<meta name="theme-color" content="#ffffff">
+<link rel="canonical" href="https://www.stackedmarketing.co.za/privacy">
+<meta property="og:type" content="website">
+<meta property="og:site_name" content="Stacked">
+<meta property="og:url" content="https://www.stackedmarketing.co.za/privacy">
+<meta property="og:title" content="Privacy · Stacked">
+<meta property="og:description" content="What happens to what you tell Stacked: the form stores nothing, nothing reaches us until you press send in WhatsApp, and you can ask us what we hold at any time.">
+<meta property="og:image" content="https://www.stackedmarketing.co.za/assets/og.jpg">
+<meta property="og:image:width" content="1200">
+<meta property="og:image:height" content="630">
+<meta property="og:locale" content="en_ZA">
+<meta name="twitter:card" content="summary_large_image">
+<link rel="icon" href="favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<link rel="stylesheet" href="css/base.css">
+<style>
+  /* privacy page: same system as the home page, an editorial layout */
+  .pv { position: relative; overflow: clip; padding: 176px 0 0; }
+  .pv__glow {
+    position: absolute; top: -12%; right: -14%; width: 70vw; height: 90vh; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(8, 102, 255, 0.12), rgba(8, 102, 255, 0.04) 55%, transparent),
+                radial-gradient(closest-side at 30% 70%, rgba(37, 211, 102, 0.09), transparent 70%);
+    filter: blur(10px);
+  }
+  .pv__head { position: relative; }
+  .pv__back { display: inline-flex; align-items: center; gap: 8px; min-height: 44px; font-size: var(--t-small); font-weight: 500; color: var(--soft); text-decoration: none; }
+  .pv__back:hover { color: var(--ink); }
+  .pv__h { margin-top: 12px; font-family: var(--display); font-weight: 700; font-size: clamp(2.9rem, 1.5rem + 4.4vw, 5rem); line-height: 0.98; letter-spacing: -0.037em; max-width: 9em; text-wrap: balance; }
+  .pv__lead { margin-top: 26px; }
+  .pv__head .ticks { margin-top: 40px; font-size: 16px; }
+
+  .pv__body { position: relative; margin-top: clamp(72px, 9vw, 120px); }
+  .pv__row { display: grid; grid-template-columns: minmax(0, 4fr) minmax(0, 7fr); gap: 16px clamp(32px, 6vw, 96px); padding: 44px 0 48px; border-top: 1px solid var(--line); }
+  .pv__row h2 { font-family: var(--display); font-weight: 650; font-size: var(--t-h3); line-height: 1.15; letter-spacing: -0.02em; max-width: 12em; text-wrap: balance; }
+  .pv__text { display: grid; gap: 16px; max-width: 36em; color: var(--ink-2); }
+  .pv__text p { text-wrap: pretty; }
+  .pv__text a { color: var(--blue); font-weight: 500; text-underline-offset: 3px; }
+  .pv__text [data-wa-num] { white-space: nowrap; }
+  .pv__text ul { list-style: none; display: grid; gap: 10px; }
+  .pv__text li { position: relative; padding-left: 22px; }
+  .pv__text li::before { content: ""; position: absolute; left: 2px; top: 0.66em; width: 7px; height: 7px; border-radius: 50%; background: var(--blue); }
+  .pv__text a.pv__cta { margin-top: 8px; justify-self: start; color: var(--ink); font-weight: 600; text-decoration: none; }
+  .pv__cta svg { width: 18px; height: 18px; }
+
+  .pv__foot { margin-top: clamp(72px, 9vw, 120px); padding: 36px 0 44px; border-top: 1px solid var(--line); }
+  .pv__foot .wrap { display: flex; flex-wrap: wrap; align-items: center; justify-content: space-between; gap: 12px 32px; font-size: 14.5px; color: var(--soft); }
+  .pv__foot a { color: var(--ink); font-weight: 600; text-decoration: none; }
+  .pv__foot a:hover { text-decoration: underline; text-underline-offset: 3px; }
+
+  @media (max-width: 760px) {
+    .pv { padding-top: 124px; }
+    .pv__row { grid-template-columns: minmax(0, 1fr); padding: 36px 0 40px; }
+    .pv__foot .wrap { flex-direction: column; align-items: flex-start; }
+  }
+</style>
+</head>
+<body>
+
+<header class="nav">
+  <a class="nav__mark" href="index.html" aria-label="Stacked, home" data-logo="load">
+    <img src="assets/logo/stacked.svg" alt="" width="137" height="29">
+  </a>
+  <nav class="nav__links" aria-label="Main">
+    <a href="index.html#how">How it works</a>
+    <a href="index.html#free">What’s free</a>
+    <a href="index.html#pricing">Pricing</a>
+    <a href="index.html#faq">FAQ</a>
+  </nav>
+  <a class="btn btn--dark btn--sm" href="index.html#start">Get my free setup</a>
+</header>
+
+<main class="pv">
+  <div class="pv__glow" aria-hidden="true"></div>
+
+  <div class="wrap pv__head">
+    <a class="pv__back" href="index.html#start"><span aria-hidden="true">←</span> Back to the form</a>
+    <h1 class="pv__h">Privacy, in plain words.</h1>
+    <p class="lead pv__lead">This site is simple on purpose. Here is exactly what happens to what you tell us, and what you can ask us to do with it.</p>
+    <ul class="ticks">
+      <li>The form on this site does not store what you type.</li>
+      <li>Nothing reaches us until you press send in WhatsApp.</li>
+      <li>No advertising pixels are active on this site right now.</li>
+    </ul>
+  </div>
+
+  <div class="wrap pv__body">
+    <section class="pv__row" aria-labelledby="pv-who">
+      <h2 id="pv-who">Who we are</h2>
+      <div class="pv__text">
+        <!-- TODO before launch: Franz to confirm the registered business name (and a privacy email, if one exists) for this row. -->
+        <p>Stacked Marketing runs this site, stackedmarketing.co.za. We are responsible for the information you send us.</p>
+        <p>To ask us anything about your information, message us on WhatsApp at <a href="https://wa.me/27621779799" target="_blank" rel="noopener" data-wa><span data-wa-num>062 177 9799</span></a>.</p>
+      </div>
+    </section>
+
+    <section class="pv__row" aria-labelledby="pv-form">
+      <h2 id="pv-form">When you fill in the form</h2>
+      <div class="pv__text">
+        <p>The form does not store what you type. It is not saved on this site and it is not sent to us.</p>
+        <p>Your browser uses your answers to write a WhatsApp message, then opens WhatsApp with that message ready. The message, with your name and business name, is passed to WhatsApp in the link that opens it. That happens before you press send.</p>
+        <p>Nothing reaches Stacked until you press send in WhatsApp. If you close WhatsApp without sending, we never see it.</p>
+      </div>
+    </section>
+
+    <section class="pv__row" aria-labelledby="pv-send">
+      <h2 id="pv-send">Once you press send</h2>
+      <div class="pv__text">
+        <p>When your message arrives, we hold:</p>
+        <ul>
+          <li>your name</li>
+          <li>your business name</li>
+          <li>what you told us</li>
+          <li>your WhatsApp number</li>
+        </ul>
+        <p>We use it to reply to you and to set up the work you ask for.</p>
+      </div>
+    </section>
+
+    <section class="pv__row" aria-labelledby="pv-pixel">
+      <h2 id="pv-pixel">Advertising pixels</h2>
+      <div class="pv__text">
+        <p>No advertising pixels are active on this site right now.</p>
+        <p>If we switch on the Meta Pixel, we will update this page first.</p>
+      </div>
+    </section>
+
+    <section class="pv__row" aria-labelledby="pv-popia">
+      <h2 id="pv-popia">Your rights under POPIA</h2>
+      <div class="pv__text">
+        <p>The Protection of Personal Information Act (POPIA) gives you a say over your information. You can:</p>
+        <ul>
+          <li>ask us what we hold about you</li>
+          <li>ask us to correct it</li>
+          <li>ask us to delete it</li>
+        </ul>
+        <p>Send your request to us on WhatsApp at <a href="https://wa.me/27621779799" target="_blank" rel="noopener" data-wa><span data-wa-num>062 177 9799</span></a>. If you are unhappy with how we handle your information, you can also complain to the Information Regulator at <a href="https://inforegulator.org.za/" target="_blank" rel="noopener">inforegulator.org.za</a>.</p>
+        <a class="btn btn--line pv__cta" href="https://wa.me/27621779799" target="_blank" rel="noopener" data-wa>
+          <svg viewBox="0 0 20 20" aria-hidden="true"><path d="M10 2.75a7.25 7.25 0 0 0-6.28 10.87L2.75 17.25l3.72-.95A7.25 7.25 0 1 0 10 2.75Z" fill="none" stroke="currentColor" stroke-width="1.6" stroke-linejoin="round"/></svg>
+          Ask us on WhatsApp
+        </a>
+      </div>
+    </section>
+
+    <section class="pv__row" aria-labelledby="pv-other">
+      <h2 id="pv-other">Other services this site uses</h2>
+      <div class="pv__text">
+        <p>This site loads its fonts from Google Fonts, so your browser connects to Google when a page loads.</p>
+        <p>WhatsApp is run by Meta. What WhatsApp receives, including the message in the link from our form, is covered by WhatsApp’s own privacy policy.</p>
+      </div>
+    </section>
+  </div>
+</main>
+
+<footer class="pv__foot">
+  <div class="wrap">
+    <p>© 2026 Stacked Marketing · stackedmarketing.co.za</p>
+    <a href="index.html">Back to the home page <span aria-hidden="true">→</span></a>
+  </div>
+</footer>
+
+<script src="config.js"></script>
+<script src="js/base.js"></script>
+<script src="js/logo-path.js"></script>
+<script src="js/logo.js"></script>
+<script>
+  /* WhatsApp links and number from config.js; the static wa.me href is the fallback. */
+  (function () {
+    "use strict";
+    var S = window.Stacked;
+    if (!S) { console.error("[privacy] js/base.js did not load"); return; }
+    var link = S.waLink("Hi Stacked, I have a question about my information.");
+    document.querySelectorAll("[data-wa]").forEach(function (a) { a.href = link; });
+    var num = S.config && S.config.whatsapp && S.config.whatsapp.display;
+    if (num) document.querySelectorAll("[data-wa-num]").forEach(function (n) { n.textContent = num; });
+  })();
+</script>
+</body>
+</html>

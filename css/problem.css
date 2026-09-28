@@ -1,0 +1,257 @@
+/* problem: the one dark section. Three failure moments as lit planes, back to front.
+   Default styles are the final state; `.js` rules rewind each beat until JS plays it. */
+#problem {
+  --p-soft: #a9aebb;                 /* body on ink: 8.6:1 */
+  --p-dim: #8b909d;                  /* muted large text: 6.1:1 on ink, 4.9:1 on the light */
+  --p-skel: #eceef2;
+  background: radial-gradient(1100px 560px at 82% -6%, rgba(56, 120, 255, 0.10), transparent 70%), var(--ink);
+  color: #fff;
+  overflow: clip;
+  isolation: isolate;
+}
+
+/* ---- the travelling light --------------------------------------------- */
+#problem .problem__ambient { position: absolute; inset: 0; z-index: -1; pointer-events: none; }
+/* left/top is the resting spot and never changes; JS moves the light by transform only (no layout shift) */
+#problem .problem__light {
+  position: absolute; left: 60%; top: 52%; width: 1200px; height: 1200px; margin: -600px 0 0 -600px;
+  border-radius: 50%; will-change: transform;
+  background: radial-gradient(closest-side, rgba(70, 132, 255, 0.2), rgba(70, 132, 255, 0.075) 45%, rgba(70, 132, 255, 0) 74%);
+}
+
+/* ---- heading ------------------------------------------------------------ */
+#problem .problem__h { color: #fff; max-width: 11.5em; }
+#problem .problem__lead { margin-top: 28px; color: var(--p-soft); max-width: none; }
+#problem .problem__lead span { display: block; }
+
+/* ---- moments: desktop cascade (back top right, mid left, front right) ---- */
+#problem .problem__moments { list-style: none; margin-top: clamp(48px, 5.5vw, 88px); }
+#problem .problem__moment {
+  position: relative; display: grid; grid-template-columns: repeat(12, minmax(0, 1fr));
+  column-gap: 24px; align-items: center;
+}
+#problem .problem__moment + .problem__moment { margin-top: -56px; }
+#problem .problem__cap, #problem .problem__plane { grid-row: 1; }
+
+#problem .problem__cap {
+  font-family: var(--display); font-weight: 650; font-size: clamp(1.75rem, 1.05rem + 1.95vw, 2.8rem);
+  line-height: 1.08; letter-spacing: -0.03em; text-wrap: balance; max-width: 10.5em; color: #fff;
+  transition: opacity 0.9s var(--ease), transform 1s var(--ease);
+}
+
+#problem .problem__moment--page { z-index: 1; --w: 600px; --h: 374px; --fit: 1; --rad: 14px; --rot: -3deg; }
+#problem .problem__moment--page .problem__cap { grid-column: 1 / 6; }
+#problem .problem__moment--page .problem__plane { grid-column: 6 / 13; justify-self: end; margin-right: -12px; }
+
+#problem .problem__moment--form { z-index: 2; --w: 480px; --h: 352px; --fit: 1; --rad: 16px; --rot: 1.5deg; }
+#problem .problem__moment--form .problem__plane { grid-column: 1 / 8; justify-self: end; margin-right: 20px; }
+#problem .problem__moment--form .problem__cap { grid-column: 8 / 13; align-self: center; }
+
+#problem .problem__moment--chat { z-index: 3; --w: 300px; --h: 612px; --fit: 0.86; --rad: 45px; --rot: 0deg; }
+#problem .problem__moment--form + .problem__moment--chat { margin-top: -92px; }
+#problem .problem__moment--chat .problem__cap { grid-column: 1 / 7; align-self: center; }
+#problem .problem__moment--chat .problem__plane { grid-column: 7 / 13; justify-self: start; margin-left: -56px; align-self: start; }
+
+/* ---- planes: a scaled mock inside a lit card ---------------------------- */
+#problem .problem__plane { position: relative; will-change: transform; }
+#problem .problem__card {
+  position: relative; border-radius: var(--rad); transform: rotate(var(--rot)); color: var(--ink);
+  box-shadow: 0 60px 120px -40px rgba(0, 0, 0, 0.9), -36px -40px 110px -64px rgba(90, 150, 255, 0.55);
+  transition: opacity 1s var(--ease), transform 1.2s var(--ease);
+}
+/* cool rim light: a hairline that is brightest on the top-left edge */
+#problem .problem__card::before {
+  content: ""; position: absolute; inset: -1px; z-index: 2; border-radius: calc(var(--rad) + 1px); padding: 1px; pointer-events: none;
+  background: linear-gradient(152deg, rgba(200, 220, 255, 0.95), rgba(200, 220, 255, 0.22) 26%, rgba(200, 220, 255, 0) 50%);
+  -webkit-mask: linear-gradient(#000 0 0) content-box, linear-gradient(#000 0 0); -webkit-mask-composite: xor;
+  mask: linear-gradient(#000 0 0) content-box exclude, linear-gradient(#000 0 0);
+}
+/* shade: planes out of the light sit back in the dark */
+#problem .problem__card::after {
+  content: ""; position: absolute; inset: 0; z-index: 3; border-radius: var(--rad); pointer-events: none;
+  background: #05060a; opacity: 0; transition: opacity 0.9s var(--ease);
+}
+#problem .problem__box { width: calc(var(--w) * var(--fit)); height: calc(var(--h) * var(--fit)); }
+#problem .problem__fit { width: var(--w); height: var(--h); transform: scale(var(--fit)); transform-origin: 0 0; }
+
+/* entrance + light states (JS adds .is-live once, .is-lit to the one in the light) */
+.js #problem .problem__moment:not(.is-live) .problem__card { opacity: 0; transform: translateY(64px) rotate(var(--rot)) scale(0.96); }
+.js #problem .problem__moment:not(.is-live) .problem__cap { opacity: 0; transform: translateY(24px); }
+.js #problem .problem__moment.is-live:not(.is-lit) .problem__cap { opacity: 0.56; }  /* still 5.4:1 on the light */
+.js #problem .problem__moment:not(.is-lit) .problem__card::after { opacity: 0.5; }
+
+/* ---- 1. the slow page ---------------------------------------------------- */
+#problem .problem__browser { width: 600px; }
+#problem .problem__spin {
+  flex: none; width: 11px; height: 11px; margin-right: 7px; border-radius: 50%;
+  border: 1.5px solid #dcdfe5; border-top-color: #7d8290;
+}
+/* the one ambient loop: it only runs while the section is on or near the screen (JS sets .is-near) */
+#problem.is-near .problem__spin { animation: problem-spin 1.2s linear infinite; }
+#problem .problem__addr { width: 124px; height: 6px; border-radius: 3px; background: #e3e6ec; }
+#problem .problem__page { position: relative; height: 338px; padding: 20px 28px; overflow: hidden; background: #fff; }
+#problem .problem__page > * { position: relative; }
+#problem .problem__load {
+  position: absolute; left: 0; top: 0; z-index: 2; width: 100%; height: 3px;
+  background: var(--blue); transform-origin: 0 50%; transform: scaleX(0.6);
+}
+#problem .problem__page::after {
+  content: ""; position: absolute; inset: 0; z-index: 1; pointer-events: none; transform: translateX(-100%);
+  background: linear-gradient(100deg, rgba(255, 255, 255, 0) 25%, rgba(255, 255, 255, 0.8) 50%, rgba(255, 255, 255, 0) 75%);
+}
+#problem .problem__nav { display: flex; align-items: center; gap: 14px; }
+#problem .problem__logo { width: 22px; height: 22px; border-radius: 50%; background: #e3e6ec; }
+#problem .problem__nav i { width: 44px; height: 8px; border-radius: 4px; background: var(--p-skel); }
+#problem .problem__nav i:first-of-type { margin-left: auto; }
+#problem .problem__nav b { width: 80px; height: 26px; margin-left: 6px; border-radius: var(--r-pill); background: #e3e6ec; }
+#problem .problem__hero { display: grid; grid-template-columns: 1.1fr 0.9fr; gap: 28px; align-items: center; margin-top: 36px; }
+#problem .problem__lines i, #problem .problem__lines s, #problem .problem__lines b { display: block; }
+#problem .problem__lines i { height: 20px; margin-bottom: 10px; border-radius: 6px; background: #e6e8ee; }
+#problem .problem__lines i:nth-child(2) { width: 66%; }
+#problem .problem__lines s { height: 8px; margin-top: 11px; border-radius: 4px; background: #f0f2f5; }
+#problem .problem__lines s:nth-of-type(2) { width: 86%; }
+#problem .problem__lines s:nth-of-type(3) { width: 64%; }
+#problem .problem__lines b { width: 124px; height: 36px; margin-top: 24px; border-radius: var(--r-pill); background: #e3e6ec; }
+#problem .problem__img { height: 176px; border-radius: 14px; background: var(--p-skel); }
+#problem .problem__tiles { display: grid; grid-template-columns: repeat(3, 1fr); gap: 14px; margin-top: 30px; }
+#problem .problem__tiles i { height: 80px; border-radius: 10px; background: #f3f4f7; }
+
+.js #problem .problem__moment:not(.is-b1) .problem__load { transform: scaleX(0); }
+#problem .is-b1 .problem__load { animation: problem-crawl 6.4s cubic-bezier(0.25, 0.7, 0.3, 1) both; }
+#problem .is-b1 .problem__page::after { animation: problem-shimmer 1.9s var(--ease-io) 0.3s 3 both; }
+
+/* ---- 2. the form nobody reads -------------------------------------------- */
+#problem .problem__inbox { width: 480px; height: 352px; overflow: hidden; background: #fff; border: 1px solid var(--line); border-radius: 16px; color: var(--ink); }
+#problem .problem__inbox-top {
+  display: flex; align-items: center; justify-content: space-between; height: 58px; padding: 0 20px 0 30px;
+  border-bottom: 1px solid var(--line); font-family: var(--display); font-size: 18px; letter-spacing: -0.015em;
+}
+#problem .problem__search { width: 160px; height: 30px; border-radius: var(--r-pill); background: #f1f2f5; }
+#problem .problem__mail { list-style: none; }
+#problem .problem__row {
+  position: relative; display: flex; align-items: center; gap: 14px; height: 74px; padding: 0 20px 0 30px;
+  border-bottom: 1px solid var(--line); background: #fff; transition: transform 0.75s var(--ease);
+}
+#problem .problem__row > * { position: relative; }
+#problem .problem__av { flex: none; width: 38px; height: 38px; border-radius: 50%; background: #eceef2; }
+#problem .problem__av--form { background: linear-gradient(135deg, #0a0b0f, #3a3f4d); }
+#problem .problem__txt { display: flex; flex-direction: column; gap: 9px; flex: 1; min-width: 0; transition: opacity 1.4s var(--ease); }
+#problem .problem__txt i { width: 36%; height: 9px; border-radius: 4px; background: #e3e6ec; }
+#problem .problem__txt s { width: 78%; height: 8px; border-radius: 4px; background: #f0f2f5; }
+#problem .problem__row:nth-child(3) .problem__txt i { width: 28%; }
+#problem .problem__row:nth-child(3) .problem__txt s { width: 64%; }
+#problem .problem__row:nth-child(4) .problem__txt i { width: 42%; }
+#problem .problem__row:nth-child(5) .problem__txt s { width: 70%; }
+#problem .problem__row--new { z-index: 1; }
+#problem .problem__row--new::before { content: ""; position: absolute; inset: 0; background: #f1f5ff; opacity: 0; transition: opacity 1.4s var(--ease); }
+#problem .problem__row--new .problem__txt { gap: 2px; line-height: 1.35; }
+#problem .problem__row--new b { font-size: 15px; font-weight: 600; }
+#problem .problem__row--new span { font-size: 14px; color: var(--ink-2); white-space: nowrap; overflow: hidden; text-overflow: ellipsis; }
+#problem .problem__dot {
+  position: absolute; left: 12px; top: 50%; width: 9px; height: 9px; margin-top: -4.5px; border-radius: 50%;
+  background: var(--blue); transition: transform 0.6s var(--ease) 0.9s;
+}
+#problem .problem__row--new .problem__txt, #problem .problem__row--new .problem__av { transition: opacity 1.6s var(--ease); }
+/* the enquiry waits for its slot to clear before it lands */
+#problem .problem__row--new { transition: opacity 0.6s var(--ease) 0.5s, transform 0.8s var(--ease) 0.45s; }
+
+.js #problem .problem__moment:not(.is-b1) .problem__row:not(.problem__row--new) { transform: translateY(-74px); }
+.js #problem .problem__moment:not(.is-b1) .problem__row--new { opacity: 0; transform: translateY(-14px); }
+.js #problem .problem__moment:not(.is-b1) .problem__dot { transform: scale(0); }
+.js #problem .problem__moment.is-b1:not(.is-b2) .problem__row--new::before { opacity: 1; }
+#problem .is-b2 .problem__row--new .problem__txt { opacity: 0.42; }
+#problem .is-b2 .problem__row--new .problem__av { opacity: 0.35; }
+
+/* ---- 3. the message nobody answers --------------------------------------- */
+#problem .problem__chip {
+  align-self: center; margin: 4px 0; padding: 4px 11px; border-radius: 8px; background: rgba(255, 255, 255, 0.92);
+  box-shadow: 0 1px 1px rgba(0, 0, 0, 0.06); font-size: 12.5px; color: #54656f;
+  transition: opacity 0.6s var(--ease) 0.2s, transform 0.7s var(--ease) 0.2s;
+}
+#problem .problem__none {
+  align-self: flex-end; margin-top: 4px; padding: 7px 13px; border: 1.5px dashed rgba(17, 27, 33, 0.2);
+  border-radius: 14px; border-top-right-radius: 4px; font-size: 13px; color: #54656f;
+  transition: opacity 0.7s var(--ease) 0.2s, transform 0.8s var(--ease) 0.2s;
+}
+#problem .problem__ref { display: flex; align-items: center; gap: 9px; margin: -2px -6px 8px; padding: 6px; border-radius: 9px; background: #f0f2f5; }
+#problem .problem__ref-img { flex: none; width: 42px; height: 42px; border-radius: 6px; background: linear-gradient(160deg, #e8f0ff 0%, #cfe0ff 45%, #b9f0cf 100%); }
+#problem .problem__ref-txt { line-height: 1.25; }
+#problem .problem__ref-txt b, #problem .problem__ref-txt small { display: block; }
+#problem .problem__ref-txt b { font-size: 13px; font-weight: 600; }
+#problem .problem__ref-txt small { font-size: 11.5px; color: #667781; }
+#problem .problem__caret {
+  display: inline-block; width: 2px; height: 18px; margin-right: 3px; vertical-align: -4px;
+  border-radius: 1px; background: var(--wa);
+}
+/* chat items join the thread at their beat (JS), older ones slide up to make room */
+#problem .problem__chip:not(.is-shown), #problem .problem__none:not(.is-shown) { display: none; }
+#problem .problem__chip:not(.is-on), #problem .problem__none:not(.is-on) { opacity: 0; transform: translateY(8px) scale(0.97); }
+#problem .is-b3 .problem__caret { animation: problem-blink 1.1s steps(1) 0.4s 5; }
+
+/* ---- close ---------------------------------------------------------------- */
+#problem .problem__close {
+  display: grid; grid-template-columns: repeat(12, minmax(0, 1fr)); column-gap: 24px; align-items: end;
+  margin-top: clamp(120px, 13vw, 190px);
+}
+#problem .problem__punch {
+  font-family: var(--display); font-weight: 700; font-size: clamp(2.7rem, 1.1rem + 5.2vw, 6rem);
+  line-height: 0.98; letter-spacing: -0.042em; grid-column: 1 / 9;
+}
+#problem .problem__punch span { display: block; }
+#problem .problem__punch span:first-child { color: var(--p-dim); }
+#problem .problem__pivot {
+  grid-column: 9 / 13; padding-bottom: 0.5em; font-size: var(--t-lead); line-height: 1.5; color: var(--p-soft);
+}
+#problem .problem__pivot span { display: block; color: #fff; }
+
+@keyframes problem-crawl { 0% { transform: scaleX(0); } 14% { transform: scaleX(0.24); } 40% { transform: scaleX(0.43); } 70% { transform: scaleX(0.54); } 100% { transform: scaleX(0.6); } }
+@keyframes problem-shimmer { from { transform: translateX(-100%); } to { transform: translateX(100%); } }
+@keyframes problem-spin { to { transform: rotate(360deg); } }
+@keyframes problem-blink { 0%, 100% { opacity: 1; } 50% { opacity: 0; } }
+
+/* ---- narrow desktop: keep the tilted browser off the viewport edge -------- */
+@media (min-width: 961px) and (max-width: 1180px) {
+  #problem .problem__moment--page { --fit: 0.9; }
+  #problem .problem__moment--page .problem__plane { margin-right: 10px; }
+}
+
+/* ---- mobile: its own stacked composition, captions between the mocks ------ */
+@media (max-width: 960px) {
+  #problem .problem__moments { margin-top: 64px; }
+  #problem .problem__moment { display: flex; flex-direction: column; align-items: flex-start; }
+  #problem .problem__moment + .problem__moment { margin-top: 88px; }
+  #problem .problem__cap { max-width: 12em; font-size: clamp(1.8rem, 1.3rem + 2.2vw, 2.4rem); }
+  #problem .problem__plane { margin-top: 32px; }
+  #problem .problem__moment--page { --fit: 0.62; --rad: 9px; --rot: -2.5deg; }
+  #problem .problem__moment--page .problem__plane { align-self: flex-end; margin-right: -56px; }
+  #problem .problem__moment--form { --fit: 0.72; --rad: 11.5px; --rot: 1.5deg; }
+  /* the desktop align-self: center would centre this caption in the column; keep it on the left edge */
+  #problem .problem__moment--form .problem__cap { align-self: flex-start; }
+  #problem .problem__moment--form .problem__plane { align-self: flex-start; margin: 32px 0 0 -10px; }
+  /* moment 3: caption beside the phone; the phone tucks under the inbox corner */
+  #problem .problem__moment--form + .problem__moment--chat {
+    display: grid; grid-template-columns: minmax(0, 1fr) auto; column-gap: 16px; align-items: center; margin-top: -36px;
+  }
+  #problem .problem__moment--chat { --fit: 0.64; --rad: 33px; }
+  #problem .problem__moment--chat .problem__cap { grid-column: 1; font-size: clamp(1.6rem, 1.1rem + 2.2vw, 2.2rem); padding-top: 40px; }
+  #problem .problem__moment--chat .problem__plane { grid-column: 2; margin: 0 -4px 0 0; }
+  #problem .problem__card { box-shadow: 0 40px 80px -30px rgba(0, 0, 0, 0.9), -24px -28px 80px -48px rgba(90, 150, 255, 0.55); }
+  #problem .problem__close { margin-top: 112px; }
+  #problem .problem__close { display: block; }
+  #problem .problem__pivot { margin-top: 32px; padding: 0; }
+  #problem .problem__light { width: 820px; height: 820px; margin: -410px 0 0 -410px; }
+}
+
+/* ---- phones: too narrow for a caption beside the phone, so moment 3 stacks like the others ---- */
+@media (max-width: 480px) {
+  #problem .problem__moment--form + .problem__moment--chat { display: flex; align-items: flex-start; margin-top: 80px; }
+  #problem .problem__moment--chat { --fit: 0.68; --rad: 35px; }
+  #problem .problem__moment--chat .problem__cap { align-self: flex-start; font-size: clamp(1.8rem, 1.3rem + 2.2vw, 2.4rem); padding-top: 0; }
+  #problem .problem__moment--chat .problem__plane { align-self: flex-end; margin: 32px 2px 0 0; }
+}
+
+@media (prefers-reduced-motion: reduce) {
+  #problem .problem__card, #problem .problem__cap, #problem .problem__row, #problem .problem__txt,
+  #problem .problem__dot, #problem .problem__chip, #problem .problem__none, #problem .problem__card::after { transition: none; }
+  #problem .problem__load, #problem .problem__page::after, #problem.is-near .problem__spin, #problem .problem__caret { animation: none; }
+}

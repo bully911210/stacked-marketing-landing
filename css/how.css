@@ -1,0 +1,173 @@
+/* how: one stage that travels through four states (ad, page, WhatsApp, the hand-off).
+   Desktop pins it and scrubs it with scroll. Tablets, phones and reduced motion get a
+   list, with one copy of the stage per step (built and framed by js/how.js). */
+#how { overflow-x: clip; }
+
+/* ---- header: editorial, headline left, sub-line right ------------------- */
+#how .how__head { display: grid; grid-template-columns: minmax(0, 7fr) minmax(0, 4fr); gap: 28px 64px; align-items: end; }
+#how .how__h { margin-top: 14px; }
+#how .how__h span { display: inline-block; }
+#how .how__head .lead { padding-bottom: 8px; }
+
+/* ---- steps: a path of nodes, shared by both layouts ---------------------- */
+#how .how__track { margin-top: clamp(56px, 7vw, 88px); }
+#how .how__steps { list-style: none; display: grid; gap: 72px; }
+#how .how__step { position: relative; padding-left: 44px; }
+#how .how__text { position: relative; }
+#how .how__node { position: absolute; left: -44px; top: 9px; width: 16px; height: 16px; border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 2px var(--line-2); }
+#how .how__node::after { content: ""; position: absolute; inset: 0; border-radius: 50%; background: var(--blue); transform: scale(0); transition: transform 0.6s var(--ease); }
+#how .how__step.is-lit .how__node::after, #how .how__step.is-done .how__node::after { transform: scale(0.62); }
+#how .how__step.is-active .how__node::after { transform: scale(1); }
+#how .how__line { position: absolute; left: 7px; top: 33px; bottom: -64px; width: 2px; border-radius: 2px; background: var(--line); overflow: hidden; }
+#how .how__line i { display: block; height: 100%; background: var(--blue); transform-origin: top; transform: scaleY(0); }
+#how .how__step:last-child .how__line { display: none; }
+#how .how__p { margin-top: 10px; max-width: 28em; color: var(--soft); text-wrap: pretty; }
+#how .how__shot { position: relative; margin-top: 28px; }
+#how .how__frame { position: relative; margin-inline: auto; }
+/* the per-step copies are shown smaller, so their chat text is set larger */
+#how .how__stage--shot .msg { font-size: 16px; }
+#how .how__stage--still .how__tap, #how .how__stage--still .how__press { display: none; }
+/* the last step's copy shows only the hand-off card: the chat phone is already in step 3 */
+#how .how__stage--solo .how__phonewrap, #how .how__stage--solo .how__pixel { visibility: hidden; }
+#how .how__shot:empty { display: none; }
+#how .how__view { display: none; }
+
+/* ---- the stage: fixed 620 x 680 design space, scaled by js --------------- */
+#how .how__stage { position: absolute; left: 0; top: 0; width: 620px; height: 680px; transform-origin: 0 0; }
+#how .how__plane { position: absolute; left: 0; top: 0; will-change: transform, opacity; }
+#how .how__glow { position: absolute; inset: -40px -90px; pointer-events: none; }
+#how .how__glow i { position: absolute; inset: 0; }
+#how .how__glow i:first-child { background: radial-gradient(closest-side at 52% 44%, rgba(8, 102, 255, 0.12), rgba(8, 102, 255, 0.035) 58%, transparent); }
+#how .how__glow i:last-child { opacity: 0; background: radial-gradient(closest-side at 50% 52%, rgba(37, 211, 102, 0.13), rgba(37, 211, 102, 0.035) 58%, transparent); }
+#how .how__phonewrap { left: 160px; top: 34px; z-index: 2; transform-origin: 50% 50%; }
+#how .how__pixel { left: 330px; top: 112px; z-index: 4; }
+#how .how__card { width: 260px; z-index: 5; opacity: 0; transform-origin: 0 0; }
+
+/* phone screens (inside the shared .phone) */
+#how .how__scr { position: absolute; inset: 12px; z-index: 1; border-radius: 40px; overflow: hidden; }
+#how .how__feed { background: #f0f2f5; }
+#how .how__feedin, #how .how__landin { position: relative; }
+#how .how__fbar { display: flex; gap: 8px; height: 96px; padding: 58px 14px 0; background: #fff; }
+#how .how__fbar i { width: 26px; height: 26px; border-radius: 50%; background: #e7e9ee; }
+#how .how__fbar i:first-child { width: 72px; height: 14px; margin: 6px auto 0 0; border-radius: 7px; background: var(--blue); }
+#how .how__post { position: relative; height: 176px; margin-top: 8px; background: #fff; }
+#how .how__post i, #how .how__post b { position: absolute; border-radius: 4px; background: #e4e7ec; }
+#how .how__post i:nth-child(1) { left: 14px; top: 12px; width: 30px; height: 30px; border-radius: 50%; }
+#how .how__post i:nth-child(2) { left: 54px; top: 16px; width: 96px; height: 8px; }
+#how .how__post i:nth-child(3) { left: 54px; top: 30px; width: 56px; height: 7px; background: #eceef2; }
+#how .how__post b { left: 14px; right: 14px; top: 54px; bottom: 14px; border-radius: 10px; background: #eceef2; }
+#how .how__adwrap { position: relative; width: 250px; margin: 8px auto 0; }
+#how .how__cta { position: relative; overflow: hidden; }
+#how .how__press { position: absolute; inset: 0; border-radius: inherit; background: rgba(10, 11, 15, 0.16); opacity: 0; }
+/* ad versions under test: same slot, a different picture and headline each */
+#how .how__vad { position: absolute; left: 0; top: 0; width: 100%; transform-origin: 50% 100%; will-change: transform, opacity; }
+#how .how__vad--a .ad__img { background: linear-gradient(200deg, #eef3ff 0%, #d6e4ff 55%, #c2d7ff 100%); }
+#how .how__vad--b .ad__img { background: linear-gradient(120deg, #e3f8ec 0%, #d4e6ff 60%, #e8f0ff 100%); }
+
+/* tap: a touch point that presses, then a ring that spreads */
+#how .how__tap { position: absolute; z-index: 3; width: 40px; height: 40px; border-radius: 50%; pointer-events: none; opacity: 0;
+  background: rgba(10, 11, 15, 0.16); box-shadow: 0 0 0 2px rgba(255, 255, 255, 0.95), 0 8px 18px -6px rgba(16, 24, 40, 0.4); }
+#how .how__tap i { position: absolute; inset: 0; border-radius: 50%; border: 2px solid rgba(10, 11, 15, 0.3); opacity: 0; }
+#how .how__tap--ad { left: 180px; bottom: 5px; }
+#how .how__tap--form { left: 50%; top: 50%; margin: -20px 0 0 -20px; }
+#how .how__tap--form i { border-color: rgba(8, 102, 255, 0.55); }
+
+/* landing page */
+#how .how__land { background: #fff; opacity: 0; }
+#how .how__landin { padding: 50px 12px 0; }
+#how .how__url { position: relative; display: flex; align-items: center; gap: 8px; height: 32px; padding: 0 12px; border-radius: 16px; background: #f1f3f6; overflow: hidden; }
+#how .how__url i:nth-child(1) { width: 9px; height: 10px; border-radius: 2px; background: var(--faint); }
+#how .how__url i:nth-child(2) { width: 96px; height: 7px; border-radius: 4px; background: #d5d9e0; }
+#how .how__load { position: absolute; left: 0; bottom: 0; width: 100%; height: 2px; background: var(--blue); transform-origin: left; transform: scaleX(0); }
+#how .how__hero { position: relative; height: 150px; margin-top: 10px; padding: 18px 16px; border-radius: 16px; background: linear-gradient(160deg, #e8f0ff 0%, #cfe0ff 45%, #b9f0cf 100%); }
+#how .how__hero b { display: block; max-width: 7em; font-family: var(--display); font-size: 23px; line-height: 1.08; letter-spacing: -0.02em; }
+#how .how__hero i { display: block; width: 72%; height: 8px; margin-top: 12px; border-radius: 4px; background: rgba(255, 255, 255, 0.85); }
+#how .how__hero i:last-child { width: 46%; margin-top: 8px; }
+#how .how__form { margin-top: 16px; }
+#how .how__field + .how__field { margin-top: 12px; }
+#how .how__label { display: block; margin-bottom: 6px; font-size: 12px; font-weight: 600; line-height: 1; color: var(--ink-2); }
+#how .how__input { position: relative; display: flex; align-items: center; height: 40px; padding: 0 12px; border-radius: 10px; box-shadow: inset 0 0 0 1px var(--line-2); }
+#how .how__fill { width: 50%; height: 8px; border-radius: 4px; background: #aeb5c2; transform-origin: left; transform: scaleX(0); }
+#how .how__field:nth-child(2) .how__fill { width: 40%; }
+#how .how__field:nth-child(3) .how__fill { width: 66%; }
+#how .how__ring { position: absolute; inset: 0; border-radius: 10px; box-shadow: inset 0 0 0 2px var(--blue); opacity: 0; }
+#how .how__ok { position: absolute; right: 10px; top: 12px; width: 16px; height: 16px; border-radius: 50%; opacity: 0;
+  background: var(--blue-soft) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 16 16'%3E%3Cpath d='M4.5 8.2l2.2 2.2 4.8-4.9' fill='none' stroke='%230866ff' stroke-width='2' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 12px no-repeat; }
+#how .how__sbw { position: relative; margin-top: 18px; }
+#how .how__fine { display: grid; justify-items: center; gap: 6px; margin-top: 16px; }
+#how .how__fine i { width: 58%; height: 6px; border-radius: 3px; background: #eceef2; }
+#how .how__fine i + i { width: 36%; }
+#how .how__submit { position: relative; display: flex; align-items: center; justify-content: center; height: 44px; border-radius: 12px; overflow: hidden; background: var(--blue); color: #fff; font-size: 15px; font-weight: 600; }
+
+/* WhatsApp screen (composes the shared .wa) */
+#how .how__chat { opacity: 0; background: var(--wa-bg); }
+#how .how__chat .msg { font-size: 13.5px; }
+#how .how__stage--shot .how__chat .msg { font-size: 16px; }
+
+/* pixel toast icon */
+#how .how__picon { width: 36px; height: 36px; flex: none; border-radius: 11px;
+  background: var(--blue) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='12' r='7.5' fill='none' stroke='white' stroke-width='2'/%3E%3Ccircle cx='12' cy='12' r='3' fill='white'/%3E%3C/svg%3E") center / 22px no-repeat; }
+#how .how__pixel { opacity: 0; }
+
+/* the hot-lead card: the one object that leaves the chat and becomes a customer */
+#how .how__cardin { position: relative; padding: 16px 18px 18px 16px; border-radius: var(--r-md); background: #fff; box-shadow: 0 0 0 1px var(--line), var(--shadow-lg); }
+#how .how__chead { display: flex; align-items: center; gap: 12px; }
+#how .how__waic { width: 38px; height: 38px; flex: none; border-radius: 50%;
+  background: var(--wa) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Ccircle cx='12' cy='8.6' r='3.6' fill='white'/%3E%3Cpath d='M5 19.5c.6-3.6 3.4-5.6 7-5.6s6.4 2 7 5.6z' fill='white'/%3E%3C/svg%3E") center / 26px no-repeat; }
+#how .how__cttl { display: grid; }
+#how .how__cst { grid-area: 1 / 1; font-family: var(--display); font-size: 19px; font-weight: 650; line-height: 1.15; letter-spacing: -0.015em; }
+#how .how__cst--b { opacity: 0; }
+#how .how__csub { display: block; margin-top: 2px; font-size: 12.5px; line-height: 1.3; color: var(--soft); white-space: nowrap; }
+#how .how__sk { display: block; width: 80%; height: 8px; margin-top: 16px; border-radius: 4px; background: #e4e7ec; }
+#how .how__sk--short { width: 52%; margin-top: 8px; background: #eceef2; }
+#how .how__cring { position: absolute; inset: 0; border-radius: var(--r-md); box-shadow: inset 0 0 0 2px var(--wa); opacity: 0; }
+#how .how__tick { position: absolute; top: -11px; right: -11px; width: 30px; height: 30px; border-radius: 50%; opacity: 0; transform: scale(0.3);
+  box-shadow: 0 0 0 3px #fff, var(--shadow-sm);
+  background: var(--wa) url("data:image/svg+xml,%3Csvg xmlns='http://www.w3.org/2000/svg' viewBox='0 0 24 24'%3E%3Cpath d='M6 12.5l4 4L18 8' fill='none' stroke='white' stroke-width='2.6' stroke-linecap='round' stroke-linejoin='round'/%3E%3C/svg%3E") center / 18px no-repeat; }
+
+/* ---- list layout at desktop width (reduced motion, short screens) ------- */
+@media (min-width: 961px) {
+  #how .how__step { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: center; }
+  #how .how__shot { margin-top: 0; }
+  #how .how__line { display: none; }
+}
+
+/* ---- pinned layout: desktop, motion allowed ------------------------------ */
+@media (min-width: 961px) and (min-height: 600px) and (prefers-reduced-motion: no-preference) {
+  .js #how { padding-bottom: 48px; }
+  .js #how .how__track { height: 310vh; margin-top: -72px; }
+  .js #how .how__pin { position: sticky; top: 0; height: 100vh; display: flex; align-items: center; padding-top: 60px; }
+  .js #how .how__grid { display: grid; grid-template-columns: minmax(0, 0.8fr) minmax(0, 1.2fr); gap: 56px; align-items: center; }
+  .js #how .how__steps { gap: 36px; }
+  .js #how .how__step { display: block; }
+  .js #how .how__line { display: block; bottom: -40px; }
+  .js #how .how__step:last-child .how__line { display: block; bottom: 4px; }
+  /* steps still to come sit back; the active and finished ones read at full strength.
+     Both dim values keep contrast: heading 3.6:1 (large text), body 4.6:1. */
+  .js #how .how__text .h3, .js #how .how__text .how__p { transition: opacity 0.6s var(--ease); }
+  .js #how .how__step:not(.is-active):not(.is-done) .how__text .h3 { opacity: 0.5; }
+  .js #how .how__step:not(.is-active):not(.is-done) .how__text .how__p { opacity: 0.88; }
+  .js #how .how__shot { display: none; }
+  .js #how .how__view { display: block; position: relative; height: calc(100vh - 150px); max-height: 720px; }
+  .js #how .how__stage:not(.how__stage--shot) { left: 50%; top: 50%; margin: -340px 0 0 -310px; transform-origin: 50% 50%; }
+}
+
+/* ---- tablet and landscape phones: text beside each shot ------------------- */
+@media (min-width: 700px) and (max-width: 960px) {
+  #how .how__step { display: grid; grid-template-columns: minmax(0, 0.85fr) minmax(0, 1fr); gap: 40px; align-items: center; }
+  #how .how__step .how__shot { margin: 0; }
+  #how .how__line { display: none; }
+}
+
+/* ---- mobile ------------------------------------------------------------- */
+@media (max-width: 960px) {
+  #how .how__head { grid-template-columns: 1fr; }
+  #how .how__steps { gap: 56px; }
+  #how .how__step { padding-left: 36px; }
+  #how .how__node { left: -36px; }
+  #how .how__line { bottom: -48px; }
+  #how .how__step .h3 { font-size: 1.5rem; }
+}
+@media (max-width: 699px) {
+  #how .how__shot { margin: 20px 0 0 -36px; }
+}

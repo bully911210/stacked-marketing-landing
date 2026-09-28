@@ -1,0 +1,223 @@
+/* ==========================================================================
+   FAQ (#faq). Sticky heading on the left, a one-open accordion on the right.
+   Signature: answers unfold on grid-template-rows 0fr to 1fr, the plus turns
+   into a cross as an ink disc blooms behind it, and an ink rule draws itself
+   across the open question. Hairlines draw in as the list enters, and the
+   first answer (open from the start) draws its rule and cross as it arrives.
+   Collapsing only happens once js/faq.js adds .faq--ready, so without JS
+   every answer stays readable.
+   ========================================================================== */
+
+#faq { background: var(--bg); }
+
+#faq .faq__grid {
+  display: grid;
+  grid-template-columns: minmax(0, 5fr) minmax(0, 7fr);
+  column-gap: clamp(48px, 8vw, 128px);
+  align-items: start;
+}
+
+/* ---- left column --------------------------------------------------------- */
+#faq .faq__side { position: sticky; top: 128px; }
+#faq .faq__h { max-width: 6.5em; }
+
+#faq .faq__aside { margin-top: 52px; display: flex; flex-direction: column; align-items: flex-start; }
+#faq .faq__ask { font-size: var(--t-lead); line-height: 1.45; color: var(--soft); }
+#faq .faq__ask b { display: block; color: var(--ink); font-weight: 600; }
+
+/* a WhatsApp compose bar: the pre-filled message plus a send button, as one link */
+#faq .faq__compose {
+  position: relative; isolation: isolate;
+  display: inline-flex; align-items: center; gap: 14px; max-width: 100%;
+  min-height: 58px; margin-top: 24px; padding: 8px 8px 8px 22px;
+  border-radius: var(--r-pill); background: #fff; color: var(--ink-2);
+  font-size: 15.5px; line-height: 1.3; text-decoration: none;
+  box-shadow: inset 0 0 0 1px var(--line-2), var(--shadow-md);
+  transition: transform 0.5s var(--ease);
+}
+#faq .faq__compose::after {
+  content: ""; position: absolute; inset: 0; z-index: -1; border-radius: inherit;
+  box-shadow: var(--shadow-lg); opacity: 0; transition: opacity 0.5s var(--ease);
+}
+#faq .faq__compose:focus-visible { border-radius: var(--r-pill); }
+#faq .faq__send {
+  flex: none; display: grid; place-items: center; width: 42px; height: 42px; border-radius: 50%;
+  background: var(--wa); color: #fff; transition: transform 0.4s var(--ease);
+}
+#faq .faq__send svg { width: 21px; height: 21px; margin-left: 2px; transition: transform 0.5s var(--ease); }
+@media (hover: hover) and (pointer: fine) {
+  #faq .faq__compose:hover { transform: translateY(-2px); }
+  #faq .faq__compose:hover::after { opacity: 1; }
+  #faq .faq__compose:hover .faq__send svg { transform: translateX(2px); }
+}
+#faq .faq__compose:active .faq__send { transform: scale(0.92); }
+
+/* ---- accordion ----------------------------------------------------------- */
+#faq .faq__list { position: relative; margin-top: 6px; }
+#faq .faq__item { position: relative; }
+
+/* grey hairline above each row (draws in on entrance) */
+#faq .faq__item::after,
+#faq .faq__list::after {
+  content: ""; position: absolute; left: 0; right: 0; height: 1px;
+  background: var(--line-2); transform-origin: 0 50%; pointer-events: none;
+}
+#faq .faq__item::after { top: 0; }
+#faq .faq__list::after { bottom: 0; }
+.js #faq .faq__item[data-reveal]::after { transform: scaleX(0); transition: transform 1s var(--ease) calc(var(--d, 0) * 1ms + 60ms); }
+.js #faq .faq__item.is-in::after { transform: scaleX(1); }
+@supports selector(:has(*)) {
+  .js #faq .faq__list::after { transform: scaleX(0); transition: transform 1s var(--ease) 0.48s; }
+  .js #faq .faq__list:has(.faq__item:last-child.is-in)::after { transform: scaleX(1); }
+}
+
+/* ink rule that draws in from the left when a question opens, and leaves to the right */
+#faq .faq__item::before {
+  content: ""; position: absolute; z-index: 1; left: 0; right: 0; top: 0; height: 1px;
+  background: var(--ink); transform: scaleX(0); transform-origin: 100% 50%;
+  transition: transform 0.6s var(--ease-io); pointer-events: none;
+}
+#faq .faq__item.is-open::before { transform: scaleX(1); transform-origin: 0 50%; transition: transform 1s var(--ease); }
+
+/* the first answer starts open (no layout jump while reading): its ink rule and
+   its cross wait for the row to arrive, then draw and bloom in */
+.js #faq .faq__item[data-reveal]:not(.is-in)::before { transform: scaleX(0); }
+.js #faq .faq__item[data-reveal]:not(.is-in) .faq__disc { transform: scale(0); }
+.js #faq .faq__item[data-reveal]:not(.is-in) .faq__plus { transform: none; }
+#faq.faq--intro .faq__item.is-open::before { transition-delay: 0.2s; }
+#faq.faq--intro .is-open .faq__disc,
+#faq.faq--intro .is-open .faq__plus { transition-delay: 0.3s; }
+
+#faq .faq__q { font: inherit; }
+
+#faq .faq__btn {
+  position: relative; isolation: isolate;
+  display: flex; align-items: center; justify-content: space-between; gap: 28px;
+  width: 100%; min-height: 88px; padding: 24px 0; margin: 0;
+  border: 0; background: none; text-align: left; cursor: pointer;
+  font-family: var(--display); font-weight: 600;
+  font-size: clamp(1.14rem, 1.02rem + 0.42vw, 1.42rem); line-height: 1.28; letter-spacing: -0.012em;
+  color: var(--ink); -webkit-tap-highlight-color: transparent;
+}
+#faq .faq__qtext { max-width: 26em; text-wrap: balance; transition: transform 0.55s var(--ease); }
+
+/* keyboard focus plate: a soft blue wash with a ring, clear of the rules */
+#faq .faq__btn::before {
+  content: ""; position: absolute; z-index: -1; inset: 8px -16px;
+  border-radius: 16px; background: var(--blue-soft); box-shadow: inset 0 0 0 2px var(--blue);
+  opacity: 0; transform: scale(0.985);
+  transition: opacity 0.3s var(--ease), transform 0.45s var(--ease);
+}
+#faq .faq__btn:focus-visible { outline: none; }
+#faq .faq__btn:focus-visible::before { opacity: 1; transform: none; }
+
+/* icon: a ring, an ink disc that blooms in, and a plus that turns into a cross.
+   The bars use difference blending, so they read ink on white and white on ink,
+   even halfway through the bloom. */
+#faq .faq__icon {
+  position: relative; isolation: isolate; flex: none; width: 38px; height: 38px;
+  border-radius: 50%; background: #fff; box-shadow: inset 0 0 0 1px var(--line-2);
+}
+#faq .faq__icon::before {
+  content: ""; position: absolute; inset: 0; border-radius: 50%;
+  box-shadow: inset 0 0 0 1px var(--ink); opacity: 0; transition: opacity 0.3s var(--ease);
+}
+/* the disc only ever scales (never fades), so the blended bars keep full contrast */
+#faq .faq__disc {
+  position: absolute; inset: 0; border-radius: 50%; background: var(--ink);
+  transform: scale(0); transition: transform 0.45s var(--ease-io);
+}
+#faq .faq__plus {
+  position: absolute; inset: 0; mix-blend-mode: difference;
+  transition: transform 0.7s var(--ease);
+}
+#faq .faq__plus::before,
+#faq .faq__plus::after {
+  content: ""; position: absolute; left: 50%; top: 50%; width: 14px; height: 2px;
+  margin: -1px 0 0 -7px; border-radius: 2px; background: #fff;
+}
+#faq .faq__plus::after { transform: rotate(90deg); }
+#faq .is-open .faq__disc { transform: none; transition: transform 0.6s var(--ease); }
+#faq .is-open .faq__plus { transform: rotate(135deg); }
+
+/* row hover: the question leans in a touch and the ring firms up */
+@media (hover: hover) and (pointer: fine) {
+  #faq .faq__btn:hover .faq__qtext { transform: translateX(6px); }
+  #faq .faq__btn:hover .faq__icon::before { opacity: 1; }
+  #faq .is-open .faq__btn:hover .faq__qtext { transform: none; }
+}
+
+/* answers */
+#faq .faq__inner { min-height: 0; overflow: hidden; }
+#faq .faq__body { padding: 0 66px 34px 0; color: var(--soft); max-width: 40em; text-wrap: pretty; }
+#faq .faq__body > * + * { margin-top: 16px; }
+#faq .faq__ticks { font-size: var(--t-body); gap: 12px; }
+#faq .faq__ticks li { color: var(--ink-2); }
+#faq .faq__terms { padding-left: 1.1em; color: var(--ink-2); }
+#faq .faq__link { color: var(--blue); font-weight: 500; text-decoration: underline; text-decoration-thickness: 1px; text-underline-offset: 3px; text-decoration-color: rgba(8, 102, 255, 0.35); transition: text-decoration-color 0.2s; }
+#faq .faq__link:hover { text-decoration-color: currentColor; }
+#faq .faq__start { height: 46px; margin-top: 22px; }
+#faq .faq__start span { display: inline-block; }
+#faq .faq__sr {
+  position: absolute; width: 1px; height: 1px; margin: -1px; padding: 0; border: 0;
+  overflow: hidden; clip-path: inset(50%); white-space: nowrap;
+}
+
+/* without the script the rows are plain headings: no icons, no pointer */
+#faq:not(.faq--ready) .faq__icon { visibility: hidden; }
+#faq:not(.faq--ready) .faq__btn { cursor: default; }
+
+/* collapsed state: only once JS is in charge.
+   Closing and opening share one duration and curve, so when one answer folds
+   while another unfolds the two heights trade off and the rows below glide
+   instead of bulging down and snapping back. */
+#faq.faq--ready .faq__panel {
+  display: grid; grid-template-rows: 0fr; visibility: hidden;
+  transition: grid-template-rows 0.7s var(--ease), visibility 0s linear 0.7s;
+}
+#faq.faq--ready .is-open .faq__panel {
+  grid-template-rows: 1fr; visibility: visible;
+  transition: grid-template-rows 0.7s var(--ease), visibility 0s;
+}
+#faq.faq--ready .faq__body { opacity: 0; transform: translateY(-10px); transition: opacity 0.18s linear, transform 0.5s var(--ease); }
+#faq.faq--ready .is-open .faq__body { opacity: 1; transform: none; transition: opacity 0.5s var(--ease) 0.12s, transform 0.8s var(--ease) 0.06s; }
+
+/* ---- mobile: its own single column, heading first, the way out last ------ */
+@media (max-width: 960px) {
+  #faq .faq__grid { grid-template-columns: minmax(0, 1fr); row-gap: 36px; }
+  #faq .faq__side { display: contents; }
+  #faq .faq__head { order: 1; }
+  #faq .faq__list { order: 2; margin-top: 0; }
+  #faq .faq__aside { order: 3; margin-top: 16px; }
+  #faq .faq__h { max-width: none; }
+  #faq .faq__btn { min-height: 76px; padding: 20px 0; gap: 18px; font-size: clamp(1.1rem, 1rem + 0.5vw, 1.25rem); }
+  #faq .faq__btn::before { inset: 6px -12px; border-radius: 14px; }
+  #faq .faq__icon { width: 34px; height: 34px; }
+  #faq .faq__plus::before, #faq .faq__plus::after { width: 12px; margin-left: -6px; }
+  #faq .faq__body { padding: 0 0 28px; font-size: 16.5px; }
+  #faq .faq__ticks { font-size: 16px; }
+  #faq .faq__compose { width: 100%; max-width: 460px; justify-content: space-between; }
+}
+
+/* ---- reduced motion: instant open and close, everything else still ------ */
+@media (prefers-reduced-motion: reduce) {
+  #faq .faq__compose,
+  #faq .faq__compose::after,
+  #faq .faq__send,
+  #faq .faq__send svg,
+  #faq .faq__item::before,
+  #faq .faq__item.is-open::before,
+  .js #faq .faq__item[data-reveal]::after,
+  .js #faq .faq__list::after,
+  #faq .faq__icon::before,
+  #faq .faq__disc,
+  #faq .is-open .faq__disc,
+  #faq .faq__plus,
+  #faq .faq__qtext,
+  #faq .faq__btn::before,
+  #faq.faq--ready .faq__panel,
+  #faq.faq--ready .is-open .faq__panel,
+  #faq.faq--ready .faq__body,
+  #faq.faq--ready .is-open .faq__body { transition: none; }
+  #faq.faq--ready .faq__body { transform: none; }
+}

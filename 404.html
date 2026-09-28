@@ -1,0 +1,45 @@
+<!doctype html>
+<html lang="en-ZA">
+<head>
+<meta charset="utf-8">
+<meta name="viewport" content="width=device-width, initial-scale=1">
+<title>Page not found · Stacked</title>
+<meta name="robots" content="noindex">
+<meta name="theme-color" content="#ffffff">
+<link rel="icon" href="/favicon.svg" type="image/svg+xml">
+<link rel="preconnect" href="https://fonts.googleapis.com">
+<link rel="preconnect" href="https://fonts.gstatic.com" crossorigin>
+<link rel="stylesheet" href="https://fonts.googleapis.com/css2?family=Inter+Tight:wght@500;600;700&family=Inter:wght@400;500;600&display=swap">
+<script>document.documentElement.classList.add("js");</script>
+<link rel="stylesheet" href="/css/base.css">
+<style>
+  .nf { position: relative; min-height: 100svh; display: grid; place-items: center; padding: 120px 24px 80px; overflow: clip; }
+  .nf__glow { position: absolute; top: -10%; right: -12%; width: 70vw; height: 90vh; pointer-events: none;
+    background: radial-gradient(closest-side, rgba(8, 102, 255, 0.12), rgba(8, 102, 255, 0.04) 55%, transparent),
+                radial-gradient(closest-side at 30% 70%, rgba(37, 211, 102, 0.09), transparent 70%); filter: blur(10px); }
+  .nf__in { position: relative; width: min(640px, 100%); }
+  .nf__in .logo, .nf__in img { height: 40px; }
+  .nf__h { margin-top: 40px; font-family: var(--display); font-weight: 700; font-size: var(--t-h2); line-height: 1.02; letter-spacing: -0.035em; }
+  .nf__p { margin-top: 18px; font-size: var(--t-lead); color: var(--soft); max-width: 28em; }
+  .nf__cta { margin-top: 32px; display: flex; flex-wrap: wrap; gap: 8px; }
+</style>
+</head>
+<body>
+<main class="nf">
+  <div class="nf__glow" aria-hidden="true"></div>
+  <div class="nf__in">
+    <a href="/" aria-label="Stacked, home" data-logo="load"><img src="/assets/logo/stacked.svg" alt="" width="189" height="40"></a>
+    <h1 class="nf__h">This page isn’t here any more.</h1>
+    <p class="nf__p">We rebuilt the site. Everything you need is on the home page, or ask us on WhatsApp.</p>
+    <div class="nf__cta">
+      <a class="btn btn--dark" href="/">Go to the home page <span aria-hidden="true">→</span></a>
+      <a class="btn btn--ghost" href="https://wa.me/27621779799" target="_blank" rel="noopener" data-wa>WhatsApp us</a>
+    </div>
+  </div>
+</main>
+<script src="/config.js"></script>
+<script src="/js/base.js"></script>
+<script src="/js/logo-path.js"></script>
+<script src="/js/logo.js"></script>
+</body>
+</html>

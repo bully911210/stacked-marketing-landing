@@ -1,10 +1,32 @@
 {
+  "$schema": "https://openapi.vercel.sh/vercel.json",
+  "framework": null,
+  "installCommand": "",
+  "buildCommand": "",
+  "cleanUrls": true,
+  "trailingSlash": false,
   "redirects": [
     {
       "source": "/(.*)",
       "has": [{ "type": "host", "value": "stackedmarketing.co.za" }],
       "destination": "https://www.stackedmarketing.co.za/$1",
       "permanent": true
+    },
+    { "source": "/blog", "destination": "/", "permanent": false },
+    { "source": "/blog/:path*", "destination": "/", "permanent": false },
+    { "source": "/contact", "destination": "/#start", "permanent": false },
+    { "source": "/thank-you", "destination": "/", "permanent": false },
+    { "source": "/terms", "destination": "/privacy", "permanent": false }
+  ],
+  "headers": [
+    {
+      "source": "/(.*)",
+      "headers": [
+        { "key": "X-Content-Type-Options", "value": "nosniff" },
+        { "key": "Referrer-Policy", "value": "strict-origin-when-cross-origin" },
+        { "key": "X-Frame-Options", "value": "SAMEORIGIN" },
+        { "key": "Permissions-Policy", "value": "camera=(), microphone=(), geolocation=()" }
+      ]
     }
   ]
 }
