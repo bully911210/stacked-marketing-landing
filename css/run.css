@@ -220,7 +220,7 @@ html:not(.js) #run .run__panel + .run__panel { margin-top: 48px; }
 .run__r-back .run__sk { margin-bottom: 12px; opacity: 0.7; }
 .run__r-doc { left: 128px; top: 6px; width: 378px; padding: 34px 34px 38px; border-radius: 16px; box-shadow: var(--shadow-lg); }
 .run__r-top { display: flex; align-items: center; gap: 12px; padding-bottom: 20px; border-bottom: 1px solid var(--line); }
-.run__r-top svg { width: 30px; height: 30px; flex: none; fill: var(--blue); }
+.run__r-top svg { width: 30px; height: 30px; flex: none; fill: var(--logo-ink); }
 .run__r-top b { display: block; font-family: var(--display); font-size: 23px; font-weight: 700; letter-spacing: -0.02em; line-height: 1.15; }
 .run__r-sec { margin-top: 26px; }
 .run__r-h { display: block; margin-bottom: 13px; font-size: 15px; font-weight: 650; }
